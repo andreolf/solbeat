@@ -8,6 +8,7 @@ live slot ticker / REV clock / data-age counter. Stdlib only.
 
 import html
 import json
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from solbeat_worldpath import WORLD_PATH
@@ -141,12 +142,13 @@ def big_chart(series, w=1120, h=150, color=BLUE, label=""):
 
 
 def strip(levels, titles=None, label=""):
-    """Status-page-style tick strip: one tick per interval, colored by level."""
+    """Status-page-style tick strip: one tick per interval, colored by level.
+    Ticks carry data-tip and are click/tap-inspectable via the popover JS."""
     ticks = []
     titles = titles or [""] * len(levels)
     for lv, t in zip(levels, titles):
         c = STATUS_COLORS.get(lv, STATUS_COLORS["na"])
-        ticks.append(f'<i style="background:{c}" title="{esc(t)}"></i>')
+        ticks.append(f'<i style="background:{c}" data-tip="{esc(t)}" tabindex="0"></i>')
     return (f'<div class="strip" role="img" aria-label="{esc(label)}">'
             + "".join(ticks) + "</div>")
 
@@ -265,20 +267,26 @@ def signal_row(level, text, klass=""):
             f'{esc(level.upper())}</span>{tag}<span>{esc(text)}</span></div>')
 
 
-def daily_levels(series, warn_pct, serious_pct):
-    """Color a daily series by day-over-day % change for the status strips."""
+def daily_levels(series, warn_pct, serious_pct, end_date=None, is_price=False):
+    """Color a daily series by day-over-day % change for the status strips.
+    Titles carry date + value + change for the click-to-inspect popover."""
     levels, titles = [], []
-    for i in range(1, len(series)):
+    n = len(series)
+    for i in range(1, n):
         prev, cur = series[i - 1], series[i]
+        day = ""
+        if end_date:
+            day = (end_date - timedelta(days=n - 1 - i)).strftime("%b %d") + " · "
         if not prev or cur is None:
             levels.append("na")
-            titles.append("no data")
+            titles.append(f"{day}no data")
             continue
         ch = 100 * (cur - prev) / prev
         lv = ("serious" if abs(ch) >= serious_pct
               else "warning" if abs(ch) >= warn_pct else "ok")
         levels.append(lv)
-        titles.append(f"{ch:+.1f}% day-over-day")
+        val = f"${cur:,.2f}" if is_price else fmt_usd(cur)
+        titles.append(f"{day}{val} · {ch:+.1f}% day-over-day")
     return levels, titles
 
 
@@ -351,6 +359,10 @@ def render_html(snap):
     # slot-performance strip: bucket ~12h of samples into ticks by slot time
     bucket = max(1, len(perf) // 96)
     slot_levels, slot_titles = [], []
+    try:
+        gen_dt = datetime.strptime(snap.get("generated_at", ""), "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError:
+        gen_dt = None
     for i in range(0, len(perf), bucket):
         chunk = [p["slot_ms"] for p in perf[i:i + bucket] if p.get("slot_ms")]
         if not chunk:
@@ -358,7 +370,11 @@ def render_html(snap):
         avg = sum(chunk) / len(chunk)
         lv = ("serious" if avg >= 700 else "warning" if avg >= 500 else "ok")
         slot_levels.append(lv)
-        slot_titles.append(f"{avg:.0f}ms avg slot time")
+        when = ""
+        if gen_dt:
+            t = gen_dt - timedelta(minutes=len(perf) - i)
+            when = t.strftime("%H:%M") + " UTC · "
+        slot_titles.append(f"{when}{avg:.0f}ms avg slot time")
 
     hero = f"""
 <section class="card">
@@ -462,22 +478,34 @@ def render_html(snap):
             [signal_row(i["level"], i["text"], i["class"]) for i in incidents]
             + [signal_row(f["level"], f["text"]) for f in findings])
 
+    try:
+        end_date = datetime.strptime(snap.get("generated_at", "")[:10], "%Y-%m-%d")
+    except ValueError:
+        end_date = None
     strips_html = ""
     strip_defs = [
-        ("SOL price", mkt.get("price_series_30d") or [], 5, 10),
-        ("Chain TVL", tvl.get("tvl_series") or [], 5, 10),
-        ("Stablecoins", stb.get("stablecoin_series") or [], 2, 5),
-        ("DEX volume", dex.get("dex_series") or [], 25, 50),
+        ("SOL price", mkt.get("price_series_30d") or [], 5, 10, True),
+        ("Chain TVL", tvl.get("tvl_series") or [], 5, 10, False),
+        ("Stablecoins", stb.get("stablecoin_series") or [], 2, 5, False),
+        ("DEX volume", dex.get("dex_series") or [], 25, 50, False),
     ]
-    for name, series, w, s in strip_defs:
+    for name, series, w, s, is_price in strip_defs:
         if len(series) > 5:
-            lv, ti = daily_levels(series[-61:], w, s)
+            lv, ti = daily_levels(series[-61:], w, s, end_date, is_price)
             strips_html += (f'<div class="striprow"><span class="strip-label">'
                             f'{esc(name)}</span>{strip(lv, ti, name)}</div>')
     hist = snap.get("history") or []
     if len(hist) >= 3:
-        lv = [h.get("anomaly_level", "ok") for h in hist[-96:]]
-        ti = [f"{h.get('ts', '')}: {h.get('anomaly_level', 'ok')}" for h in hist[-96:]]
+        recent = hist[-60:]
+        lv = [h.get("anomaly_level", "ok") for h in recent]
+        ti = [f"{(h.get('ts') or '')[:16].replace('T', ' ')} UTC · "
+              + ("all clear" if h.get("anomaly_level") == "ok"
+                 else f"{h.get('anomaly_level')}: "
+                      + (", ".join((h.get("levels") or {}).keys()) or "signal"))
+              for h in recent]
+        pad = 60 - len(recent)
+        lv = ["na"] * pad + lv
+        ti = ["future refresh slot — history grows every 30 min"] * pad + ti
         strips_html += (f'<div class="striprow"><span class="strip-label">'
                         f'run history</span>{strip(lv, ti, "run history")}</div>')
 
@@ -784,7 +812,13 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
   padding:2px 8px; white-space:nowrap; cursor:help; }}
 .prov i, .dot {{ width:6px; height:6px; border-radius:50%; display:inline-block; }}
 .strip {{ display:flex; gap:2px; margin-top:6px; flex-wrap:nowrap; }}
-.strip i {{ height:16px; border-radius:2px; flex:1 1 2px; min-width:0; max-width:10px; }}
+.strip i {{ height:16px; border-radius:2px; flex:1 1 2px; min-width:0;
+  cursor:pointer; transition:transform .08s; }}
+.strip i:hover, .strip i:focus {{ transform:scaleY(1.25); outline:none; }}
+#tickpop {{ position:absolute; z-index:50; background:#232322;
+  border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:8px 12px;
+  font-size:12.5px; color:var(--ink); box-shadow:0 6px 24px rgba(0,0,0,.5);
+  max-width:280px; pointer-events:none; display:none; }}
 .striprow {{ display:flex; align-items:center; gap:10px; margin-top:8px; }}
 .strip-label {{ width:90px; font-size:11px; color:var(--muted); text-transform:uppercase;
   letter-spacing:.5px; flex-shrink:0; }}
@@ -952,6 +986,29 @@ function tick() {{
 setInterval(tick, 250); tick();
 pollSlot(); setInterval(pollSlot, 10000);
 pollPerf(); setInterval(pollPerf, 60000);
+// Tick inspector: click/tap or hover any strip tick for date + value details.
+const pop = document.createElement('div'); pop.id = 'tickpop';
+document.body.appendChild(pop);
+function showTip(el) {{
+  const tip = el.getAttribute('data-tip');
+  if (!tip) return;
+  pop.textContent = tip;
+  pop.style.display = 'block';
+  const r = el.getBoundingClientRect();
+  const px = Math.min(Math.max(6, r.left + window.scrollX - 60),
+                      window.scrollX + document.documentElement.clientWidth - 290);
+  pop.style.left = px + 'px';
+  pop.style.top = (r.top + window.scrollY - pop.offsetHeight - 10) + 'px';
+}}
+document.addEventListener('pointerover', e => {{
+  const t = e.target.closest('.strip i');
+  if (t) showTip(t); }});
+document.addEventListener('pointerout', e => {{
+  if (e.target.closest('.strip i')) pop.style.display = 'none'; }});
+document.addEventListener('click', e => {{
+  const t = e.target.closest('.strip i');
+  if (t) {{ showTip(t); e.stopPropagation(); }}
+  else pop.style.display = 'none'; }});
 // Vercel Web Analytics — inject only when served by Vercel (the script path
 // doesn't exist on GitHub Pages/localhost, so we skip it there).
 if (!/localhost|\\.github\\.io$/.test(location.hostname)) {{

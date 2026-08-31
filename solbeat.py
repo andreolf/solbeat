@@ -281,7 +281,7 @@ def collect_market():
     time.sleep(1.5)  # keyless CoinGecko is touchy about bursts
     chart = _http_json(
         "https://api.coingecko.com/api/v3/coins/solana/market_chart"
-        "?vs_currency=usd&days=30&interval=daily"
+        "?vs_currency=usd&days=60&interval=daily"
     )
     out["price_series_30d"] = [round(p[1], 2) for p in chart.get("prices", [])]
     return out
