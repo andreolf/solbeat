@@ -359,11 +359,38 @@ def collect_stakewiz():
     with_bls = [v for v in vals if v.get("bls_pubkey")]
     total_stake = sum(v.get("activated_stake") or 0 for v in vals) or 1
     bls_stake = sum(v.get("activated_stake") or 0 for v in with_bls)
+
+    # Validator geography (for the world map) + country stake distribution.
+    geo = []
+    countries = {}
+    for v in vals:
+        stake = v.get("activated_stake") or 0
+        countries[v.get("ip_country") or "Unknown"] = \
+            countries.get(v.get("ip_country") or "Unknown", 0) + stake
+        if v.get("ip_latitude") and v.get("ip_longitude") and stake:
+            geo.append({
+                "lat": round(float(v["ip_latitude"]), 1),
+                "lon": round(float(v["ip_longitude"]), 1),
+                "stake": int(stake),
+                "name": (v.get("name") or "")[:40],
+                "loc": ", ".join(x for x in (v.get("ip_city"), v.get("ip_country")) if x),
+            })
+    geo.sort(key=lambda g: -g["stake"])
+    top_countries = sorted(countries.items(), key=lambda kv: -kv[1])[:8]
+    # Names for the top-stake validators, keyed by vote account.
+    named = sorted((v for v in vals if v.get("name")),
+                   key=lambda v: -(v.get("activated_stake") or 0))[:40]
+
     return {
         "stakewiz_validator_count": len(vals),
         "bls_registered_count": len(with_bls),
         "bls_registered_pct": round(100 * len(with_bls) / max(len(vals), 1), 1),
         "bls_stake_pct": round(100 * bls_stake / total_stake, 1),
+        "geo": geo[:1200],
+        "countries": [{"country": c, "stake_pct": round(100 * s / total_stake, 1)}
+                      for c, s in top_countries],
+        "names": {v["vote_identity"]: v["name"] for v in named
+                  if v.get("vote_identity")},
     }
 
 

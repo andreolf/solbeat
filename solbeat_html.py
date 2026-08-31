@@ -168,6 +168,55 @@ def epoch_ring(pct, size=92):
     )
 
 
+LOGO_SVG = ('<svg class="logomark" width="30" height="20" viewBox="0 0 34 20" '
+            'aria-hidden="true"><polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" '
+            f'fill="none" stroke="{BLUE}" stroke-width="2.4" stroke-linecap="round" '
+            'stroke-linejoin="round"/></svg>')
+
+FAVICON = ('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" '
+           'viewBox="0 0 32 32"><rect width="32" height="32" rx="7" '
+           'fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" '
+           'fill="none" stroke="%233987e5" stroke-width="2.6" '
+           'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+def world_map(geo, w=1120, h=430):
+    """Validator world map: equirectangular dot plot from Stakewiz geodata."""
+    if not geo:
+        return ""
+    lat_top, lat_bot = 74, -58
+    def xy(lat, lon):
+        x = (lon + 180) / 360 * w
+        y = (lat_top - lat) / (lat_top - lat_bot) * h
+        return x, y
+    # faint graticule for spatial structure
+    grid = ""
+    for lon in range(-150, 181, 30):
+        x, _ = xy(0, lon)
+        grid += (f'<line x1="{x:.0f}" y1="0" x2="{x:.0f}" y2="{h}" '
+                 'stroke="#2c2c2a" stroke-width="1"/>')
+    for lat in range(-30, 61, 30):
+        _, y = xy(lat, 0)
+        wgt = 1.5 if lat == 0 else 1
+        grid += (f'<line x1="0" y1="{y:.0f}" x2="{w}" y2="{y:.0f}" '
+                 f'stroke="#2c2c2a" stroke-width="{wgt}"/>')
+    max_stake = geo[0]["stake"] or 1
+    dots = ""
+    # draw small dots first so heavyweights sit on top
+    for g in reversed(geo):
+        x, y = xy(g["lat"], g["lon"])
+        r = max(2.1, 9 * (g["stake"] / max_stake) ** 0.5)
+        label = esc(f'{g["name"] or "validator"} — {g["stake"]:,} SOL — {g["loc"]}')
+        big = g["stake"] > max_stake / 8
+        dots += (f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{BLUE}" '
+                 f'opacity="{0.95 if big else 0.7}"'
+                 + (f' stroke="#1a1a19" stroke-width="1.5"' if big else "")
+                 + f'><title>{label}</title></circle>')
+    return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" '
+            f'aria-label="World map of Solana validators, dot size by stake">'
+            f'{grid}{dots}</svg>')
+
+
 def meter(pct, color=BLUE):
     pct = max(0, min(100, pct or 0))
     return (f'<div class="meter"><div class="meter-fill" '
@@ -227,6 +276,27 @@ def daily_levels(series, warn_pct, serious_pct):
         levels.append(lv)
         titles.append(f"{ch:+.1f}% day-over-day")
     return levels, titles
+
+
+def _map_block(snap):
+    sw = snap.get("stakewiz") or {}
+    geo = sw.get("geo") or []
+    if not geo:
+        return ""
+    crows = ""
+    for c in sw.get("countries") or []:
+        crows += f"""<div class="prow">
+  <span class="prow-label">{esc(c['country'])}</span>
+  <div class="prow-track"><div class="prow-bar" style="width:{min(100, c['stake_pct'] * 2.2):.0f}%"></div></div>
+  <span class="prow-val">{c['stake_pct']}%</span>
+</div>"""
+    badge = provenance_badge(snap, "stakewiz", "Stakewiz · geodata")
+    return f"""<div class="mapwrap">
+  <div class="tile-label" style="margin:20px 0 6px">VALIDATOR MAP — {len(geo):,} nodes, dot size = stake {badge}</div>
+  {world_map(geo)}
+  <div class="tile-label" style="margin:14px 0 4px">STAKE BY COUNTRY</div>
+  {crows}
+</div>"""
 
 
 def _news_block(snap):
@@ -419,13 +489,17 @@ def render_html(snap):
     <span style="color:{STATUS_COLORS['serious']}">▲</span> large move</div>
 </section>"""
 
-    # ---- validators
+    # ---- validators (named via Stakewiz where known)
+    names = sw.get("names") or {}
     vrows = ""
     for i, v in enumerate(val.get("top_validators") or [], 1):
         bar_w = min(100, v["stake_pct"] * 30)
+        who = names.get(v["vote_pubkey"])
+        who_html = (f'{esc(who)} <span class="mono muted small">{esc(v["vote_pubkey"][:8])}…</span>'
+                    if who else f'<span class="mono">{esc(v["vote_pubkey"][:16])}…</span>')
         vrows += f"""<tr>
   <td class="muted">{i}</td>
-  <td class="mono">{esc(v['vote_pubkey'][:16])}…</td>
+  <td>{who_html}</td>
   <td class="num">{v['stake_sol']:,}</td>
   <td class="num">{v['stake_pct']}%</td>
   <td class="num">{v['commission_pct']}%</td>
@@ -445,10 +519,11 @@ def render_html(snap):
     <div><span class="hs-value">{fmt_num(val.get('total_stake_sol'))}</span><span class="hs-label">SOL staked</span></div>
   </div>
   <table class="vtable">
-    <thead><tr><th>#</th><th>vote account</th><th class="num">stake (SOL)</th>
+    <thead><tr><th>#</th><th>validator</th><th class="num">stake (SOL)</th>
       <th class="num">share</th><th class="num">commission</th><th></th></tr></thead>
     <tbody>{vrows}</tbody>
   </table>
+  {_map_block(snap)}
   {"" if bls_pct is None else f'''
   <div class="blsrow">
     <div class="tile-label">ALPENGLOW READINESS — BLS keys registered {B('stakewiz', 'Stakewiz')}</div>
@@ -639,6 +714,7 @@ def render_html(snap):
 <meta name="twitter:description" content="Live Solana metrics, zero API keys, refreshes itself every 30 min. Open source.">
 <meta name="twitter:image" content="{BASE_URL}screenshot.png">
 <link rel="alternate" type="application/json" href="data.json" title="Machine-readable snapshot">
+<link rel="icon" href='{FAVICON}'>
 <script type="application/ld+json">{jsonld}</script>
 <style>
 :root {{
@@ -794,6 +870,7 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 </style></head>
 <body><div class="wrap">
 <header class="top card">
+  {LOGO_SVG}
   <span class="wordmark">SOL<b>BEAT</b></span>
   <span class="tagline">the heartbeat terminal for the Solana network</span>
   <span class="healthpill"><i class="pulse" style="background:{hcol}"></i>
