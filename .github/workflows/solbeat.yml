@@ -28,7 +28,12 @@ jobs:
         run: |
           git config user.name "solbeat-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase --autostash || true
           git add docs
-          git diff --cached --quiet || git commit -m "solbeat: refresh $(date -u +%FT%TZ)"
-          git push
+          git diff --cached --quiet && exit 0
+          git commit -m "solbeat: refresh $(date -u +%FT%TZ)"
+          # docs/ is fully regenerated each run: on a race, keep our version.
+          git push || {
+            git fetch origin main
+            git rebase -X theirs origin/main
+            git push
+          }
