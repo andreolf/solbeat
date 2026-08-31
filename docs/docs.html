@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat Docs — setup, architecture, contributing</title>
+<meta name="description" content="How Solbeat collects, analyzes and presents the state of the Solana network — setup, configuration, self-audit, deployment and contribution guide.">
+<link rel="canonical" href="https://www.solbeat.xyz/docs.html">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" fill="none" stroke="%233987e5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<style>
+:root { --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --accent:#3987e5; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--page); color:var(--ink2);
+  font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
+.wrap { max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+a { color:var(--accent); }
+.card { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:20px 24px; overflow-x:auto; }
+header.top { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.wordmark { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:20px;
+  font-weight:700; color:var(--ink); letter-spacing:1px; }
+.wordmark b { color:var(--accent); }
+.crumb { color:var(--muted); font-size:13px; }
+.backlink { margin-left:auto; font-size:13px; }
+h1 { color:var(--ink); font-size:22px; margin-bottom:6px; }
+h2 { color:var(--ink); font-size:16px; font-weight:650; margin:0 0 10px; }
+h3 { color:var(--ink); font-size:13.5px; font-weight:650; margin:14px 0 6px; }
+p { margin-bottom:10px; }
+code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px;
+  background:#232322; border:1px solid var(--border); border-radius:4px; padding:1px 6px; }
+pre { background:#111110; border:1px solid var(--border); border-radius:8px;
+  padding:14px 16px; overflow-x:auto; margin:10px 0; }
+pre code { background:none; border:none; padding:0; color:#d8d7cf; }
+table { width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0; }
+th { text-align:left; font-size:11px; letter-spacing:1px; color:var(--muted);
+  text-transform:uppercase; font-weight:600; padding:6px 8px;
+  border-bottom:1px solid var(--border); }
+td { padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+tr:last-child td { border-bottom:none; }
+ul, ol { margin:0 0 10px 22px; }
+li { margin-bottom:5px; }
+.muted { color:var(--muted); } .small { font-size:12.5px; }
+.toc a { display:inline-block; margin:2px 12px 2px 0; font-size:13.5px; }
+.flow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:12px 0; }
+.flow span { border:1px solid var(--border); border-radius:8px; padding:8px 12px;
+  font-size:12.5px; color:var(--ink); background:#232322; white-space:nowrap; }
+.flow i { color:var(--muted); font-style:normal; }
+footer { text-align:center; padding:8px 0 20px; color:var(--muted); font-size:12px; }
+</style></head>
+<body><div class="wrap">
+
+<header class="top card">
+  <svg width="28" height="19" viewBox="0 0 34 20" aria-hidden="true"><defs>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#9945FF"/><stop offset="1" stop-color="#14F195"/>
+    </linearGradient></defs>
+    <polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" fill="none"
+    stroke="url(#g)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="wordmark">SOL<b>BEAT</b></span>
+  <span class="crumb">/ documentation</span>
+  <a class="backlink" href="./">← back to the dashboard</a>
+</header>
+
+<section class="card">
+  <h1>Solbeat documentation</h1>
+  <p>Solbeat is an autonomous, zero-API-key terminal for the state of the Solana
+  network: Python standard library only, no frameworks, no chart libraries, no
+  servers, no secrets. This page covers how it's collected, analyzed and
+  presented, how to run and deploy your own, and how to contribute.</p>
+  <div class="toc">
+    <a href="#quickstart">Quickstart</a> <a href="#architecture">Architecture</a>
+    <a href="#collection">Data collection</a> <a href="#analysis">Analysis</a>
+    <a href="#presentation">Presentation</a> <a href="#config">Configuration</a>
+    <a href="#verify">Self-audit</a> <a href="#deploy">Deploy your own</a>
+    <a href="#contribute">Contributing</a> <a href="#faq">Design FAQ</a>
+  </div>
+</section>
+
+<section class="card" id="quickstart">
+  <h2>Quickstart</h2>
+  <p>Requirements: Python 3.9+ and an internet connection. Nothing else — no
+  <code>pip install</code>, no <code>.env</code>, no API keys.</p>
+<pre><code>git clone https://github.com/andreolf/solbeat && cd solbeat
+python3 solbeat.py run       # one full refresh: collect + render (~30-60s)
+python3 solbeat.py verify    # cross-check the numbers against independent sources
+python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 min</code></pre>
+  <p class="small muted">Outputs land in <code>docs/</code>: <code>index.html</code>
+  (dashboard), <code>report.md</code>, <code>data.json</code>, <code>llms.txt</code>,
+  <code>history.json</code>.</p>
+</section>
+
+<section class="card" id="architecture">
+  <h2>Architecture</h2>
+  <div class="flow">
+    <span>15 keyless sources</span><i>→</i>
+    <span>collectors + provenance</span><i>→</i>
+    <span>derived metrics (REV…)</span><i>→</i>
+    <span>anomaly engine</span><i>→</i>
+    <span>snapshot (data.json)</span><i>→</i>
+    <span>HTML · Markdown · JSON · llms.txt</span>
+  </div>
+  <p>Two files: <a href="https://github.com/andreolf/solbeat/blob/main/solbeat.py">
+  <code>solbeat.py</code></a> (collectors, derived metrics, anomaly engine,
+  Markdown/JSON renderers, CLI) and
+  <a href="https://github.com/andreolf/solbeat/blob/main/solbeat_html.py">
+  <code>solbeat_html.py</code></a> (the HTML terminal: server-side SVG charts,
+  world map, live-JS layer). A GitHub Actions cron runs the whole loop every
+  30 minutes and commits the refreshed <code>docs/</code>; GitHub Pages and
+  Vercel both serve straight from the repo. There is no server-side rendering
+  at view time and no runtime dependency: the published page is a single
+  self-contained HTML file.</p>
+  <p>Every collector is individually wrapped: a failing source degrades
+  gracefully and is reported honestly in the provenance panel (status, latency,
+  fetch time per source) instead of breaking the report.</p>
+</section>
+
+<section class="card" id="collection">
+  <h2>How data is collected</h2>
+  <table>
+    <tr><th>Source</th><th>Endpoint</th><th>Feeds</th></tr>
+    <tr><td>Solana mainnet RPC</td><td><code>api.mainnet-beta.solana.com</code></td>
+      <td><code>getSlot</code>, <code>getBlockTime</code> (chain clock),
+      <code>getEpochInfo</code>, <code>getRecentPerformanceSamples</code> (TPS,
+      non-vote TPS, measured slot time), <code>getVoteAccounts</code> (validators,
+      stake, commission, delinquency), <code>getSupply</code>,
+      <code>getInflationRate</code>, <code>getRecentPrioritizationFees</code>,
+      <code>getHealth</code>, <code>getVersion</code>, <code>getBalance</code>
+      (exchange reserves), <code>getSignaturesForAddress</code> (program pulse)</td></tr>
+    <tr><td>CoinGecko (free)</td><td><code>api.coingecko.com</code></td>
+      <td>SOL price, market cap, 24h change, 60-day daily series</td></tr>
+    <tr><td>DeFiLlama</td><td><code>api.llama.fi</code> · <code>stablecoins.llama.fi</code></td>
+      <td>Chain TVL + history, DEX volumes + venues, chain fees/revenue,
+      stablecoin supply + history, xStocks tokenized-equities TVL</td></tr>
+    <tr><td>Jito Kobe</td><td><code>kobe.mainnet.jito.network</code></td>
+      <td>Network MEV tips per epoch (REV input)</td></tr>
+    <tr><td>Stakewiz</td><td><code>api.stakewiz.com</code></td>
+      <td>Validator names, geolocation (world map), country stake
+      distribution, BLS-key registration (Alpenglow readiness)</td></tr>
+    <tr><td>GitHub API</td><td><code>api.github.com</code></td>
+      <td>Latest Agave release, SIMD-0525 proposal state</td></tr>
+    <tr><td>solana.com</td><td><code>solana.com/news/rss.xml</code></td>
+      <td>Official ecosystem news headlines</td></tr>
+    <tr><td>Solana status page</td><td><code>status.solana.com</code></td>
+      <td>Operational status, unresolved incidents</td></tr>
+    <tr><td>Dune <span class="muted">(optional)</span></td><td><code>api.dune.com</code></td>
+      <td>Any query's latest results (e.g. daily active addresses) — enabled by
+      <code>DUNE_API_KEY</code> + <code>DUNE_QUERY_ID</code>; off by default to
+      preserve the zero-key design</td></tr>
+  </table>
+  <p class="small muted">The browser adds one more live layer at view time: the
+  page polls PublicNode (a keyless, browser-friendly RPC — the official public
+  endpoint rejects browser origins) to re-sync the slot counter every 10s and
+  refresh TPS/slot time every 60s, degrading gracefully to extrapolation.</p>
+</section>
+
+<section class="card" id="analysis">
+  <h2>How data is analyzed</h2>
+  <h3>Derived metrics</h3>
+  <ul>
+    <li><strong>REV (Real Economic Value), Blockworks methodology:</strong>
+    <code>REV(24h) = chain base+priority fees (DeFiLlama dailyFees) + Jito MEV
+    tips</code>. Tips are Kobe's per-epoch total converted to a daily rate using
+    the <em>measured</em> slot time, priced at spot. Labeled "computed" wherever shown.</li>
+    <li><strong>Average fee per user transaction:</strong> chain fees ÷ estimated
+    daily <em>non-vote</em> transactions (vote transactions would dilute it).</li>
+    <li><strong>Nakamoto coefficient:</strong> minimum validators controlling
+    &gt;⅓ of stake, from <code>getVoteAccounts</code>.</li>
+    <li><strong>Upgrade evidence:</strong> measured slot time vs SIMD-0525's
+    350ms step; BLS-registered stake share as Alpenglow readiness.</li>
+  </ul>
+  <h3>Anomaly engine — two layers</h3>
+  <ol>
+    <li><strong>Per-metric scoring:</strong> z-scores against the best available
+    baseline — TPS/slot time vs the last ~12h of performance samples;
+    price/TVL/stablecoins/DEX vs their 30–90-day daily series (so detection
+    works from the very first run); REV vs the cross-run history. Absolute
+    thresholds cover delinquent stake, slow slots, and &gt;10% daily SOL moves.</li>
+    <li><strong>Multi-source correlation:</strong> co-firing signals are
+    classified into named incidents with plain-language narratives —
+    <em>network incident</em> (throughput + slots/delinquency),
+    <em>consensus stress</em>, <em>market-wide move</em>,
+    <em>liquidity rotation</em>. A TPS drop that coincides with a delinquency
+    spike is a different story than a quiet Sunday, and the report says which.</li>
+  </ol>
+</section>
+
+<section class="card" id="presentation">
+  <h2>How data is presented</h2>
+  <table>
+    <tr><th>Output</th><th>What it is</th></tr>
+    <tr><td><a href="./">index.html</a></td><td>Dark terminal dashboard: live
+    slot counter (real RPC re-sync + LIVE badge), REV clock, ticking lifetime-tx
+    counter, sparklines, status-page-style anomaly strips (every tick
+    click-inspectable with date · value · change), validator world map (1,200
+    geolocated nodes, dot size = stake, click any dot), named validator table,
+    program activity pulse, exchange reserves, the Almanac (commentary +
+    upgrade cards + news), and a provenance chip for every source.</td></tr>
+    <tr><td><a href="report.md">report.md</a></td><td>The full report as
+    Markdown tables plus a generated analyst commentary.</td></tr>
+    <tr><td><a href="data.json">data.json</a></td><td>Schema-versioned
+    structured snapshot: every metric, anomaly findings, incidents, and
+    per-source provenance. All three formats render from the same snapshot in
+    the same run, so they can never disagree.</td></tr>
+    <tr><td><a href="llms.txt">llms.txt</a></td><td>Agent manifest
+    (llmstxt.org), regenerated each refresh with current headline numbers and
+    machine-readable pointers.</td></tr>
+  </table>
+</section>
+
+<section class="card" id="config">
+  <h2>Configuration</h2>
+  <table>
+    <tr><th>Knob</th><th>Where</th><th>Effect</th></tr>
+    <tr><td><code>SOLBEAT_REFRESH</code></td><td>env var</td>
+      <td>Refresh interval in seconds for <code>serve</code> mode (default 1800)</td></tr>
+    <tr><td>cron line</td><td><code>.github/workflows/solbeat.yml</code></td>
+      <td>Hosted refresh cadence (default every 30 min)</td></tr>
+    <tr><td><code>DUNE_API_KEY</code> + <code>DUNE_QUERY_ID</code></td>
+      <td>env vars / repo secret + variable</td>
+      <td>Enables the optional Dune extractor (daily active addresses tile)</td></tr>
+    <tr><td><code>CONFIG</code>, <code>ANOMALY_THRESHOLDS</code>,
+      <code>WHALE_WALLETS</code>, <code>PROGRAMS</code></td>
+      <td>top of <code>solbeat.py</code></td>
+      <td>RPC URL, history window, z-score/delinquency/slot-time thresholds,
+      tracked exchange wallets and programs</td></tr>
+  </table>
+</section>
+
+<section class="card" id="verify">
+  <h2>Self-audit — trust the numbers</h2>
+  <p><code>python3 solbeat.py verify</code> cross-checks the latest snapshot
+  against <em>independent</em> sources and internal arithmetic:</p>
+  <ul>
+    <li>SOL price (CoinGecko) vs Binance's public ticker</li>
+    <li>Market cap vs RPC circulating supply × price</li>
+    <li>Reported slot time vs a live 5-second slot-advance measurement</li>
+    <li>TVL vs DeFiLlama's separate <code>/v2/chains</code> endpoint</li>
+    <li>REV arithmetic, top-10 stake share sums, epoch progress math</li>
+  </ul>
+  <p>Exit code is non-zero on any failure, so it can gate CI. A typical run
+  passes 7/7 with cross-venue price agreement around 0.3%.</p>
+</section>
+
+<section class="card" id="deploy">
+  <h2>Deploy your own</h2>
+  <ol>
+    <li><strong>Fork</strong> <a href="https://github.com/andreolf/solbeat">the
+    repo</a> on GitHub.</li>
+    <li><strong>Enable Actions</strong> (Actions tab → enable workflows). The
+    30-minute cron starts collecting and committing on its own.</li>
+    <li><strong>Enable Pages:</strong> Settings → Pages → deploy from branch
+    <code>main</code>, folder <code>/docs</code>. Your dashboard is live at
+    <code>&lt;you&gt;.github.io/solbeat</code>.</li>
+    <li><em>Optional:</em> import the repo into Vercel (the included
+    <code>vercel.json</code> serves <code>docs/</code> statically) for a custom
+    domain and analytics.</li>
+  </ol>
+  <p class="small muted">Total infrastructure cost: $0. Total secrets: 0.</p>
+</section>
+
+<section class="card" id="contribute">
+  <h2>Contributing</h2>
+  <p>Contributions are welcome — see
+  <a href="https://github.com/andreolf/solbeat/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+  The short version:</p>
+  <ul>
+    <li><strong>Ground rules:</strong> Python stdlib only; every data source
+    must be public and keyless (optional key-gated extractors are fine if off
+    by default); the published HTML must stay a single self-contained file.</li>
+    <li><strong>Good first contributions:</strong> new keyless sources, new
+    derived metrics, better anomaly heuristics/correlation classes, additional
+    exchange wallets or program IDs (with attribution evidence), accessibility
+    and mobile polish.</li>
+    <li><strong>Workflow:</strong> open an issue describing the metric/source,
+    then a PR. Run <code>python3 solbeat.py run && python3 solbeat.py verify</code>
+    before submitting — verify must pass 7/7.</li>
+  </ul>
+</section>
+
+<section class="card" id="faq">
+  <h2>Design FAQ</h2>
+  <h3>Why zero API keys?</h3>
+  <p>Every unified Solana dashboard so far has died or gone behind API keys —
+  keys are the industry's revenue model, and key-dependent projects rot when
+  tiers change. Zero keys means nothing to revoke, reprice, or expire.</p>
+  <h3>Why is Dune optional instead of built-in?</h3>
+  <p>Every Dune access path requires an API key, which conflicts with the
+  zero-key default. The extractor ships env-gated: automated for anyone with a
+  key, invisible without one.</p>
+  <h3>Where are daily active addresses?</h3>
+  <p>No keyless source exists (Solscan, Dune and Blockworks all gate it).
+  Non-vote TPS is shown as the transparent, labeled activity proxy — or enable
+  the Dune extractor for a first-class DAA tile.</p>
+  <h3>Why no X/Twitter feed?</h3>
+  <p>X's keyless endpoints (syndication CDN, nitter) are dead in 2026. Official
+  announcements come from solana.com's news RSS, GitHub releases/SIMD state,
+  and the status page instead.</p>
+</section>
+
+<footer>Solbeat — built with 💙 by <a href="https://github.com/andreolf">andreolf</a>
+· independent community project, not affiliated with the Solana Foundation
+· MIT licensed</footer>
+</div></body></html>

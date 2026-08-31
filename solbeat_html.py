@@ -701,6 +701,7 @@ def render_html(snap):
     </div>
     <div>
       <div class="foot-head">Resources</div>
+      <a class="footlink" href="docs.html">Documentation</a>
       <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub repository</a>
       <a class="footlink" href="report.md">Markdown report</a>
       <a class="footlink" href="data.json">JSON data (schema v{esc(snap.get('schema_version', '1'))})</a>

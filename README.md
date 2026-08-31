@@ -16,9 +16,11 @@ Report & Interactive Dashboard."*
 **Live dashboard: <https://www.solbeat.xyz>** — auto-refreshed every
 30 minutes by GitHub Actions (mirror:
 [andreolf.github.io/solbeat](https://andreolf.github.io/solbeat/)).
-Readable report:
+Docs: **[solbeat.xyz/docs.html](https://www.solbeat.xyz/docs.html)** ·
+readable report:
 [report.md](https://github.com/andreolf/solbeat/blob/main/docs/report.md) ·
-raw data: [data.json](https://www.solbeat.xyz/data.json)
+raw data: [data.json](https://www.solbeat.xyz/data.json) ·
+contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ![dashboard](docs/screenshot.png)
 
