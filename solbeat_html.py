@@ -196,6 +196,20 @@ def daily_levels(series, warn_pct, serious_pct):
     return levels, titles
 
 
+def _news_block(snap):
+    items = (snap.get("news") or {}).get("items") or []
+    if not items:
+        return ""
+    rows = "".join(
+        f'<div class="newsrow"><a href="{esc(it["link"])}" target="_blank" '
+        f'rel="noopener">{esc(it["title"])}</a>'
+        f'<span class="muted small"> — {esc(it["published"][:16])}</span></div>'
+        for it in items[:5])
+    badge = provenance_badge(snap, "solana_com_news", "solana.com RSS")
+    return (f'<div class="newsblock"><div class="tile-label" style="margin:16px 0 8px">'
+            f'LATEST ECOSYSTEM NEWS {badge}</div>{rows}</div>')
+
+
 # ------------------------------------------------------------------ render
 
 def render_html(snap):
@@ -245,7 +259,8 @@ def render_html(snap):
     <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}</div>
     <div class="hero-slot" id="slot">{net.get('slot', 0):,}</div>
     <div class="hero-under">block height {net.get('block_height', 0):,} ·
-      {net.get('tx_count_total', 0):,} lifetime txs · node v{esc(net.get('node_version', '?'))}</div>
+      {net.get('tx_count_total', 0):,} lifetime txs · node v{esc(net.get('node_version', '?'))}
+      {f"· chain clock {esc(net['chain_time'])}" if net.get('chain_time') else ""}</div>
     <div class="hero-under">last 12h slot performance</div>
     {strip(slot_levels, slot_titles, "12h slot performance")}
   </div>
@@ -316,7 +331,12 @@ def render_html(snap):
                  + f" · {net.get('priority_fee_nonzero_share_pct', 0)}% of recent "
                  f"slots paid priority",
              badge=B("solana_rpc", "RPC")),
-    ])
+    ] + ([
+        tile("Daily active addresses",
+             fmt_num((snap.get("dune") or {}).get("daily_active_addresses")),
+             sub=f"Dune query {esc((snap.get('dune') or {}).get('query_id', ''))}",
+             badge=B("dune", "Dune")),
+    ] if (snap.get("dune") or {}).get("daily_active_addresses") else []))
 
     # ---- signals
     findings = anom.get("findings") or []
@@ -465,6 +485,7 @@ def render_html(snap):
         on status.solana.com · RPC health check: {esc(net.get('health') or '?')}.</div>
     </div>
   </div>
+  {_news_block(snap)}
 </section>"""
 
     # ---- provenance / methodology footer
@@ -564,7 +585,7 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
   padding:2px 8px; white-space:nowrap; cursor:help; }}
 .prov i, .dot {{ width:6px; height:6px; border-radius:50%; display:inline-block; }}
 .strip {{ display:flex; gap:2px; margin-top:6px; flex-wrap:nowrap; }}
-.strip i {{ width:8px; height:16px; border-radius:2px; flex:1 0 4px; max-width:10px; }}
+.strip i {{ height:16px; border-radius:2px; flex:1 1 2px; min-width:0; max-width:10px; }}
 .striprow {{ display:flex; align-items:center; gap:10px; margin-top:8px; }}
 .strip-label {{ width:90px; font-size:11px; color:var(--muted); text-transform:uppercase;
   letter-spacing:.5px; flex-shrink:0; }}
@@ -615,6 +636,21 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .muted {{ color:var(--muted); }}
 .small {{ font-size:12px; }}
 footer {{ text-align:center; padding:8px 0 20px; }}
+.newsrow {{ padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }}
+.newsrow:last-child {{ border-bottom:none; }}
+@media (max-width:600px) {{
+  body {{ padding:10px; }}
+  .card {{ padding:14px; }}
+  .hero {{ gap:14px; }}
+  .hero-slot {{ font-size:31px; }}
+  .hs-value {{ font-size:18px; }}
+  .tile-value {{ font-size:22px; }}
+  .strip-label {{ width:64px; font-size:10px; }}
+  .prow-label {{ width:86px; font-size:12px; }}
+  .prow-val {{ width:78px; font-size:11px; }}
+  .healthpill {{ margin-left:0; width:100%; }}
+  .hero-right {{ width:100%; }}
+}}
 </style></head>
 <body><div class="wrap">
 <header class="top card">

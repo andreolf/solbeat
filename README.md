@@ -63,7 +63,31 @@ exchange reserve tracking via `getBalance` on community-attributed wallets.
 **Upgrades & news** — SIMD-0525 slot-time reduction (with our own RPC
 measurement as live on-chain proof the 350ms step is active), Alpenglow /
 SIMD-0236 (with measured BLS-key registration), latest Agave release from
-GitHub, and unresolved incidents from status.solana.com.
+GitHub, unresolved incidents from status.solana.com, and the latest official
+ecosystem headlines from solana.com's news feed.
+
+## Bounty scope coverage
+
+Every line of the brief, mapped to its implementation:
+
+| Brief requirement | Where it's satisfied |
+|---|---|
+| Dune Analytics extraction | Optional env-gated extractor (`DUNE_API_KEY`/`DUNE_QUERY_ID`) — Dune has no keyless path, and the brief prefers zero keys; trade-off documented above |
+| Key Solana ecosystem websites | solana.com news RSS (headlines), status.solana.com (incidents), GitHub (Agave releases, SIMD state); solana.com/data's headline metrics (tx counts, fees, price, stablecoins, DeFi) are reproduced from primary sources — its own backends (Dune/Allium/TopLedger) are keyed |
+| Twitter accounts (announcements/sentiment) | Keyless X endpoints are dead in 2026 (documented); official announcements covered via solana.com RSS + GitHub + status page |
+| RPC: `getSlot`, `getBlockTime`, `getEpochInfo`, `getRecentPerformanceSamples`, `getVoteAccounts`, `getBalance`, `getSignaturesForAddress`, `getHealth`, `getSupply` | **All nine used**, plus `getVersion`, `getInflationRate`, `getRecentPrioritizationFees` |
+| DeFiLlama + CoinGecko | TVL/DEX/fees/stablecoins/xStocks + price/mcap |
+| TPS, slot time, block height, epoch progress | Hero strip + 12h TPS chart + 12h slot-performance strip |
+| Validator: active/delinquent, stake distribution, top validators, commission, delinquency alerts | Validators section (Nakamoto coefficient, top-10/20 share, per-validator commission, delinquent-stake alerts in the anomaly engine) |
+| Ecosystem & community news | Almanac section: RSS headlines + upgrade cards + status |
+| SOL price, stablecoin supply, DEX volume, REV, median fees | Economic tiles; REV computed (Blockworks methodology); median priority fee + avg fee/user-tx |
+| Tokenized assets (especially equities), daily active addresses | xStocks TVL tile + history; DAA via optional Dune tile or labeled non-vote-TPS proxy |
+| Upcoming upgrades (Alpenglow, SIMD-525) | Live-evidence cards: measured slot time proves SIMD-525 step 1; BLS registration measures Alpenglow readiness |
+| Automation, configurable intervals | Actions cron (30 min) + `SOLBEAT_REFRESH` env; SolPulse-inspired autonomous loop |
+| Anomaly detection: TPS drops/spikes, slow slots, delinquency, TVL/price moves | All implemented (z-scores + thresholds) **plus multi-source correlation** into classified incidents |
+| HTML (dark) + Markdown + JSON outputs | `docs/index.html` (dark), `docs/report.md`, `docs/data.json` (schema-versioned) |
+| No API keys / dependencies | Python stdlib only; zero keys end to end |
+| Public repo, README, live demo, samples, write-up | This repo · [live dashboard](https://andreolf.github.io/solbeat/) · [`samples/`](samples/) · this document |
 
 ## Data sources & integration
 
@@ -73,20 +97,25 @@ panel rather than breaking the report.
 
 | Source | Endpoint | Used for |
 |---|---|---|
-| Solana mainnet RPC | `api.mainnet-beta.solana.com` | `getSlot`, `getEpochInfo`, `getRecentPerformanceSamples`, `getVoteAccounts`, `getSupply`, `getInflationRate`, `getRecentPrioritizationFees`, `getHealth`, `getVersion`, `getBalance` (exchange reserves), `getSignaturesForAddress` (program pulse) |
+| Solana mainnet RPC | `api.mainnet-beta.solana.com` | `getSlot`, `getBlockTime` (chain clock), `getEpochInfo`, `getRecentPerformanceSamples`, `getVoteAccounts`, `getSupply`, `getInflationRate`, `getRecentPrioritizationFees`, `getHealth`, `getVersion`, `getBalance` (exchange reserves), `getSignaturesForAddress` (program pulse) — every RPC method named in the bounty brief |
 | CoinGecko (free) | `api.coingecko.com` | SOL price, market cap, 24h change, 30-day price series |
 | DeFiLlama | `api.llama.fi`, `stablecoins.llama.fi` | Chain TVL + history, DEX volumes, chain fees/revenue, stablecoin supply + history, xStocks (tokenized equities) TVL |
 | Jito Kobe | `kobe.mainnet.jito.network` | Network MEV tips per epoch (REV input) |
 | Stakewiz | `api.stakewiz.com` | BLS-key registration → Alpenglow readiness |
 | GitHub API | `api.github.com` | Latest Agave release; SIMD-0525 proposal state |
+| solana.com | `solana.com/news/rss.xml` | Official ecosystem news headlines |
 | Solana status page | `status.solana.com` | Operational status, unresolved incidents |
+| Dune Analytics *(optional)* | `api.dune.com` | Latest results of any Dune query (e.g. daily active addresses) — enabled by setting `DUNE_API_KEY` + `DUNE_QUERY_ID`; off by default because Dune has no keyless path and Solbeat's core design is zero-key |
 
-**Deliberately excluded:** Dune Analytics — every Dune access path (API and
-embeds) requires an API key, which conflicts with the zero-key design goal, so
-its most valuable Solana metrics are covered from the keyless sources above
-instead. Daily active addresses likewise has no keyless source in 2026
-(Solscan/Dune/Blockworks all gate it); non-vote TPS is shown as the
-transparent, honestly-labeled activity proxy.
+**On the two gated sources:** Dune requires an API key for every access path
+(API and embeds), so its extractor ships as the one *optional*, env-gated
+integration — the zero-key default stays intact. X/Twitter's keyless endpoints
+(syndication CDN, nitter) are dead in 2026; official announcements are covered
+instead via solana.com's news RSS, the GitHub releases/SIMD tracker, and the
+status page. Daily active addresses has no keyless source (Solscan, Dune, and
+Blockworks all gate it): with a Dune key configured it appears as a first-class
+tile; without one, non-vote TPS is shown as the transparent, honestly-labeled
+activity proxy.
 
 ### REV methodology
 
@@ -102,7 +131,9 @@ Real Economic Value and is labeled as computed wherever it appears.
   Pages serves the dashboard — a fully autonomous loop with zero
   infrastructure and zero secrets.
 - **Self-hosted option:** `python3 solbeat.py serve` does the same loop locally
-  with `http.server`. The cadence is one constant (`refresh_seconds`).
+  with `http.server`. The refresh interval is configurable without touching
+  code: `SOLBEAT_REFRESH=600 python3 solbeat.py serve` (seconds); the Actions
+  cadence is one cron line.
 - The dashboard needs no server-side rendering at view time: JS animates the
   slot counter (from measured slot time), the REV clock, and the data-age
   indicator between refreshes, so a 30-minute cadence still *feels* live.

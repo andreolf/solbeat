@@ -18,10 +18,11 @@ Usage:
 """
 
 import json
-import math
+import os
 import statistics
 import sys
 import time
+import xml.etree.ElementTree as ET
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
@@ -152,9 +153,20 @@ def collect_rpc_core():
     ver = rpc("getVersion")
     out["node_version"] = ver.get("solana-core")
     time.sleep(0.1)
+    slot_now = rpc("getSlot")
+    time.sleep(0.1)
+    try:
+        # Chain clock: timestamp of a recently rooted slot.
+        bt = rpc("getBlockTime", [slot_now - 40])
+        out["chain_time"] = datetime.fromtimestamp(
+            bt, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        out["chain_clock_drift_s"] = round(time.time() - bt)
+    except Exception:
+        out["chain_time"] = None
+    time.sleep(0.1)
     ep = rpc("getEpochInfo")
     out["epoch"] = ep["epoch"]
-    out["slot"] = ep["absoluteSlot"]
+    out["slot"] = max(slot_now, ep["absoluteSlot"])
     out["block_height"] = ep["blockHeight"]
     out["epoch_slot_index"] = ep["slotIndex"]
     out["epoch_slots_total"] = ep["slotsInEpoch"]
@@ -370,6 +382,44 @@ def collect_github():
         out["simd525_state"] = "merged" if pr.get("merged_at") else pr.get("state")
     except Exception:
         out["simd525_state"] = None
+    return out
+
+
+def collect_news():
+    """Official Solana ecosystem news via solana.com's public RSS (keyless)."""
+    hdrs = {"User-Agent": "Mozilla/5.0 (compatible; solbeat/1.0)"}
+    req = urllib.request.Request("https://solana.com/news/rss.xml", headers=hdrs)
+    with urllib.request.urlopen(req, timeout=CONFIG["http_timeout"]) as resp:
+        root = ET.fromstring(resp.read())
+    items = []
+    for item in root.findall(".//item")[:6]:
+        items.append({
+            "title": (item.findtext("title") or "").strip(),
+            "link": (item.findtext("link") or "").strip(),
+            "published": (item.findtext("pubDate") or "").strip(),
+        })
+    if not items:
+        raise RuntimeError("empty RSS feed")
+    return {"items": items}
+
+
+def collect_dune():
+    """Optional Dune Analytics extractor (the one source with no keyless path).
+
+    Off by default to honor the zero-key design; set DUNE_API_KEY and
+    DUNE_QUERY_ID to pull the latest results of any Dune query (e.g. a daily
+    active addresses query) into the snapshot."""
+    key, qid = os.environ.get("DUNE_API_KEY"), os.environ.get("DUNE_QUERY_ID")
+    d = _http_json(
+        f"https://api.dune.com/api/v1/query/{qid}/results?limit=5",
+        headers={"X-Dune-API-Key": key})
+    rows = ((d.get("result") or {}).get("rows") or [])[:5]
+    out = {"enabled": True, "query_id": qid, "rows": rows}
+    # Surface a recognizable daily-active-addresses figure if present.
+    for k, v in (rows[0] if rows else {}).items():
+        if isinstance(v, (int, float)) and ("active" in k.lower() or k.lower() in ("dau", "users")):
+            out["daily_active_addresses"] = v
+            break
     return out
 
 
@@ -661,6 +711,13 @@ def collect_snapshot():
     snap["jito"] = tracker.run("jito_kobe", collect_jito)
     snap["stakewiz"] = tracker.run("stakewiz", collect_stakewiz)
     snap["github"] = tracker.run("github", collect_github)
+    snap["news"] = tracker.run("solana_com_news", collect_news)
+    if os.environ.get("DUNE_API_KEY") and os.environ.get("DUNE_QUERY_ID"):
+        snap["dune"] = tracker.run("dune", collect_dune)
+    else:
+        snap["dune"] = {"enabled": False,
+                        "note": "keyless by design; set DUNE_API_KEY + "
+                                "DUNE_QUERY_ID to enable this extractor"}
     snap["status_page"] = tracker.run("solana_status_page", collect_status_page)
     snap["whales"] = tracker.run("solana_rpc_whales", collect_whales)
     snap["program_pulse"] = tracker.run("solana_rpc_programs", collect_program_pulse)
@@ -822,6 +879,17 @@ def render_markdown(snap):
     a(f"- **Status page**: {stp.get('statuspage_description', 'n/a')} "
       f"({stp.get('unresolved_incidents', 0)} unresolved incidents).\n")
 
+    news = (snap.get("news") or {}).get("items") or []
+    if news:
+        a("### Latest ecosystem news (solana.com)\n")
+        for it in news:
+            a(f"- [{it['title']}]({it['link']}) — {it['published'][:16]}")
+        a("")
+    dune = snap.get("dune") or {}
+    if dune.get("daily_active_addresses"):
+        a(f"Daily active addresses (Dune query {dune.get('query_id')}): "
+          f"{dune['daily_active_addresses']:,.0f}\n")
+
     a("## Data sources & provenance\n")
     a("| Source | Status | Latency |\n|---|---|---|")
     for name, s in (snap.get("sources") or {}).items():
@@ -883,6 +951,9 @@ def cmd_serve():
 
 
 def main():
+    # Refresh cadence is configurable without touching code.
+    if os.environ.get("SOLBEAT_REFRESH"):
+        CONFIG["refresh_seconds"] = int(os.environ["SOLBEAT_REFRESH"])
     cmd = sys.argv[1] if len(sys.argv) > 1 else "run"
     if cmd == "collect":
         cmd_collect()
