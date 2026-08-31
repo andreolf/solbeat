@@ -1519,7 +1519,8 @@ REV(24h) ${der.get('rev24h_usd', 0):,.0f}.
         f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}sitemap.xml\n")
     urls = "".join(
         f"<url><loc>{BASE_URL}{p}</loc><lastmod>{gen[:10]}</lastmod></url>"
-        for p in ("", "data.json", "report.md", "llms.txt"))
+        for p in ("", "pulse.html", "docs.html", "status.html",
+                  "data.json", "report.md", "llms.txt"))
     Path("docs/sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
