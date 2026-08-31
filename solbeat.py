@@ -430,6 +430,66 @@ def collect_news():
     return {"items": items}
 
 
+BULL_WORDS = ("bull", "surge", "rally", "soar", "ath", "all-time high", "record",
+              "breakout", "adoption", "milestone", "upgrade", "growth", "gain",
+              "etf", "institutional", "target", "catalyst", "hit", "beats")
+BEAR_WORDS = ("bear", "crash", "dump", "plunge", "exploit", "hack", "rug",
+              "outage", "halt", "lawsuit", "fear", "drop", "sell-off", "decline",
+              "warning", "risk", "fail", "down")
+CRYPTO_HINTS = ("sol", "crypto", "price", "network", "defi", "nft", "token",
+                "blockchain", "validator", "etf", "stablecoin", "trading",
+                "market", "bull", "bear", "staking", "web3")
+
+
+def collect_sentiment():
+    """Keyless sentiment inputs: crypto Fear & Greed, CoinGecko community
+    votes, and a naive keyword read of fresh Solana news headlines."""
+    out = {}
+    fng = _http_json("https://api.alternative.me/fng/?limit=30")
+    data = fng.get("data") or []
+    if data:
+        out["fng_value"] = int(data[0]["value"])
+        out["fng_label"] = data[0]["value_classification"]
+        out["fng_series_30d"] = [int(d["value"]) for d in reversed(data)]
+    time.sleep(1.5)  # be gentle with keyless CoinGecko
+
+    cg = _http_json(
+        "https://api.coingecko.com/api/v3/coins/solana?localization=false"
+        "&tickers=false&market_data=false&community_data=true"
+        "&developer_data=false")
+    out["cg_votes_up_pct"] = cg.get("sentiment_votes_up_percentage")
+    out["cg_watchlist_users"] = cg.get("watchlist_portfolio_users")
+
+    # Fresh Solana headlines from Google News RSS, filtered to crypto context.
+    hdrs = {"User-Agent": "Mozilla/5.0 (compatible; solbeat/1.0)"}
+    req = urllib.request.Request(
+        "https://news.google.com/rss/search?q=solana%20when:2d"
+        "&hl=en-US&gl=US&ceid=US:en", headers=hdrs)
+    with urllib.request.urlopen(req, timeout=CONFIG["http_timeout"]) as resp:
+        root = ET.fromstring(resp.read())
+    news, net, seen = [], 0, set()
+    for item in root.findall(".//item"):
+        title = (item.findtext("title") or "").strip()
+        low = title.lower()
+        if not any(h in low for h in CRYPTO_HINTS):
+            continue  # e.g. the tennis player also named Solana
+        key = low.split(" - ")[0][:60]  # same story syndicated by outlets
+        if key in seen:
+            continue
+        seen.add(key)
+        tone = (1 if any(w in low for w in BULL_WORDS) else 0) \
+             - (1 if any(w in low for w in BEAR_WORDS) else 0)
+        net += tone
+        news.append({"title": title[:120],
+                     "link": (item.findtext("link") or "").strip(),
+                     "tone": tone})
+        if len(news) >= 10:
+            break
+    out["headlines"] = news
+    out["headlines_net_tone"] = net
+    return out
+
+
 def collect_dune():
     """Optional Dune Analytics extractor (the one source with no keyless path).
 
@@ -530,6 +590,38 @@ def derive(snap):
     # Live upgrade evidence: measured slot time vs SIMD-0525's 350ms step.
     if net.get("slot_time_ms"):
         d["simd525_step_active"] = net["slot_time_ms"] < 390
+
+    # Solana Pulse: composite sentiment score (0-100) from keyless signals.
+    sen = snap.get("sentiment") or {}
+    clamp = lambda v, lo=5, hi=95: max(lo, min(hi, v))  # noqa: E731
+    comps, weights = {}, {"community": .3, "fear_greed": .25,
+                          "momentum": .3, "news": .15}
+    if sen.get("cg_votes_up_pct") is not None:
+        comps["community"] = round(sen["cg_votes_up_pct"], 1)
+    if sen.get("fng_value") is not None:
+        comps["fear_greed"] = sen["fng_value"]
+    prices = mkt.get("price_series_30d") or []
+    if len(prices) >= 8:
+        p7 = 100 * (prices[-1] / prices[-8] - 1)
+        parts = [clamp(50 + p7 * 3)]
+        dex_ch = (snap.get("dex") or {}).get("dex_change1d_pct")
+        if dex_ch is not None:
+            parts.append(clamp(50 + dex_ch * 1.5))
+        tvls = (snap.get("tvl") or {}).get("tvl_series") or []
+        if len(tvls) >= 8 and tvls[-8]:
+            parts.append(clamp(50 + 100 * (tvls[-1] / tvls[-8] - 1) * 3))
+        comps["momentum"] = round(sum(parts) / len(parts), 1)
+    if sen.get("headlines"):
+        comps["news"] = round(clamp(50 + sen["headlines_net_tone"] * 8), 1)
+    if comps:
+        wsum = sum(weights[k] for k in comps)
+        score = round(sum(comps[k] * weights[k] for k in comps) / wsum)
+        d["pulse"] = {
+            "score": score,
+            "label": ("Bullish" if score >= 60 else
+                      "Bearish" if score <= 40 else "Neutral"),
+            "components": comps,
+        }
     return d
 
 
@@ -739,6 +831,7 @@ def collect_snapshot():
     snap["stakewiz"] = tracker.run("stakewiz", collect_stakewiz)
     snap["github"] = tracker.run("github", collect_github)
     snap["news"] = tracker.run("solana_com_news", collect_news)
+    snap["sentiment"] = tracker.run("sentiment", collect_sentiment)
     if os.environ.get("DUNE_API_KEY") and os.environ.get("DUNE_QUERY_ID"):
         snap["dune"] = tracker.run("dune", collect_dune)
     else:
@@ -885,6 +978,20 @@ def render_markdown(snap):
         for inc in anom.get("incidents", []):
             a(f"- **[{inc['level'].upper()} · {inc['class']}]** {inc['text']}")
         a("")
+
+    pulse = der.get("pulse") or {}
+    sen = snap.get("sentiment") or {}
+    if pulse:
+        a("## Solana Pulse — sentiment (experimental)\n")
+        a(f"**{pulse['score']}/100 — {pulse['label']}** · composite of "
+          "keyless signals (not financial advice)\n")
+        a("| Component | Score |\n|---|---|")
+        for k, v in pulse.get("components", {}).items():
+            a(f"| {k.replace('_', ' ')} | {v} |")
+        if sen.get("fng_label"):
+            a(f"\nCrypto Fear & Greed: {sen['fng_value']} ({sen['fng_label']}) · "
+              f"CoinGecko votes bullish: {sen.get('cg_votes_up_pct')}% · "
+              f"headline tone (48h): {sen.get('headlines_net_tone'):+d}\n")
 
     a("## Ecosystem pulse\n")
     a("| Program | Activity (tx/min, sampled) |\n|---|---|")

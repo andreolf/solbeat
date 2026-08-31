@@ -48,6 +48,7 @@ SOURCE_LABELS = {
 }
 
 CHANGELOG = [
+    ("2026-08-31", "v1.5", "Solana Pulse sentiment composite (Fear & Greed, community votes, momentum, headline tone), status page + RSS, docs sidebar, anchor-scroll fix, scrollable changelog"),
     ("2026-08-31", "v1.3", "Real live mode: browser polls keyless RPC (slot re-sync, live TPS, ticking tx counter), `verify` self-audit command, SEO + llms.txt for agents"),
     ("2026-08-31", "v1.2", "Sources panel redesign, footer with changelog & resources, hero layout fix"),
     ("2026-08-31", "v1.1", "solana.com news feed, on-chain clock (getSlot/getBlockTime), optional Dune extractor, configurable refresh interval, mobile polish"),
@@ -535,6 +536,58 @@ def render_html(snap):
     <span style="color:{STATUS_COLORS['serious']}">▲</span> large move</div>
 </section>"""
 
+    # ---- Solana Pulse (sentiment)
+    sen = snap.get("sentiment") or {}
+    pulse_score = der.get("pulse") or {}
+    sentiment_html = ""
+    if pulse_score:
+        comp_labels = {"community": "Community votes (CoinGecko)",
+                       "fear_greed": "Crypto Fear & Greed",
+                       "momentum": "Market momentum (price·DEX·TVL)",
+                       "news": "Headline tone (48h)"}
+        comp_rows = ""
+        for k, v in pulse_score.get("components", {}).items():
+            comp_rows += f"""<div class="prow">
+  <span class="prow-label" style="width:220px">{esc(comp_labels.get(k, k))}</span>
+  <div class="prow-track"><div class="prow-bar" style="width:{v:.0f}%"></div></div>
+  <span class="prow-val">{v:.0f}/100</span>
+</div>"""
+        emoji = {"Bullish": "🐂", "Neutral": "🦀", "Bearish": "🐻"}[pulse_score["label"]]
+        head_rows = ""
+        for hl in (sen.get("headlines") or [])[:6]:
+            icon = ("<span class='d-up'>▲</span>" if hl["tone"] > 0 else
+                    "<span class='d-down'>▼</span>" if hl["tone"] < 0 else
+                    "<span class='muted'>·</span>")
+            head_rows += (f'<div class="newsrow">{icon} '
+                          f'<a href="{esc(hl["link"])}" target="_blank" '
+                          f'rel="noopener">{esc(hl["title"])}</a></div>')
+        fng_spark = sparkline(sen.get("fng_series_30d") or [])
+        sentiment_html = f"""
+<section class="twocol" id="sentiment">
+<div class="card">
+  <div class="section-head"><h2>Solana Pulse — sentiment</h2>
+    <span class="muted small">experimental composite · keyless signals</span></div>
+  <div class="pulse-score"><span class="pulse-num">{pulse_score['score']}</span>
+    <span class="pulse-label">{emoji} {esc(pulse_score['label'])}</span></div>
+  <div class="meter" style="margin:10px 0 16px"><div class="meter-fill"
+    style="width:{pulse_score['score']}%"></div></div>
+  {comp_rows}
+  <div class="muted small" style="margin-top:10px">Composite of CoinGecko
+    community votes ({sen.get('cg_watchlist_users', 0):,} watchlists),
+    the crypto Fear &amp; Greed index
+    ({sen.get('fng_value', '?')} · {esc(sen.get('fng_label', ''))}),
+    price/DEX/TVL momentum, and a keyword read of fresh headlines.
+    Heuristic, not financial advice.</div>
+</div>
+<div class="card">
+  <div class="section-head"><h2>Headline tone</h2>
+    {B('sentiment', 'Google News RSS')}</div>
+  {head_rows or '<div class="muted">no fresh headlines</div>'}
+  <div class="tile-label" style="margin:12px 0 2px">FEAR &amp; GREED — 30 DAYS</div>
+  {fng_spark}
+</div>
+</section>"""
+
     # ---- validators (named via Stakewiz where known)
     names = sw.get("names") or {}
     vrows = ""
@@ -696,7 +749,7 @@ def render_html(snap):
     </div>
     <div>
       <div class="foot-head">Resources</div>
-      <a class="footlink" href="docs.html">Documentation</a>
+      <a class="footlink" href="https://docs.solbeat.xyz">Documentation</a>
       <a class="footlink" href="status.html">System status</a>
       <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub repository</a>
       <a class="footlink" href="report.md">Markdown report</a>
@@ -709,7 +762,7 @@ def render_html(snap):
     </div>
     <div>
       <div class="foot-head">Changelog</div>
-      {changelog_rows}
+      <div class="clbox">{changelog_rows}</div>
     </div>
   </div>
 </section>
@@ -795,7 +848,9 @@ html[data-theme="light"] {{
 html {{ scroll-behavior:smooth; }}
 body {{ background:var(--page); color:var(--ink2);
   font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }}
-section[id], header[id] {{ scroll-margin-top:74px; }}
+section[id], header[id] {{ scroll-margin-top:118px; }}
+.hide-md {{ display:none; }}
+@media (min-width:1280px) {{ .hide-md {{ display:inline; }} }}
 .sv-line {{ stroke:var(--accent); }}
 .sv-fill {{ fill:var(--accent); opacity:.1; }}
 .sv-fill2 {{ fill:var(--accent); opacity:.08; }}
@@ -883,7 +938,7 @@ header.top {{ position:sticky; top:10px; z-index:60; display:flex;
 .spark {{ margin-top:6px; align-self:flex-start; }}
 .prov {{ display:inline-flex; align-items:center; gap:5px; font-size:10.5px;
   color:var(--muted); border:1px solid var(--border); border-radius:20px;
-  padding:2px 8px; white-space:nowrap; cursor:help; }}
+  padding:2px 8px; white-space:nowrap; }}
 .prov i, .dot {{ width:6px; height:6px; border-radius:50%; display:inline-block; }}
 .strip {{ display:flex; gap:2px; margin-top:6px; flex-wrap:nowrap; }}
 .strip i {{ height:16px; border-radius:2px; flex:1 1 2px; min-width:0;
@@ -931,6 +986,9 @@ header.top {{ position:sticky; top:10px; z-index:60; display:flex;
 .prow-bar {{ background:var(--accent); height:8px; border-radius:3px; }}
 .prow-val {{ width:110px; text-align:right; font-size:12.5px; color:var(--ink);
   font-variant-numeric:tabular-nums; flex-shrink:0; }}
+.pulse-score {{ display:flex; align-items:baseline; gap:12px; }}
+.pulse-num {{ font-size:44px; font-weight:650; color:var(--ink); }}
+.pulse-label {{ font-size:17px; font-weight:650; color:var(--ink); }}
 .commentary {{ font-size:14.5px; color:var(--ink2); border-left:3px solid var(--accent);
   padding-left:14px; margin-bottom:16px; }}
 .upgrid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }}
@@ -963,6 +1021,7 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 .footlink {{ display:block; font-size:13px; padding:3px 0; color:var(--ink2);
   text-decoration:none; }}
 .footlink:hover {{ color:var(--accent); }}
+.clbox {{ max-height:190px; overflow-y:auto; padding-right:8px; }}
 .clrow {{ margin-bottom:10px; }}
 .clver {{ font-size:11.5px; font-weight:700; color:var(--accent);
   font-family:ui-monospace,monospace; margin-right:8px; }}
@@ -987,11 +1046,12 @@ footer {{ text-align:center; padding:8px 0 20px; }}
   <span class="pricechip">{sol_glyph(11, 'hdr')} ${mkt.get('sol_price_usd', 0):,.2f}
     <b class="{'d-up' if (mkt.get('sol_change24h_pct') or 0) >= 0 else 'd-down'}">{mkt.get('sol_change24h_pct', 0):+.1f}%</b>
     <span class="muted">·</span> fee {f"${der['avg_fee_per_tx_usd']:.4f}" if der.get('avg_fee_per_tx_usd') else 'n/a'}</span>
+  <span class="tagline hide-md">the zero-API-key Solana ecosystem terminal</span>
   <nav class="nav">
     <a href="#network">Network</a><a href="#economy">Economy</a>
-    <a href="#signals">Signals</a><a href="#validators">Validators</a>
-    <a href="#ecosystem">Ecosystem</a><a href="#almanac">Almanac</a>
-    <a href="docs.html">Docs</a>
+    <a href="#signals">Signals</a><a href="#sentiment">Sentiment</a>
+    <a href="#validators">Validators</a><a href="#ecosystem">Ecosystem</a>
+    <a href="#almanac">Almanac</a><a href="https://docs.solbeat.xyz">Docs</a>
   </nav>
   <button id="themebtn" aria-label="Switch theme">🌙</button>
   <span class="healthpill"><i class="pulse" style="background:{hcol}"></i>
@@ -1002,6 +1062,7 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 {tiles}
 </section>
 {signals}
+{sentiment_html}
 {validators}
 {pulse_html}
 {upgrades}
@@ -1237,7 +1298,7 @@ footer {{ text-align:center; color:var(--muted); font-size:12px; padding:8px 0 1
 <body><div class="wrap">
 <header class="top card">
   <span class="wordmark">SOL<b>BEAT</b></span><span class="crumb">/ status</span>
-  <a class="backlink" href="./">← dashboard</a>
+  <a class="backlink" href="https://www.solbeat.xyz">← dashboard</a>
 </header>
 <div class="banner">{banner_txt}</div>
 <section class="card">

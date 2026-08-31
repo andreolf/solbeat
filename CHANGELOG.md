@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.5 — 2026-08-31
+- **Solana Pulse**: experimental sentiment composite (0-100) from keyless
+  signals — crypto Fear & Greed index, CoinGecko community votes, price/DEX/TVL
+  momentum, and keyword tone of fresh Solana headlines (Google News RSS,
+  deduped) — with per-component breakdown and headline list
+- Status page (status.html) with per-source uptime strips + RSS feed
+  (status.xml) and GitHub-watch email subscriptions; status.solbeat.xyz redirect
+- Docs restructured with left sidebar + scrollspy (docs.solbeat.xyz)
+- UX: anchor scrolling clears the sticky header, scrollable changelog box,
+  absolute cross-links between subdomains, header tagline
+
 ## v1.3 — 2026-08-31
 - Real live mode: the dashboard polls a keyless browser-friendly RPC
   (PublicNode) — slot counter re-syncs every 10s (LIVE badge), TPS/slot time
