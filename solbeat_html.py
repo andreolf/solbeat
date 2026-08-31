@@ -172,10 +172,28 @@ def epoch_ring(pct, size=92):
     )
 
 
+SOL_GRAD = ('<linearGradient id="solg" x1="0" y1="1" x2="1" y2="0">'
+            '<stop offset="0" stop-color="#9945FF"/>'
+            '<stop offset="1" stop-color="#14F195"/></linearGradient>')
+
 LOGO_SVG = ('<svg class="logomark" width="30" height="20" viewBox="0 0 34 20" '
-            'aria-hidden="true"><polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" '
-            f'fill="none" stroke="{BLUE}" stroke-width="2.4" stroke-linecap="round" '
-            'stroke-linejoin="round"/></svg>')
+            f'aria-hidden="true"><defs>{SOL_GRAD}</defs>'
+            '<polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" '
+            'fill="none" stroke="url(#solg)" stroke-width="2.4" '
+            'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+# The Solana three-bar glyph (simplified), Solana brand gradient.
+SOL_GLYPH = ('<svg width="{s}" height="{s2}" viewBox="0 0 100 80" aria-hidden="true">'
+             '<defs><linearGradient id="solg{uid}" x1="0" y1="1" x2="1" y2="0">'
+             '<stop offset="0" stop-color="#9945FF"/>'
+             '<stop offset="1" stop-color="#14F195"/></linearGradient></defs>'
+             '<path fill="url(#solg{uid})" d="M14 0 H100 L86 16 H0 Z"/>'
+             '<path fill="url(#solg{uid})" d="M0 32 H86 L100 48 H14 Z"/>'
+             '<path fill="url(#solg{uid})" d="M14 64 H100 L86 80 H0 Z"/></svg>')
+
+
+def sol_glyph(size=14, uid="a"):
+    return SOL_GLYPH.format(s=size, s2=round(size * 0.8), uid=uid)
 
 FAVICON = ('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" '
            'viewBox="0 0 32 32"><rect width="32" height="32" rx="7" '
@@ -212,10 +230,11 @@ def world_map(geo, w=1120, h=430):
         r = max(2.1, 9 * (g["stake"] / max_stake) ** 0.5)
         label = esc(f'{g["name"] or "validator"} — {g["stake"]:,} SOL — {g["loc"]}')
         big = g["stake"] > max_stake / 8
-        dots += (f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" fill="{BLUE}" '
-                 f'opacity="{0.95 if big else 0.7}"'
+        dots += (f'<circle class="vdot" cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" '
+                 f'fill="{BLUE}" opacity="{0.95 if big else 0.7}" '
+                 f'data-tip="{label}" tabindex="0"'
                  + (f' stroke="#1a1a19" stroke-width="1.5"' if big else "")
-                 + f'><title>{label}</title></circle>')
+                 + '></circle>')
     land = (f'<path d="{WORLD_PATH}" fill="#242423" stroke="#3a3a37" '
             'stroke-width="0.6"/>')
     return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" '
@@ -676,6 +695,9 @@ def render_html(snap):
       libraries, no API keys. Refreshes itself every 30 minutes.</p>
       <p class="small" style="margin-top:8px">built with 💙 by
         <a href="https://github.com/andreolf">andreolf</a></p>
+      <p class="small muted" style="margin-top:10px; display:flex; align-items:center; gap:7px">
+        {sol_glyph(13, 'ftr')} Built on Solana — independent community project,
+        not affiliated with the Solana Foundation.</p>
     </div>
     <div>
       <div class="foot-head">Resources</div>
@@ -786,6 +808,11 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .livedot.on::before {{ content:''; display:inline-block; width:5px; height:5px;
   border-radius:50%; background:#0ca30c; margin-right:4px;
   animation:beat 1.6s infinite; }}
+.vdot {{ cursor:pointer; }}
+.vdot:hover, .vdot:focus {{ stroke:#ffffff; stroke-width:1.5; opacity:1; outline:none; }}
+.solpill {{ display:inline-flex; align-items:center; gap:6px; font-size:10.5px;
+  font-weight:650; letter-spacing:1.2px; color:var(--ink2);
+  border:1px solid var(--border); border-radius:20px; padding:3px 10px; }}
 .hero-slot {{ font-size:46px; font-weight:650; color:var(--ink); line-height:1.15;
   font-variant-numeric:normal; }}
 .hero-under {{ color:var(--muted); font-size:12px; margin-top:4px; }}
@@ -911,6 +938,7 @@ footer {{ text-align:center; padding:8px 0 20px; }}
   {LOGO_SVG}
   <span class="wordmark">SOL<b>BEAT</b></span>
   <span class="tagline">the heartbeat terminal for the Solana network</span>
+  <span class="solpill">{sol_glyph(12, 'hdr')} SOLANA MAINNET</span>
   <span class="healthpill"><i class="pulse" style="background:{hcol}"></i>
     {htxt} · <span class="age" id="age">just updated</span></span>
 </header>
@@ -1000,13 +1028,14 @@ function showTip(el) {{
   pop.style.left = px + 'px';
   pop.style.top = (r.top + window.scrollY - pop.offsetHeight - 10) + 'px';
 }}
+const TIP_SEL = '.strip i, .vdot';
 document.addEventListener('pointerover', e => {{
-  const t = e.target.closest('.strip i');
+  const t = e.target.closest(TIP_SEL);
   if (t) showTip(t); }});
 document.addEventListener('pointerout', e => {{
-  if (e.target.closest('.strip i')) pop.style.display = 'none'; }});
+  if (e.target.closest(TIP_SEL)) pop.style.display = 'none'; }});
 document.addEventListener('click', e => {{
-  const t = e.target.closest('.strip i');
+  const t = e.target.closest(TIP_SEL);
   if (t) {{ showTip(t); e.stopPropagation(); }}
   else pop.style.display = 'none'; }});
 // Vercel Web Analytics — inject only when served by Vercel (the script path
