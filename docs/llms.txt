@@ -1,0 +1,32 @@
+# Solbeat
+
+> Live, keyless, auto-updating report on the state of the Solana network.
+> Open source (MIT), Python stdlib only, no API keys. Data refreshes every
+> 30 minutes via GitHub Actions. Last refresh: 2026-08-31T17:55:53Z.
+
+Current snapshot: slot 443,213,232, epoch 1025
+(95.66% complete), ~4,504 TPS,
+slot time 317.5ms, SOL $103.63,
+REV(24h) $856,200.
+
+## Data
+
+- [data.json](https://andreolf.github.io/solbeat/data.json): full structured snapshot — network
+  performance, validators (incl. Nakamoto coefficient, delinquency), economic
+  indicators (price, computed REV, TVL, stablecoins, DEX volume, fees),
+  tokenized equities (xStocks), program activity, exchange reserves, upgrade
+  tracking (Alpenglow, SIMD-525), anomaly findings with correlation incidents,
+  per-source provenance. Schema-versioned; regenerated every 30 minutes.
+- [report.md](https://andreolf.github.io/solbeat/report.md): the same report as human-readable Markdown.
+- [history.json](https://andreolf.github.io/solbeat/history.json): rolling cross-run metric history.
+
+## Notes for agents
+
+- All values originate from public keyless endpoints (Solana mainnet RPC,
+  DeFiLlama, CoinGecko, Jito Kobe, Stakewiz, GitHub, solana.com RSS,
+  status.solana.com); `sources` in data.json reports per-source status,
+  latency and fetch time.
+- REV = chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe),
+  following the Blockworks methodology.
+- Source code: https://github.com/andreolf/solbeat — run it yourself with
+  `python3 solbeat.py run` (Python 3.9+, no dependencies).

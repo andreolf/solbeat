@@ -10,6 +10,12 @@ import html
 import json
 from pathlib import Path
 
+BASE_URL = "https://andreolf.github.io/solbeat/"
+SITE_DESC = ("Live, auto-updating Solana network dashboard: TPS, slot time, "
+             "validators, Real Economic Value (REV), TVL, stablecoins, DEX "
+             "volume, tokenized equities, Alpenglow & SIMD-525 tracking, "
+             "anomaly detection. Open-source, zero API keys, Python stdlib only.")
+
 # Dark palette (validated: page #0d0d0d, surface #1a1a19, series blue #3987e5,
 # reserved status colors; text tokens carry all labels).
 STATUS_COLORS = {"ok": "#0ca30c", "good": "#0ca30c", "warning": "#fab219",
@@ -587,12 +593,48 @@ def render_html(snap):
         "generatedAt": snap.get("generated_at"),
     }
 
+    jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "Solbeat — State of the Solana Network",
+        "description": SITE_DESC,
+        "url": BASE_URL,
+        "license": "https://opensource.org/licenses/MIT",
+        "isAccessibleForFree": True,
+        "creator": {"@type": "Person", "name": "andreolf",
+                    "url": "https://github.com/andreolf"},
+        "keywords": ["Solana", "dashboard", "TPS", "validators", "REV",
+                     "TVL", "stablecoins", "DEX volume", "Alpenglow",
+                     "SIMD-525", "blockchain analytics", "open source"],
+        "temporalCoverage": snap.get("generated_at"),
+        "distribution": [
+            {"@type": "DataDownload", "encodingFormat": "application/json",
+             "contentUrl": BASE_URL + "data.json"},
+            {"@type": "DataDownload", "encodingFormat": "text/markdown",
+             "contentUrl": BASE_URL + "report.md"},
+        ],
+    })
+
     page = f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Solbeat — Solana Network Terminal</title>
-<meta name="description" content="Auto-updating, zero-API-key report on the state of the Solana ecosystem">
+<title>Solbeat — Live Solana Network Dashboard (TPS, Validators, REV, TVL)</title>
+<meta name="description" content="{esc(SITE_DESC)}">
+<link rel="canonical" href="{BASE_URL}">
+<meta name="theme-color" content="#0d0d0d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Solbeat">
+<meta property="og:title" content="Solbeat — the heartbeat terminal for the Solana network">
+<meta property="og:description" content="{esc(SITE_DESC)}">
+<meta property="og:url" content="{BASE_URL}">
+<meta property="og:image" content="{BASE_URL}screenshot.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Solbeat — the heartbeat terminal for the Solana network">
+<meta name="twitter:description" content="Live Solana metrics, zero API keys, refreshes itself every 30 min. Open source.">
+<meta name="twitter:image" content="{BASE_URL}screenshot.png">
+<link rel="alternate" type="application/json" href="data.json" title="Machine-readable snapshot">
+<script type="application/ld+json">{jsonld}</script>
 <style>
 :root {{
   --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
@@ -785,3 +827,55 @@ setInterval(tick, 250); tick();
 
     Path("docs").mkdir(parents=True, exist_ok=True)
     Path("docs/index.html").write_text(page)
+    _write_agent_files(snap)
+
+
+def _write_agent_files(snap):
+    """SEO + AI-agent affordances: llms.txt, robots.txt, sitemap.xml."""
+    net = snap.get("network") or {}
+    der = snap.get("derived") or {}
+    mkt = snap.get("market") or {}
+    gen = snap.get("generated_at", "")
+    llms = f"""# Solbeat
+
+> Live, keyless, auto-updating report on the state of the Solana network.
+> Open source (MIT), Python stdlib only, no API keys. Data refreshes every
+> 30 minutes via GitHub Actions. Last refresh: {gen}.
+
+Current snapshot: slot {net.get('slot', 0):,}, epoch {net.get('epoch', '?')}
+({net.get('epoch_progress_pct', '?')}% complete), ~{net.get('tps', 0):,.0f} TPS,
+slot time {net.get('slot_time_ms', '?')}ms, SOL ${mkt.get('sol_price_usd', 0):,.2f},
+REV(24h) ${der.get('rev24h_usd', 0):,.0f}.
+
+## Data
+
+- [data.json]({BASE_URL}data.json): full structured snapshot — network
+  performance, validators (incl. Nakamoto coefficient, delinquency), economic
+  indicators (price, computed REV, TVL, stablecoins, DEX volume, fees),
+  tokenized equities (xStocks), program activity, exchange reserves, upgrade
+  tracking (Alpenglow, SIMD-525), anomaly findings with correlation incidents,
+  per-source provenance. Schema-versioned; regenerated every 30 minutes.
+- [report.md]({BASE_URL}report.md): the same report as human-readable Markdown.
+- [history.json]({BASE_URL}history.json): rolling cross-run metric history.
+
+## Notes for agents
+
+- All values originate from public keyless endpoints (Solana mainnet RPC,
+  DeFiLlama, CoinGecko, Jito Kobe, Stakewiz, GitHub, solana.com RSS,
+  status.solana.com); `sources` in data.json reports per-source status,
+  latency and fetch time.
+- REV = chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe),
+  following the Blockworks methodology.
+- Source code: https://github.com/andreolf/solbeat — run it yourself with
+  `python3 solbeat.py run` (Python 3.9+, no dependencies).
+"""
+    Path("docs/llms.txt").write_text(llms)
+    Path("docs/robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}sitemap.xml\n")
+    urls = "".join(
+        f"<url><loc>{BASE_URL}{p}</loc><lastmod>{gen[:10]}</lastmod></url>"
+        for p in ("", "data.json", "report.md", "llms.txt"))
+    Path("docs/sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        f"{urls}</urlset>")

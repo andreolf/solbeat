@@ -172,6 +172,20 @@ readable anomaly visualization there is.
 - Text/labels never wear data colors; tables use tabular numerals; the layout is
   responsive down to mobile widths.
 
+## For AI agents
+
+Solbeat is built agent-first — the bounty's JSON requirement exists because
+the newest consumers of ecosystem data are agents, not humans:
+
+- [`llms.txt`](https://andreolf.github.io/solbeat/llms.txt) — a live,
+  regenerated-every-refresh agent manifest (llmstxt.org convention) with the
+  current headline numbers and pointers to every machine-readable endpoint.
+- [`data.json`](https://andreolf.github.io/solbeat/data.json) — the complete
+  schema-versioned snapshot, including per-source provenance (status, latency,
+  fetch time) so an agent can judge freshness and trust per metric.
+- JSON-LD `Dataset` structured data + Open Graph/Twitter cards in the HTML;
+  `robots.txt` and `sitemap.xml` for crawlers.
+
 ## Repository layout
 
 ```
