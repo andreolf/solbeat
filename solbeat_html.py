@@ -742,29 +742,27 @@ def render_html(snap):
   <div class="footgrid">
     <div>
       <div class="foot-head">SOL<b style="color:var(--accent)">BEAT</b></div>
-      <p class="muted small">An autonomous, zero-key terminal for the state of
-      the Solana network. Python stdlib only — no frameworks, no chart
-      libraries, no API keys. Refreshes itself every 30 minutes and costs
-      <b>$0/month</b> to run — no servers, no subscriptions, nothing to
-      maintain.</p>
-      <p class="small" style="margin-top:8px">built with 💙 by
-        <a href="https://github.com/andreolf">andreolf</a></p>
-      <p class="small muted" style="margin-top:10px; display:flex; align-items:center; gap:7px">
-        {sol_glyph(13, 'ftr')} Built on Solana — independent community project,
-        not affiliated with the Solana Foundation.</p>
+      <p class="muted small">Autonomous, zero-key terminal for the state of the
+      Solana network. Python stdlib only, refreshes every 30 min,
+      <b>$0/month</b> to run.</p>
+      <p class="small muted" style="margin-top:8px; display:flex; align-items:center; gap:7px">
+        {sol_glyph(12, 'ftr')} independent community project</p>
     </div>
     <div>
-      <div class="foot-head">Resources</div>
+      <div class="foot-head">Solbeat</div>
+      <a class="footlink" href="pulse.html">Pulse &amp; Almanac</a>
       <a class="footlink" href="https://docs.solbeat.xyz">Documentation</a>
       <a class="footlink" href="status.html">System status</a>
-      <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub repository</a>
-      <a class="footlink" href="report.md">Markdown report</a>
-      <a class="footlink" href="data.json">JSON data (schema v{esc(snap.get('schema_version', '1'))})</a>
-      <a class="footlink" href="https://solana.com/data">solana.com/data</a>
-      <a class="footlink" href="https://status.solana.com">Solana status page</a>
-      <a class="footlink" href="https://defillama.com/chain/solana">DeFiLlama · Solana</a>
-      <a class="footlink" href="llms.txt">llms.txt (for AI agents)</a>
+      <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub</a>
       <a class="footlink" href="https://github.com/andreolf/solbeat/blob/main/CHANGELOG.md">Full changelog</a>
+    </div>
+    <div>
+      <div class="foot-head">Data</div>
+      <a class="footlink" href="report.md">Markdown report</a>
+      <a class="footlink" href="data.json">JSON (schema v{esc(snap.get('schema_version', '1'))})</a>
+      <a class="footlink" href="llms.txt">llms.txt (agents)</a>
+      <a class="footlink" href="https://solana.com/data">solana.com/data</a>
+      <a class="footlink" href="https://defillama.com/chain/solana">DeFiLlama</a>
     </div>
     <div>
       <div class="foot-head">Changelog</div>
@@ -772,8 +770,10 @@ def render_html(snap):
     </div>
   </div>
 </section>
-<footer class="muted small">Solbeat · generated {esc(snap.get('generated_at', ''))}
-  · data refreshes every 30 min · not financial advice</footer>"""
+<footer class="muted small">built with 💙 by
+  <a href="https://github.com/andreolf">andreolf</a> · Solbeat · generated
+  {esc(snap.get('generated_at', ''))} · refreshes every 30 min · not
+  affiliated with the Solana Foundation · not financial advice</footer>"""
 
     # ---- live JS payload
     live = {
@@ -1020,8 +1020,13 @@ footer {{ text-align:center; padding:8px 0 20px; }}
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace; white-space:nowrap;
   overflow:hidden; text-overflow:ellipsis; }}
 .srcchip-lat {{ font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }}
-.footgrid {{ display:grid; grid-template-columns:1.2fr 1fr 1.6fr; gap:28px; }}
-@media (max-width:820px) {{ .footgrid {{ grid-template-columns:1fr; gap:20px; }} }}
+.footgrid {{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1.6fr; gap:24px; }}
+@media (max-width:900px) {{ .footgrid {{ grid-template-columns:1fr 1fr; gap:18px; }} }}
+@media (max-width:540px) {{ .footgrid {{ grid-template-columns:1fr; }} }}
+* {{ scrollbar-width:thin; scrollbar-color:var(--grid) transparent; }}
+.clbox::-webkit-scrollbar {{ width:7px; }}
+.clbox::-webkit-scrollbar-thumb {{ background:var(--grid); border-radius:4px; }}
+.clbox::-webkit-scrollbar-track {{ background:transparent; }}
 .foot-head {{ font-size:13px; font-weight:700; color:var(--ink);
   letter-spacing:1px; margin-bottom:8px; }}
 .footlink {{ display:block; font-size:13px; padding:3px 0; color:var(--ink2);
@@ -1049,15 +1054,12 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 <header class="top card">
   {LOGO_SVG}
   <span class="wordmark">SOL<b>BEAT</b></span>
-  <span class="pricechip">{sol_glyph(11, 'hdr')} ${mkt.get('sol_price_usd', 0):,.2f}
-    <b class="{'d-up' if (mkt.get('sol_change24h_pct') or 0) >= 0 else 'd-down'}">{mkt.get('sol_change24h_pct', 0):+.1f}%</b>
-    <span class="muted">·</span> fee {f"${der['avg_fee_per_tx_usd']:.4f}" if der.get('avg_fee_per_tx_usd') else 'n/a'}</span>
   <span class="tagline hide-md">the zero-API-key Solana ecosystem terminal</span>
   <nav class="nav">
     <a href="#network">Network</a><a href="#economy">Economy</a>
-    <a href="#signals">Signals</a><a href="#sentiment">Sentiment</a>
-    <a href="#validators">Validators</a><a href="#ecosystem">Ecosystem</a>
-    <a href="#almanac">Almanac</a><a href="https://docs.solbeat.xyz">Docs</a>
+    <a href="#signals">Signals</a><a href="#validators">Validators</a>
+    <a href="#ecosystem">Ecosystem</a><a href="pulse.html">Pulse</a>
+    <a href="https://docs.solbeat.xyz">Docs</a>
   </nav>
   <button id="themebtn" aria-label="Switch theme">🌙</button>
   <span class="healthpill"><i class="pulse" style="background:{hcol}"></i>
@@ -1068,10 +1070,8 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 {tiles}
 </section>
 {signals}
-{sentiment_html}
 {validators}
 {pulse_html}
-{upgrades}
 {footer}
 </div>
 <script>
@@ -1196,6 +1196,7 @@ if (!/localhost|\\.github\\.io$/.test(location.hostname)) {{
 
     Path("docs").mkdir(parents=True, exist_ok=True)
     Path("docs/index.html").write_text(page)
+    _write_pulse(snap, sentiment_html, upgrades)
     _write_agent_files(snap)
     _write_status(snap)
 
@@ -1377,6 +1378,97 @@ document.addEventListener('pointerout', e => {{
         "<description>Status of Solbeat's data pipeline and Solana network "
         f"signals</description><lastBuildDate>{rfc822(gen)}</lastBuildDate>"
         f"{items}</channel></rss>")
+
+
+def _write_pulse(snap, sentiment_html, upgrades_html):
+    """Second page: sentiment + the Almanac (news, upgrades, commentary) —
+    editorial content split off so the main dashboard stays technical."""
+    gen = snap.get("generated_at", "")
+    page = f"""<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat Pulse — Solana Sentiment &amp; Almanac</title>
+<meta name="description" content="Solana sentiment composite (Fear &amp; Greed, community votes, momentum, headline tone), ecosystem news and upgrade tracking — Alpenglow, SIMD-525.">
+<link rel="canonical" href="{BASE_URL}pulse.html">
+<link rel="icon" href='{FAVICON}'>
+<style>
+:root {{ --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+  --accent:#3987e5; --meter-track:rgba(57,135,229,.16);
+  --d-up:#0ca30c; --d-down:#e66767; }}
+* {{ box-sizing:border-box; margin:0; padding:0;
+  scrollbar-width:thin; scrollbar-color:var(--grid) transparent; }}
+body {{ background:var(--page); color:var(--ink2);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }}
+.wrap {{ max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }}
+a {{ color:var(--accent); }}
+.card {{ background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:18px 20px; overflow-x:auto; }}
+.top {{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }}
+.wordmark {{ font-family:ui-monospace,Menlo,monospace; font-size:20px;
+  font-weight:700; color:var(--ink); text-decoration:none; }}
+.wordmark b {{ color:var(--accent); }}
+.crumb {{ color:var(--muted); font-size:13px; }}
+.toplinks {{ margin-left:auto; display:flex; gap:14px; font-size:13px; }}
+.section-head {{ display:flex; align-items:baseline; gap:10px;
+  margin-bottom:12px; flex-wrap:wrap; }}
+.section-head h2 {{ font-size:15px; color:var(--ink); font-weight:650; }}
+.twocol {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }}
+@media (max-width:820px) {{ .twocol {{ grid-template-columns:1fr; }} }}
+.prov {{ display:inline-flex; align-items:center; gap:5px; font-size:10.5px;
+  color:var(--muted); border:1px solid var(--border); border-radius:20px;
+  padding:2px 8px; white-space:nowrap; }}
+.prov i, .dot {{ width:6px; height:6px; border-radius:50%; display:inline-block; }}
+.pulse-score {{ display:flex; align-items:baseline; gap:12px; }}
+.pulse-num {{ font-size:44px; font-weight:650; color:var(--ink); }}
+.pulse-label {{ font-size:17px; font-weight:650; color:var(--ink); }}
+.meter {{ background:var(--meter-track); border-radius:5px; height:10px; margin:8px 0 6px; }}
+.meter-fill {{ height:10px; border-radius:5px; background:var(--accent); }}
+.prow {{ display:flex; align-items:center; gap:10px; margin:8px 0; }}
+.prow-label {{ width:120px; font-size:13px; flex-shrink:0; }}
+.prow-track {{ flex:1; background:var(--grid); border-radius:3px; height:8px; }}
+.prow-bar {{ background:var(--accent); height:8px; border-radius:3px; }}
+.prow-val {{ width:110px; text-align:right; font-size:12.5px; color:var(--ink);
+  font-variant-numeric:tabular-nums; flex-shrink:0; }}
+.newsrow {{ padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }}
+.newsrow:last-child {{ border-bottom:none; }}
+.tile-label {{ font-size:11px; letter-spacing:1px; color:var(--muted);
+  text-transform:uppercase; }}
+.commentary {{ font-size:14.5px; color:var(--ink2);
+  border-left:3px solid var(--accent); padding-left:14px; margin-bottom:16px; }}
+.upgrid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }}
+.upcard {{ border:1px solid var(--border); border-radius:8px; padding:12px 14px; }}
+.up-name {{ font-size:13px; font-weight:650; color:var(--ink); }}
+.up-status {{ font-size:13px; color:var(--accent); font-weight:600;
+  margin:4px 0 6px; display:flex; align-items:center; gap:7px; }}
+@keyframes beat {{ 0%,100% {{ transform:scale(1); opacity:1; }}
+  50% {{ transform:scale(1.35); opacity:.7; }} }}
+.live-dot {{ width:8px; height:8px; border-radius:50%; background:#0ca30c;
+  display:inline-block; animation:beat 1.6s infinite; }}
+.sv-line {{ stroke:var(--accent); }} .sv-fill {{ fill:var(--accent); opacity:.1; }}
+.sv-dot {{ fill:var(--accent); stroke:var(--surface); stroke-width:2; }}
+.d-up {{ color:var(--d-up); }} .d-down {{ color:var(--d-down); }}
+.muted {{ color:var(--muted); }} .small {{ font-size:12px; }}
+b, h2 {{ color:var(--ink); }}
+footer {{ text-align:center; color:var(--muted); font-size:12px; padding:8px 0 18px; }}
+</style></head>
+<body><div class="wrap">
+<header class="top card">
+  {LOGO_SVG}
+  <a class="wordmark" href="./">SOL<b>BEAT</b></a>
+  <span class="crumb">/ pulse &amp; almanac</span>
+  <div class="toplinks">
+    <a href="./">Dashboard</a>
+    <a href="https://docs.solbeat.xyz">Docs</a>
+    <a href="status.html">Status</a>
+  </div>
+</header>
+{sentiment_html}
+{upgrades_html}
+<footer>Solbeat Pulse · generated {esc(gen)} · refreshes every 30 min ·
+  sentiment is an experimental heuristic, not financial advice</footer>
+</div></body></html>"""
+    Path("docs/pulse.html").write_text(page)
 
 
 def _write_agent_files(snap):

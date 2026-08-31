@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat Pulse — Solana Sentiment &amp; Almanac</title>
+<meta name="description" content="Solana sentiment composite (Fear &amp; Greed, community votes, momentum, headline tone), ecosystem news and upgrade tracking — Alpenglow, SIMD-525.">
+<link rel="canonical" href="https://www.solbeat.xyz/pulse.html">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" fill="none" stroke="%233987e5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<style>
+:root { --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+  --accent:#3987e5; --meter-track:rgba(57,135,229,.16);
+  --d-up:#0ca30c; --d-down:#e66767; }
+* { box-sizing:border-box; margin:0; padding:0;
+  scrollbar-width:thin; scrollbar-color:var(--grid) transparent; }
+body { background:var(--page); color:var(--ink2);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
+.wrap { max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+a { color:var(--accent); }
+.card { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:18px 20px; overflow-x:auto; }
+.top { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.wordmark { font-family:ui-monospace,Menlo,monospace; font-size:20px;
+  font-weight:700; color:var(--ink); text-decoration:none; }
+.wordmark b { color:var(--accent); }
+.crumb { color:var(--muted); font-size:13px; }
+.toplinks { margin-left:auto; display:flex; gap:14px; font-size:13px; }
+.section-head { display:flex; align-items:baseline; gap:10px;
+  margin-bottom:12px; flex-wrap:wrap; }
+.section-head h2 { font-size:15px; color:var(--ink); font-weight:650; }
+.twocol { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:820px) { .twocol { grid-template-columns:1fr; } }
+.prov { display:inline-flex; align-items:center; gap:5px; font-size:10.5px;
+  color:var(--muted); border:1px solid var(--border); border-radius:20px;
+  padding:2px 8px; white-space:nowrap; }
+.prov i, .dot { width:6px; height:6px; border-radius:50%; display:inline-block; }
+.pulse-score { display:flex; align-items:baseline; gap:12px; }
+.pulse-num { font-size:44px; font-weight:650; color:var(--ink); }
+.pulse-label { font-size:17px; font-weight:650; color:var(--ink); }
+.meter { background:var(--meter-track); border-radius:5px; height:10px; margin:8px 0 6px; }
+.meter-fill { height:10px; border-radius:5px; background:var(--accent); }
+.prow { display:flex; align-items:center; gap:10px; margin:8px 0; }
+.prow-label { width:120px; font-size:13px; flex-shrink:0; }
+.prow-track { flex:1; background:var(--grid); border-radius:3px; height:8px; }
+.prow-bar { background:var(--accent); height:8px; border-radius:3px; }
+.prow-val { width:110px; text-align:right; font-size:12.5px; color:var(--ink);
+  font-variant-numeric:tabular-nums; flex-shrink:0; }
+.newsrow { padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }
+.newsrow:last-child { border-bottom:none; }
+.tile-label { font-size:11px; letter-spacing:1px; color:var(--muted);
+  text-transform:uppercase; }
+.commentary { font-size:14.5px; color:var(--ink2);
+  border-left:3px solid var(--accent); padding-left:14px; margin-bottom:16px; }
+.upgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
+.upcard { border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.up-name { font-size:13px; font-weight:650; color:var(--ink); }
+.up-status { font-size:13px; color:var(--accent); font-weight:600;
+  margin:4px 0 6px; display:flex; align-items:center; gap:7px; }
+@keyframes beat { 0%,100% { transform:scale(1); opacity:1; }
+  50% { transform:scale(1.35); opacity:.7; } }
+.live-dot { width:8px; height:8px; border-radius:50%; background:#0ca30c;
+  display:inline-block; animation:beat 1.6s infinite; }
+.sv-line { stroke:var(--accent); } .sv-fill { fill:var(--accent); opacity:.1; }
+.sv-dot { fill:var(--accent); stroke:var(--surface); stroke-width:2; }
+.d-up { color:var(--d-up); } .d-down { color:var(--d-down); }
+.muted { color:var(--muted); } .small { font-size:12px; }
+b, h2 { color:var(--ink); }
+footer { text-align:center; color:var(--muted); font-size:12px; padding:8px 0 18px; }
+</style></head>
+<body><div class="wrap">
+<header class="top card">
+  <svg class="logomark" width="30" height="20" viewBox="0 0 34 20" aria-hidden="true"><defs><linearGradient id="solg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9945FF"/><stop offset="1" stop-color="#14F195"/></linearGradient></defs><polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" fill="none" stroke="url(#solg)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <a class="wordmark" href="./">SOL<b>BEAT</b></a>
+  <span class="crumb">/ pulse &amp; almanac</span>
+  <div class="toplinks">
+    <a href="./">Dashboard</a>
+    <a href="https://docs.solbeat.xyz">Docs</a>
+    <a href="status.html">Status</a>
+  </div>
+</header>
+
+<section class="twocol" id="sentiment">
+<div class="card">
+  <div class="section-head"><h2>Solana Pulse — sentiment</h2>
+    <span class="muted small">experimental composite · keyless signals</span></div>
+  <div class="pulse-score"><span class="pulse-num">70</span>
+    <span class="pulse-label">🐂 Bullish</span></div>
+  <div class="meter" style="margin:10px 0 16px"><div class="meter-fill"
+    style="width:70%"></div></div>
+  <div class="prow">
+  <span class="prow-label" style="width:220px">Community votes (CoinGecko)</span>
+  <div class="prow-track"><div class="prow-bar" style="width:67%"></div></div>
+  <span class="prow-val">67/100</span>
+</div><div class="prow">
+  <span class="prow-label" style="width:220px">Crypto Fear &amp; Greed</span>
+  <div class="prow-track"><div class="prow-bar" style="width:62%"></div></div>
+  <span class="prow-val">62/100</span>
+</div><div class="prow">
+  <span class="prow-label" style="width:220px">Market momentum (price·DEX·TVL)</span>
+  <div class="prow-track"><div class="prow-bar" style="width:68%"></div></div>
+  <span class="prow-val">68/100</span>
+</div><div class="prow">
+  <span class="prow-label" style="width:220px">Headline tone (48h)</span>
+  <div class="prow-track"><div class="prow-bar" style="width:95%"></div></div>
+  <span class="prow-val">95/100</span>
+</div>
+  <div class="muted small" style="margin-top:10px">Composite of CoinGecko
+    community votes (1,334,360 watchlists),
+    the crypto Fear &amp; Greed index
+    (62 · Greed),
+    price/DEX/TVL momentum, and a keyword read of fresh headlines.
+    Heuristic, not financial advice.</div>
+</div>
+<div class="card">
+  <div class="section-head"><h2>Headline tone</h2>
+    <span class="prov" title="Google News RSS · fetched 2026-08-31T20:27:45Z · 3061ms"><i style="background:#0ca30c"></i>Google News RSS</span></div>
+  <div class="newsrow"><span class='d-up'>▲</span> <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQTmQwNWFRVno4dVNjWS12Y2Y1SVpQTWtPeHg4LXpQd2Y0YjRoaV9wSHR5clVWSExxSDhYbUNrR3p1dnI5VnhYRkEwb0lqTWxrWFZsTFozUmM0enkyUTk2RGI5ZmN2WXVtWWE1OEVvMTVoU1dwT1FGQWlHX3dCa0ktNm4xZG9tWFVuU1RXOHFrY0hPbmtGQUhjbUdobGJremlESkpj?oc=5" target="_blank" rel="noopener">Prediction: A Big (And Bullish) Change Is Coming to Solana in 2027 - Yahoo Finance</a></div><div class="newsrow"><span class='d-up'>▲</span> <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxPclNyS2I0S1dQNVpYSDBpN1NlQTQ3RkdoQlFKNnBZS1A2WkJoc2Y3LXFEc01KSlJuOWFadEFaSzZWLVFvYzlVZkJhMHQ2NFZ1ZFVpcXRSeW0yeHF4c0Zuam9tanVNY1R0anp5S0N6MmYtMU1MU2YydnA1cHlXZUs5Z01wM1U1SW5Fek1YV2RueXR5YTRhamtqdTdVd0l0QnBCUFI1eFljS3A1WHNSTzRhR0VlbGxNX0hrZnFKX2d3aw?oc=5" target="_blank" rel="noopener">Can Solana Hit $200 by the End of 2026? Main 3 Catalysts Could Send SOL Soaring - Bitcoin Foundation</a></div><div class="newsrow"><span class='d-up'>▲</span> <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNR1oxWHJBVDlpNGhzNWNlREtab2VMYXZabk9LckZ3c3E3a0JkeG1zc1I2cFRqdGNESWhGR3VFMS02SUV3SVRLOVJNRTdLUlZ0SE0ydmhNb1VCNFI1WC16ei03M3FCMjdpMUVhNmxzM3luSWl3bFg3b1Y0T0NfNk1wc2xZZVIwTzV0eVhXNlRNeld2WUpyLXAwX2c0YmxXcEFvSm8wQk5oRk5KYWtoTXhJb09xU18yWmxCQWRNME95SnFhQQ?oc=5" target="_blank" rel="noopener">Solana fees hit record as validators double pace of inflation cuts - The Block</a></div><div class="newsrow"><span class='d-up'>▲</span> <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE9Yc25ad2V1clJIVi1ka1hlb0tMUGVhdTRLMURUbUlsTTB0M3B1NWhqNldXakEyVkZfMmt1a0RoRkJaYnpDSXQ0X0NVNS1aZ2FsblI5LVNkTEtZOS1BNmc4SFFGaHNHRmpwN3hsT2N6YS13cTQzeUh4YXpB?oc=5" target="_blank" rel="noopener">Solana price holds $100 as bulls target $110 retest - crypto.news</a></div><div class="newsrow"><span class='muted'>·</span> <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE56THdHT05yS19BS2ZVUzJOOTJxcTlfUEFwa1FTM3JvMmxxdjlyd3pUY3lSckthV3d3UzJ3NnVDT1JvUDhwSGREY3dxVjFJakVJSkNSRA?oc=5" target="_blank" rel="noopener">OpenSea Resumes Solana NFT Trading Support More Than Four Years After Beta Launch - bloomingbit</a></div><div class="newsrow"><span class='d-up'>▲</span> <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQRmpZTmluM3JsWWgyYkNYVGRQTzBRS2xyYWk5ZE5UakVrUEdWZVNxT3RBWDN3MVIzaVp4Uk5hdlhjMEFKcWpwVHRPSG9SMnNVNmZZU01TODVTU2MxMWRMbzk2ZFRINGNjN3I5QnpaZHJnSVViU3AyVS1JSEZZb1NmRUE5UjI3OFE5WnhFMEhvVkRmaWl2cFNfN19XQ3djdzlLSXVzcHgxLUo5Ul9jcmNfVTFRa2FuWDdaSkJsQXNnRQ?oc=5" target="_blank" rel="noopener">Solana Holds $100 Support After 45% Monthly Gains—Can SOL Price Reach $110 in September? - CryptoRank</a></div>
+  <div class="tile-label" style="margin:12px 0 2px">FEAR &amp; GREED — 30 DAYS</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon class="sv-fill" points="5,35 5.0,33.8 9.8,33.2 14.7,35.0 19.5,33.8 24.3,35.0 29.1,32.6 34.0,31.9 38.8,31.3 43.6,31.9 48.4,32.6 53.3,33.8 58.1,32.6 62.9,32.6 67.8,29.5 72.6,29.5 77.4,31.3 82.2,25.2 87.1,22.1 91.9,12.3 96.7,6.2 101.6,6.8 106.4,9.9 111.2,5.6 116.0,5.0 120.9,10.5 125.7,6.8 130.5,5.6 135.3,8.7 140.2,8.1 145.0,12.3 145.0,35"/><polyline class="sv-line" points="5.0,33.8 9.8,33.2 14.7,35.0 19.5,33.8 24.3,35.0 29.1,32.6 34.0,31.9 38.8,31.3 43.6,31.9 48.4,32.6 53.3,33.8 58.1,32.6 62.9,32.6 67.8,29.5 72.6,29.5 77.4,31.3 82.2,25.2 87.1,22.1 91.9,12.3 96.7,6.2 101.6,6.8 106.4,9.9 111.2,5.6 116.0,5.0 120.9,10.5 125.7,6.8 130.5,5.6 135.3,8.7 140.2,8.1 145.0,12.3" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle class="sv-dot" cx="145.0" cy="12.3" r="4"/></svg>
+</div>
+</section>
+
+<section class="card" id="almanac">
+  <div class="section-head"><h2>The Almanac — upgrades &amp; ecosystem watch</h2>
+    <span class="prov" title="GitHub · fetched 2026-08-31T20:27:42Z · 1401ms"><i style="background:#0ca30c"></i>GitHub</span> <span class="prov" title="status.solana.com · fetched 2026-08-31T20:27:46Z · 926ms"><i style="background:#0ca30c"></i>status.solana.com</span></div>
+  <p class="commentary">Epoch 1026 is 2% complete (~37h remaining), with the cluster processing ~4,162 TPS (2,016 non-vote). Measured slot time is 316ms — live on-chain evidence that SIMD-0525&#x27;s first slot-time reduction step (350ms target) is active on mainnet. The network earned $858.0K of Real Economic Value over the last 24h ($596/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $104.14 (-1.4% / 24h). Decentralization: Nakamoto coefficient 18, 680 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 3 signal(s) flagged — see Signals below.</p>
+  <div class="upgrid">
+    <div class="upcard">
+      <div class="up-name">SIMD-0525 · slot-time reduction</div>
+      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 316ms</div>
+      <div class="muted small">400→200ms in four feature-gated steps. Our own RPC
+        measurement of ~316ms slot time is live,
+        on-chain proof the 350ms step is running.
+        Proposal state: merged.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Alpenglow · SIMD-0236</div>
+      <div class="up-status">99.3% of stake BLS-ready</div>
+      <div class="muted small">Consensus overhaul (Votor + Rotor): ~100–150ms finality,
+        replacing TowerBFT. Approved by 98% of stake; activation via Agave v4.3,
+        targeted for this fall. BLS-key registration measured live from Stakewiz.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Agave client</div>
+      <div class="up-status">v4.2.2 latest</div>
+      <div class="muted small">Polled node runs v4.2.1.
+        Latest release published 2026-08-28.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Network status</div>
+      <div class="up-status">All Systems Operational</div>
+      <div class="muted small">0 unresolved incident(s)
+        on status.solana.com · RPC health check: ok.</div>
+    </div>
+  </div>
+  <div class="newsblock"><div class="tile-label" style="margin:16px 0 8px">LATEST ECOSYSTEM NEWS <span class="prov" title="solana.com RSS · fetched 2026-08-31T20:27:42Z · 201ms"><i style="background:#0ca30c"></i>solana.com RSS</span></div><div class="newsrow"><a href="https://solana.com/news/breakpoint-2026-london-speakers" target="_blank" rel="noopener">The Token Supercycle Is Here: Solana Brings Breakpoint 2026 to London</a><span class="muted small"> — Thu, 27 Aug 2026</span></div><div class="newsrow"><a href="https://solana.com/news/solana-changelog-august-20-2026" target="_blank" rel="noopener">Solana Changelog: August 20, 2026</a><span class="muted small"> — Mon, 24 Aug 2026</span></div><div class="newsrow"><a href="https://solana.com/news/lowering-slot-time-and-validators-economic" target="_blank" rel="noopener">Lowering Slot Time and Validators Economic</a><span class="muted small"> — Wed, 19 Aug 2026</span></div><div class="newsrow"><a href="https://solana.com/news/transaction-v1-and-the-alt-trade-off" target="_blank" rel="noopener">Transaction v1 and the ALT Trade-off</a><span class="muted small"> — Mon, 17 Aug 2026</span></div><div class="newsrow"><a href="https://solana.com/news/solana-changelog-august-13-2026" target="_blank" rel="noopener">Solana Changelog: August 13, 2026</a><span class="muted small"> — Thu, 13 Aug 2026</span></div></div>
+</section>
+<footer>Solbeat Pulse · generated 2026-08-31T20:27:21Z · refreshes every 30 min ·
+  sentiment is an experimental heuristic, not financial advice</footer>
+</div></body></html>

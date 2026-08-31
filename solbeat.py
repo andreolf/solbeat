@@ -436,9 +436,11 @@ BULL_WORDS = ("bull", "surge", "rally", "soar", "ath", "all-time high", "record"
 BEAR_WORDS = ("bear", "crash", "dump", "plunge", "exploit", "hack", "rug",
               "outage", "halt", "lawsuit", "fear", "drop", "sell-off", "decline",
               "warning", "risk", "fail", "down")
-CRYPTO_HINTS = ("sol", "crypto", "price", "network", "defi", "nft", "token",
+CRYPTO_HINTS = ("crypto", "price", "network", "defi", "nft", "token", " sol ",
                 "blockchain", "validator", "etf", "stablecoin", "trading",
-                "market", "bull", "bear", "staking", "web3")
+                "market", "bull", "bear", "staking", "web3", "$", "coin")
+NOT_CRYPTO = ("tennis", "us open", "wta", "atp", "football", "soccer",
+              "basketball", "actress", "singer", "album")
 
 
 def collect_sentiment():
@@ -471,7 +473,8 @@ def collect_sentiment():
     for item in root.findall(".//item"):
         title = (item.findtext("title") or "").strip()
         low = title.lower()
-        if not any(h in low for h in CRYPTO_HINTS):
+        if not any(h in low for h in CRYPTO_HINTS) \
+                or any(b in low for b in NOT_CRYPTO):
             continue  # e.g. the tennis player also named Solana
         key = low.split(" - ")[0][:60]  # same story syndicated by outlets
         if key in seen:
