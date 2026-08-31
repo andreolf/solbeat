@@ -697,6 +697,7 @@ def render_html(snap):
     <div>
       <div class="foot-head">Resources</div>
       <a class="footlink" href="docs.html">Documentation</a>
+      <a class="footlink" href="status.html">System status</a>
       <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub repository</a>
       <a class="footlink" href="report.md">Markdown report</a>
       <a class="footlink" href="data.json">JSON data (schema v{esc(snap.get('schema_version', '1'))})</a>
@@ -1129,6 +1130,186 @@ if (!/localhost|\\.github\\.io$/.test(location.hostname)) {{
     Path("docs").mkdir(parents=True, exist_ok=True)
     Path("docs/index.html").write_text(page)
     _write_agent_files(snap)
+    _write_status(snap)
+
+
+def _write_status(snap):
+    """githubstatus.com-style status page + RSS feed for Solbeat's own systems,
+    derived from the per-source provenance and cross-run history."""
+    sources = snap.get("sources") or {}
+    hist = snap.get("history") or []
+    net = snap.get("network") or {}
+    stp = snap.get("status_page") or {}
+    gen = snap.get("generated_at", "")
+    all_ok = all(s.get("ok") for s in sources.values()) and net.get("health") == "ok"
+    banner_txt = ("All Systems Operational" if all_ok
+                  else "Partial Degradation — see components")
+    banner_col = "#0ca30c" if all_ok else "#fab219"
+
+    recent = hist[-60:]
+    rows = ""
+    for name, s in sources.items():
+        label, domain = SOURCE_LABELS.get(name, (name, ""))
+        fails = sum(1 for h in recent if name in (h.get("failed_sources") or []))
+        uptime = 100 * (1 - fails / len(recent)) if recent else 100.0
+        ticks = ""
+        for h in recent:
+            bad = name in (h.get("failed_sources") or [])
+            c = STATUS_COLORS["critical" if bad else "ok"]
+            t = f'{(h.get("ts") or "")[:16].replace("T", " ")} UTC · ' + \
+                ("outage" if bad else "operational")
+            ticks += f'<i style="background:{c}" data-tip="{esc(t)}" tabindex="0"></i>'
+        dot = STATUS_COLORS["good" if s.get("ok") else "critical"]
+        state = f'{s.get("latency_ms", "?")}ms' if s.get("ok") else "FAILED"
+        rows += f"""<div class="comp">
+  <div class="comp-head"><i class="dot" style="background:{dot}"></i>
+    <span class="comp-name">{esc(label)}</span>
+    <span class="mono muted small">{esc(domain)}</span>
+    <span class="comp-state">{esc(state)} · {uptime:.1f}% uptime</span></div>
+  <div class="strip">{ticks}</div>
+</div>"""
+
+    incidents = [h for h in reversed(hist)
+                 if h.get("failed_sources") or h.get("anomaly_level") not in (None, "ok")][:12]
+    inc_html = ""
+    for h in incidents:
+        when = (h.get("ts") or "")[:16].replace("T", " ") + " UTC"
+        what = []
+        if h.get("failed_sources"):
+            what.append("source outage: " + ", ".join(h["failed_sources"]))
+        if h.get("anomaly_level") not in (None, "ok"):
+            what.append(f'network signal ({h["anomaly_level"]}): '
+                        + (", ".join((h.get("levels") or {}).keys()) or "anomaly"))
+        lv = "critical" if h.get("failed_sources") else h.get("anomaly_level", "warning")
+        inc_html += (f'<div class="signal"><span class="sig-icon" '
+                     f'style="color:{STATUS_COLORS.get(lv, "#fab219")}">▲</span>'
+                     f'<span class="muted small">{esc(when)}</span>'
+                     f'<span>{esc("; ".join(what))}</span></div>')
+    if not inc_html:
+        inc_html = '<p class="muted">No incidents recorded in the current history window.</p>'
+
+    page = f"""<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat Status</title>
+<meta name="description" content="Live status of Solbeat's data sources and the Solana network — uptime history, incidents, RSS subscription.">
+<link rel="alternate" type="application/rss+xml" title="Solbeat status feed" href="status.xml">
+<link rel="icon" href='{FAVICON}'>
+<style>
+:root {{ --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --accent:#3987e5; }}
+* {{ box-sizing:border-box; margin:0; padding:0; }}
+body {{ background:var(--page); color:var(--ink2);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }}
+.wrap {{ max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }}
+a {{ color:var(--accent); }}
+.card {{ background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:18px 22px; }}
+.top {{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }}
+.wordmark {{ font-family:ui-monospace,Menlo,monospace; font-size:20px;
+  font-weight:700; color:var(--ink); }}
+.wordmark b {{ color:var(--accent); }}
+.crumb {{ color:var(--muted); font-size:13px; }}
+.backlink {{ margin-left:auto; font-size:13px; }}
+.banner {{ border-radius:10px; padding:18px 22px; font-size:17px; font-weight:700;
+  color:#0d0d0d; background:{banner_col}; }}
+h2 {{ color:var(--ink); font-size:15px; margin-bottom:12px; }}
+.comp {{ padding:10px 0; border-bottom:1px solid var(--border); }}
+.comp:last-child {{ border-bottom:none; }}
+.comp-head {{ display:flex; align-items:center; gap:9px; margin-bottom:6px; }}
+.comp-name {{ color:var(--ink); font-size:13.5px; font-weight:600; }}
+.comp-state {{ margin-left:auto; font-size:12px; color:var(--muted);
+  font-variant-numeric:tabular-nums; }}
+.dot {{ width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0; }}
+.mono {{ font-family:ui-monospace,Menlo,monospace; }}
+.small {{ font-size:11.5px; }} .muted {{ color:var(--muted); }}
+.strip {{ display:flex; gap:2px; }}
+.strip i {{ height:14px; border-radius:2px; flex:1 1 2px; min-width:0; cursor:pointer; }}
+.signal {{ display:flex; gap:10px; align-items:baseline; padding:7px 0;
+  border-bottom:1px solid var(--border); font-size:13.5px; }}
+.signal:last-child {{ border-bottom:none; }}
+#tickpop {{ position:absolute; z-index:50; background:#232322;
+  border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:8px 12px;
+  font-size:12.5px; color:var(--ink); box-shadow:0 6px 24px rgba(0,0,0,.5);
+  max-width:280px; pointer-events:none; display:none; }}
+footer {{ text-align:center; color:var(--muted); font-size:12px; padding:8px 0 18px; }}
+</style></head>
+<body><div class="wrap">
+<header class="top card">
+  <span class="wordmark">SOL<b>BEAT</b></span><span class="crumb">/ status</span>
+  <a class="backlink" href="./">← dashboard</a>
+</header>
+<div class="banner">{banner_txt}</div>
+<section class="card">
+  <h2>Components — last {len(recent)} refresh cycles</h2>
+  {rows}
+</section>
+<section class="card">
+  <h2>Incident history</h2>
+  {inc_html}
+</section>
+<section class="card">
+  <h2>Subscribe to updates</h2>
+  <p style="margin-bottom:8px">Solbeat runs serverless, so subscriptions are
+  serverless too:</p>
+  <p style="margin-bottom:6px">📡 <a href="status.xml">RSS feed</a> — updated
+  every refresh; add it to any RSS reader or a Slack/Discord RSS bot.</p>
+  <p style="margin-bottom:6px">📬 Email — <a
+  href="https://github.com/andreolf/solbeat">watch the GitHub repository</a>
+  (Watch → Custom → Issues): incident issues notify you through GitHub's own
+  email delivery.</p>
+  <p class="muted small">For the Solana network's official status, see
+  <a href="https://status.solana.com">status.solana.com</a> (currently:
+  {esc(stp.get('statuspage_description') or 'n/a')}). This page tracks
+  Solbeat's own data pipeline.</p>
+</section>
+<footer>Solbeat status · generated {esc(gen)} · refreshes every 30 min</footer>
+</div>
+<script>
+const pop = document.createElement('div'); pop.id = 'tickpop';
+document.body.appendChild(pop);
+document.addEventListener('pointerover', e => {{
+  const t = e.target.closest('.strip i'); if (!t) return;
+  pop.textContent = t.getAttribute('data-tip'); pop.style.display = 'block';
+  const r = t.getBoundingClientRect();
+  pop.style.left = Math.max(6, r.left + scrollX - 60) + 'px';
+  pop.style.top = (r.top + scrollY - pop.offsetHeight - 10) + 'px';
+}});
+document.addEventListener('pointerout', e => {{
+  if (e.target.closest('.strip i')) pop.style.display = 'none'; }});
+</script>
+</body></html>"""
+    Path("docs/status.html").write_text(page)
+
+    # RSS feed of incidents (+ a heartbeat item so the feed is never empty).
+    def rfc822(ts):
+        try:
+            return datetime.strptime(ts, "%Y-%m-%dT%H:%M:%SZ").strftime(
+                "%a, %d %b %Y %H:%M:%S GMT")
+        except ValueError:
+            return ts
+    items = ""
+    for h in incidents[:20]:
+        what = []
+        if h.get("failed_sources"):
+            what.append("Source outage: " + ", ".join(h["failed_sources"]))
+        if h.get("anomaly_level") not in (None, "ok"):
+            what.append(f'Network signal ({h.get("anomaly_level")}): '
+                        + (", ".join((h.get("levels") or {}).keys()) or "anomaly"))
+        items += (f"<item><title>{esc('; '.join(what))}</title>"
+                  f"<pubDate>{rfc822(h.get('ts', ''))}</pubDate>"
+                  f"<guid isPermaLink=\"false\">{esc(h.get('ts', ''))}</guid>"
+                  f"<link>{BASE_URL}status.html</link></item>")
+    items += (f"<item><title>{esc(banner_txt)}</title>"
+              f"<pubDate>{rfc822(gen)}</pubDate>"
+              f"<guid isPermaLink=\"false\">status-{esc(gen)}</guid>"
+              f"<link>{BASE_URL}status.html</link></item>")
+    Path("docs/status.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel>'
+        f"<title>Solbeat Status</title><link>{BASE_URL}status.html</link>"
+        "<description>Status of Solbeat's data pipeline and Solana network "
+        f"signals</description><lastBuildDate>{rfc822(gen)}</lastBuildDate>"
+        f"{items}</channel></rss>")
 
 
 def _write_agent_files(snap):

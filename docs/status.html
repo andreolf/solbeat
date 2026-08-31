@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat Status</title>
+<meta name="description" content="Live status of Solbeat's data sources and the Solana network — uptime history, incidents, RSS subscription.">
+<link rel="alternate" type="application/rss+xml" title="Solbeat status feed" href="status.xml">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" fill="none" stroke="%233987e5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<style>
+:root { --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --accent:#3987e5; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--page); color:var(--ink2);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
+.wrap { max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+a { color:var(--accent); }
+.card { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:18px 22px; }
+.top { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.wordmark { font-family:ui-monospace,Menlo,monospace; font-size:20px;
+  font-weight:700; color:var(--ink); }
+.wordmark b { color:var(--accent); }
+.crumb { color:var(--muted); font-size:13px; }
+.backlink { margin-left:auto; font-size:13px; }
+.banner { border-radius:10px; padding:18px 22px; font-size:17px; font-weight:700;
+  color:#0d0d0d; background:#0ca30c; }
+h2 { color:var(--ink); font-size:15px; margin-bottom:12px; }
+.comp { padding:10px 0; border-bottom:1px solid var(--border); }
+.comp:last-child { border-bottom:none; }
+.comp-head { display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+.comp-name { color:var(--ink); font-size:13.5px; font-weight:600; }
+.comp-state { margin-left:auto; font-size:12px; color:var(--muted);
+  font-variant-numeric:tabular-nums; }
+.dot { width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0; }
+.mono { font-family:ui-monospace,Menlo,monospace; }
+.small { font-size:11.5px; } .muted { color:var(--muted); }
+.strip { display:flex; gap:2px; }
+.strip i { height:14px; border-radius:2px; flex:1 1 2px; min-width:0; cursor:pointer; }
+.signal { display:flex; gap:10px; align-items:baseline; padding:7px 0;
+  border-bottom:1px solid var(--border); font-size:13.5px; }
+.signal:last-child { border-bottom:none; }
+#tickpop { position:absolute; z-index:50; background:#232322;
+  border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:8px 12px;
+  font-size:12.5px; color:var(--ink); box-shadow:0 6px 24px rgba(0,0,0,.5);
+  max-width:280px; pointer-events:none; display:none; }
+footer { text-align:center; color:var(--muted); font-size:12px; padding:8px 0 18px; }
+</style></head>
+<body><div class="wrap">
+<header class="top card">
+  <span class="wordmark">SOL<b>BEAT</b></span><span class="crumb">/ status</span>
+  <a class="backlink" href="./">← dashboard</a>
+</header>
+<div class="banner">All Systems Operational</div>
+<section class="card">
+  <h2>Components — last 17 refresh cycles</h2>
+  <div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Solana RPC · network core</span>
+    <span class="mono muted small">api.mainnet-beta.solana.com</span>
+    <span class="comp-state">11951ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Solana RPC · vote accounts</span>
+    <span class="mono muted small">api.mainnet-beta.solana.com</span>
+    <span class="comp-state">1618ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">CoinGecko · market data</span>
+    <span class="mono muted small">api.coingecko.com</span>
+    <span class="comp-state">1782ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">DeFiLlama · chain TVL</span>
+    <span class="mono muted small">api.llama.fi</span>
+    <span class="comp-state">190ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">DeFiLlama · DEX volume</span>
+    <span class="mono muted small">api.llama.fi</span>
+    <span class="comp-state">1053ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">DeFiLlama · chain fees</span>
+    <span class="mono muted small">api.llama.fi</span>
+    <span class="comp-state">997ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">DeFiLlama · stablecoins</span>
+    <span class="mono muted small">stablecoins.llama.fi</span>
+    <span class="comp-state">1050ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">DeFiLlama · xStocks</span>
+    <span class="mono muted small">api.llama.fi</span>
+    <span class="comp-state">1465ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Jito Kobe · MEV tips</span>
+    <span class="mono muted small">kobe.mainnet.jito.network</span>
+    <span class="comp-state">268ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Stakewiz · validator meta</span>
+    <span class="mono muted small">api.stakewiz.com</span>
+    <span class="comp-state">1299ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">GitHub · Agave &amp; SIMDs</span>
+    <span class="mono muted small">api.github.com</span>
+    <span class="comp-state">922ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">solana.com · news RSS</span>
+    <span class="mono muted small">solana.com</span>
+    <span class="comp-state">238ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Solana status page</span>
+    <span class="mono muted small">status.solana.com</span>
+    <span class="comp-state">517ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Solana RPC · exchange wallets</span>
+    <span class="mono muted small">api.mainnet-beta.solana.com</span>
+    <span class="comp-state">2956ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div><div class="comp">
+  <div class="comp-head"><i class="dot" style="background:#0ca30c"></i>
+    <span class="comp-name">Solana RPC · program pulse</span>
+    <span class="mono muted small">api.mainnet-beta.solana.com</span>
+    <span class="comp-state">4952ms · 100.0% uptime</span></div>
+  <div class="strip"><i style="background:#0ca30c" data-tip="2026-08-31 17:39 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:48 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:50 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:55 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 17:58 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:11 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:19 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:26 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:28 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:30 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 18:40 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:08 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:10 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:16 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:54 UTC · operational" tabindex="0"></i><i style="background:#0ca30c" data-tip="2026-08-31 19:55 UTC · operational" tabindex="0"></i></div>
+</div>
+</section>
+<section class="card">
+  <h2>Incident history</h2>
+  <div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:55 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:54 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:54 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:16 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:10 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 19:08 UTC</span><span>network signal (warning): price, tvl, market_move</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:40 UTC</span><span>network signal (warning): tvl</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:30 UTC</span><span>network signal (warning): tvl</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:28 UTC</span><span>network signal (warning): tvl</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:26 UTC</span><span>network signal (warning): tvl</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:19 UTC</span><span>network signal (warning): tvl</span></div><div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="muted small">2026-08-31 18:11 UTC</span><span>network signal (warning): tvl</span></div>
+</section>
+<section class="card">
+  <h2>Subscribe to updates</h2>
+  <p style="margin-bottom:8px">Solbeat runs serverless, so subscriptions are
+  serverless too:</p>
+  <p style="margin-bottom:6px">📡 <a href="status.xml">RSS feed</a> — updated
+  every refresh; add it to any RSS reader or a Slack/Discord RSS bot.</p>
+  <p style="margin-bottom:6px">📬 Email — <a
+  href="https://github.com/andreolf/solbeat">watch the GitHub repository</a>
+  (Watch → Custom → Issues): incident issues notify you through GitHub's own
+  email delivery.</p>
+  <p class="muted small">For the Solana network's official status, see
+  <a href="https://status.solana.com">status.solana.com</a> (currently:
+  All Systems Operational). This page tracks
+  Solbeat's own data pipeline.</p>
+</section>
+<footer>Solbeat status · generated 2026-08-31T19:55:48Z · refreshes every 30 min</footer>
+</div>
+<script>
+const pop = document.createElement('div'); pop.id = 'tickpop';
+document.body.appendChild(pop);
+document.addEventListener('pointerover', e => {
+  const t = e.target.closest('.strip i'); if (!t) return;
+  pop.textContent = t.getAttribute('data-tip'); pop.style.display = 'block';
+  const r = t.getBoundingClientRect();
+  pop.style.left = Math.max(6, r.left + scrollX - 60) + 'px';
+  pop.style.top = (r.top + scrollY - pop.offsetHeight - 10) + 'px';
+});
+document.addEventListener('pointerout', e => {
+  if (e.target.closest('.strip i')) pop.style.display = 'none'; });
+</script>
+</body></html>

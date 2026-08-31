@@ -774,6 +774,8 @@ def history_entry(snap):
             worst = "warning"
     return {
         "ts": snap["generated_at"],
+        "failed_sources": [k for k, s in (snap.get("sources") or {}).items()
+                           if not s.get("ok")],
         "slot": net.get("slot"),
         "tps": net.get("tps"),
         "nonvote_tps": net.get("nonvote_tps"),

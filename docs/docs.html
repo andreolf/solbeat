@@ -4,24 +4,41 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Solbeat Docs — setup, architecture, contributing</title>
 <meta name="description" content="How Solbeat collects, analyzes and presents the state of the Solana network — setup, configuration, self-audit, deployment and contribution guide.">
-<link rel="canonical" href="https://www.solbeat.xyz/docs.html">
+<link rel="canonical" href="https://docs.solbeat.xyz/">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" fill="none" stroke="%233987e5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <style>
 :root { --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a; --accent:#3987e5; }
 * { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
 body { background:var(--page); color:var(--ink2);
-  font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
-.wrap { max-width:880px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+  font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; }
 a { color:var(--accent); }
-.card { background:var(--surface); border:1px solid var(--border);
-  border-radius:10px; padding:20px 24px; overflow-x:auto; }
-header.top { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-.wordmark { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:20px;
-  font-weight:700; color:var(--ink); letter-spacing:1px; }
+.topbar { position:sticky; top:0; z-index:60; display:flex; align-items:center;
+  gap:12px; padding:12px 22px; background:var(--surface);
+  border-bottom:1px solid var(--border); }
+.wordmark { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:19px;
+  font-weight:700; color:var(--ink); letter-spacing:1px; text-decoration:none; }
 .wordmark b { color:var(--accent); }
 .crumb { color:var(--muted); font-size:13px; }
-.backlink { margin-left:auto; font-size:13px; }
+.toplinks { margin-left:auto; display:flex; gap:14px; font-size:13px; }
+.layout { display:grid; grid-template-columns:230px minmax(0,1fr);
+  max-width:1160px; margin:0 auto; gap:0; }
+aside { position:sticky; top:53px; align-self:start;
+  height:calc(100vh - 53px); overflow-y:auto; padding:22px 8px 22px 18px;
+  border-right:1px solid var(--border); }
+.sidenav { display:flex; flex-direction:column; gap:1px; }
+.sidenav a { color:var(--ink2); text-decoration:none; font-size:13.5px;
+  padding:7px 12px; border-radius:7px; border-left:2px solid transparent; }
+.sidenav a:hover { color:var(--ink); background:var(--surface); }
+.sidenav a.active { color:var(--ink); background:var(--surface);
+  border-left-color:var(--accent); }
+.side-label { font-size:10.5px; letter-spacing:1.5px; color:var(--muted);
+  padding:0 12px 8px; }
+main { padding:22px; display:flex; flex-direction:column; gap:14px; min-width:0; }
+.card { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:20px 24px; overflow-x:auto; }
+section[id] { scroll-margin-top:70px; }
 h1 { color:var(--ink); font-size:22px; margin-bottom:6px; }
 h2 { color:var(--ink); font-size:16px; font-weight:650; margin:0 0 10px; }
 h3 { color:var(--ink); font-size:13.5px; font-weight:650; margin:14px 0 6px; }
@@ -40,42 +57,49 @@ tr:last-child td { border-bottom:none; }
 ul, ol { margin:0 0 10px 22px; }
 li { margin-bottom:5px; }
 .muted { color:var(--muted); } .small { font-size:12.5px; }
-.toc a { display:inline-block; margin:2px 12px 2px 0; font-size:13.5px; }
 .flow { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:12px 0; }
 .flow span { border:1px solid var(--border); border-radius:8px; padding:8px 12px;
   font-size:12.5px; color:var(--ink); background:#232322; white-space:nowrap; }
 .flow i { color:var(--muted); font-style:normal; }
-footer { text-align:center; padding:8px 0 20px; color:var(--muted); font-size:12px; }
+footer { text-align:center; padding:14px 0 24px; color:var(--muted); font-size:12px; }
+@media (max-width:860px) {
+  .layout { grid-template-columns:1fr; }
+  aside { position:static; height:auto; border-right:none;
+    border-bottom:1px solid var(--border); padding:12px 18px; }
+  .sidenav { flex-direction:row; overflow-x:auto; gap:4px; }
+  .sidenav a { white-space:nowrap; border-left:none; }
+  .side-label { display:none; }
+}
 </style></head>
-<body><div class="wrap">
-
-<header class="top card">
-  <svg width="28" height="19" viewBox="0 0 34 20" aria-hidden="true"><defs>
+<body>
+<div class="topbar">
+  <svg width="26" height="17" viewBox="0 0 34 20" aria-hidden="true"><defs>
     <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
     <stop offset="0" stop-color="#9945FF"/><stop offset="1" stop-color="#14F195"/>
     </linearGradient></defs>
     <polyline points="0,11 9,11 12,5 16,17 20,3 23,11 34,11" fill="none"
     stroke="url(#g)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  <span class="wordmark">SOL<b>BEAT</b></span>
-  <span class="crumb">/ documentation</span>
-  <a class="backlink" href="./">← back to the dashboard</a>
-</header>
-
+  <a class="wordmark" href="./">SOL<b>BEAT</b></a>
+  <span class="crumb">/ docs</span>
+  <div class="toplinks">
+    <a href="./">Dashboard</a>
+    <a href="status.html">Status</a>
+    <a href="https://github.com/andreolf/solbeat">GitHub</a>
+  </div>
+</div>
+<div class="layout">
+<aside>
+  <div class="side-label">DOCUMENTATION</div>
+  <nav class="sidenav"><a href="#quickstart">Quickstart</a><a href="#architecture">Architecture</a><a href="#collection">Data collection</a><a href="#analysis">Analysis</a><a href="#presentation">Presentation</a><a href="#config">Configuration</a><a href="#verify">Self-audit</a><a href="#deploy">Deploy your own</a><a href="#contribute">Contributing</a><a href="#faq">Design FAQ</a></nav>
+</aside>
+<main>
 <section class="card">
   <h1>Solbeat documentation</h1>
   <p>Solbeat is an autonomous, zero-API-key terminal for the state of the Solana
   network: Python standard library only, no frameworks, no chart libraries, no
-  servers, no secrets. This page covers how it's collected, analyzed and
+  servers, no secrets. These docs cover how it's collected, analyzed and
   presented, how to run and deploy your own, and how to contribute.</p>
-  <div class="toc">
-    <a href="#quickstart">Quickstart</a> <a href="#architecture">Architecture</a>
-    <a href="#collection">Data collection</a> <a href="#analysis">Analysis</a>
-    <a href="#presentation">Presentation</a> <a href="#config">Configuration</a>
-    <a href="#verify">Self-audit</a> <a href="#deploy">Deploy your own</a>
-    <a href="#contribute">Contributing</a> <a href="#faq">Design FAQ</a>
-  </div>
 </section>
-
 <section class="card" id="quickstart">
   <h2>Quickstart</h2>
   <p>Requirements: Python 3.9+ and an internet connection. Nothing else — no
@@ -88,7 +112,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   (dashboard), <code>report.md</code>, <code>data.json</code>, <code>llms.txt</code>,
   <code>history.json</code>.</p>
 </section>
-
 <section class="card" id="architecture">
   <h2>Architecture</h2>
   <div class="flow">
@@ -113,7 +136,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   gracefully and is reported honestly in the provenance panel (status, latency,
   fetch time per source) instead of breaking the report.</p>
 </section>
-
 <section class="card" id="collection">
   <h2>How data is collected</h2>
   <table>
@@ -152,7 +174,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   endpoint rejects browser origins) to re-sync the slot counter every 10s and
   refresh TPS/slot time every 60s, degrading gracefully to extrapolation.</p>
 </section>
-
 <section class="card" id="analysis">
   <h2>How data is analyzed</h2>
   <h3>Derived metrics</h3>
@@ -183,7 +204,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
     spike is a different story than a quiet Sunday, and the report says which.</li>
   </ol>
 </section>
-
 <section class="card" id="presentation">
   <h2>How data is presented</h2>
   <table>
@@ -206,7 +226,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
     machine-readable pointers.</td></tr>
   </table>
 </section>
-
 <section class="card" id="config">
   <h2>Configuration</h2>
   <table>
@@ -225,7 +244,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
       tracked exchange wallets and programs</td></tr>
   </table>
 </section>
-
 <section class="card" id="verify">
   <h2>Self-audit — trust the numbers</h2>
   <p><code>python3 solbeat.py verify</code> cross-checks the latest snapshot
@@ -240,7 +258,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   <p>Exit code is non-zero on any failure, so it can gate CI. A typical run
   passes 7/7 with cross-venue price agreement around 0.3%.</p>
 </section>
-
 <section class="card" id="deploy">
   <h2>Deploy your own</h2>
   <ol>
@@ -257,7 +274,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   </ol>
   <p class="small muted">Total infrastructure cost: $0. Total secrets: 0.</p>
 </section>
-
 <section class="card" id="contribute">
   <h2>Contributing</h2>
   <p>Contributions are welcome — see
@@ -276,7 +292,6 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
     before submitting — verify must pass 7/7.</li>
   </ul>
 </section>
-
 <section class="card" id="faq">
   <h2>Design FAQ</h2>
   <h3>Why zero API keys?</h3>
@@ -296,8 +311,22 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   announcements come from solana.com's news RSS, GitHub releases/SIMD state,
   and the status page instead.</p>
 </section>
-
 <footer>Solbeat — built with 💙 by <a href="https://github.com/andreolf">andreolf</a>
 · independent community project, not affiliated with the Solana Foundation
 · MIT licensed</footer>
-</div></body></html>
+</main>
+</div>
+<script>
+const links = [...document.querySelectorAll('.sidenav a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.toggle('active',
+        l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, {rootMargin: '-15% 0px -75% 0px'});
+secs.forEach(s => s && obs.observe(s));
+</script>
+</body></html>

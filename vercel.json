@@ -11,6 +11,12 @@
       "has": [{ "type": "host", "value": "docs.solbeat.xyz" }],
       "destination": "/docs",
       "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "status.solbeat.xyz" }],
+      "destination": "/status",
+      "permanent": false
     }
   ]
 }
