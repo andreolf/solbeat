@@ -4,5 +4,12 @@
   "installCommand": null,
   "outputDirectory": "docs",
   "framework": null,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "docs.solbeat.xyz" }],
+      "destination": "/docs.html"
+    }
+  ]
 }

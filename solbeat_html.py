@@ -96,11 +96,10 @@ def sparkline(series, w=150, h=40, color=BLUE):
     return (
         f'<svg class="spark" width="{w}" height="{h}" viewBox="0 0 {w} {h}" '
         f'aria-hidden="true">'
-        f'<polygon points="{area}" fill="{color}" opacity="0.1"/>'
-        f'<polyline points="{line}" fill="none" stroke="{color}" '
+        f'<polygon class="sv-fill" points="{area}"/>'
+        f'<polyline class="sv-line" points="{line}" fill="none" '
         f'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
-        f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="{color}" '
-        f'stroke="#1a1a19" stroke-width="2"/></svg>'
+        f'<circle class="sv-dot" cx="{ex:.1f}" cy="{ey:.1f}" r="4"/></svg>'
     )
 
 
@@ -119,8 +118,8 @@ def big_chart(series, w=1120, h=150, color=BLUE, label=""):
     line = " ".join(f"{x:.1f},{y:.1f}" for x, y in coords)
     area = f"{padl},{h - padb} " + line + f" {coords[-1][0]:.1f},{h - padb}"
     grid = "".join(
-        f'<line x1="{padl}" y1="{y}" x2="{w - padr}" y2="{y}" '
-        f'stroke="#2c2c2a" stroke-width="1"/>'
+        f'<line class="sv-grid" x1="{padl}" y1="{y}" x2="{w - padr}" y2="{y}" '
+        f'stroke-width="1"/>'
         for y in (padt, (padt + h - padb) / 2, h - padb))
     ex, ey = coords[-1]
     ey_label = min(max(ey, padt + 10), h - padb - 2)
@@ -128,14 +127,13 @@ def big_chart(series, w=1120, h=150, color=BLUE, label=""):
         f'<svg id="tpschart" width="100%" viewBox="0 0 {w} {h}" '
         f'preserveAspectRatio="none" role="img" aria-label="{esc(label)}">'
         f'{grid}'
-        f'<polygon points="{area}" fill="{color}" opacity="0.08"/>'
-        f'<polyline points="{line}" fill="none" stroke="{color}" '
+        f'<polygon class="sv-fill2" points="{area}"/>'
+        f'<polyline class="sv-line" points="{line}" fill="none" '
         f'stroke-width="2" stroke-linejoin="round"/>'
-        f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="4" fill="{color}" '
-        f'stroke="#1a1a19" stroke-width="2"/>'
-        f'<text x="{ex + 10:.1f}" y="{ey_label + 4:.1f}" fill="#ffffff" '
+        f'<circle class="sv-dot" cx="{ex:.1f}" cy="{ey:.1f}" r="4"/>'
+        f'<text class="sv-ink" x="{ex + 10:.1f}" y="{ey_label + 4:.1f}" '
         f'font-size="13" font-weight="600">{pts[-1]:,.0f}</text>'
-        f'<text x="{ex + 10:.1f}" y="{ey_label + 20:.1f}" fill="#898781" '
+        f'<text class="sv-muted" x="{ex + 10:.1f}" y="{ey_label + 20:.1f}" '
         f'font-size="11">now</text>'
         f'</svg>'
     )
@@ -160,14 +158,14 @@ def epoch_ring(pct, size=92):
     return (
         f'<svg width="{size}" height="{size}" viewBox="0 0 {size} {size}" '
         f'role="img" aria-label="Epoch progress {pct}%">'
-        f'<circle cx="{size/2}" cy="{size/2}" r="{r}" fill="none" '
-        f'stroke="#2c2c2a" stroke-width="7"/>'
-        f'<circle cx="{size/2}" cy="{size/2}" r="{r}" fill="none" '
-        f'stroke="{BLUE}" stroke-width="7" stroke-linecap="round" '
+        f'<circle class="ring-track" cx="{size/2}" cy="{size/2}" r="{r}" '
+        f'fill="none" stroke-width="7"/>'
+        f'<circle class="ring-prog" cx="{size/2}" cy="{size/2}" r="{r}" '
+        f'fill="none" stroke-width="7" stroke-linecap="round" '
         f'stroke-dasharray="{filled:.1f} {c:.1f}" '
         f'transform="rotate(-90 {size/2} {size/2})"/>'
-        f'<text x="50%" y="53%" text-anchor="middle" dominant-baseline="middle" '
-        f'fill="#ffffff" font-size="19" font-weight="650">{pct:.0f}%</text>'
+        f'<text class="sv-ink" x="50%" y="53%" text-anchor="middle" '
+        f'dominant-baseline="middle" font-size="19" font-weight="650">{pct:.0f}%</text>'
         f'</svg>'
     )
 
@@ -215,13 +213,13 @@ def world_map(geo, w=1120, h=430):
     grid = ""
     for lon in range(-150, 181, 30):
         x, _ = xy(0, lon)
-        grid += (f'<line x1="{x:.0f}" y1="0" x2="{x:.0f}" y2="{h}" '
-                 'stroke="#2c2c2a" stroke-width="1"/>')
+        grid += (f'<line class="sv-grid" x1="{x:.0f}" y1="0" x2="{x:.0f}" '
+                 f'y2="{h}" stroke-width="1"/>')
     for lat in range(-30, 61, 30):
         _, y = xy(lat, 0)
         wgt = 1.5 if lat == 0 else 1
-        grid += (f'<line x1="0" y1="{y:.0f}" x2="{w}" y2="{y:.0f}" '
-                 f'stroke="#2c2c2a" stroke-width="{wgt}"/>')
+        grid += (f'<line class="sv-grid" x1="0" y1="{y:.0f}" x2="{w}" '
+                 f'y2="{y:.0f}" stroke-width="{wgt}"/>')
     max_stake = geo[0]["stake"] or 1
     dots = ""
     # draw small dots first so heavyweights sit on top
@@ -230,22 +228,19 @@ def world_map(geo, w=1120, h=430):
         r = max(2.1, 9 * (g["stake"] / max_stake) ** 0.5)
         label = esc(f'{g["name"] or "validator"} — {g["stake"]:,} SOL — {g["loc"]}')
         big = g["stake"] > max_stake / 8
-        dots += (f'<circle class="vdot" cx="{x:.1f}" cy="{y:.1f}" r="{r:.1f}" '
-                 f'fill="{BLUE}" opacity="{0.95 if big else 0.7}" '
-                 f'data-tip="{label}" tabindex="0"'
-                 + (f' stroke="#1a1a19" stroke-width="1.5"' if big else "")
-                 + '></circle>')
-    land = (f'<path d="{WORLD_PATH}" fill="#242423" stroke="#3a3a37" '
-            'stroke-width="0.6"/>')
+        dots += (f'<circle class="vdot{" big" if big else ""}" cx="{x:.1f}" '
+                 f'cy="{y:.1f}" r="{r:.1f}" opacity="{0.95 if big else 0.7}" '
+                 f'data-tip="{label}" tabindex="0"></circle>')
+    land = f'<path class="land" d="{WORLD_PATH}" stroke-width="0.6"/>'
     return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" '
             f'aria-label="World map of Solana validators, dot size by stake">'
             f'{land}{grid}{dots}</svg>')
 
 
-def meter(pct, color=BLUE):
+def meter(pct):
     pct = max(0, min(100, pct or 0))
     return (f'<div class="meter"><div class="meter-fill" '
-            f'style="width:{pct:.1f}%;background:{color}"></div></div>')
+            f'style="width:{pct:.1f}%"></div></div>')
 
 
 # ------------------------------------------------------------ HTML sections
@@ -265,8 +260,7 @@ def tile(label, value, sub="", spark="", badge="", value_id="", delta=None):
     delta_html = ""
     if delta is not None:
         good = delta >= 0
-        col = "#0ca30c" if good else "#e66767"
-        delta_html = (f'<span class="delta" style="color:{col}">'
+        delta_html = (f'<span class="delta {"d-up" if good else "d-down"}">'
                       f'{"+" if good else ""}{delta:.1f}% / 24h</span>')
     idattr = f' id="{value_id}"' if value_id else ""
     return f"""<div class="tile">
@@ -396,7 +390,7 @@ def render_html(snap):
         slot_titles.append(f"{when}{avg:.0f}ms avg slot time")
 
     hero = f"""
-<section class="card">
+<section class="card" id="network">
   <div class="hero">
     <div class="hero-left">
       <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}
@@ -419,7 +413,8 @@ def render_html(snap):
     <div class="hero-right">
       {epoch_ring(net.get('epoch_progress_pct') or 0)}
       <div class="hero-epoch">epoch {net.get('epoch', '?')}<br>
-        <span class="muted">~{der.get('epoch_eta_hours', '?')}h remaining</span></div>
+        <span class="muted">~{der.get('epoch_eta_hours', '?')}h remaining</span><br>
+        <span class="solpill" style="margin-top:6px">{sol_glyph(11, 'hero')} MAINNET</span></div>
     </div>
   </div>
   <div class="herostrip">
@@ -448,7 +443,7 @@ def render_html(snap):
              spark=sparkline(fee.get("fees_series") or []),
              badge='<span class="prov" title="Computed: DeFiLlama chain fees + '
                    'Jito Kobe MEV tips — Blockworks REV methodology">'
-                   '<i style="background:#3987e5"></i>computed</span>'),
+                   '<i style="background:var(--accent)"></i>computed</span>'),
         tile("Chain TVL", fmt_usd(tvl.get("tvl_usd")),
              sub="DeFi total value locked",
              spark=sparkline(tvl.get("tvl_series") or []),
@@ -529,7 +524,7 @@ def render_html(snap):
                         f'run history</span>{strip(lv, ti, "run history")}</div>')
 
     signals = f"""
-<section class="card">
+<section class="card" id="signals">
   <div class="section-head"><h2>Signals — anomaly detection</h2>
     <span class="muted small">per-metric z-scores + multi-source correlation</span></div>
   {signals_html}
@@ -559,7 +554,7 @@ def render_html(snap):
 
     bls_pct = sw.get("bls_stake_pct")
     validators = f"""
-<section class="card">
+<section class="card" id="validators">
   <div class="section-head"><h2>Validators</h2>{B('solana_rpc_validators', 'RPC · getVoteAccounts')}</div>
   <div class="vstats">
     <div><span class="hs-value">{val.get('active_count', '?')}</span><span class="hs-label">active</span></div>
@@ -600,7 +595,7 @@ def render_html(snap):
         f'<td class="num">{fmt_num(w["balance_sol"])} SOL</td></tr>'
         for w in (snap.get("whales") or []))
     pulse_html = f"""
-<section class="twocol">
+<section class="twocol" id="ecosystem">
 <div class="card">
   <div class="section-head"><h2>Program activity pulse</h2>{B('solana_rpc_programs', 'RPC · getSignaturesForAddress')}</div>
   {prows or '<div class="muted">no data this cycle</div>'}
@@ -617,7 +612,7 @@ def render_html(snap):
     # ---- almanac: commentary + upgrades
     simd_live = der.get("simd525_step_active")
     upgrades = f"""
-<section class="card">
+<section class="card" id="almanac">
   <div class="section-head"><h2>The Almanac — upgrades &amp; ecosystem watch</h2>
     {B('github', 'GitHub')} {B('solana_status_page', 'status.solana.com')}</div>
   <p class="commentary">{esc(snap.get('commentary', ''))}</p>
@@ -708,6 +703,8 @@ def render_html(snap):
       <a class="footlink" href="https://solana.com/data">solana.com/data</a>
       <a class="footlink" href="https://status.solana.com">Solana status page</a>
       <a class="footlink" href="https://defillama.com/chain/solana">DeFiLlama · Solana</a>
+      <a class="footlink" href="llms.txt">llms.txt (for AI agents)</a>
+      <a class="footlink" href="https://github.com/andreolf/solbeat/blob/main/CHANGELOG.md">Full changelog</a>
     </div>
     <div>
       <div class="foot-head">Changelog</div>
@@ -771,26 +768,74 @@ def render_html(snap):
 <link rel="alternate" type="application/json" href="data.json" title="Machine-readable snapshot">
 <link rel="icon" href='{FAVICON}'>
 <script type="application/ld+json">{jsonld}</script>
+<script>
+/* apply saved theme before first paint to avoid a flash */
+(function () {{
+  var p = localStorage.getItem('solbeat-theme') || 'dark';
+  var r = p === 'system'
+    ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : p;
+  document.documentElement.dataset.theme = r;
+}})();
+</script>
 <style>
 :root {{
   --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
-  --accent:#3987e5;
+  --accent:#3987e5; --land:#242423; --landline:#3a3a37; --pop:#232322;
+  --meter-track:rgba(57,135,229,.16); --d-up:#0ca30c; --d-down:#e66767;
+}}
+html[data-theme="light"] {{
+  --page:#f9f9f7; --surface:#fcfcfb; --border:rgba(11,11,11,.10);
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
+  --accent:#2a78d6; --land:#eceae2; --landline:#d6d4ca; --pop:#ffffff;
+  --meter-track:rgba(42,120,214,.16); --d-up:#006300; --d-down:#d03b3b;
 }}
 * {{ box-sizing:border-box; margin:0; padding:0; }}
+html {{ scroll-behavior:smooth; }}
 body {{ background:var(--page); color:var(--ink2);
   font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }}
+section[id], header[id] {{ scroll-margin-top:74px; }}
+.sv-line {{ stroke:var(--accent); }}
+.sv-fill {{ fill:var(--accent); opacity:.1; }}
+.sv-fill2 {{ fill:var(--accent); opacity:.08; }}
+.sv-dot {{ fill:var(--accent); stroke:var(--surface); stroke-width:2; }}
+.sv-grid {{ stroke:var(--grid); }}
+.sv-ink {{ fill:var(--ink); }}
+.sv-muted {{ fill:var(--muted); }}
+.ring-track {{ stroke:var(--grid); }}
+.ring-prog {{ stroke:var(--accent); }}
+.land {{ fill:var(--land); stroke:var(--landline); }}
+.vdot {{ fill:var(--accent); }}
+.vdot.big {{ stroke:var(--surface); stroke-width:1.5; }}
+.d-up {{ color:var(--d-up); }}
+.d-down {{ color:var(--d-down); }}
 .wrap {{ max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }}
 a {{ color:var(--accent); }}
 .card {{ background:var(--surface); border:1px solid var(--border);
   border-radius:10px; padding:18px 20px; overflow-x:auto; }}
-header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
+header.top {{ position:sticky; top:10px; z-index:60; display:flex;
+  align-items:center; gap:12px; flex-wrap:wrap; padding:12px 20px; }}
 .wordmark {{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   font-size:22px; font-weight:700; color:var(--ink); letter-spacing:1px; }}
 .wordmark b {{ color:var(--accent); }}
 .tagline {{ color:var(--muted); font-size:13px; }}
-.healthpill {{ margin-left:auto; display:flex; align-items:center; gap:8px;
+.pricechip {{ display:inline-flex; gap:6px; align-items:center; font-size:12.5px;
+  background:var(--page); border:1px solid var(--border); border-radius:8px;
+  padding:5px 10px; color:var(--ink); font-variant-numeric:tabular-nums;
+  white-space:nowrap; }}
+.nav {{ margin-left:auto; display:flex; gap:2px; }}
+.nav a {{ color:var(--ink2); text-decoration:none; font-size:13px;
+  padding:5px 9px; border-radius:6px; white-space:nowrap; }}
+.nav a:hover {{ color:var(--ink); background:var(--grid); }}
+#themebtn {{ background:none; border:1px solid var(--border); border-radius:8px;
+  padding:4px 9px; cursor:pointer; font-size:14px; line-height:1.4; }}
+.healthpill {{ display:flex; align-items:center; gap:8px;
   font-size:12px; font-weight:650; letter-spacing:1px; color:var(--ink); }}
+@media (max-width:980px) {{
+  .nav {{ order:9; width:100%; margin-left:0; overflow-x:auto; }}
+  .healthpill {{ margin-left:auto; }}
+  header.top {{ position:static; }}
+}}
 .pulse {{ width:10px; height:10px; border-radius:50%; }}
 @keyframes beat {{ 0%,100% {{ transform:scale(1); opacity:1; }} 50% {{ transform:scale(1.35); opacity:.7; }} }}
 .pulse {{ animation:beat 1.6s ease-in-out infinite; }}
@@ -810,7 +855,7 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
   border-radius:50%; background:#0ca30c; margin-right:4px;
   animation:beat 1.6s infinite; }}
 .vdot {{ cursor:pointer; }}
-.vdot:hover, .vdot:focus {{ stroke:#ffffff; stroke-width:1.5; opacity:1; outline:none; }}
+.vdot:hover, .vdot:focus {{ stroke:var(--ink); stroke-width:1.5; opacity:1; outline:none; }}
 .solpill {{ display:inline-flex; align-items:center; gap:6px; font-size:10.5px;
   font-weight:650; letter-spacing:1.2px; color:var(--ink2);
   border:1px solid var(--border); border-radius:20px; padding:3px 10px; }}
@@ -843,7 +888,7 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .strip i {{ height:16px; border-radius:2px; flex:1 1 2px; min-width:0;
   cursor:pointer; transition:transform .08s; }}
 .strip i:hover, .strip i:focus {{ transform:scaleY(1.25); outline:none; }}
-#tickpop {{ position:absolute; z-index:50; background:#232322;
+#tickpop {{ position:absolute; z-index:50; background:var(--pop);
   border:1px solid rgba(255,255,255,.16); border-radius:8px; padding:8px 12px;
   font-size:12.5px; color:var(--ink); box-shadow:0 6px 24px rgba(0,0,0,.5);
   max-width:280px; pointer-events:none; display:none; }}
@@ -873,9 +918,9 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .mono {{ font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; }}
 .stakebar {{ background:var(--grid); border-radius:3px; height:6px; width:100%; min-width:60px; }}
 .stakebar div {{ background:var(--accent); height:6px; border-radius:3px; }}
-.meter {{ background:rgba(57,135,229,.16); border-radius:5px; height:10px;
+.meter {{ background:var(--meter-track); border-radius:5px; height:10px;
   margin:8px 0 6px; }}
-.meter-fill {{ height:10px; border-radius:5px; }}
+.meter-fill {{ height:10px; border-radius:5px; background:var(--accent); }}
 .blsrow {{ margin-top:18px; }}
 .twocol {{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }}
 @media (max-width:820px) {{ .twocol {{ grid-template-columns:1fr; }} }}
@@ -938,13 +983,21 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 <header class="top card">
   {LOGO_SVG}
   <span class="wordmark">SOL<b>BEAT</b></span>
-  <span class="tagline">the heartbeat terminal for the Solana network</span>
-  <span class="solpill">{sol_glyph(12, 'hdr')} SOLANA MAINNET</span>
+  <span class="pricechip">{sol_glyph(11, 'hdr')} ${mkt.get('sol_price_usd', 0):,.2f}
+    <b class="{'d-up' if (mkt.get('sol_change24h_pct') or 0) >= 0 else 'd-down'}">{mkt.get('sol_change24h_pct', 0):+.1f}%</b>
+    <span class="muted">·</span> fee {f"${der['avg_fee_per_tx_usd']:.4f}" if der.get('avg_fee_per_tx_usd') else 'n/a'}</span>
+  <nav class="nav">
+    <a href="#network">Network</a><a href="#economy">Economy</a>
+    <a href="#signals">Signals</a><a href="#validators">Validators</a>
+    <a href="#ecosystem">Ecosystem</a><a href="#almanac">Almanac</a>
+    <a href="docs.html">Docs</a>
+  </nav>
+  <button id="themebtn" aria-label="Switch theme">🌙</button>
   <span class="healthpill"><i class="pulse" style="background:{hcol}"></i>
     {htxt} · <span class="age" id="age">just updated</span></span>
 </header>
 {hero}
-<section class="tiles">
+<section class="tiles" id="economy">
 {tiles}
 </section>
 {signals}
@@ -1029,6 +1082,29 @@ function showTip(el) {{
   pop.style.left = px + 'px';
   pop.style.top = (r.top + window.scrollY - pop.offsetHeight - 10) + 'px';
 }}
+// Theme toggle: dark -> light -> system (persisted).
+const tbtn = document.getElementById('themebtn');
+const T_ICON = {{dark: '🌙', light: '☀️', system: '💻'}};
+let themePref = localStorage.getItem('solbeat-theme') || 'dark';
+function applyTheme() {{
+  const r = themePref === 'system'
+    ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+    : themePref;
+  document.documentElement.dataset.theme = r;
+  tbtn.textContent = T_ICON[themePref];
+  tbtn.title = `Theme: ${{themePref}} — click to change`;
+}}
+tbtn.addEventListener('click', () => {{
+  themePref = themePref === 'dark' ? 'light'
+            : themePref === 'light' ? 'system' : 'dark';
+  localStorage.setItem('solbeat-theme', themePref);
+  applyTheme();
+}});
+matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {{
+  if (themePref === 'system') applyTheme();
+}});
+applyTheme();
+
 const TIP_SEL = '.strip i, .vdot';
 document.addEventListener('pointerover', e => {{
   const t = e.target.closest(TIP_SEL);
