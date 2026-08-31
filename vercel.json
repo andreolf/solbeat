@@ -5,11 +5,12 @@
   "outputDirectory": "docs",
   "framework": null,
   "cleanUrls": true,
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
       "has": [{ "type": "host", "value": "docs.solbeat.xyz" }],
-      "destination": "/docs.html"
+      "destination": "/docs",
+      "permanent": false
     }
   ]
 }
