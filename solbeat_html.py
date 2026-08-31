@@ -10,7 +10,7 @@ import html
 import json
 from pathlib import Path
 
-BASE_URL = "https://andreolf.github.io/solbeat/"
+BASE_URL = "https://www.solbeat.xyz/"
 SITE_DESC = ("Live, auto-updating Solana network dashboard: TPS, slot time, "
              "validators, Real Economic Value (REV), TVL, stablecoins, DEX "
              "volume, tokenized equities, Alpenglow & SIMD-525 tracking, "

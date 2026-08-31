@@ -13,10 +13,12 @@ standard library only.
 Built for the Superteam Canada bounty *"Develop Solana Ecosystem Auto-Updating
 Report & Interactive Dashboard."*
 
-**Live dashboard: <https://andreolf.github.io/solbeat/>** — auto-refreshed
-every 30 minutes by GitHub Actions. Readable report:
+**Live dashboard: <https://www.solbeat.xyz>** — auto-refreshed every
+30 minutes by GitHub Actions (mirror:
+[andreolf.github.io/solbeat](https://andreolf.github.io/solbeat/)).
+Readable report:
 [report.md](https://github.com/andreolf/solbeat/blob/main/docs/report.md) ·
-raw data: [data.json](https://andreolf.github.io/solbeat/data.json)
+raw data: [data.json](https://www.solbeat.xyz/data.json)
 
 ![dashboard](docs/screenshot.png)
 

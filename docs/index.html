@@ -4,21 +4,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Solbeat — Live Solana Network Dashboard (TPS, Validators, REV, TVL)</title>
 <meta name="description" content="Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow &amp; SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.">
-<link rel="canonical" href="https://andreolf.github.io/solbeat/">
+<link rel="canonical" href="https://www.solbeat.xyz/">
 <meta name="theme-color" content="#0d0d0d">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Solbeat">
 <meta property="og:title" content="Solbeat — the heartbeat terminal for the Solana network">
 <meta property="og:description" content="Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow &amp; SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.">
-<meta property="og:url" content="https://andreolf.github.io/solbeat/">
-<meta property="og:image" content="https://andreolf.github.io/solbeat/screenshot.png">
+<meta property="og:url" content="https://www.solbeat.xyz/">
+<meta property="og:image" content="https://www.solbeat.xyz/screenshot.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Solbeat — the heartbeat terminal for the Solana network">
 <meta name="twitter:description" content="Live Solana metrics, zero API keys, refreshes itself every 30 min. Open source.">
-<meta name="twitter:image" content="https://andreolf.github.io/solbeat/screenshot.png">
+<meta name="twitter:image" content="https://www.solbeat.xyz/screenshot.png">
 <link rel="alternate" type="application/json" href="data.json" title="Machine-readable snapshot">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" fill="none" stroke="%233987e5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Solbeat \u2014 State of the Solana Network", "description": "Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow & SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.", "url": "https://andreolf.github.io/solbeat/", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "andreolf", "url": "https://github.com/andreolf"}, "keywords": ["Solana", "dashboard", "TPS", "validators", "REV", "TVL", "stablecoins", "DEX volume", "Alpenglow", "SIMD-525", "blockchain analytics", "open source"], "temporalCoverage": "2026-08-31T18:30:40Z", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://andreolf.github.io/solbeat/data.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://andreolf.github.io/solbeat/report.md"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Solbeat \u2014 State of the Solana Network", "description": "Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow & SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.", "url": "https://www.solbeat.xyz/", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "andreolf", "url": "https://github.com/andreolf"}, "keywords": ["Solana", "dashboard", "TPS", "validators", "REV", "TVL", "stablecoins", "DEX volume", "Alpenglow", "SIMD-525", "blockchain analytics", "open source"], "temporalCoverage": "2026-08-31T18:28:13Z", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://www.solbeat.xyz/data.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://www.solbeat.xyz/report.md"}]}</script>
 <style>
 :root {
   --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
@@ -417,6 +417,10 @@ footer { text-align:center; padding:8px 0 20px; }
   <div class="prow-track"><div class="prow-bar" style="width:100%"></div></div>
   <span class="prow-val">143 tx/min</span>
 </div><div class="prow">
+  <span class="prow-label">Jupiter v6</span>
+  <div class="prow-track"><div class="prow-bar" style="width:92%"></div></div>
+  <span class="prow-val">120 tx/min</span>
+</div><div class="prow">
   <span class="prow-label">Raydium AMM v4</span>
   <div class="prow-track"><div class="prow-bar" style="width:96%"></div></div>
   <span class="prow-val">130 tx/min</span>
@@ -458,9 +462,9 @@ footer { text-align:center; padding:8px 0 20px; }
   <div class="upgrid">
     <div class="upcard">
       <div class="up-name">SIMD-0525 · slot-time reduction</div>
-      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 315ms</div>
+      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 314ms</div>
       <div class="muted small">400→200ms in four feature-gated steps. Our own RPC
-        measurement of ~315ms slot time is live,
+        measurement of ~314ms slot time is live,
         on-chain proof the 350ms step is running.
         Proposal state: merged.</div>
     </div>
