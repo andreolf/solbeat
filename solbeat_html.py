@@ -948,6 +948,14 @@ function tick() {{
 setInterval(tick, 250); tick();
 pollSlot(); setInterval(pollSlot, 10000);
 pollPerf(); setInterval(pollPerf, 60000);
+// Vercel Web Analytics — inject only when served by Vercel (the script path
+// doesn't exist on GitHub Pages/localhost, so we skip it there).
+if (!/localhost|\\.github\\.io$/.test(location.hostname)) {{
+  window.va = window.va || function () {{ (window.vaq = window.vaq || []).push(arguments); }};
+  const va = document.createElement('script');
+  va.defer = true; va.src = '/_vercel/insights/script.js';
+  document.head.appendChild(va);
+}}
 </script>
 </body></html>"""
 

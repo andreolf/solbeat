@@ -415,11 +415,7 @@ footer { text-align:center; padding:8px 0 20px; }
   <div class="prow">
   <span class="prow-label">Pump.fun</span>
   <div class="prow-track"><div class="prow-bar" style="width:100%"></div></div>
-  <span class="prow-val">143 tx/min</span>
-</div><div class="prow">
-  <span class="prow-label">Jupiter v6</span>
-  <div class="prow-track"><div class="prow-bar" style="width:92%"></div></div>
-  <span class="prow-val">120 tx/min</span>
+  <span class="prow-val">189 tx/min</span>
 </div><div class="prow">
   <span class="prow-label">Raydium AMM v4</span>
   <div class="prow-track"><div class="prow-bar" style="width:92%"></div></div>
@@ -458,9 +454,9 @@ footer { text-align:center; padding:8px 0 20px; }
   <div class="upgrid">
     <div class="upcard">
       <div class="up-name">SIMD-0525 · slot-time reduction</div>
-      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 314ms</div>
+      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 315ms</div>
       <div class="muted small">400→200ms in four feature-gated steps. Our own RPC
-        measurement of ~314ms slot time is live,
+        measurement of ~315ms slot time is live,
         on-chain proof the 350ms step is running.
         Proposal state: merged.</div>
     </div>
@@ -663,5 +659,13 @@ function tick() {
 setInterval(tick, 250); tick();
 pollSlot(); setInterval(pollSlot, 10000);
 pollPerf(); setInterval(pollPerf, 60000);
+// Vercel Web Analytics — inject only when served by Vercel (the script path
+// doesn't exist on GitHub Pages/localhost, so we skip it there).
+if (!/localhost|\.github\.io$/.test(location.hostname)) {
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  const va = document.createElement('script');
+  va.defer = true; va.src = '/_vercel/insights/script.js';
+  document.head.appendChild(va);
+}
 </script>
 </body></html>
