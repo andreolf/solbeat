@@ -45,6 +45,7 @@ SOURCE_LABELS = {
 }
 
 CHANGELOG = [
+    ("2026-08-31", "v1.3", "Real live mode: browser polls keyless RPC (slot re-sync, live TPS, ticking tx counter), `verify` self-audit command, SEO + llms.txt for agents"),
     ("2026-08-31", "v1.2", "Sources panel redesign, footer with changelog & resources, hero layout fix"),
     ("2026-08-31", "v1.1", "solana.com news feed, on-chain clock (getSlot/getBlockTime), optional Dune extractor, configurable refresh interval, mobile polish"),
     ("2026-08-31", "v1.0", "Initial release — 14 keyless sources, computed REV, correlation-based anomaly incidents, HTML/Markdown/JSON outputs, GitHub Actions autopilot"),
@@ -289,17 +290,19 @@ def render_html(snap):
 <section class="card">
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}</div>
+      <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}
+        <span class="livedot" id="livedot" title="green = slot confirmed live from RPC in your browser (PublicNode); dim = extrapolated from measured slot time">LIVE</span></div>
       <div class="hero-slot" id="slot">{net.get('slot', 0):,}</div>
-      <div class="hero-under">block height {net.get('block_height', 0):,} ·
-        {net.get('tx_count_total', 0):,} lifetime txs · node v{esc(net.get('node_version', '?'))}
+      <div class="hero-under"><span id="txcount">{net.get('tx_count_total', 0):,}</span>
+        lifetime txs · block height {net.get('block_height', 0):,} ·
+        node v{esc(net.get('node_version', '?'))}
         {f"· chain clock {esc(net['chain_time'])}" if net.get('chain_time') else ""}</div>
     </div>
     <div class="hero-mid">
       <div class="hero-stats">
-        <div><span class="hs-label">TPS (10m)</span><span class="hs-value">{fmt_num(net.get('tps'))}</span></div>
-        <div><span class="hs-label">non-vote TPS</span><span class="hs-value">{fmt_num(net.get('nonvote_tps'))}</span></div>
-        <div><span class="hs-label">slot time</span><span class="hs-value">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
+        <div><span class="hs-label">TPS</span><span class="hs-value" id="v-tps">{fmt_num(net.get('tps'))}</span></div>
+        <div><span class="hs-label">non-vote TPS</span><span class="hs-value" id="v-nvtps">{fmt_num(net.get('nonvote_tps'))}</span></div>
+        <div><span class="hs-label">slot time</span><span class="hs-value" id="v-slotms">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
           <span class="hs-note">{esc(simd_note)}</span></div>
         <div><span class="hs-label">est. daily txs</span><span class="hs-value">{fmt_num(net.get('est_daily_txs'))}</span></div>
       </div>
@@ -591,6 +594,8 @@ def render_html(snap):
         "slotMs": slot_ms or 400,
         "revPerMin": der.get("rev_per_min_usd") or 0,
         "generatedAt": snap.get("generated_at"),
+        "tps": net.get("tps") or 0,
+        "txTotal": net.get("tx_count_total") or 0,
     }
 
     jsonld = json.dumps({
@@ -666,6 +671,13 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .hero-right {{ display:flex; align-items:center; gap:14px; }}
 .hero-label {{ font-size:11px; letter-spacing:1.5px; color:var(--muted);
   display:flex; gap:8px; align-items:center; }}
+.livedot {{ font-size:9px; font-weight:700; letter-spacing:1px; color:#0ca30c;
+  border:1px solid #0ca30c44; border-radius:20px; padding:1px 7px;
+  opacity:.28; cursor:help; transition:opacity .4s; }}
+.livedot.on {{ opacity:1; }}
+.livedot.on::before {{ content:''; display:inline-block; width:5px; height:5px;
+  border-radius:50%; background:#0ca30c; margin-right:4px;
+  animation:beat 1.6s infinite; }}
 .hero-slot {{ font-size:46px; font-weight:650; color:var(--ink); line-height:1.15;
   font-variant-numeric:normal; }}
 .hero-under {{ color:var(--muted); font-size:12px; margin-top:4px; }}
@@ -801,13 +813,50 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 const LIVE = {json.dumps(live)};
 const t0 = Date.now();
 const gen = Date.parse(LIVE.generatedAt);
-let rev = 0;
+// Browser-side live layer: PublicNode is a keyless RPC that allows browser
+// origins (the official public endpoint 403s them). Graceful: on any failure
+// the page falls back to extrapolating from the snapshot's measured slot time.
+const RPC = 'https://solana-rpc.publicnode.com';
+let baseSlot = LIVE.slot, baseT = t0, liveOk = false;
+
+async function rpcCall(method, params) {{
+  const r = await fetch(RPC, {{
+    method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{jsonrpc: '2.0', id: 1, method, params: params || []}})
+  }});
+  return (await r.json()).result;
+}}
+async function pollSlot() {{
+  try {{
+    const s = await rpcCall('getSlot');
+    if (s) {{ baseSlot = s; baseT = Date.now(); liveOk = true;
+      document.getElementById('livedot').classList.add('on'); }}
+  }} catch (e) {{ /* stay in extrapolation mode */ }}
+}}
+async function pollPerf() {{
+  try {{
+    const s = (await rpcCall('getRecentPerformanceSamples', [1]))[0];
+    if (!s || !s.numSlots) return;
+    const secs = s.samplePeriodSecs || 60;
+    LIVE.tps = s.numTransactions / secs;
+    LIVE.slotMs = 1000 * secs / s.numSlots;
+    const set = (id, v) => {{ const el = document.getElementById(id); if (el) el.textContent = v; }};
+    set('v-tps', Math.round(LIVE.tps).toLocaleString('en-US'));
+    if (s.numNonVoteTransactions != null)
+      set('v-nvtps', Math.round(s.numNonVoteTransactions / secs).toLocaleString('en-US'));
+    set('v-slotms', Math.round(LIVE.slotMs) + 'ms');
+  }} catch (e) {{ /* keep snapshot values */ }}
+}}
 function tick() {{
   const el = Date.now() - t0;
-  // live slot estimate from measured slot time
-  const slot = LIVE.slot + Math.floor(el / LIVE.slotMs);
+  // slot: real (re-synced every 10s from RPC) or extrapolated
+  const slot = baseSlot + Math.floor((Date.now() - baseT) / LIVE.slotMs);
   const slotEl = document.getElementById('slot');
   if (slotEl) slotEl.textContent = slot.toLocaleString('en-US');
+  // lifetime transactions, ticking at the live TPS rate
+  const tx = document.getElementById('txcount');
+  if (tx && LIVE.txTotal) tx.textContent =
+    Math.floor(LIVE.txTotal + LIVE.tps * el / 1000).toLocaleString('en-US');
   // data age
   const ageS = Math.max(0, Math.round((Date.now() - gen) / 1000));
   const ageEl = document.getElementById('age');
@@ -816,12 +865,12 @@ function tick() {{
     : `updated ${{(ageS/3600).toFixed(1)}}h ago`;
   // REV clock: dollars accrued while you watch
   const rc = document.getElementById('revclock');
-  if (rc && LIVE.revPerMin) {{
-    rev = LIVE.revPerMin * el / 60000;
-    rc.textContent = `+$${{rev.toFixed(2)}} while you've watched`;
-  }}
+  if (rc && LIVE.revPerMin) rc.textContent =
+    `+$${{(LIVE.revPerMin * el / 60000).toFixed(2)}} while you've watched`;
 }}
 setInterval(tick, 250); tick();
+pollSlot(); setInterval(pollSlot, 10000);
+pollPerf(); setInterval(pollPerf, 60000);
 </script>
 </body></html>"""
 

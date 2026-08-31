@@ -167,11 +167,11 @@ def collect_rpc_core():
     ep = rpc("getEpochInfo")
     out["epoch"] = ep["epoch"]
     out["slot"] = max(slot_now, ep["absoluteSlot"])
-    out["block_height"] = ep["blockHeight"]
+    out["block_height"] = ep.get("blockHeight") or 0
     out["epoch_slot_index"] = ep["slotIndex"]
     out["epoch_slots_total"] = ep["slotsInEpoch"]
     out["epoch_progress_pct"] = round(100 * ep["slotIndex"] / ep["slotsInEpoch"], 2)
-    out["tx_count_total"] = ep.get("transactionCount")
+    out["tx_count_total"] = ep.get("transactionCount") or 0
     time.sleep(0.1)
 
     samples = rpc("getRecentPerformanceSamples", [720]) or []
@@ -735,7 +735,10 @@ def history_entry(snap):
     val = snap.get("validators") or {}
     mkt = snap.get("market") or {}
     der = snap.get("derived") or {}
-    levels = {f["metric"]: f["level"] for f in (snap.get("anomalies") or {}).get("findings", [])}
+    anoms = snap.get("anomalies") or {}
+    levels = {f["metric"]: f["level"] for f in anoms.get("findings", [])}
+    for inc in anoms.get("incidents", []):
+        levels[inc["class"]] = inc["level"]
     worst = "ok"
     for lv in levels.values():
         if lv == "serious":
@@ -950,6 +953,91 @@ def cmd_serve():
     http.server.ThreadingHTTPServer(("", port), handler).serve_forever()
 
 
+def cmd_verify():
+    """Self-audit: cross-check the snapshot's headline numbers against
+    independent sources and internal consistency. Exit non-zero on failure."""
+    snap = load_snapshot()
+    net = snap.get("network") or {}
+    mkt = snap.get("market") or {}
+    val = snap.get("validators") or {}
+    der = snap.get("derived") or {}
+    fees = snap.get("fees") or {}
+    checks = []
+
+    def check(name, ok, detail):
+        checks.append((name, ok, detail))
+
+    # 1. Price: CoinGecko vs Binance (independent keyless source).
+    try:
+        b = _http_json("https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT")
+        bp, cp = float(b["price"]), mkt.get("sol_price_usd") or 0
+        dev = abs(bp - cp) / bp * 100
+        check("SOL price vs Binance", dev < 2,
+              f"CoinGecko ${cp:,.2f} vs Binance ${bp:,.2f} ({dev:.2f}% apart)")
+    except Exception as exc:
+        check("SOL price vs Binance", False, f"unavailable: {exc}")
+
+    # 2. Market cap ≈ circulating supply × price (two independent sources).
+    if mkt.get("sol_mcap_usd") and net.get("supply_circulating_sol") and mkt.get("sol_price_usd"):
+        implied = net["supply_circulating_sol"] * mkt["sol_price_usd"]
+        dev = abs(implied - mkt["sol_mcap_usd"]) / mkt["sol_mcap_usd"] * 100
+        check("mcap = RPC supply x price", dev < 5,
+              f"implied ${implied/1e9:.1f}B vs CoinGecko ${mkt['sol_mcap_usd']/1e9:.1f}B ({dev:.1f}% apart)")
+
+    # 3. Slot time: measure live slot advance vs the reported figure.
+    try:
+        s1 = rpc("getSlot")
+        time.sleep(5)
+        s2 = rpc("getSlot")
+        measured = 5000 / max(s2 - s1, 1)
+        reported = net.get("slot_time_ms") or 0
+        dev = abs(measured - reported) / max(measured, 1) * 100
+        check("slot time vs live measurement", dev < 30,
+              f"reported {reported:.0f}ms vs live {measured:.0f}ms over 5s")
+    except Exception as exc:
+        check("slot time vs live measurement", False, str(exc))
+
+    # 4. TVL: history endpoint vs the independent chains endpoint.
+    try:
+        chains = _http_json("https://api.llama.fi/v2/chains")
+        sol = next(c for c in chains if c.get("name") == "Solana")
+        ours = (snap.get("tvl") or {}).get("tvl_usd") or 0
+        dev = abs(sol["tvl"] - ours) / sol["tvl"] * 100
+        check("TVL vs DeFiLlama /v2/chains", dev < 5,
+              f"ours ${ours/1e9:.2f}B vs chains ${sol['tvl']/1e9:.2f}B ({dev:.1f}% apart)")
+    except Exception as exc:
+        check("TVL vs DeFiLlama /v2/chains", False, str(exc))
+
+    # 5. REV arithmetic: fees + tips must equal the published figure.
+    if der.get("rev24h_usd") and fees.get("chain_fees24h_usd"):
+        recomputed = fees["chain_fees24h_usd"] + (der.get("jito_tips24h_usd") or 0)
+        check("REV = fees + Jito tips", abs(recomputed - der["rev24h_usd"]) < 2,
+              f"${der['rev24h_usd']:,.0f} = ${fees['chain_fees24h_usd']:,.0f} + ${der.get('jito_tips24h_usd', 0):,.0f}")
+
+    # 6. Validator internals: top-10 shares must sum to the reported figure.
+    tops = val.get("top_validators") or []
+    if tops and val.get("top10_stake_pct"):
+        s = sum(v["stake_pct"] for v in tops)
+        check("top-10 stake share arithmetic", abs(s - val["top10_stake_pct"]) < 0.5,
+              f"sum of rows {s:.1f}% vs reported {val['top10_stake_pct']}%")
+
+    # 7. Epoch math.
+    if net.get("epoch_slots_total"):
+        pct = 100 * net["epoch_slot_index"] / net["epoch_slots_total"]
+        check("epoch progress arithmetic", abs(pct - net["epoch_progress_pct"]) < 0.1,
+              f"{pct:.2f}% vs {net['epoch_progress_pct']}%")
+
+    width = max(len(c[0]) for c in checks) + 2
+    failed = 0
+    print(f"solbeat self-audit — snapshot {snap.get('generated_at')}\n")
+    for name, ok, detail in checks:
+        mark = "PASS" if ok else "FAIL"
+        failed += 0 if ok else 1
+        print(f"  [{mark}] {name:<{width}} {detail}")
+    print(f"\n{len(checks) - failed}/{len(checks)} checks passed")
+    sys.exit(1 if failed else 0)
+
+
 def main():
     # Refresh cadence is configurable without touching code.
     if os.environ.get("SOLBEAT_REFRESH"):
@@ -964,6 +1052,8 @@ def main():
         cmd_render()
     elif cmd == "serve":
         cmd_serve()
+    elif cmd == "verify":
+        cmd_verify()
     else:
         print(__doc__)
         sys.exit(1)

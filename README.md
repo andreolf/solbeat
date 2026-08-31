@@ -30,8 +30,9 @@ Committed samples from a real run live in [`samples/`](samples/).
 
 ```bash
 git clone <this repo> && cd <this repo>
-python3 solbeat.py run        # collect + render (~2-4 min, one full refresh)
-python3 solbeat.py serve      # ...then serve docs/ on :8017, refreshing every 30 min
+python3 solbeat.py run        # collect + render (~30s, one full refresh)
+python3 solbeat.py verify     # self-audit: cross-check the numbers (see below)
+python3 solbeat.py serve      # serve docs/ on :8017, refreshing every 30 min
 ```
 
 That is the entire setup. No `pip install`, no `.env`, no API keys — Python 3.9+
@@ -160,6 +161,36 @@ Two layers:
 Findings render as status-page-style tick strips (60 days per market metric,
 12h for slot performance, plus the run-history strip) — the most instantly
 readable anomaly visualization there is.
+
+## Trust: the self-audit
+
+Dashboards are only useful if the numbers are right, so Solbeat ships its own
+verifier. `python3 solbeat.py verify` cross-checks the latest snapshot against
+*independent* sources and internal arithmetic:
+
+- SOL price (CoinGecko) vs **Binance's public ticker** — two unrelated venues
+- Market cap vs **RPC circulating supply × price** — two unrelated sources
+- Reported slot time vs a **live 5-second slot-advance measurement**
+- TVL vs DeFiLlama's separate `/v2/chains` endpoint
+- REV arithmetic (fees + tips), top-10 stake share sums, epoch progress math
+
+A typical run: 7/7 checks pass, with price agreeing across venues to ~0.3%
+and supply×price matching reported market cap to 0.0%.
+
+## Live layer
+
+The dashboard isn't a static report wearing a dark theme — it moves:
+
+- The **slot counter is real**: the page polls a keyless, browser-friendly RPC
+  (PublicNode — the official public endpoint blocks browser origins) every
+  10 s and re-syncs; between polls it advances at the measured slot time. The
+  green **LIVE** badge shows which mode you're in, and everything degrades
+  gracefully to extrapolation if the network call fails.
+- TPS, non-vote TPS and slot time update every 60 s from live performance
+  samples fetched by your browser.
+- The **lifetime transaction counter** ticks upward at the live TPS rate
+  (~4,000+/second), and the **REV clock** counts the dollars of real economic
+  value accrued while you watch.
 
 ## Design notes
 

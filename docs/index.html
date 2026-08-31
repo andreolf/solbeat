@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="Live Solana metrics, zero API keys, refreshes itself every 30 min. Open source.">
 <meta name="twitter:image" content="https://andreolf.github.io/solbeat/screenshot.png">
 <link rel="alternate" type="application/json" href="data.json" title="Machine-readable snapshot">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Solbeat \u2014 State of the Solana Network", "description": "Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow & SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.", "url": "https://andreolf.github.io/solbeat/", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "andreolf", "url": "https://github.com/andreolf"}, "keywords": ["Solana", "dashboard", "TPS", "validators", "REV", "TVL", "stablecoins", "DEX volume", "Alpenglow", "SIMD-525", "blockchain analytics", "open source"], "temporalCoverage": "2026-08-31T18:11:38Z", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://andreolf.github.io/solbeat/data.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://andreolf.github.io/solbeat/report.md"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Solbeat \u2014 State of the Solana Network", "description": "Live, auto-updating Solana network dashboard: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, Alpenglow & SIMD-525 tracking, anomaly detection. Open-source, zero API keys, Python stdlib only.", "url": "https://andreolf.github.io/solbeat/", "license": "https://opensource.org/licenses/MIT", "isAccessibleForFree": true, "creator": {"@type": "Person", "name": "andreolf", "url": "https://github.com/andreolf"}, "keywords": ["Solana", "dashboard", "TPS", "validators", "REV", "TVL", "stablecoins", "DEX volume", "Alpenglow", "SIMD-525", "blockchain analytics", "open source"], "temporalCoverage": "2026-08-31T17:58:24Z", "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://andreolf.github.io/solbeat/data.json"}, {"@type": "DataDownload", "encodingFormat": "text/markdown", "contentUrl": "https://andreolf.github.io/solbeat/report.md"}]}</script>
 <style>
 :root {
   --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
@@ -49,6 +49,13 @@ header.top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
 .hero-right { display:flex; align-items:center; gap:14px; }
 .hero-label { font-size:11px; letter-spacing:1.5px; color:var(--muted);
   display:flex; gap:8px; align-items:center; }
+.livedot { font-size:9px; font-weight:700; letter-spacing:1px; color:#0ca30c;
+  border:1px solid #0ca30c44; border-radius:20px; padding:1px 7px;
+  opacity:.28; cursor:help; transition:opacity .4s; }
+.livedot.on { opacity:1; }
+.livedot.on::before { content:''; display:inline-block; width:5px; height:5px;
+  border-radius:50%; background:#0ca30c; margin-right:4px;
+  animation:beat 1.6s infinite; }
 .hero-slot { font-size:46px; font-weight:650; color:var(--ink); line-height:1.15;
   font-variant-numeric:normal; }
 .hero-under { color:var(--muted); font-size:12px; margin-top:4px; }
@@ -174,17 +181,19 @@ footer { text-align:center; padding:8px 0 20px; }
 <section class="card">
   <div class="hero">
     <div class="hero-left">
-      <div class="hero-label">CURRENT SLOT <span class="prov" title="RPC · fetched 2026-08-31T18:11:45Z · 7039ms"><i style="background:#0ca30c"></i>RPC</span></div>
-      <div class="hero-slot" id="slot">443,216,210</div>
-      <div class="hero-under">block height 421,263,872 ·
-        543,848,125,926 lifetime txs · node v4.3.0-beta.2
-        · chain clock 2026-08-31T18:11:15Z</div>
+      <div class="hero-label">CURRENT SLOT <span class="prov" title="RPC · fetched 2026-08-31T17:58:32Z · 7640ms"><i style="background:#0ca30c"></i>RPC</span>
+        <span class="livedot" id="livedot" title="green = slot confirmed live from RPC in your browser (PublicNode); dim = extrapolated from measured slot time">LIVE</span></div>
+      <div class="hero-slot" id="slot">443,213,709</div>
+      <div class="hero-under"><span id="txcount">543,844,584,485</span>
+        lifetime txs · block height 421,261,371 ·
+        node v4.2.1
+        · chain clock 2026-08-31T17:58:01Z</div>
     </div>
     <div class="hero-mid">
       <div class="hero-stats">
-        <div><span class="hs-label">TPS (10m)</span><span class="hs-value">4.5K</span></div>
-        <div><span class="hs-label">non-vote TPS</span><span class="hs-value">2.4K</span></div>
-        <div><span class="hs-label">slot time</span><span class="hs-value">317ms</span>
+        <div><span class="hs-label">TPS</span><span class="hs-value" id="v-tps">4.5K</span></div>
+        <div><span class="hs-label">non-vote TPS</span><span class="hs-value" id="v-nvtps">2.3K</span></div>
+        <div><span class="hs-label">slot time</span><span class="hs-value" id="v-slotms">316ms</span>
           <span class="hs-note">SIMD-525 350ms step live</span></div>
         <div><span class="hs-label">est. daily txs</span><span class="hs-value">398.3M</span></div>
       </div>
@@ -545,7 +554,7 @@ footer { text-align:center; padding:8px 0 20px; }
     </div>
     <div>
       <div class="foot-head">Changelog</div>
-      <div class="clrow"><span class="clver">v1.2</span><span class="muted small">2026-08-31</span><div class="small">Sources panel redesign, footer with changelog &amp; resources, hero layout fix</div></div><div class="clrow"><span class="clver">v1.1</span><span class="muted small">2026-08-31</span><div class="small">solana.com news feed, on-chain clock (getSlot/getBlockTime), optional Dune extractor, configurable refresh interval, mobile polish</div></div><div class="clrow"><span class="clver">v1.0</span><span class="muted small">2026-08-31</span><div class="small">Initial release — 14 keyless sources, computed REV, correlation-based anomaly incidents, HTML/Markdown/JSON outputs, GitHub Actions autopilot</div></div>
+      <div class="clrow"><span class="clver">v1.3</span><span class="muted small">2026-08-31</span><div class="small">Real live mode: browser polls keyless RPC (slot re-sync, live TPS, ticking tx counter), `verify` self-audit command, SEO + llms.txt for agents</div></div><div class="clrow"><span class="clver">v1.2</span><span class="muted small">2026-08-31</span><div class="small">Sources panel redesign, footer with changelog &amp; resources, hero layout fix</div></div><div class="clrow"><span class="clver">v1.1</span><span class="muted small">2026-08-31</span><div class="small">solana.com news feed, on-chain clock (getSlot/getBlockTime), optional Dune extractor, configurable refresh interval, mobile polish</div></div><div class="clrow"><span class="clver">v1.0</span><span class="muted small">2026-08-31</span><div class="small">Initial release — 14 keyless sources, computed REV, correlation-based anomaly incidents, HTML/Markdown/JSON outputs, GitHub Actions autopilot</div></div>
     </div>
   </div>
 </section>
@@ -553,16 +562,53 @@ footer { text-align:center; padding:8px 0 20px; }
   · data refreshes every 30 min · not financial advice</footer>
 </div>
 <script>
-const LIVE = {"slot": 443216210, "slotMs": 317.4, "revPerMin": 594.51, "generatedAt": "2026-08-31T18:11:38Z"};
+const LIVE = {"slot": 443213709, "slotMs": 316.3, "revPerMin": 595.14, "generatedAt": "2026-08-31T17:58:24Z", "tps": 4454.8, "txTotal": 543844584485};
 const t0 = Date.now();
 const gen = Date.parse(LIVE.generatedAt);
-let rev = 0;
+// Browser-side live layer: PublicNode is a keyless RPC that allows browser
+// origins (the official public endpoint 403s them). Graceful: on any failure
+// the page falls back to extrapolating from the snapshot's measured slot time.
+const RPC = 'https://solana-rpc.publicnode.com';
+let baseSlot = LIVE.slot, baseT = t0, liveOk = false;
+
+async function rpcCall(method, params) {
+  const r = await fetch(RPC, {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({jsonrpc: '2.0', id: 1, method, params: params || []})
+  });
+  return (await r.json()).result;
+}
+async function pollSlot() {
+  try {
+    const s = await rpcCall('getSlot');
+    if (s) { baseSlot = s; baseT = Date.now(); liveOk = true;
+      document.getElementById('livedot').classList.add('on'); }
+  } catch (e) { /* stay in extrapolation mode */ }
+}
+async function pollPerf() {
+  try {
+    const s = (await rpcCall('getRecentPerformanceSamples', [1]))[0];
+    if (!s || !s.numSlots) return;
+    const secs = s.samplePeriodSecs || 60;
+    LIVE.tps = s.numTransactions / secs;
+    LIVE.slotMs = 1000 * secs / s.numSlots;
+    const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+    set('v-tps', Math.round(LIVE.tps).toLocaleString('en-US'));
+    if (s.numNonVoteTransactions != null)
+      set('v-nvtps', Math.round(s.numNonVoteTransactions / secs).toLocaleString('en-US'));
+    set('v-slotms', Math.round(LIVE.slotMs) + 'ms');
+  } catch (e) { /* keep snapshot values */ }
+}
 function tick() {
   const el = Date.now() - t0;
-  // live slot estimate from measured slot time
-  const slot = LIVE.slot + Math.floor(el / LIVE.slotMs);
+  // slot: real (re-synced every 10s from RPC) or extrapolated
+  const slot = baseSlot + Math.floor((Date.now() - baseT) / LIVE.slotMs);
   const slotEl = document.getElementById('slot');
   if (slotEl) slotEl.textContent = slot.toLocaleString('en-US');
+  // lifetime transactions, ticking at the live TPS rate
+  const tx = document.getElementById('txcount');
+  if (tx && LIVE.txTotal) tx.textContent =
+    Math.floor(LIVE.txTotal + LIVE.tps * el / 1000).toLocaleString('en-US');
   // data age
   const ageS = Math.max(0, Math.round((Date.now() - gen) / 1000));
   const ageEl = document.getElementById('age');
@@ -571,11 +617,11 @@ function tick() {
     : `updated ${(ageS/3600).toFixed(1)}h ago`;
   // REV clock: dollars accrued while you watch
   const rc = document.getElementById('revclock');
-  if (rc && LIVE.revPerMin) {
-    rev = LIVE.revPerMin * el / 60000;
-    rc.textContent = `+$${rev.toFixed(2)} while you've watched`;
-  }
+  if (rc && LIVE.revPerMin) rc.textContent =
+    `+$${(LIVE.revPerMin * el / 60000).toFixed(2)} while you've watched`;
 }
 setInterval(tick, 250); tick();
+pollSlot(); setInterval(pollSlot, 10000);
+pollPerf(); setInterval(pollPerf, 60000);
 </script>
 </body></html>
