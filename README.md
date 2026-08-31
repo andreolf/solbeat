@@ -1,5 +1,11 @@
 # Solbeat
 
+[![auto-refresh](https://github.com/andreolf/solbeat/actions/workflows/solbeat.yml/badge.svg)](https://github.com/andreolf/solbeat/actions/workflows/solbeat.yml)
+[![live dashboard](https://img.shields.io/badge/live-dashboard-3987e5)](https://andreolf.github.io/solbeat/)
+[![API keys](https://img.shields.io/badge/API%20keys-zero-0ca30c)](#data-sources--integration)
+[![dependencies](https://img.shields.io/badge/dependencies-stdlib%20only-0ca30c)](#quickstart)
+[![license](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+
 **The heartbeat terminal for the Solana network.** An auto-updating report on the
 state of the Solana ecosystem — zero dependencies, zero API keys, Python
 standard library only.
@@ -89,6 +95,37 @@ Every line of the brief, mapped to its implementation:
 | HTML (dark) + Markdown + JSON outputs | `docs/index.html` (dark), `docs/report.md`, `docs/data.json` (schema-versioned) |
 | No API keys / dependencies | Python stdlib only; zero keys end to end |
 | Public repo, README, live demo, samples, write-up | This repo · [live dashboard](https://andreolf.github.io/solbeat/) · [`samples/`](samples/) · this document |
+
+## How it works
+
+```mermaid
+flowchart LR
+    subgraph SRC["15 keyless public sources"]
+        direction TB
+        RPC["Solana RPC<br/>12 methods"]
+        DL["DeFiLlama<br/>TVL · DEX · fees · stables · xStocks"]
+        CG["CoinGecko<br/>price"]
+        JK["Jito Kobe<br/>MEV tips"]
+        SW["Stakewiz<br/>BLS keys"]
+        MORE["GitHub · solana.com RSS<br/>status page"]
+    end
+    SRC --> COL["collectors<br/>(per-source provenance,<br/>graceful degradation)"]
+    COL --> DER["derived metrics<br/>REV = fees + tips<br/>epoch ETA · fee/tx"]
+    DER --> ANOM["anomaly engine<br/>z-scores + thresholds<br/>→ correlated incidents"]
+    ANOM --> SNAP[("snapshot<br/>data.json")]
+    SNAP --> HTML["HTML terminal<br/>(live slot · REV clock)"]
+    SNAP --> MD["Markdown report<br/>+ analyst commentary"]
+    SNAP --> AGENT["JSON + llms.txt<br/>for AI agents"]
+    CRON["GitHub Actions<br/>every 30 min"] -.->|runs| COL
+    CRON -.->|commits docs/| PAGES["GitHub Pages<br/>live site"]
+    BROWSER["viewer's browser<br/>polls keyless RPC"] -.->|re-syncs slot, TPS| HTML
+```
+
+The whole loop is autonomous: Actions collects and commits, Pages serves, the
+browser layer keeps the numbers moving between refreshes, and
+`python3 solbeat.py verify` cross-checks the output against independent
+sources. No servers, no keys, no dependencies — nothing that can be repriced
+or rot.
 
 ## Data sources & integration
 
