@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Solbeat — Solana Network Terminal</title>
+<meta name="description" content="Auto-updating, zero-API-key report on the state of the Solana ecosystem">
+<style>
+:root {
+  --page:#0d0d0d; --surface:#1a1a19; --border:rgba(255,255,255,.10);
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
+  --accent:#3987e5;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--page); color:var(--ink2);
+  font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; padding:20px; }
+.wrap { max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+a { color:var(--accent); }
+.card { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:18px 20px; overflow-x:auto; }
+header.top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.wordmark { font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:22px; font-weight:700; color:var(--ink); letter-spacing:1px; }
+.wordmark b { color:var(--accent); }
+.tagline { color:var(--muted); font-size:13px; }
+.healthpill { margin-left:auto; display:flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:650; letter-spacing:1px; color:var(--ink); }
+.pulse { width:10px; height:10px; border-radius:50%; }
+@keyframes beat { 0%,100% { transform:scale(1); opacity:1; } 50% { transform:scale(1.35); opacity:.7; } }
+.pulse { animation:beat 1.6s ease-in-out infinite; }
+.age { color:var(--muted); font-size:12px; }
+.hero { display:flex; gap:28px; align-items:center; flex-wrap:wrap; overflow:visible; }
+.hero-left { flex:1.3; min-width:280px; }
+.hero-mid { flex:1; min-width:260px; }
+.hero-right { display:flex; align-items:center; gap:14px; }
+.hero-label { font-size:11px; letter-spacing:1.5px; color:var(--muted);
+  display:flex; gap:8px; align-items:center; }
+.hero-slot { font-size:46px; font-weight:650; color:var(--ink); line-height:1.15;
+  font-variant-numeric:normal; }
+.hero-under { color:var(--muted); font-size:12px; margin-top:4px; }
+.hero-epoch { font-size:14px; color:var(--ink); }
+.hero-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px 20px; }
+.hero-stats > div { display:flex; flex-direction:column; }
+.hs-label { font-size:11px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
+.hs-value { font-size:22px; font-weight:650; color:var(--ink); }
+.hs-note { font-size:11px; color:var(--accent); }
+.chartcard h2 { font-size:14px; }
+.section-head { display:flex; align-items:baseline; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.section-head h2 { font-size:15px; color:var(--ink); font-weight:650; }
+.tiles { display:grid; grid-template-columns:repeat(auto-fill,minmax(255px,1fr)); gap:14px; }
+.tile { background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:14px 16px; display:flex; flex-direction:column; gap:4px; }
+.tile-head { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+.tile-label { font-size:11px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }
+.tile-value { font-size:26px; font-weight:650; color:var(--ink); }
+.tile-sub { font-size:12px; color:var(--muted); }
+.delta { font-weight:600; margin-right:6px; }
+.spark { margin-top:6px; align-self:flex-start; }
+.prov { display:inline-flex; align-items:center; gap:5px; font-size:10.5px;
+  color:var(--muted); border:1px solid var(--border); border-radius:20px;
+  padding:2px 8px; white-space:nowrap; cursor:help; }
+.prov i, .dot { width:6px; height:6px; border-radius:50%; display:inline-block; }
+.strip { display:flex; gap:2px; margin-top:6px; flex-wrap:nowrap; }
+.strip i { width:8px; height:16px; border-radius:2px; flex:1 0 4px; max-width:10px; }
+.striprow { display:flex; align-items:center; gap:10px; margin-top:8px; }
+.strip-label { width:90px; font-size:11px; color:var(--muted); text-transform:uppercase;
+  letter-spacing:.5px; flex-shrink:0; }
+.striprow .strip { flex:1; margin-top:0; }
+.striplegend { margin-top:10px; }
+.signal { display:flex; gap:10px; align-items:baseline; padding:7px 0;
+  border-bottom:1px solid var(--border); font-size:14px; }
+.signal:last-of-type { border-bottom:none; }
+.sig-icon { width:14px; text-align:center; }
+.sig-level { font-size:11px; font-weight:700; letter-spacing:1px; }
+.sig-class { font-size:11px; color:var(--muted); border:1px solid var(--border);
+  border-radius:4px; padding:1px 6px; font-family:ui-monospace,monospace; }
+.vstats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px; margin-bottom:16px; }
+.vstats > div { display:flex; flex-direction:column; }
+.vtable { width:100%; border-collapse:collapse; font-size:13.5px; }
+.vtable th { text-align:left; font-size:11px; letter-spacing:1px; color:var(--muted);
+  text-transform:uppercase; font-weight:600; padding:6px 8px;
+  border-bottom:1px solid var(--border); }
+.vtable td { padding:7px 8px; border-bottom:1px solid var(--border);
+  font-variant-numeric:tabular-nums; }
+.vtable tr:last-child td { border-bottom:none; }
+.vtable .num, .vtable th.num { text-align:right; }
+.mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; }
+.stakebar { background:var(--grid); border-radius:3px; height:6px; width:100%; min-width:60px; }
+.stakebar div { background:var(--accent); height:6px; border-radius:3px; }
+.meter { background:rgba(57,135,229,.16); border-radius:5px; height:10px;
+  margin:8px 0 6px; }
+.meter-fill { height:10px; border-radius:5px; }
+.blsrow { margin-top:18px; }
+.twocol { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:820px) { .twocol { grid-template-columns:1fr; } }
+.prow { display:flex; align-items:center; gap:10px; margin:8px 0; }
+.prow-label { width:120px; font-size:13px; flex-shrink:0; }
+.prow-track { flex:1; background:var(--grid); border-radius:3px; height:8px; }
+.prow-bar { background:var(--accent); height:8px; border-radius:3px; }
+.prow-val { width:110px; text-align:right; font-size:12.5px; color:var(--ink);
+  font-variant-numeric:tabular-nums; flex-shrink:0; }
+.commentary { font-size:14.5px; color:var(--ink2); border-left:3px solid var(--accent);
+  padding-left:14px; margin-bottom:16px; }
+.upgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
+.upcard { border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.up-name { font-size:13px; font-weight:650; color:var(--ink); }
+.up-status { font-size:13px; color:var(--accent); font-weight:600; margin:4px 0 6px;
+  display:flex; align-items:center; gap:7px; }
+.live-dot { width:8px; height:8px; border-radius:50%; background:#0ca30c;
+  display:inline-block; animation:beat 1.6s infinite; }
+.muted { color:var(--muted); }
+.small { font-size:12px; }
+footer { text-align:center; padding:8px 0 20px; }
+</style></head>
+<body><div class="wrap">
+<header class="top card">
+  <span class="wordmark">SOL<b>BEAT</b></span>
+  <span class="tagline">the heartbeat terminal for the Solana network</span>
+  <span class="healthpill"><i class="pulse" style="background:#0ca30c"></i>
+    OPERATIONAL · <span class="age" id="age">just updated</span></span>
+</header>
+
+<section class="hero card">
+  <div class="hero-left">
+    <div class="hero-label">CURRENT SLOT <span class="prov" title="RPC · fetched 2026-08-31T17:31:38Z · 8746ms"><i style="background:#0ca30c"></i>RPC</span></div>
+    <div class="hero-slot" id="slot">443,208,624</div>
+    <div class="hero-under">block height 421,256,290 ·
+      543,837,490,695 lifetime txs · node v4.2.1</div>
+    <div class="hero-under">last 12h slot performance</div>
+    <div class="strip" role="img" aria-label="12h slot performance"><i style="background:#0ca30c" title="311ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="326ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="311ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="323ms avg slot time"></i><i style="background:#0ca30c" title="313ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="322ms avg slot time"></i><i style="background:#0ca30c" title="312ms avg slot time"></i><i style="background:#0ca30c" title="323ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="314ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="326ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="323ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="311ms avg slot time"></i><i style="background:#0ca30c" title="322ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="314ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="313ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="314ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="326ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="324ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="314ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="323ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="312ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="322ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="323ms avg slot time"></i><i style="background:#0ca30c" title="313ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="315ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="314ms avg slot time"></i><i style="background:#0ca30c" title="322ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="313ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="321ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="324ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="316ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="322ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="324ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="312ms avg slot time"></i><i style="background:#0ca30c" title="325ms avg slot time"></i><i style="background:#0ca30c" title="317ms avg slot time"></i><i style="background:#0ca30c" title="318ms avg slot time"></i><i style="background:#0ca30c" title="319ms avg slot time"></i><i style="background:#0ca30c" title="324ms avg slot time"></i><i style="background:#0ca30c" title="320ms avg slot time"></i></div>
+  </div>
+  <div class="hero-mid">
+    <div class="hero-stats">
+      <div><span class="hs-label">TPS (10m)</span><span class="hs-value">4.3K</span></div>
+      <div><span class="hs-label">non-vote TPS</span><span class="hs-value">2.2K</span></div>
+      <div><span class="hs-label">slot time</span><span class="hs-value">320ms</span>
+        <span class="hs-note">SIMD-525 350ms step live</span></div>
+      <div><span class="hs-label">est. daily txs</span><span class="hs-value">396.3M</span></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg width="92" height="92" viewBox="0 0 92 92" role="img" aria-label="Epoch progress 94.59%"><circle cx="46.0" cy="46.0" r="38" fill="none" stroke="#2c2c2a" stroke-width="7"/><circle cx="46.0" cy="46.0" r="38" fill="none" stroke="#3987e5" stroke-width="7" stroke-linecap="round" stroke-dasharray="225.8 238.8" transform="rotate(-90 46.0 46.0)"/><text x="50%" y="53%" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="19" font-weight="650">95%</text></svg>
+    <div class="hero-epoch">epoch 1025<br>
+      <span class="muted">~2.1h remaining</span></div>
+  </div>
+</section>
+<section class="card chartcard">
+  <div class="section-head"><h2>Transactions per second — last 12h</h2><span class="prov" title="RPC · getRecentPerformanceSamples · fetched 2026-08-31T17:31:38Z · 8746ms"><i style="background:#0ca30c"></i>RPC · getRecentPerformanceSamples</span></div>
+  <svg id="tpschart" width="100%" viewBox="0 0 1120 150" preserveAspectRatio="none" role="img" aria-label="TPS over the last 12 hours"><line x1="8" y1="12" x2="1030" y2="12" stroke="#2c2c2a" stroke-width="1"/><line x1="8" y1="77.0" x2="1030" y2="77.0" stroke="#2c2c2a" stroke-width="1"/><line x1="8" y1="142" x2="1030" y2="142" stroke="#2c2c2a" stroke-width="1"/><polygon points="8,142 8.0,112.5 12.1,120.4 16.2,141.6 20.3,129.3 24.4,135.4 28.5,142.0 32.6,131.2 36.7,126.8 40.8,122.9 44.9,94.9 49.0,80.8 53.1,99.5 57.3,92.3 61.4,108.6 65.5,115.1 69.6,109.8 73.7,103.7 77.8,115.5 81.9,111.7 86.0,97.2 90.1,100.3 94.2,99.2 98.3,89.9 102.4,101.4 106.5,106.6 110.6,105.5 114.7,95.3 118.8,94.1 122.9,100.2 127.0,109.8 131.1,91.2 135.2,110.9 139.3,117.8 143.4,132.0 147.6,117.7 151.7,117.4 155.8,117.2 159.9,122.5 164.0,131.5 168.1,117.1 172.2,106.2 176.3,119.5 180.4,108.2 184.5,107.9 188.6,108.3 192.7,105.7 196.8,113.0 200.9,118.9 205.0,95.2 209.1,103.8 213.2,94.0 217.3,122.0 221.4,105.4 225.5,100.0 229.6,121.1 233.7,93.7 237.8,103.2 242.0,117.2 246.1,123.1 250.2,112.2 254.3,109.2 258.4,99.4 262.5,95.4 266.6,121.9 270.7,122.4 274.8,121.3 278.9,97.2 283.0,97.8 287.1,103.0 291.2,109.2 295.3,51.3 299.4,80.6 303.5,65.3 307.6,90.8 311.7,77.7 315.8,88.0 319.9,101.1 324.0,104.7 328.1,119.0 332.2,78.0 336.4,60.2 340.5,95.7 344.6,76.4 348.7,80.2 352.8,90.8 356.9,35.7 361.0,59.4 365.1,74.5 369.2,68.5 373.3,79.8 377.4,94.4 381.5,91.8 385.6,93.7 389.7,85.4 393.8,96.3 397.9,52.0 402.0,101.3 406.1,109.5 410.2,93.0 414.3,100.9 418.4,12.0 422.5,100.8 426.7,90.5 430.8,63.4 434.9,84.4 439.0,64.8 443.1,61.9 447.2,82.4 451.3,68.3 455.4,77.4 459.5,97.1 463.6,101.4 467.7,104.8 471.8,82.8 475.9,99.8 480.0,113.1 484.1,89.0 488.2,83.2 492.3,49.4 496.4,84.5 500.5,64.7 504.6,88.2 508.7,100.9 512.8,99.7 516.9,96.1 521.1,101.3 525.2,80.6 529.3,83.2 533.4,81.9 537.5,68.2 541.6,81.7 545.7,61.5 549.8,68.5 553.9,98.2 558.0,105.1 562.1,93.0 566.2,98.6 570.3,106.7 574.4,103.1 578.5,96.0 582.6,104.9 586.7,101.1 590.8,101.1 594.9,86.4 599.0,107.4 603.1,91.2 607.2,98.3 611.3,111.9 615.5,98.4 619.6,102.6 623.7,62.5 627.8,80.8 631.9,96.1 636.0,104.6 640.1,95.5 644.2,112.2 648.3,106.2 652.4,107.2 656.5,109.9 660.6,86.6 664.7,102.5 668.8,105.0 672.9,95.2 677.0,86.5 681.1,73.8 685.2,116.9 689.3,84.0 693.4,85.4 697.5,71.6 701.6,77.2 705.8,49.2 709.9,60.6 714.0,87.9 718.1,97.4 722.2,110.1 726.3,108.8 730.4,71.9 734.5,107.6 738.6,103.8 742.7,91.6 746.8,93.3 750.9,120.6 755.0,89.6 759.1,114.8 763.2,106.3 767.3,88.3 771.4,111.3 775.5,116.8 779.6,99.5 783.7,115.7 787.8,106.2 791.9,97.9 796.0,93.5 800.2,40.1 804.3,80.0 808.4,96.8 812.5,88.8 816.6,117.1 820.7,114.5 824.8,133.1 828.9,106.1 833.0,78.6 837.1,108.1 841.2,99.4 845.3,96.7 849.4,93.9 853.5,92.6 857.6,91.3 861.7,107.7 865.8,105.1 869.9,101.7 874.0,108.5 878.1,97.1 882.2,68.3 886.3,88.7 890.4,98.5 894.6,111.4 898.7,96.1 902.8,88.5 906.9,97.5 911.0,98.0 915.1,110.8 919.2,124.2 923.3,101.4 927.4,92.5 931.5,112.0 935.6,77.0 939.7,111.7 943.8,125.2 947.9,87.2 952.0,101.4 956.1,115.2 960.2,94.5 964.3,107.5 968.4,103.6 972.5,108.5 976.6,115.0 980.7,121.8 984.9,127.9 989.0,127.1 993.1,128.6 997.2,125.2 1001.3,103.8 1005.4,107.8 1009.5,118.7 1013.6,100.1 1017.7,118.8 1021.8,122.7 1025.9,86.5 1030.0,104.5 1030.0,142" fill="#3987e5" opacity="0.08"/><polyline points="8.0,112.5 12.1,120.4 16.2,141.6 20.3,129.3 24.4,135.4 28.5,142.0 32.6,131.2 36.7,126.8 40.8,122.9 44.9,94.9 49.0,80.8 53.1,99.5 57.3,92.3 61.4,108.6 65.5,115.1 69.6,109.8 73.7,103.7 77.8,115.5 81.9,111.7 86.0,97.2 90.1,100.3 94.2,99.2 98.3,89.9 102.4,101.4 106.5,106.6 110.6,105.5 114.7,95.3 118.8,94.1 122.9,100.2 127.0,109.8 131.1,91.2 135.2,110.9 139.3,117.8 143.4,132.0 147.6,117.7 151.7,117.4 155.8,117.2 159.9,122.5 164.0,131.5 168.1,117.1 172.2,106.2 176.3,119.5 180.4,108.2 184.5,107.9 188.6,108.3 192.7,105.7 196.8,113.0 200.9,118.9 205.0,95.2 209.1,103.8 213.2,94.0 217.3,122.0 221.4,105.4 225.5,100.0 229.6,121.1 233.7,93.7 237.8,103.2 242.0,117.2 246.1,123.1 250.2,112.2 254.3,109.2 258.4,99.4 262.5,95.4 266.6,121.9 270.7,122.4 274.8,121.3 278.9,97.2 283.0,97.8 287.1,103.0 291.2,109.2 295.3,51.3 299.4,80.6 303.5,65.3 307.6,90.8 311.7,77.7 315.8,88.0 319.9,101.1 324.0,104.7 328.1,119.0 332.2,78.0 336.4,60.2 340.5,95.7 344.6,76.4 348.7,80.2 352.8,90.8 356.9,35.7 361.0,59.4 365.1,74.5 369.2,68.5 373.3,79.8 377.4,94.4 381.5,91.8 385.6,93.7 389.7,85.4 393.8,96.3 397.9,52.0 402.0,101.3 406.1,109.5 410.2,93.0 414.3,100.9 418.4,12.0 422.5,100.8 426.7,90.5 430.8,63.4 434.9,84.4 439.0,64.8 443.1,61.9 447.2,82.4 451.3,68.3 455.4,77.4 459.5,97.1 463.6,101.4 467.7,104.8 471.8,82.8 475.9,99.8 480.0,113.1 484.1,89.0 488.2,83.2 492.3,49.4 496.4,84.5 500.5,64.7 504.6,88.2 508.7,100.9 512.8,99.7 516.9,96.1 521.1,101.3 525.2,80.6 529.3,83.2 533.4,81.9 537.5,68.2 541.6,81.7 545.7,61.5 549.8,68.5 553.9,98.2 558.0,105.1 562.1,93.0 566.2,98.6 570.3,106.7 574.4,103.1 578.5,96.0 582.6,104.9 586.7,101.1 590.8,101.1 594.9,86.4 599.0,107.4 603.1,91.2 607.2,98.3 611.3,111.9 615.5,98.4 619.6,102.6 623.7,62.5 627.8,80.8 631.9,96.1 636.0,104.6 640.1,95.5 644.2,112.2 648.3,106.2 652.4,107.2 656.5,109.9 660.6,86.6 664.7,102.5 668.8,105.0 672.9,95.2 677.0,86.5 681.1,73.8 685.2,116.9 689.3,84.0 693.4,85.4 697.5,71.6 701.6,77.2 705.8,49.2 709.9,60.6 714.0,87.9 718.1,97.4 722.2,110.1 726.3,108.8 730.4,71.9 734.5,107.6 738.6,103.8 742.7,91.6 746.8,93.3 750.9,120.6 755.0,89.6 759.1,114.8 763.2,106.3 767.3,88.3 771.4,111.3 775.5,116.8 779.6,99.5 783.7,115.7 787.8,106.2 791.9,97.9 796.0,93.5 800.2,40.1 804.3,80.0 808.4,96.8 812.5,88.8 816.6,117.1 820.7,114.5 824.8,133.1 828.9,106.1 833.0,78.6 837.1,108.1 841.2,99.4 845.3,96.7 849.4,93.9 853.5,92.6 857.6,91.3 861.7,107.7 865.8,105.1 869.9,101.7 874.0,108.5 878.1,97.1 882.2,68.3 886.3,88.7 890.4,98.5 894.6,111.4 898.7,96.1 902.8,88.5 906.9,97.5 911.0,98.0 915.1,110.8 919.2,124.2 923.3,101.4 927.4,92.5 931.5,112.0 935.6,77.0 939.7,111.7 943.8,125.2 947.9,87.2 952.0,101.4 956.1,115.2 960.2,94.5 964.3,107.5 968.4,103.6 972.5,108.5 976.6,115.0 980.7,121.8 984.9,127.9 989.0,127.1 993.1,128.6 997.2,125.2 1001.3,103.8 1005.4,107.8 1009.5,118.7 1013.6,100.1 1017.7,118.8 1021.8,122.7 1025.9,86.5 1030.0,104.5" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round"/><circle cx="1030.0" cy="104.5" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/><text x="1040.0" y="108.5" fill="#ffffff" font-size="13" font-weight="600">4,463</text><text x="1040.0" y="124.5" fill="#898781" font-size="11">now</text></svg>
+</section>
+<section class="tiles">
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">SOL price</span><span class="prov" title="CoinGecko · fetched 2026-08-31T17:31:41Z · 2044ms"><i style="background:#0ca30c"></i>CoinGecko</span></div>
+  <div class="tile-value">$102.65</div>
+  <div class="tile-sub"><span class="delta" style="color:#e66767">-2.9% / 24h</span>mcap $60.1B</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,35.0 9.7,33.7 14.3,33.7 19.0,33.5 23.7,33.3 28.3,34.4 33.0,33.6 37.7,31.7 42.3,31.5 47.0,31.8 51.7,31.5 56.3,32.0 61.0,31.5 65.7,32.2 70.3,32.3 75.0,32.9 79.7,31.7 84.3,30.9 89.0,24.2 93.7,22.3 98.3,17.5 103.0,17.3 107.7,16.1 112.3,13.3 117.0,15.1 121.7,10.7 126.3,5.0 131.0,9.1 135.7,7.9 140.3,11.0 145.0,10.3 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,35.0 9.7,33.7 14.3,33.7 19.0,33.5 23.7,33.3 28.3,34.4 33.0,33.6 37.7,31.7 42.3,31.5 47.0,31.8 51.7,31.5 56.3,32.0 61.0,31.5 65.7,32.2 70.3,32.3 75.0,32.9 79.7,31.7 84.3,30.9 89.0,24.2 93.7,22.3 98.3,17.5 103.0,17.3 107.7,16.1 112.3,13.3 117.0,15.1 121.7,10.7 126.3,5.0 131.0,9.1 135.7,7.9 140.3,11.0 145.0,10.3" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="10.3" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Real Economic Value (24h)</span><span class="prov" title="Computed: DeFiLlama chain fees + Jito Kobe MEV tips — Blockworks REV methodology"><i style="background:#3987e5"></i>computed</span></div>
+  <div class="tile-value">$853.3K</div>
+  <div class="tile-sub">fees $677.1K + Jito tips $176.2K · $593/min<br><span id="revclock"></span></div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,30.0 6.6,32.1 8.1,30.7 9.7,31.5 11.3,35.0 12.9,34.4 14.4,32.6 16.0,32.6 17.6,32.1 19.2,32.3 20.7,32.3 22.3,34.2 23.9,33.5 25.4,30.6 27.0,29.9 28.6,31.1 30.2,31.4 31.7,32.0 33.3,32.7 34.9,33.2 36.5,31.6 38.0,31.4 39.6,32.0 41.2,31.3 42.8,30.3 44.3,32.6 45.9,27.2 47.5,28.3 49.0,20.7 50.6,24.6 52.2,23.6 53.8,25.1 55.3,24.8 56.9,27.3 58.5,23.9 60.1,24.7 61.6,27.2 63.2,26.7 64.8,27.7 66.3,32.3 67.9,32.7 69.5,29.9 71.1,28.4 72.6,27.5 74.2,29.4 75.8,29.5 77.4,24.3 78.9,25.2 80.5,26.7 82.1,28.9 83.7,27.3 85.2,28.3 86.8,28.5 88.4,30.0 89.9,28.8 91.5,25.5 93.1,25.2 94.7,25.8 96.2,26.4 97.8,26.8 99.4,29.9 101.0,30.0 102.5,23.7 104.1,23.7 105.7,24.5 107.2,26.9 108.8,25.8 110.4,24.2 112.0,22.5 113.5,21.6 115.1,20.0 116.7,20.7 118.3,20.6 119.8,24.1 121.4,24.4 123.0,28.5 124.6,19.9 126.1,22.6 127.7,13.6 129.3,18.4 130.8,14.4 132.4,18.1 134.0,21.0 135.6,13.5 137.1,14.8 138.7,12.0 140.3,5.0 141.9,12.9 143.4,16.8 145.0,21.7 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,30.0 6.6,32.1 8.1,30.7 9.7,31.5 11.3,35.0 12.9,34.4 14.4,32.6 16.0,32.6 17.6,32.1 19.2,32.3 20.7,32.3 22.3,34.2 23.9,33.5 25.4,30.6 27.0,29.9 28.6,31.1 30.2,31.4 31.7,32.0 33.3,32.7 34.9,33.2 36.5,31.6 38.0,31.4 39.6,32.0 41.2,31.3 42.8,30.3 44.3,32.6 45.9,27.2 47.5,28.3 49.0,20.7 50.6,24.6 52.2,23.6 53.8,25.1 55.3,24.8 56.9,27.3 58.5,23.9 60.1,24.7 61.6,27.2 63.2,26.7 64.8,27.7 66.3,32.3 67.9,32.7 69.5,29.9 71.1,28.4 72.6,27.5 74.2,29.4 75.8,29.5 77.4,24.3 78.9,25.2 80.5,26.7 82.1,28.9 83.7,27.3 85.2,28.3 86.8,28.5 88.4,30.0 89.9,28.8 91.5,25.5 93.1,25.2 94.7,25.8 96.2,26.4 97.8,26.8 99.4,29.9 101.0,30.0 102.5,23.7 104.1,23.7 105.7,24.5 107.2,26.9 108.8,25.8 110.4,24.2 112.0,22.5 113.5,21.6 115.1,20.0 116.7,20.7 118.3,20.6 119.8,24.1 121.4,24.4 123.0,28.5 124.6,19.9 126.1,22.6 127.7,13.6 129.3,18.4 130.8,14.4 132.4,18.1 134.0,21.0 135.6,13.5 137.1,14.8 138.7,12.0 140.3,5.0 141.9,12.9 143.4,16.8 145.0,21.7" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="21.7" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Chain TVL</span><span class="prov" title="DeFiLlama · fetched 2026-08-31T17:31:41Z · 171ms"><i style="background:#0ca30c"></i>DeFiLlama</span></div>
+  <div class="tile-value">$5.8B</div>
+  <div class="tile-sub">DeFi total value locked</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,23.8 6.6,24.4 8.1,25.5 9.7,29.7 11.3,29.9 12.9,25.6 14.4,26.5 16.0,28.4 17.6,35.0 19.2,32.1 20.7,30.0 22.3,28.6 23.9,26.4 25.4,25.8 27.0,25.6 28.6,27.9 30.2,28.5 31.7,28.6 33.3,25.9 34.9,25.9 36.5,27.2 38.0,28.2 39.6,29.8 41.2,30.8 42.8,27.5 44.3,29.0 45.9,27.7 47.5,26.1 49.0,28.4 50.6,25.8 52.2,23.3 53.8,21.8 55.3,21.9 56.9,22.1 58.5,21.5 60.1,24.0 61.6,25.3 63.2,24.9 64.8,25.5 66.3,27.1 67.9,27.1 69.5,28.0 71.1,25.8 72.6,25.7 74.2,27.2 75.8,27.7 77.4,26.8 78.9,26.8 80.5,24.8 82.1,24.4 83.7,25.0 85.2,25.9 86.8,28.4 88.4,27.5 89.9,26.0 91.5,27.9 93.1,28.4 94.7,28.3 96.2,27.7 97.8,29.2 99.4,29.8 101.0,29.4 102.5,29.0 104.1,28.2 105.7,28.2 107.2,29.8 108.8,29.3 110.4,28.1 112.0,27.2 113.5,27.5 115.1,27.1 116.7,27.8 118.3,27.6 119.8,28.0 121.4,28.1 123.0,28.7 124.6,27.3 126.1,26.4 127.7,20.1 129.3,18.1 130.8,13.9 132.4,13.7 134.0,13.7 135.6,10.3 137.1,12.8 138.7,9.6 140.3,5.0 141.9,7.8 143.4,7.0 145.0,9.2 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,23.8 6.6,24.4 8.1,25.5 9.7,29.7 11.3,29.9 12.9,25.6 14.4,26.5 16.0,28.4 17.6,35.0 19.2,32.1 20.7,30.0 22.3,28.6 23.9,26.4 25.4,25.8 27.0,25.6 28.6,27.9 30.2,28.5 31.7,28.6 33.3,25.9 34.9,25.9 36.5,27.2 38.0,28.2 39.6,29.8 41.2,30.8 42.8,27.5 44.3,29.0 45.9,27.7 47.5,26.1 49.0,28.4 50.6,25.8 52.2,23.3 53.8,21.8 55.3,21.9 56.9,22.1 58.5,21.5 60.1,24.0 61.6,25.3 63.2,24.9 64.8,25.5 66.3,27.1 67.9,27.1 69.5,28.0 71.1,25.8 72.6,25.7 74.2,27.2 75.8,27.7 77.4,26.8 78.9,26.8 80.5,24.8 82.1,24.4 83.7,25.0 85.2,25.9 86.8,28.4 88.4,27.5 89.9,26.0 91.5,27.9 93.1,28.4 94.7,28.3 96.2,27.7 97.8,29.2 99.4,29.8 101.0,29.4 102.5,29.0 104.1,28.2 105.7,28.2 107.2,29.8 108.8,29.3 110.4,28.1 112.0,27.2 113.5,27.5 115.1,27.1 116.7,27.8 118.3,27.6 119.8,28.0 121.4,28.1 123.0,28.7 124.6,27.3 126.1,26.4 127.7,20.1 129.3,18.1 130.8,13.9 132.4,13.7 134.0,13.7 135.6,10.3 137.1,12.8 138.7,9.6 140.3,5.0 141.9,7.8 143.4,7.0 145.0,9.2" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="9.2" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Stablecoin supply</span><span class="prov" title="DeFiLlama · fetched 2026-08-31T17:31:42Z · 355ms"><i style="background:#0ca30c"></i>DeFiLlama</span></div>
+  <div class="tile-value">$16.1B</div>
+  <div class="tile-sub">circulating on Solana</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,21.3 6.6,25.4 8.1,30.2 9.7,28.0 11.3,26.1 12.9,21.7 14.4,21.1 16.0,24.8 17.6,23.7 19.2,22.9 20.7,25.7 22.3,25.0 23.9,24.5 25.4,27.0 27.0,29.5 28.6,29.4 30.2,25.1 31.7,24.2 33.3,23.4 34.9,24.1 36.5,23.5 38.0,23.3 39.6,28.7 41.2,28.1 42.8,26.1 44.3,26.1 45.9,26.3 47.5,25.8 49.0,26.2 50.6,25.8 52.2,18.6 53.8,24.2 55.3,24.5 56.9,23.7 58.5,28.1 60.1,25.4 61.6,28.3 63.2,28.7 64.8,27.7 66.3,27.1 67.9,25.8 69.5,31.7 71.1,32.9 72.6,35.0 74.2,29.1 75.8,24.9 77.4,24.0 78.9,23.7 80.5,22.7 82.1,21.6 83.7,7.6 85.2,6.7 86.8,5.0 88.4,6.1 89.9,7.2 91.5,18.9 93.1,16.4 94.7,15.5 96.2,15.4 97.8,15.5 99.4,16.3 101.0,17.1 102.5,14.5 104.1,12.5 105.7,17.4 107.2,16.7 108.8,17.1 110.4,16.8 112.0,16.0 113.5,15.9 115.1,16.3 116.7,19.4 118.3,19.2 119.8,20.4 121.4,20.6 123.0,20.5 124.6,20.8 126.1,20.3 127.7,15.9 129.3,13.2 130.8,14.5 132.4,15.2 134.0,14.1 135.6,14.5 137.1,16.1 138.7,16.4 140.3,15.1 141.9,15.6 143.4,16.3 145.0,18.8 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,21.3 6.6,25.4 8.1,30.2 9.7,28.0 11.3,26.1 12.9,21.7 14.4,21.1 16.0,24.8 17.6,23.7 19.2,22.9 20.7,25.7 22.3,25.0 23.9,24.5 25.4,27.0 27.0,29.5 28.6,29.4 30.2,25.1 31.7,24.2 33.3,23.4 34.9,24.1 36.5,23.5 38.0,23.3 39.6,28.7 41.2,28.1 42.8,26.1 44.3,26.1 45.9,26.3 47.5,25.8 49.0,26.2 50.6,25.8 52.2,18.6 53.8,24.2 55.3,24.5 56.9,23.7 58.5,28.1 60.1,25.4 61.6,28.3 63.2,28.7 64.8,27.7 66.3,27.1 67.9,25.8 69.5,31.7 71.1,32.9 72.6,35.0 74.2,29.1 75.8,24.9 77.4,24.0 78.9,23.7 80.5,22.7 82.1,21.6 83.7,7.6 85.2,6.7 86.8,5.0 88.4,6.1 89.9,7.2 91.5,18.9 93.1,16.4 94.7,15.5 96.2,15.4 97.8,15.5 99.4,16.3 101.0,17.1 102.5,14.5 104.1,12.5 105.7,17.4 107.2,16.7 108.8,17.1 110.4,16.8 112.0,16.0 113.5,15.9 115.1,16.3 116.7,19.4 118.3,19.2 119.8,20.4 121.4,20.6 123.0,20.5 124.6,20.8 126.1,20.3 127.7,15.9 129.3,13.2 130.8,14.5 132.4,15.2 134.0,14.1 135.6,14.5 137.1,16.1 138.7,16.4 140.3,15.1 141.9,15.6 143.4,16.3 145.0,18.8" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="18.8" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">DEX volume (24h)</span><span class="prov" title="DeFiLlama · fetched 2026-08-31T17:31:41Z · 188ms"><i style="background:#0ca30c"></i>DeFiLlama</span></div>
+  <div class="tile-value">$1.9B</div>
+  <div class="tile-sub"><span class="delta" style="color:#0ca30c">+15.5% / 24h</span>top: PumpSwap, Orca DEX, BisonFi</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,19.5 6.6,5.0 8.1,8.6 9.7,25.0 11.3,28.7 12.9,27.3 14.4,26.0 16.0,25.9 17.6,25.1 19.2,25.2 20.7,31.4 22.3,30.6 23.9,24.3 25.4,25.4 27.0,24.5 28.6,26.5 30.2,27.1 31.7,26.1 33.3,27.4 34.9,23.8 36.5,21.3 38.0,14.0 39.6,19.8 41.2,17.7 42.8,33.4 44.3,29.2 45.9,16.7 47.5,22.6 49.0,22.6 50.6,22.7 52.2,27.9 53.8,24.4 55.3,26.8 56.9,24.1 58.5,20.5 60.1,21.5 61.6,27.9 63.2,29.5 64.8,34.9 66.3,33.5 67.9,28.1 69.5,26.7 71.1,29.5 72.6,30.2 74.2,31.4 75.8,33.5 77.4,32.6 78.9,27.1 80.5,30.8 82.1,28.5 83.7,30.9 85.2,30.2 86.8,35.0 88.4,33.6 89.9,27.4 91.5,28.4 93.1,26.2 94.7,29.9 96.2,28.8 97.8,32.6 99.4,32.2 101.0,28.7 102.5,28.3 104.1,29.4 105.7,31.9 107.2,32.0 108.8,30.8 110.4,32.2 112.0,29.9 113.5,29.3 115.1,28.5 116.7,26.4 118.3,29.6 119.8,33.9 121.4,35.0 123.0,30.9 124.6,27.4 126.1,16.0 127.7,17.9 129.3,10.2 130.8,8.9 132.4,16.7 134.0,16.1 135.6,16.7 137.1,22.4 138.7,9.3 140.3,20.0 141.9,29.0 143.4,26.5 145.0,24.9 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,19.5 6.6,5.0 8.1,8.6 9.7,25.0 11.3,28.7 12.9,27.3 14.4,26.0 16.0,25.9 17.6,25.1 19.2,25.2 20.7,31.4 22.3,30.6 23.9,24.3 25.4,25.4 27.0,24.5 28.6,26.5 30.2,27.1 31.7,26.1 33.3,27.4 34.9,23.8 36.5,21.3 38.0,14.0 39.6,19.8 41.2,17.7 42.8,33.4 44.3,29.2 45.9,16.7 47.5,22.6 49.0,22.6 50.6,22.7 52.2,27.9 53.8,24.4 55.3,26.8 56.9,24.1 58.5,20.5 60.1,21.5 61.6,27.9 63.2,29.5 64.8,34.9 66.3,33.5 67.9,28.1 69.5,26.7 71.1,29.5 72.6,30.2 74.2,31.4 75.8,33.5 77.4,32.6 78.9,27.1 80.5,30.8 82.1,28.5 83.7,30.9 85.2,30.2 86.8,35.0 88.4,33.6 89.9,27.4 91.5,28.4 93.1,26.2 94.7,29.9 96.2,28.8 97.8,32.6 99.4,32.2 101.0,28.7 102.5,28.3 104.1,29.4 105.7,31.9 107.2,32.0 108.8,30.8 110.4,32.2 112.0,29.9 113.5,29.3 115.1,28.5 116.7,26.4 118.3,29.6 119.8,33.9 121.4,35.0 123.0,30.9 124.6,27.4 126.1,16.0 127.7,17.9 129.3,10.2 130.8,8.9 132.4,16.7 134.0,16.1 135.6,16.7 137.1,22.4 138.7,9.3 140.3,20.0 141.9,29.0 143.4,26.5 145.0,24.9" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="24.9" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Tokenized equities (xStocks)</span><span class="prov" title="DeFiLlama · fetched 2026-08-31T17:31:42Z · 403ms"><i style="background:#0ca30c"></i>DeFiLlama</span></div>
+  <div class="tile-value">$437.2M</div>
+  <div class="tile-sub">RWA equities TVL on Solana</div>
+  <svg class="spark" width="150" height="40" viewBox="0 0 150 40" aria-hidden="true"><polygon points="5,35 5.0,11.7 6.6,11.1 8.1,12.9 9.7,13.0 11.3,13.4 12.9,12.7 14.4,13.3 16.0,13.8 17.6,12.0 19.2,12.1 20.7,12.5 22.3,11.7 23.9,10.7 25.4,11.4 27.0,11.4 28.6,11.9 30.2,11.6 31.7,11.5 33.3,12.0 34.9,12.0 36.5,12.6 38.0,5.0 39.6,6.5 41.2,5.4 42.8,35.0 44.3,34.8 45.9,27.3 47.5,28.3 49.0,27.7 50.6,27.6 52.2,27.5 53.8,28.7 55.3,27.0 56.9,26.9 58.5,27.4 60.1,27.4 61.6,26.8 63.2,26.4 64.8,27.0 66.3,27.2 67.9,26.9 69.5,25.9 71.1,25.4 72.6,26.6 74.2,26.3 75.8,26.9 77.4,27.4 78.9,25.3 80.5,24.7 82.1,25.2 83.7,25.8 85.2,25.8 86.8,25.6 88.4,26.1 89.9,24.9 91.5,24.7 93.1,25.1 94.7,24.2 96.2,24.4 97.8,25.2 99.4,24.6 101.0,23.9 102.5,23.3 104.1,23.6 105.7,23.7 107.2,23.0 108.8,22.8 110.4,23.3 112.0,23.2 113.5,22.7 115.1,22.7 116.7,22.2 118.3,22.5 119.8,22.2 121.4,22.2 123.0,21.7 124.6,22.4 126.1,20.2 127.7,19.9 129.3,18.5 130.8,19.0 132.4,18.9 134.0,18.9 135.6,18.3 137.1,18.1 138.7,17.1 140.3,17.9 141.9,17.8 143.4,18.1 145.0,17.5 145.0,35" fill="#3987e5" opacity="0.1"/><polyline points="5.0,11.7 6.6,11.1 8.1,12.9 9.7,13.0 11.3,13.4 12.9,12.7 14.4,13.3 16.0,13.8 17.6,12.0 19.2,12.1 20.7,12.5 22.3,11.7 23.9,10.7 25.4,11.4 27.0,11.4 28.6,11.9 30.2,11.6 31.7,11.5 33.3,12.0 34.9,12.0 36.5,12.6 38.0,5.0 39.6,6.5 41.2,5.4 42.8,35.0 44.3,34.8 45.9,27.3 47.5,28.3 49.0,27.7 50.6,27.6 52.2,27.5 53.8,28.7 55.3,27.0 56.9,26.9 58.5,27.4 60.1,27.4 61.6,26.8 63.2,26.4 64.8,27.0 66.3,27.2 67.9,26.9 69.5,25.9 71.1,25.4 72.6,26.6 74.2,26.3 75.8,26.9 77.4,27.4 78.9,25.3 80.5,24.7 82.1,25.2 83.7,25.8 85.2,25.8 86.8,25.6 88.4,26.1 89.9,24.9 91.5,24.7 93.1,25.1 94.7,24.2 96.2,24.4 97.8,25.2 99.4,24.6 101.0,23.9 102.5,23.3 104.1,23.6 105.7,23.7 107.2,23.0 108.8,22.8 110.4,23.3 112.0,23.2 113.5,22.7 115.1,22.7 116.7,22.2 118.3,22.5 119.8,22.2 121.4,22.2 123.0,21.7 124.6,22.4 126.1,20.2 127.7,19.9 129.3,18.5 130.8,19.0 132.4,18.9 134.0,18.9 135.6,18.3 137.1,18.1 138.7,17.1 140.3,17.9 141.9,17.8 143.4,18.1 145.0,17.5" fill="none" stroke="#3987e5" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="145.0" cy="17.5" r="4" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/></svg>
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Circulating supply</span><span class="prov" title="RPC · fetched 2026-08-31T17:31:38Z · 8746ms"><i style="background:#0ca30c"></i>RPC</span></div>
+  <div class="tile-value">585.1M SOL</div>
+  <div class="tile-sub">inflation 3.67% · total 633.2M SOL</div>
+  
+</div>
+<div class="tile">
+  <div class="tile-head"><span class="tile-label">Transaction fees</span><span class="prov" title="RPC · fetched 2026-08-31T17:31:38Z · 8746ms"><i style="background:#0ca30c"></i>RPC</span></div>
+  <div class="tile-value">$0.0032</div>
+  <div class="tile-sub">avg fee per user tx (24h) · median priority fee 0 µ-lam/CU (uncongested) · 0.0% of recent slots paid priority</div>
+  
+</div>
+</section>
+
+<section class="card">
+  <div class="section-head"><h2>Signals — anomaly detection</h2>
+    <span class="muted small">per-metric z-scores + multi-source correlation</span></div>
+  <div class="signal"><span class="sig-icon" style="color:#fab219">▲</span><span class="sig-level" style="color:#fab219">WARNING</span><span>Solana TVL surge (z=+2.9 vs its recent baseline)</span></div>
+  <div class="strips"><div class="striprow"><span class="strip-label">SOL price</span><div class="strip" role="img" aria-label="SOL price"><i style="background:#0ca30c" title="+2.3% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="-1.8% day-over-day"></i><i style="background:#0ca30c" title="+1.4% day-over-day"></i><i style="background:#0ca30c" title="+3.2% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="-0.4% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.9% day-over-day"></i><i style="background:#0ca30c" title="+0.8% day-over-day"></i><i style="background:#0ca30c" title="-1.1% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="-1.0% day-over-day"></i><i style="background:#0ca30c" title="+1.9% day-over-day"></i><i style="background:#0ca30c" title="+1.4% day-over-day"></i><i style="background:#ec835a" title="+10.8% day-over-day"></i><i style="background:#0ca30c" title="+2.7% day-over-day"></i><i style="background:#fab219" title="+6.9% day-over-day"></i><i style="background:#0ca30c" title="+0.2% day-over-day"></i><i style="background:#0ca30c" title="+1.6% day-over-day"></i><i style="background:#0ca30c" title="+3.6% day-over-day"></i><i style="background:#0ca30c" title="-2.3% day-over-day"></i><i style="background:#fab219" title="+5.7% day-over-day"></i><i style="background:#fab219" title="+7.0% day-over-day"></i><i style="background:#0ca30c" title="-4.6% day-over-day"></i><i style="background:#0ca30c" title="+1.4% day-over-day"></i><i style="background:#0ca30c" title="-3.7% day-over-day"></i><i style="background:#0ca30c" title="+1.0% day-over-day"></i></div></div><div class="striprow"><span class="strip-label">Chain TVL</span><div class="strip" role="img" aria-label="Chain TVL"><i style="background:#0ca30c" title="+2.6% day-over-day"></i><i style="background:#0ca30c" title="+1.5% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.6% day-over-day"></i><i style="background:#0ca30c" title="-2.5% day-over-day"></i><i style="background:#0ca30c" title="-1.3% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.6% day-over-day"></i><i style="background:#0ca30c" title="-1.7% day-over-day"></i><i style="background:#0ca30c" title="-0.0% day-over-day"></i><i style="background:#0ca30c" title="-0.9% day-over-day"></i><i style="background:#0ca30c" title="+2.3% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="-1.6% day-over-day"></i><i style="background:#0ca30c" title="-0.5% day-over-day"></i><i style="background:#0ca30c" title="+0.9% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="+2.1% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.6% day-over-day"></i><i style="background:#0ca30c" title="-0.9% day-over-day"></i><i style="background:#0ca30c" title="-2.7% day-over-day"></i><i style="background:#0ca30c" title="+1.1% day-over-day"></i><i style="background:#0ca30c" title="+1.6% day-over-day"></i><i style="background:#0ca30c" title="-2.1% day-over-day"></i><i style="background:#0ca30c" title="-0.5% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.6% day-over-day"></i><i style="background:#0ca30c" title="-1.6% day-over-day"></i><i style="background:#0ca30c" title="-0.7% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="+0.8% day-over-day"></i><i style="background:#0ca30c" title="+0.0% day-over-day"></i><i style="background:#0ca30c" title="-1.7% day-over-day"></i><i style="background:#0ca30c" title="+0.6% day-over-day"></i><i style="background:#0ca30c" title="+1.2% day-over-day"></i><i style="background:#0ca30c" title="+1.0% day-over-day"></i><i style="background:#0ca30c" title="-0.3% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="-0.8% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="-0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="-0.7% day-over-day"></i><i style="background:#0ca30c" title="+1.5% day-over-day"></i><i style="background:#0ca30c" title="+1.0% day-over-day"></i><i style="background:#fab219" title="+6.7% day-over-day"></i><i style="background:#0ca30c" title="+2.0% day-over-day"></i><i style="background:#0ca30c" title="+4.1% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="+3.2% day-over-day"></i><i style="background:#0ca30c" title="-2.3% day-over-day"></i><i style="background:#0ca30c" title="+3.0% day-over-day"></i><i style="background:#0ca30c" title="+4.1% day-over-day"></i><i style="background:#0ca30c" title="-2.4% day-over-day"></i><i style="background:#0ca30c" title="+0.7% day-over-day"></i><i style="background:#0ca30c" title="-2.0% day-over-day"></i></div></div><div class="striprow"><span class="strip-label">Stablecoins</span><div class="strip" role="img" aria-label="Stablecoins"><i style="background:#fab219" title="+3.3% day-over-day"></i><i style="background:#fab219" title="-2.4% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#fab219" title="-2.0% day-over-day"></i><i style="background:#0ca30c" title="+1.3% day-over-day"></i><i style="background:#0ca30c" title="-1.3% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="+0.6% day-over-day"></i><i style="background:#fab219" title="-2.7% day-over-day"></i><i style="background:#0ca30c" title="-0.6% day-over-day"></i><i style="background:#0ca30c" title="-1.0% day-over-day"></i><i style="background:#fab219" title="+2.8% day-over-day"></i><i style="background:#0ca30c" title="+1.9% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="+0.2% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#ec835a" title="+6.3% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="+0.7% day-over-day"></i><i style="background:#0ca30c" title="-0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.5% day-over-day"></i><i style="background:#fab219" title="-4.9% day-over-day"></i><i style="background:#0ca30c" title="+1.1% day-over-day"></i><i style="background:#0ca30c" title="+0.4% day-over-day"></i><i style="background:#0ca30c" title="+0.0% day-over-day"></i><i style="background:#0ca30c" title="-0.0% day-over-day"></i><i style="background:#0ca30c" title="-0.4% day-over-day"></i><i style="background:#0ca30c" title="-0.3% day-over-day"></i><i style="background:#0ca30c" title="+1.1% day-over-day"></i><i style="background:#0ca30c" title="+0.9% day-over-day"></i><i style="background:#fab219" title="-2.1% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.3% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="-1.3% day-over-day"></i><i style="background:#0ca30c" title="+0.1% day-over-day"></i><i style="background:#0ca30c" title="-0.6% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.0% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.2% day-over-day"></i><i style="background:#0ca30c" title="+2.0% day-over-day"></i><i style="background:#0ca30c" title="+1.2% day-over-day"></i><i style="background:#0ca30c" title="-0.6% day-over-day"></i><i style="background:#0ca30c" title="-0.3% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="-0.7% day-over-day"></i><i style="background:#0ca30c" title="-0.1% day-over-day"></i><i style="background:#0ca30c" title="+0.5% day-over-day"></i><i style="background:#0ca30c" title="-0.2% day-over-day"></i><i style="background:#0ca30c" title="-0.3% day-over-day"></i><i style="background:#0ca30c" title="-1.1% day-over-day"></i></div></div><div class="striprow"><span class="strip-label">DEX volume</span><div class="strip" role="img" aria-label="DEX volume"><i style="background:#0ca30c" title="-23.4% day-over-day"></i><i style="background:#0ca30c" title="+20.3% day-over-day"></i><i style="background:#0ca30c" title="-11.4% day-over-day"></i><i style="background:#0ca30c" title="+14.9% day-over-day"></i><i style="background:#0ca30c" title="+16.7% day-over-day"></i><i style="background:#0ca30c" title="-4.1% day-over-day"></i><i style="background:#fab219" title="-26.7% day-over-day"></i><i style="background:#0ca30c" title="-9.6% day-over-day"></i><i style="background:#fab219" title="-34.1% day-over-day"></i><i style="background:#0ca30c" title="+13.4% day-over-day"></i><i style="background:#fab219" title="+46.2% day-over-day"></i><i style="background:#0ca30c" title="+8.0% day-over-day"></i><i style="background:#0ca30c" title="-15.1% day-over-day"></i><i style="background:#0ca30c" title="-4.6% day-over-day"></i><i style="background:#0ca30c" title="-8.0% day-over-day"></i><i style="background:#0ca30c" title="-14.8% day-over-day"></i><i style="background:#0ca30c" title="+7.0% day-over-day"></i><i style="background:#fab219" title="+43.8% day-over-day"></i><i style="background:#0ca30c" title="-20.0% day-over-day"></i><i style="background:#0ca30c" title="+15.8% day-over-day"></i><i style="background:#0ca30c" title="-14.3% day-over-day"></i><i style="background:#0ca30c" title="+4.3% day-over-day"></i><i style="background:#fab219" title="-31.8% day-over-day"></i><i style="background:#0ca30c" title="+13.4% day-over-day"></i><i style="background:#ec835a" title="+53.8% day-over-day"></i><i style="background:#0ca30c" title="-5.7% day-over-day"></i><i style="background:#0ca30c" title="+13.5% day-over-day"></i><i style="background:#0ca30c" title="-19.8% day-over-day"></i><i style="background:#0ca30c" title="+7.7% day-over-day"></i><i style="background:#0ca30c" title="-23.1% day-over-day"></i><i style="background:#0ca30c" title="+3.2% day-over-day"></i><i style="background:#fab219" title="+26.8% day-over-day"></i><i style="background:#0ca30c" title="+2.0% day-over-day"></i><i style="background:#0ca30c" title="-6.3% day-over-day"></i><i style="background:#0ca30c" title="-15.8% day-over-day"></i><i style="background:#0ca30c" title="-1.2% day-over-day"></i><i style="background:#0ca30c" title="+9.6% day-over-day"></i><i style="background:#0ca30c" title="-9.9% day-over-day"></i><i style="background:#0ca30c" title="+17.5% day-over-day"></i><i style="background:#0ca30c" title="+4.3% day-over-day"></i><i style="background:#0ca30c" title="+4.6% day-over-day"></i><i style="background:#0ca30c" title="+12.7% day-over-day"></i><i style="background:#0ca30c" title="-17.0% day-over-day"></i><i style="background:#fab219" title="-27.2% day-over-day"></i><i style="background:#0ca30c" title="-9.7% day-over-day"></i><i style="background:#fab219" title="+39.7% day-over-day"></i><i style="background:#0ca30c" title="+24.6% day-over-day"></i><i style="background:#ec835a" title="+63.7% day-over-day"></i><i style="background:#0ca30c" title="-6.7% day-over-day"></i><i style="background:#fab219" title="+28.3% day-over-day"></i><i style="background:#0ca30c" title="+3.6% day-over-day"></i><i style="background:#0ca30c" title="-21.3% day-over-day"></i><i style="background:#0ca30c" title="+2.0% day-over-day"></i><i style="background:#0ca30c" title="-2.0% day-over-day"></i><i style="background:#0ca30c" title="-19.9% day-over-day"></i><i style="background:#ec835a" title="+57.3% day-over-day"></i><i style="background:#fab219" title="-30.0% day-over-day"></i><i style="background:#fab219" title="-35.5% day-over-day"></i><i style="background:#0ca30c" title="+15.5% day-over-day"></i><i style="background:#0ca30c" title="+8.3% day-over-day"></i></div></div><div class="striprow"><span class="strip-label">run history</span><div class="strip" role="img" aria-label="run history"><i style="background:#fab219" title="2026-08-31T17:15:54Z: warning"></i><i style="background:#fab219" title="2026-08-31T17:29:37Z: warning"></i><i style="background:#fab219" title="2026-08-31T17:31:29Z: warning"></i></div></div></div>
+  <div class="muted small striplegend">daily ticks, last ~60d ·
+    <span style="color:#0ca30c">●</span> normal ·
+    <span style="color:#fab219">▲</span> notable move ·
+    <span style="color:#ec835a">▲</span> large move</div>
+</section>
+
+<section class="card">
+  <div class="section-head"><h2>Validators</h2><span class="prov" title="RPC · getVoteAccounts · fetched 2026-08-31T17:31:38Z · 498ms"><i style="background:#0ca30c"></i>RPC · getVoteAccounts</span></div>
+  <div class="vstats">
+    <div><span class="hs-value">680</span><span class="hs-label">active</span></div>
+    <div><span class="hs-value" style="color:#ffffff">17</span><span class="hs-label">delinquent (0.01% of stake)</span></div>
+    <div><span class="hs-value">18</span><span class="hs-label">Nakamoto coefficient</span></div>
+    <div><span class="hs-value">24.3%</span><span class="hs-label">top-10 stake share</span></div>
+    <div><span class="hs-value">5.0%</span><span class="hs-label">median commission (avg 12.4%)</span></div>
+    <div><span class="hs-value">437.1M</span><span class="hs-label">SOL staked</span></div>
+  </div>
+  <table class="vtable">
+    <thead><tr><th>#</th><th>vote account</th><th class="num">stake (SOL)</th>
+      <th class="num">share</th><th class="num">commission</th><th></th></tr></thead>
+    <tbody><tr>
+  <td class="muted">1</td>
+  <td class="mono">CcaHc2L43ZWjwCHA…</td>
+  <td class="num">17,203,741</td>
+  <td class="num">3.94%</td>
+  <td class="num">7%</td>
+  <td><div class="stakebar"><div style="width:100%"></div></div></td>
+</tr><tr>
+  <td class="muted">2</td>
+  <td class="mono">he1iusunGwqrNtaf…</td>
+  <td class="num">16,085,807</td>
+  <td class="num">3.68%</td>
+  <td class="num">0%</td>
+  <td><div class="stakebar"><div style="width:100%"></div></div></td>
+</tr><tr>
+  <td class="muted">3</td>
+  <td class="mono">3N7s9zXMZ4QqvHQR…</td>
+  <td class="num">12,389,824</td>
+  <td class="num">2.83%</td>
+  <td class="num">0%</td>
+  <td><div class="stakebar"><div style="width:85%"></div></div></td>
+</tr><tr>
+  <td class="muted">4</td>
+  <td class="mono">CatzoSMUkTRidT5D…</td>
+  <td class="num">11,479,512</td>
+  <td class="num">2.63%</td>
+  <td class="num">5%</td>
+  <td><div class="stakebar"><div style="width:79%"></div></div></td>
+</tr><tr>
+  <td class="muted">5</td>
+  <td class="mono">8GbwASqdpw4dVcwb…</td>
+  <td class="num">9,452,658</td>
+  <td class="num">2.16%</td>
+  <td class="num">0%</td>
+  <td><div class="stakebar"><div style="width:65%"></div></div></td>
+</tr><tr>
+  <td class="muted">6</td>
+  <td class="mono">26pV97Ce83ZQ6Kz9…</td>
+  <td class="num">9,293,056</td>
+  <td class="num">2.13%</td>
+  <td class="num">7%</td>
+  <td><div class="stakebar"><div style="width:64%"></div></div></td>
+</tr><tr>
+  <td class="muted">7</td>
+  <td class="mono">51JBzSTU5rAM8gLA…</td>
+  <td class="num">9,023,631</td>
+  <td class="num">2.06%</td>
+  <td class="num">10%</td>
+  <td><div class="stakebar"><div style="width:62%"></div></div></td>
+</tr><tr>
+  <td class="muted">8</td>
+  <td class="mono">CvSb7wdQAFpHuSpT…</td>
+  <td class="num">7,295,972</td>
+  <td class="num">1.67%</td>
+  <td class="num">5%</td>
+  <td><div class="stakebar"><div style="width:50%"></div></div></td>
+</tr><tr>
+  <td class="muted">9</td>
+  <td class="mono">9QU2QSxhb24FUX3T…</td>
+  <td class="num">7,201,762</td>
+  <td class="num">1.65%</td>
+  <td class="num">7%</td>
+  <td><div class="stakebar"><div style="width:50%"></div></div></td>
+</tr><tr>
+  <td class="muted">10</td>
+  <td class="mono">DumiCKHVqoCQKD8r…</td>
+  <td class="num">6,589,845</td>
+  <td class="num">1.51%</td>
+  <td class="num">0%</td>
+  <td><div class="stakebar"><div style="width:45%"></div></div></td>
+</tr></tbody>
+  </table>
+  
+  <div class="blsrow">
+    <div class="tile-label">ALPENGLOW READINESS — BLS keys registered <span class="prov" title="Stakewiz · fetched 2026-08-31T17:31:43Z · 780ms"><i style="background:#0ca30c"></i>Stakewiz</span></div>
+    <div class="meter"><div class="meter-fill" style="width:99.3%;background:#3987e5"></div></div>
+    <div class="muted small">698 validators holding
+      99.3% of stake have registered BLS keys for the new consensus</div>
+  </div>
+</section>
+
+<section class="twocol">
+<div class="card">
+  <div class="section-head"><h2>Program activity pulse</h2><span class="prov" title="RPC · getSignaturesForAddress · fetched 2026-08-31T17:31:49Z · 2638ms"><i style="background:#0ca30c"></i>RPC · getSignaturesForAddress</span></div>
+  <div class="prow">
+  <span class="prow-label">Pump.fun</span>
+  <div class="prow-track"><div class="prow-bar" style="width:100%"></div></div>
+  <span class="prow-val">152 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Raydium AMM v4</span>
+  <div class="prow-track"><div class="prow-bar" style="width:95%"></div></div>
+  <span class="prow-val">138 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Jupiter v6</span>
+  <div class="prow-track"><div class="prow-bar" style="width:91%"></div></div>
+  <span class="prow-val">126 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Orca Whirlpool</span>
+  <div class="prow-track"><div class="prow-bar" style="width:88%"></div></div>
+  <span class="prow-val">117 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Magic Eden v2</span>
+  <div class="prow-track"><div class="prow-bar" style="width:57%"></div></div>
+  <span class="prow-val">49 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Tensor</span>
+  <div class="prow-track"><div class="prow-bar" style="width:4%"></div></div>
+  <span class="prow-val">0.3 tx/min</span>
+</div><div class="prow">
+  <span class="prow-label">Marinade</span>
+  <div class="prow-track"><div class="prow-bar" style="width:4%"></div></div>
+  <span class="prow-val">0.2 tx/min</span>
+</div>
+  <div class="muted small">sampled from each program's 25 most recent signatures · sqrt scale, values labeled</div>
+</div>
+<div class="card">
+  <div class="section-head"><h2>Exchange reserves</h2><span class="prov" title="RPC · getBalance · fetched 2026-08-31T17:31:46Z · 1458ms"><i style="background:#0ca30c"></i>RPC · getBalance</span></div>
+  <table class="vtable"><thead><tr><th>wallet</th><th>address</th><th class="num">balance</th></tr></thead>
+  <tbody><tr><td>Binance (hot)</td><td class="mono small">9WzDXwBbmkg8ZTbNMqUx…</td><td class="num">9.2M SOL</td></tr><tr><td>Binance (cold)</td><td class="mono small">5tzFkiKscXHK5ZXCGbXZ…</td><td class="num">1.7M SOL</td></tr><tr><td>OKX (attributed)</td><td class="mono small">AC5RDfQFmDS1deWZos92…</td><td class="num">335.6K SOL</td></tr><tr><td>Coinbase (hot)</td><td class="mono small">H8sMJSCQxfKiFTCfDR3D…</td><td class="num">32.5K SOL</td></tr></tbody></table>
+  <div class="muted small">community-attributed exchange hot wallets, polled live</div>
+</div>
+</section>
+
+<section class="card">
+  <div class="section-head"><h2>The Almanac — upgrades &amp; ecosystem watch</h2>
+    <span class="prov" title="GitHub · fetched 2026-08-31T17:31:44Z · 1219ms"><i style="background:#0ca30c"></i>GitHub</span> <span class="prov" title="status.solana.com · fetched 2026-08-31T17:31:45Z · 589ms"><i style="background:#0ca30c"></i>status.solana.com</span></div>
+  <p class="commentary">Epoch 1025 is 95% complete (~2h remaining), with the cluster processing ~4,317 TPS (2,200 non-vote). Measured slot time is 320ms — live on-chain evidence that SIMD-0525&#x27;s first slot-time reduction step (350ms target) is active on mainnet. The network earned $853.3K of Real Economic Value over the last 24h ($593/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $102.65 (-2.9% / 24h). Decentralization: Nakamoto coefficient 18, 680 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged — see Signals below.</p>
+  <div class="upgrid">
+    <div class="upcard">
+      <div class="up-name">SIMD-0525 · slot-time reduction</div>
+      <div class="up-status"><span class="live-dot"></span>STEP 1 ACTIVE — measured 320ms</div>
+      <div class="muted small">400→200ms in four feature-gated steps. Our own RPC
+        measurement of ~320ms slot time is live,
+        on-chain proof the 350ms step is running.
+        Proposal state: merged.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Alpenglow · SIMD-0236</div>
+      <div class="up-status">99.3% of stake BLS-ready</div>
+      <div class="muted small">Consensus overhaul (Votor + Rotor): ~100–150ms finality,
+        replacing TowerBFT. Approved by 98% of stake; activation via Agave v4.3,
+        targeted for this fall. BLS-key registration measured live from Stakewiz.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Agave client</div>
+      <div class="up-status">v4.2.2 latest</div>
+      <div class="muted small">Polled node runs v4.2.1.
+        Latest release published 2026-08-28.</div>
+    </div>
+    <div class="upcard">
+      <div class="up-name">Network status</div>
+      <div class="up-status">All Systems Operational</div>
+      <div class="muted small">0 unresolved incident(s)
+        on status.solana.com · RPC health check: ok.</div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="section-head"><h2>Sources &amp; methodology</h2></div>
+  <table class="vtable"><thead><tr><th>source</th><th>status</th>
+    <th class="num">latency</th><th>fetched</th></tr></thead>
+  <tbody><tr><td><i class="dot" style="background:#0ca30c"></i>solana_rpc</td><td>OK</td><td class="num">8746ms</td><td class="muted small">2026-08-31T17:31:38Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>solana_rpc_validators</td><td>OK</td><td class="num">498ms</td><td class="muted small">2026-08-31T17:31:38Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>coingecko</td><td>OK</td><td class="num">2044ms</td><td class="muted small">2026-08-31T17:31:41Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>defillama_tvl</td><td>OK</td><td class="num">171ms</td><td class="muted small">2026-08-31T17:31:41Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>defillama_dex</td><td>OK</td><td class="num">188ms</td><td class="muted small">2026-08-31T17:31:41Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>defillama_fees</td><td>OK</td><td class="num">341ms</td><td class="muted small">2026-08-31T17:31:41Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>defillama_stablecoins</td><td>OK</td><td class="num">355ms</td><td class="muted small">2026-08-31T17:31:42Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>defillama_xstocks</td><td>OK</td><td class="num">403ms</td><td class="muted small">2026-08-31T17:31:42Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>jito_kobe</td><td>OK</td><td class="num">347ms</td><td class="muted small">2026-08-31T17:31:42Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>stakewiz</td><td>OK</td><td class="num">780ms</td><td class="muted small">2026-08-31T17:31:43Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>github</td><td>OK</td><td class="num">1219ms</td><td class="muted small">2026-08-31T17:31:44Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>solana_status_page</td><td>OK</td><td class="num">589ms</td><td class="muted small">2026-08-31T17:31:45Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>solana_rpc_whales</td><td>OK</td><td class="num">1458ms</td><td class="muted small">2026-08-31T17:31:46Z</td></tr><tr><td><i class="dot" style="background:#0ca30c"></i>solana_rpc_programs</td><td>OK</td><td class="num">2638ms</td><td class="muted small">2026-08-31T17:31:49Z</td></tr></tbody></table>
+  <p class="muted small">Every number on this page comes from a keyless public
+  endpoint — Solana mainnet RPC, DeFiLlama, CoinGecko, Jito Kobe, Stakewiz,
+  GitHub, status.solana.com. REV = chain base+priority fees (DeFiLlama) +
+  Jito MEV tips (Kobe), following the Blockworks methodology. Daily active
+  addresses has no keyless source; non-vote TPS is shown as the activity
+  proxy instead. Dune requires an API key and is deliberately excluded.
+  Full data: <a href="data.json">data.json</a> · readable report:
+  <a href="report.md">report.md</a>.</p>
+</section>
+<footer class="muted small">Solbeat — the heartbeat terminal for the Solana
+  network · zero dependencies, zero API keys, Python stdlib only ·
+  generated 2026-08-31T17:31:29Z</footer>
+</div>
+<script>
+const LIVE = {"slot": 443208624, "slotMs": 319.7, "revPerMin": 592.56, "generatedAt": "2026-08-31T17:31:29Z"};
+const t0 = Date.now();
+const gen = Date.parse(LIVE.generatedAt);
+let rev = 0;
+function tick() {
+  const el = Date.now() - t0;
+  // live slot estimate from measured slot time
+  const slot = LIVE.slot + Math.floor(el / LIVE.slotMs);
+  const slotEl = document.getElementById('slot');
+  if (slotEl) slotEl.textContent = slot.toLocaleString('en-US');
+  // data age
+  const ageS = Math.max(0, Math.round((Date.now() - gen) / 1000));
+  const ageEl = document.getElementById('age');
+  if (ageEl) ageEl.textContent = ageS < 90 ? `updated ${ageS}s ago`
+    : ageS < 5400 ? `updated ${Math.round(ageS/60)}m ago`
+    : `updated ${(ageS/3600).toFixed(1)}h ago`;
+  // REV clock: dollars accrued while you watch
+  const rc = document.getElementById('revclock');
+  if (rc && LIVE.revPerMin) {
+    rev = LIVE.revPerMin * el / 60000;
+    rc.textContent = `+$${rev.toFixed(2)} while you've watched`;
+  }
+}
+setInterval(tick, 250); tick();
+</script>
+</body></html>

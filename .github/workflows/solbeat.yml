@@ -1,0 +1,34 @@
+name: solbeat refresh
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: solbeat-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect and render
+        run: python3 solbeat.py run
+
+      - name: Commit refreshed report
+        run: |
+          git config user.name "solbeat-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add docs
+          git diff --cached --quiet || git commit -m "solbeat: refresh $(date -u +%FT%TZ)"
+          git push
