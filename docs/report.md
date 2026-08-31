@@ -1,16 +1,25 @@
 # Solbeat — State of the Solana Network
 
+<<<<<<< Updated upstream
 > Generated 2026-08-31T17:34:11Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
 Epoch 1025 is 95% complete (~2h remaining), with the cluster processing ~4,436 TPS (2,318 non-vote). Measured slot time is 320ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $853.6K of Real Economic Value over the last 24h ($593/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $102.79 (-2.9% / 24h). Decentralization: Nakamoto coefficient 18, 680 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged — see Signals below.
+=======
+> Generated 2026-08-31T17:34:35Z · zero API keys · Python stdlib + public endpoints
+
+## Analyst commentary
+
+Epoch 1025 is 95% complete (~2h remaining), with the cluster processing ~4,428 TPS (2,310 non-vote). Measured slot time is 320ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $853.5K of Real Economic Value over the last 24h ($593/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $102.79 (-2.9% / 24h). Decentralization: Nakamoto coefficient 18, 680 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged — see Signals below.
+>>>>>>> Stashed changes
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
+<<<<<<< Updated upstream
 | Slot | 443,209,135 |
 | Block height | 421,256,801 |
 | Epoch | 1025 (94.71% complete, ~2.0h left) |
@@ -18,6 +27,15 @@ Epoch 1025 is 95% complete (~2h remaining), with the cluster processing ~4,436 T
 | Non-vote TPS | 2,318 |
 | Slot time (measured) | 319.6 ms |
 | Est. daily transactions | 397,407,223 |
+=======
+| Slot | 443,209,213 |
+| Block height | 421,256,879 |
+| Epoch | 1025 (94.73% complete, ~2.0h left) |
+| TPS (10 min avg) | 4,428 |
+| Non-vote TPS | 2,310 |
+| Slot time (measured) | 319.7 ms |
+| Est. daily transactions | 397,746,930 |
+>>>>>>> Stashed changes
 | Median priority fee | 0.0 µ-lamports/CU |
 | Avg fee per user tx (24h) | $0.0032 |
 | Node version | 4.2.1 |
@@ -28,12 +46,20 @@ Epoch 1025 is 95% complete (~2h remaining), with the cluster processing ~4,436 T
 |---|---|
 | SOL price | $102.79 (-2.9%/24h) |
 | Market cap | $60.2B |
+<<<<<<< Updated upstream
 | **REV (24h)** | **$853.6K** (fees $677.1K + Jito tips $176.5K) |
+=======
+| **REV (24h)** | **$853.5K** (fees $677.1K + Jito tips $176.5K) |
+>>>>>>> Stashed changes
 | Chain TVL | $5.8B |
 | Stablecoin supply | $16.1B |
 | DEX volume (24h) | $1.9B (15.5%/1d) |
 | Tokenized equities (xStocks TVL) | $437.2M |
+<<<<<<< Updated upstream
 | Circulating supply | 585,120,808 SOL |
+=======
+| Circulating supply | 585,120,807 SOL |
+>>>>>>> Stashed changes
 | Inflation | 3.67% |
 
 Top DEXs by 24h volume: PumpSwap ($732.1M), Orca DEX ($274.3M), BisonFi ($184.5M), Meteora DLMM ($142.7M), Manifest Trade ($134.3M)
@@ -72,20 +98,35 @@ Top DEXs by 24h volume: PumpSwap ($732.1M), Orca DEX ($274.3M), BisonFi ($184.5M
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
+<<<<<<< Updated upstream
 | Jupiter v6 | 121 |
 | Raydium AMM v4 | 131 |
 | Orca Whirlpool | 121 |
 | Pump.fun | 144 |
 | Tensor | 0 |
 | Magic Eden v2 | 70 |
+=======
+| Jupiter v6 | 125 |
+| Raydium AMM v4 | 137 |
+| Orca Whirlpool | 125 |
+| Pump.fun | 151 |
+| Tensor | 0 |
+| Magic Eden v2 | 60 |
+>>>>>>> Stashed changes
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
 |---|---|
 | Binance (hot) | 9,188,448 |
+<<<<<<< Updated upstream
 | Binance (cold) | 1,698,810 |
 | OKX (attributed) | 335,571 |
 | Coinbase (hot) | 32,320 |
+=======
+| Binance (cold) | 1,698,689 |
+| OKX (attributed) | 335,571 |
+| Coinbase (hot) | 32,319 |
+>>>>>>> Stashed changes
 
 ## Upgrades & news
 
@@ -98,6 +139,7 @@ Top DEXs by 24h volume: PumpSwap ($732.1M), Orca DEX ($274.3M), BisonFi ($184.5M
 
 | Source | Status | Latency |
 |---|---|---|
+<<<<<<< Updated upstream
 | solana_rpc | OK | 7625 ms |
 | solana_rpc_validators | OK | 92 ms |
 | coingecko | OK | 1638 ms |
@@ -112,5 +154,21 @@ Top DEXs by 24h volume: PumpSwap ($732.1M), Orca DEX ($274.3M), BisonFi ($184.5M
 | solana_status_page | OK | 342 ms |
 | solana_rpc_whales | OK | 783 ms |
 | solana_rpc_programs | OK | 1399 ms |
+=======
+| solana_rpc | OK | 10236 ms |
+| solana_rpc_validators | OK | 908 ms |
+| coingecko | OK | 1871 ms |
+| defillama_tvl | OK | 269 ms |
+| defillama_dex | OK | 1154 ms |
+| defillama_fees | OK | 7123 ms |
+| defillama_stablecoins | OK | 1270 ms |
+| defillama_xstocks | OK | 191 ms |
+| jito_kobe | OK | 420 ms |
+| stakewiz | OK | 2602 ms |
+| github | OK | 993 ms |
+| solana_status_page | OK | 474 ms |
+| solana_rpc_whales | OK | 2375 ms |
+| solana_rpc_programs | OK | 3697 ms |
+>>>>>>> Stashed changes
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
