@@ -28,6 +28,17 @@ jobs:
           DUNE_QUERY_ID: ${{ vars.DUNE_QUERY_ID }}
         run: python3 solbeat.py run
 
+      - name: Refresh dashboard screenshot
+        # Runners ship Chrome; a stale/missing browser must never break the loop.
+        run: |
+          if command -v google-chrome >/dev/null 2>&1; then
+            google-chrome --headless --disable-gpu --no-sandbox \
+              --virtual-time-budget=2500 --hide-scrollbars \
+              --window-size=1240,720 \
+              --screenshot="$PWD/docs/screenshot.png" \
+              "file://$PWD/docs/index.html" || true
+          fi
+
       - name: Commit refreshed report
         run: |
           git config user.name "solbeat-bot"
