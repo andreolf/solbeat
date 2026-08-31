@@ -18,6 +18,32 @@ STATUS_ICONS = {"ok": "●", "good": "●", "warning": "▲", "serious": "▲",
                 "critical": "■", "na": "·"}
 BLUE = "#3987e5"
 
+# Friendly display names + endpoint domains for the provenance panel.
+SOURCE_LABELS = {
+    "solana_rpc": ("Solana RPC · network core", "api.mainnet-beta.solana.com"),
+    "solana_rpc_validators": ("Solana RPC · vote accounts", "api.mainnet-beta.solana.com"),
+    "solana_rpc_whales": ("Solana RPC · exchange wallets", "api.mainnet-beta.solana.com"),
+    "solana_rpc_programs": ("Solana RPC · program pulse", "api.mainnet-beta.solana.com"),
+    "coingecko": ("CoinGecko · market data", "api.coingecko.com"),
+    "defillama_tvl": ("DeFiLlama · chain TVL", "api.llama.fi"),
+    "defillama_dex": ("DeFiLlama · DEX volume", "api.llama.fi"),
+    "defillama_fees": ("DeFiLlama · chain fees", "api.llama.fi"),
+    "defillama_stablecoins": ("DeFiLlama · stablecoins", "stablecoins.llama.fi"),
+    "defillama_xstocks": ("DeFiLlama · xStocks", "api.llama.fi"),
+    "jito_kobe": ("Jito Kobe · MEV tips", "kobe.mainnet.jito.network"),
+    "stakewiz": ("Stakewiz · validator meta", "api.stakewiz.com"),
+    "github": ("GitHub · Agave & SIMDs", "api.github.com"),
+    "solana_com_news": ("solana.com · news RSS", "solana.com"),
+    "solana_status_page": ("Solana status page", "status.solana.com"),
+    "dune": ("Dune Analytics (optional)", "api.dune.com"),
+}
+
+CHANGELOG = [
+    ("2026-08-31", "v1.2", "Sources panel redesign, footer with changelog & resources, hero layout fix"),
+    ("2026-08-31", "v1.1", "solana.com news feed, on-chain clock (getSlot/getBlockTime), optional Dune extractor, configurable refresh interval, mobile polish"),
+    ("2026-08-31", "v1.0", "Initial release — 14 keyless sources, computed REV, correlation-based anomaly incidents, HTML/Markdown/JSON outputs, GitHub Actions autopilot"),
+]
+
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -254,29 +280,33 @@ def render_html(snap):
         slot_titles.append(f"{avg:.0f}ms avg slot time")
 
     hero = f"""
-<section class="hero card">
-  <div class="hero-left">
-    <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}</div>
-    <div class="hero-slot" id="slot">{net.get('slot', 0):,}</div>
-    <div class="hero-under">block height {net.get('block_height', 0):,} ·
-      {net.get('tx_count_total', 0):,} lifetime txs · node v{esc(net.get('node_version', '?'))}
-      {f"· chain clock {esc(net['chain_time'])}" if net.get('chain_time') else ""}</div>
-    <div class="hero-under">last 12h slot performance</div>
-    {strip(slot_levels, slot_titles, "12h slot performance")}
-  </div>
-  <div class="hero-mid">
-    <div class="hero-stats">
-      <div><span class="hs-label">TPS (10m)</span><span class="hs-value">{fmt_num(net.get('tps'))}</span></div>
-      <div><span class="hs-label">non-vote TPS</span><span class="hs-value">{fmt_num(net.get('nonvote_tps'))}</span></div>
-      <div><span class="hs-label">slot time</span><span class="hs-value">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
-        <span class="hs-note">{esc(simd_note)}</span></div>
-      <div><span class="hs-label">est. daily txs</span><span class="hs-value">{fmt_num(net.get('est_daily_txs'))}</span></div>
+<section class="card">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-label">CURRENT SLOT {B('solana_rpc', 'RPC')}</div>
+      <div class="hero-slot" id="slot">{net.get('slot', 0):,}</div>
+      <div class="hero-under">block height {net.get('block_height', 0):,} ·
+        {net.get('tx_count_total', 0):,} lifetime txs · node v{esc(net.get('node_version', '?'))}
+        {f"· chain clock {esc(net['chain_time'])}" if net.get('chain_time') else ""}</div>
+    </div>
+    <div class="hero-mid">
+      <div class="hero-stats">
+        <div><span class="hs-label">TPS (10m)</span><span class="hs-value">{fmt_num(net.get('tps'))}</span></div>
+        <div><span class="hs-label">non-vote TPS</span><span class="hs-value">{fmt_num(net.get('nonvote_tps'))}</span></div>
+        <div><span class="hs-label">slot time</span><span class="hs-value">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
+          <span class="hs-note">{esc(simd_note)}</span></div>
+        <div><span class="hs-label">est. daily txs</span><span class="hs-value">{fmt_num(net.get('est_daily_txs'))}</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      {epoch_ring(net.get('epoch_progress_pct') or 0)}
+      <div class="hero-epoch">epoch {net.get('epoch', '?')}<br>
+        <span class="muted">~{der.get('epoch_eta_hours', '?')}h remaining</span></div>
     </div>
   </div>
-  <div class="hero-right">
-    {epoch_ring(net.get('epoch_progress_pct') or 0)}
-    <div class="hero-epoch">epoch {net.get('epoch', '?')}<br>
-      <span class="muted">~{der.get('epoch_eta_hours', '?')}h remaining</span></div>
+  <div class="herostrip">
+    <div class="hero-under" style="margin-bottom:2px">last 12h slot performance</div>
+    {strip(slot_levels, slot_titles, "12h slot performance")}
   </div>
 </section>
 <section class="card chartcard">
@@ -488,32 +518,66 @@ def render_html(snap):
   {_news_block(snap)}
 </section>"""
 
-    # ---- provenance / methodology footer
-    srows = ""
+    # ---- provenance panel: one chip per source
+    chips = ""
     for name, s in (snap.get("sources") or {}).items():
+        label, domain = SOURCE_LABELS.get(name, (name, ""))
         c = STATUS_COLORS["good" if s["ok"] else "critical"]
-        srows += (f'<tr><td><i class="dot" style="background:{c}"></i>{esc(name)}</td>'
-                  f'<td>{"OK" if s["ok"] else esc((s.get("error") or "failed")[:60])}</td>'
-                  f'<td class="num">{s["latency_ms"]}ms</td>'
-                  f'<td class="muted small">{esc(s["fetched_at"])}</td></tr>')
+        state = f'{s["latency_ms"]}ms' if s["ok"] else "failed"
+        tip = (f'{label} · fetched {s["fetched_at"]}'
+               + ("" if s["ok"] else f' · {(s.get("error") or "")[:100]}'))
+        chips += f"""<div class="srcchip" title="{esc(tip)}">
+  <i class="dot" style="background:{c}"></i>
+  <div class="srcchip-txt"><span class="srcchip-name">{esc(label)}</span>
+    <span class="srcchip-domain">{esc(domain)}</span></div>
+  <span class="srcchip-lat">{esc(state)}</span>
+</div>"""
+
+    changelog_rows = "".join(
+        f'<div class="clrow"><span class="clver">{esc(ver)}</span>'
+        f'<span class="muted small">{esc(date)}</span>'
+        f'<div class="small">{esc(text)}</div></div>'
+        for date, ver, text in CHANGELOG)
+
     footer = f"""
 <section class="card">
-  <div class="section-head"><h2>Sources &amp; methodology</h2></div>
-  <table class="vtable"><thead><tr><th>source</th><th>status</th>
-    <th class="num">latency</th><th>fetched</th></tr></thead>
-  <tbody>{srows}</tbody></table>
-  <p class="muted small">Every number on this page comes from a keyless public
-  endpoint — Solana mainnet RPC, DeFiLlama, CoinGecko, Jito Kobe, Stakewiz,
-  GitHub, status.solana.com. REV = chain base+priority fees (DeFiLlama) +
-  Jito MEV tips (Kobe), following the Blockworks methodology. Daily active
-  addresses has no keyless source; non-vote TPS is shown as the activity
-  proxy instead. Dune requires an API key and is deliberately excluded.
-  Full data: <a href="data.json">data.json</a> · readable report:
-  <a href="report.md">report.md</a>.</p>
+  <div class="section-head"><h2>Sources &amp; methodology</h2>
+    <span class="muted small">every endpoint public &amp; keyless · hover a chip for details</span></div>
+  <div class="srcgrid">{chips}</div>
+  <p class="muted small" style="margin-top:14px">REV = chain base+priority fees
+  (DeFiLlama) + Jito MEV tips (Kobe), following the Blockworks methodology.
+  Daily active addresses has no keyless source; non-vote TPS is the labeled
+  activity proxy (or enable the optional Dune extractor). X/Twitter's keyless
+  endpoints are gone; announcements come from solana.com's official feed,
+  GitHub and the status page instead.</p>
 </section>
-<footer class="muted small">Solbeat — the heartbeat terminal for the Solana
-  network · zero dependencies, zero API keys, Python stdlib only ·
-  generated {esc(snap.get('generated_at', ''))}</footer>"""
+<section class="card footgrid-card">
+  <div class="footgrid">
+    <div>
+      <div class="foot-head">SOL<b style="color:var(--accent)">BEAT</b></div>
+      <p class="muted small">An autonomous, zero-key terminal for the state of
+      the Solana network. Python stdlib only — no frameworks, no chart
+      libraries, no API keys. Refreshes itself every 30 minutes.</p>
+      <p class="small" style="margin-top:8px">built with 💙 by
+        <a href="https://github.com/andreolf">andreolf</a></p>
+    </div>
+    <div>
+      <div class="foot-head">Resources</div>
+      <a class="footlink" href="https://github.com/andreolf/solbeat">GitHub repository</a>
+      <a class="footlink" href="report.md">Markdown report</a>
+      <a class="footlink" href="data.json">JSON data (schema v{esc(snap.get('schema_version', '1'))})</a>
+      <a class="footlink" href="https://solana.com/data">solana.com/data</a>
+      <a class="footlink" href="https://status.solana.com">Solana status page</a>
+      <a class="footlink" href="https://defillama.com/chain/solana">DeFiLlama · Solana</a>
+    </div>
+    <div>
+      <div class="foot-head">Changelog</div>
+      {changelog_rows}
+    </div>
+  </div>
+</section>
+<footer class="muted small">Solbeat · generated {esc(snap.get('generated_at', ''))}
+  · data refreshes every 30 min · not financial advice</footer>"""
 
     # ---- live JS payload
     live = {
@@ -553,7 +617,8 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 @keyframes beat {{ 0%,100% {{ transform:scale(1); opacity:1; }} 50% {{ transform:scale(1.35); opacity:.7; }} }}
 .pulse {{ animation:beat 1.6s ease-in-out infinite; }}
 .age {{ color:var(--muted); font-size:12px; }}
-.hero {{ display:flex; gap:28px; align-items:center; flex-wrap:wrap; overflow:visible; }}
+.hero {{ display:flex; gap:28px; align-items:center; flex-wrap:wrap; }}
+.herostrip {{ margin-top:16px; }}
 .hero-left {{ flex:1.3; min-width:280px; }}
 .hero-mid {{ flex:1; min-width:260px; }}
 .hero-right {{ display:flex; align-items:center; gap:14px; }}
@@ -567,7 +632,7 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 .hero-stats > div {{ display:flex; flex-direction:column; }}
 .hs-label {{ font-size:11px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; }}
 .hs-value {{ font-size:22px; font-weight:650; color:var(--ink); }}
-.hs-note {{ font-size:11px; color:var(--accent); }}
+.hs-note {{ display:block; font-size:11px; color:var(--accent); line-height:1.3; }}
 .chartcard h2 {{ font-size:14px; }}
 .section-head {{ display:flex; align-items:baseline; gap:10px; margin-bottom:12px; flex-wrap:wrap; }}
 .section-head h2 {{ font-size:15px; color:var(--ink); font-weight:650; }}
@@ -638,6 +703,27 @@ header.top {{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }}
 footer {{ text-align:center; padding:8px 0 20px; }}
 .newsrow {{ padding:6px 0; border-bottom:1px solid var(--border); font-size:14px; }}
 .newsrow:last-child {{ border-bottom:none; }}
+.srcgrid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; }}
+.srcchip {{ display:flex; align-items:center; gap:9px; border:1px solid var(--border);
+  border-radius:8px; padding:9px 12px; cursor:help; }}
+.srcchip .dot {{ flex-shrink:0; width:7px; height:7px; }}
+.srcchip-txt {{ display:flex; flex-direction:column; min-width:0; flex:1; }}
+.srcchip-name {{ font-size:12.5px; color:var(--ink); white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }}
+.srcchip-domain {{ font-size:10.5px; color:var(--muted);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }}
+.srcchip-lat {{ font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums; }}
+.footgrid {{ display:grid; grid-template-columns:1.2fr 1fr 1.6fr; gap:28px; }}
+@media (max-width:820px) {{ .footgrid {{ grid-template-columns:1fr; gap:20px; }} }}
+.foot-head {{ font-size:13px; font-weight:700; color:var(--ink);
+  letter-spacing:1px; margin-bottom:8px; }}
+.footlink {{ display:block; font-size:13px; padding:3px 0; color:var(--ink2);
+  text-decoration:none; }}
+.footlink:hover {{ color:var(--accent); }}
+.clrow {{ margin-bottom:10px; }}
+.clver {{ font-size:11.5px; font-weight:700; color:var(--accent);
+  font-family:ui-monospace,monospace; margin-right:8px; }}
 @media (max-width:600px) {{
   body {{ padding:10px; }}
   .card {{ padding:14px; }}
