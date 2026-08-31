@@ -10,6 +10,8 @@ import html
 import json
 from pathlib import Path
 
+from solbeat_worldpath import WORLD_PATH
+
 BASE_URL = "https://www.solbeat.xyz/"
 SITE_DESC = ("Live, auto-updating Solana network dashboard: TPS, slot time, "
              "validators, Real Economic Value (REV), TVL, stablecoins, DEX "
@@ -212,9 +214,11 @@ def world_map(geo, w=1120, h=430):
                  f'opacity="{0.95 if big else 0.7}"'
                  + (f' stroke="#1a1a19" stroke-width="1.5"' if big else "")
                  + f'><title>{label}</title></circle>')
+    land = (f'<path d="{WORLD_PATH}" fill="#242423" stroke="#3a3a37" '
+            'stroke-width="0.6"/>')
     return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" '
             f'aria-label="World map of Solana validators, dot size by stake">'
-            f'{grid}{dots}</svg>')
+            f'{land}{grid}{dots}</svg>')
 
 
 def meter(pct, color=BLUE):
