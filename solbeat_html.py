@@ -552,7 +552,7 @@ def render_html(snap):
         comp_rows = ""
         for k, v in pulse_score.get("components", {}).items():
             comp_rows += f"""<div class="prow">
-  <span class="prow-label" style="width:220px">{esc(comp_labels.get(k, k))}</span>
+  <span class="prow-label pl-wide">{esc(comp_labels.get(k, k))}</span>
   <div class="prow-track"><div class="prow-bar" style="width:{v:.0f}%"></div></div>
   <span class="prow-val">{v:.0f}/100</span>
 </div>"""
@@ -591,6 +591,19 @@ def render_html(snap):
   {fng_spark}
 </div>
 </section>"""
+
+    # ---- Pulse orb: draggable shortcut to the sentiment page
+    orb_html = ""
+    if pulse_score:
+        orb_emoji = {"Bullish": "🐂", "Neutral": "🦀",
+                     "Bearish": "🐻"}[pulse_score["label"]]
+        orb_html = (
+            f'<a id="pulseorb" href="pulse.html" title="Solana Pulse: '
+            f'{pulse_score["score"]}/100 {pulse_score["label"]} — drag me '
+            f'around, click for the full breakdown">'
+            f'<span class="orb-num">{pulse_score["score"]}</span>'
+            f'<span class="orb-emoji">{orb_emoji}</span>'
+            f'<span class="orb-tag">PULSE</span></a>')
 
     # ---- validators (named via Stakewiz where known)
     names = sw.get("names") or {}
@@ -898,6 +911,9 @@ header.top {{ position:sticky; top:10px; z-index:60; display:flex;
   .healthpill {{ margin-left:auto; }}
   header.top {{ position:static; }}
 }}
+@media (max-width:600px) {{ .pl-wide {{ width:130px; }}
+  #pulseorb {{ width:64px; height:64px; right:14px; bottom:14px; }}
+  .orb-num {{ font-size:18px; }} }}
 .pulse {{ width:10px; height:10px; border-radius:50%; }}
 @keyframes beat {{ 0%,100% {{ transform:scale(1); opacity:1; }} 50% {{ transform:scale(1.35); opacity:.7; }} }}
 .pulse {{ animation:beat 1.6s ease-in-out infinite; }}
@@ -995,6 +1011,22 @@ header.top {{ position:sticky; top:10px; z-index:60; display:flex;
 .pulse-score {{ display:flex; align-items:baseline; gap:12px; }}
 .pulse-num {{ font-size:44px; font-weight:650; color:var(--ink); }}
 .pulse-label {{ font-size:17px; font-weight:650; color:var(--ink); }}
+.pl-wide {{ width:220px; }}
+#pulseorb {{ position:fixed; right:22px; bottom:22px; z-index:55; width:76px;
+  height:76px; border-radius:50%; background:var(--surface);
+  border:2px solid var(--accent); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:0; text-decoration:none;
+  cursor:grab; box-shadow:0 6px 24px rgba(0,0,0,.45); touch-action:none;
+  user-select:none; }}
+#pulseorb:active {{ cursor:grabbing; }}
+#pulseorb::after {{ content:''; position:absolute; inset:-2px;
+  border-radius:50%; border:2px solid var(--accent); opacity:.5;
+  animation:orbring 2s ease-out infinite; pointer-events:none; }}
+@keyframes orbring {{ 0% {{ transform:scale(1); opacity:.5; }}
+  100% {{ transform:scale(1.45); opacity:0; }} }}
+.orb-num {{ font-size:22px; font-weight:700; color:var(--ink); line-height:1; }}
+.orb-emoji {{ font-size:14px; line-height:1.2; }}
+.orb-tag {{ font-size:7.5px; letter-spacing:1.5px; color:var(--muted); }}
 .commentary {{ font-size:14.5px; color:var(--ink2); border-left:3px solid var(--accent);
   padding-left:14px; margin-bottom:16px; }}
 .upgrid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }}
@@ -1071,6 +1103,7 @@ footer {{ text-align:center; padding:8px 0 20px; }}
 </section>
 {signals}
 {validators}
+{orb_html}
 {pulse_html}
 {footer}
 </div>
@@ -1172,6 +1205,42 @@ matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {{
   if (themePref === 'system') applyTheme();
 }});
 applyTheme();
+
+// Draggable Pulse orb: drag it anywhere (position remembered), click -> pulse page.
+const orb = document.getElementById('pulseorb');
+if (orb) {{
+  try {{
+    const saved = JSON.parse(localStorage.getItem('solbeat-orb') || 'null');
+    if (saved) {{ orb.style.left = saved.x + 'px'; orb.style.top = saved.y + 'px';
+      orb.style.right = 'auto'; orb.style.bottom = 'auto'; }}
+  }} catch (e) {{}}
+  let sx, sy, ox, oy, moved = false, down = false;
+  orb.addEventListener('pointerdown', e => {{
+    down = true; moved = false; sx = e.clientX; sy = e.clientY;
+    const r = orb.getBoundingClientRect(); ox = r.left; oy = r.top;
+    orb.setPointerCapture(e.pointerId);
+  }});
+  orb.addEventListener('pointermove', e => {{
+    if (!down) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.abs(dx) + Math.abs(dy) > 6) moved = true;
+    if (!moved) return;
+    const w = orb.offsetWidth;
+    const x = Math.min(Math.max(4, ox + dx), innerWidth - w - 4);
+    const y = Math.min(Math.max(4, oy + dy), innerHeight - w - 4);
+    orb.style.left = x + 'px'; orb.style.top = y + 'px';
+    orb.style.right = 'auto'; orb.style.bottom = 'auto';
+  }});
+  orb.addEventListener('pointerup', e => {{
+    down = false;
+    if (moved) {{
+      const r = orb.getBoundingClientRect();
+      try {{ localStorage.setItem('solbeat-orb',
+        JSON.stringify({{x: Math.round(r.left), y: Math.round(r.top)}})); }} catch (e2) {{}}
+    }}
+  }});
+  orb.addEventListener('click', e => {{ if (moved) e.preventDefault(); }});
+}}
 
 const TIP_SEL = '.strip i, .vdot';
 document.addEventListener('pointerover', e => {{
@@ -1450,7 +1519,17 @@ a {{ color:var(--accent); }}
 .d-up {{ color:var(--d-up); }} .d-down {{ color:var(--d-down); }}
 .muted {{ color:var(--muted); }} .small {{ font-size:12px; }}
 b, h2 {{ color:var(--ink); }}
+.pl-wide {{ width:220px; }}
 footer {{ text-align:center; color:var(--muted); font-size:12px; padding:8px 0 18px; }}
+@media (max-width:600px) {{
+  body {{ padding:10px; }}
+  .card {{ padding:14px; }}
+  .pulse-num {{ font-size:34px; }}
+  .pl-wide {{ width:128px; font-size:12px; }}
+  .prow-label {{ width:100px; font-size:12px; }}
+  .prow-val {{ width:64px; font-size:11px; }}
+  .newsrow {{ font-size:13px; overflow-wrap:anywhere; }}
+}}
 </style></head>
 <body><div class="wrap">
 <header class="top card">
