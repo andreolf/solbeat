@@ -24,6 +24,18 @@ contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ![dashboard](docs/screenshot.png)
 
+## Cost & maintenance: $0/month, by design
+
+The whole point of Solbeat is to be **a living dashboard that nobody has to
+maintain or pay for**:
+
+| | |
+|---|---|
+| **Running cost** | **$0/month** — GitHub Actions free tier + GitHub Pages (or Vercel free tier). No servers, no databases, no subscriptions. |
+| **Maintenance** | None scheduled. Every source is a public, keyless endpoint with graceful degradation — a source failing shows honestly in the provenance panel instead of breaking the report. There are no API keys to rotate, no tiers to get repriced, no dependencies to update. |
+| **Optional paid extras** | Two env-gated extractors exist for the gated sources: **Dune** (free API tier) and **X/Twitter** (sized to X's free tier — key ecosystem accounts like @solana and @mert). Both default off; enabling both keeps total cost between $0 and ~$5/month. |
+| **Self-audit** | `python3 solbeat.py verify` cross-checks the numbers against independent sources, so trust doesn't require maintenance either. |
+
 ## What it produces
 
 Every refresh generates three synchronized outputs in `docs/`:
@@ -85,7 +97,7 @@ Every line of the brief, mapped to its implementation:
 |---|---|
 | Dune Analytics extraction | Optional env-gated extractor (`DUNE_API_KEY`/`DUNE_QUERY_ID`) — Dune has no keyless path, and the brief prefers zero keys; trade-off documented above |
 | Key Solana ecosystem websites | solana.com news RSS (headlines), status.solana.com (incidents), GitHub (Agave releases, SIMD state); solana.com/data's headline metrics (tx counts, fees, price, stablecoins, DeFi) are reproduced from primary sources — its own backends (Dune/Allium/TopLedger) are keyed |
-| Twitter accounts (announcements/sentiment) | Keyless X endpoints are dead in 2026 (documented); official announcements covered via solana.com RSS + GitHub + status page |
+| Twitter accounts (announcements/sentiment) | Optional env-gated X extractor (`X_BEARER_TOKEN` + `X_HANDLES`, sized to X's free tier — @solana, @mert by default); keyless fallback covers announcements via solana.com RSS + GitHub + status page, and sentiment via the Solana Pulse composite (Fear & Greed, community votes, headline tone) |
 | RPC: `getSlot`, `getBlockTime`, `getEpochInfo`, `getRecentPerformanceSamples`, `getVoteAccounts`, `getBalance`, `getSignaturesForAddress`, `getHealth`, `getSupply` | **All nine used**, plus `getVersion`, `getInflationRate`, `getRecentPrioritizationFees` |
 | DeFiLlama + CoinGecko | TVL/DEX/fees/stablecoins/xStocks + price/mcap |
 | TPS, slot time, block height, epoch progress | Hero strip + 12h TPS chart + 12h slot-performance strip |

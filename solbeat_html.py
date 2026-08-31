@@ -334,6 +334,10 @@ def _news_block(snap):
         f'rel="noopener">{esc(it["title"])}</a>'
         f'<span class="muted small"> — {esc(it["published"][:16])}</span></div>'
         for it in items[:5])
+    for p in ((snap.get("x") or {}).get("posts") or [])[:5]:
+        rows += (f'<div class="newsrow">𝕏 <b>@{esc(p["handle"])}</b> '
+                 f'<a href="{esc(p["url"])}" target="_blank" rel="noopener">'
+                 f'{esc(p["text"][:140])}…</a></div>')
     badge = provenance_badge(snap, "solana_com_news", "solana.com RSS")
     return (f'<div class="newsblock"><div class="tile-label" style="margin:16px 0 8px">'
             f'LATEST ECOSYSTEM NEWS {badge}</div>{rows}</div>')
@@ -740,7 +744,9 @@ def render_html(snap):
       <div class="foot-head">SOL<b style="color:var(--accent)">BEAT</b></div>
       <p class="muted small">An autonomous, zero-key terminal for the state of
       the Solana network. Python stdlib only — no frameworks, no chart
-      libraries, no API keys. Refreshes itself every 30 minutes.</p>
+      libraries, no API keys. Refreshes itself every 30 minutes and costs
+      <b>$0/month</b> to run — no servers, no subscriptions, nothing to
+      maintain.</p>
       <p class="small" style="margin-top:8px">built with 💙 by
         <a href="https://github.com/andreolf">andreolf</a></p>
       <p class="small muted" style="margin-top:10px; display:flex; align-items:center; gap:7px">
@@ -1400,6 +1406,10 @@ REV(24h) ${der.get('rev24h_usd', 0):,.0f}.
   per-source provenance. Schema-versioned; regenerated every 30 minutes.
 - [report.md]({BASE_URL}report.md): the same report as human-readable Markdown.
 - [history.json]({BASE_URL}history.json): rolling cross-run metric history.
+- [Documentation](https://docs.solbeat.xyz): architecture, per-source
+  collection details, glossary of every metric, FAQ.
+- [Status page]({BASE_URL}status.html) + [RSS]({BASE_URL}status.xml):
+  per-source uptime and incidents.
 
 ## Notes for agents
 

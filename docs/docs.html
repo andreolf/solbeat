@@ -70,7 +70,8 @@ footer { text-align:center; padding:14px 0 24px; color:var(--muted); font-size:1
   .sidenav a { white-space:nowrap; border-left:none; }
   .side-label { display:none; }
 }
-</style></head>
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Solbeat?", "acceptedAnswer": {"@type": "Answer", "text": "Solbeat is an open-source, auto-updating dashboard for the state of the Solana network: TPS, slot time, validators, Real Economic Value (REV), TVL, stablecoins, DEX volume, tokenized equities, sentiment and anomaly detection. It uses zero API keys and only the Python standard library."}}, {"@type": "Question", "name": "What does Solbeat cost to run?", "acceptedAnswer": {"@type": "Answer", "text": "Zero dollars per month. GitHub Actions collects data every 30 minutes and GitHub Pages/Vercel serve the site on free tiers; there are no servers or subscriptions and no scheduled maintenance."}}, {"@type": "Question", "name": "What is REV (Real Economic Value) on Solana?", "acceptedAnswer": {"@type": "Answer", "text": "REV is base fees plus priority fees plus Jito MEV tips \u2014 the total economic value users pay the Solana network. Solbeat computes it from DeFiLlama chain fees and the Jito Kobe API, following the Blockworks methodology."}}, {"@type": "Question", "name": "What is the difference between Solana TPS and non-vote TPS?", "acceptedAnswer": {"@type": "Answer", "text": "Headline Solana TPS includes validators' consensus vote transactions; non-vote (user) TPS counts only real user transactions and is the honest activity number. Solbeat always shows both side by side."}}, {"@type": "Question", "name": "What is Solana's Nakamoto coefficient?", "acceptedAnswer": {"@type": "Answer", "text": "The minimum number of validators controlling more than one third of total stake \u2014 the smallest set that could halt consensus. Solbeat computes it live from getVoteAccounts."}}, {"@type": "Question", "name": "How often does Solbeat update?", "acceptedAnswer": {"@type": "Answer", "text": "Every 30 minutes via GitHub Actions, with a browser-side live layer that re-syncs the slot counter every 10 seconds from a keyless RPC."}}, {"@type": "Question", "name": "Does Solbeat need API keys?", "acceptedAnswer": {"@type": "Answer", "text": "No. All 16 default data sources are public keyless endpoints. Optional env-gated extractors exist for Dune and X/Twitter, both sized to free tiers."}}]}</script>
+</head>
 <body>
 <div class="topbar">
   <svg width="26" height="17" viewBox="0 0 34 20" aria-hidden="true"><defs>
@@ -90,7 +91,7 @@ footer { text-align:center; padding:14px 0 24px; color:var(--muted); font-size:1
 <div class="layout">
 <aside>
   <div class="side-label">DOCUMENTATION</div>
-  <nav class="sidenav"><a href="#quickstart">Quickstart</a><a href="#architecture">Architecture</a><a href="#collection">Data collection</a><a href="#analysis">Analysis</a><a href="#presentation">Presentation</a><a href="#config">Configuration</a><a href="#verify">Self-audit</a><a href="#deploy">Deploy your own</a><a href="#contribute">Contributing</a><a href="#faq">Design FAQ</a></nav>
+  <nav class="sidenav"><a href="#quickstart">Quickstart</a><a href="#architecture">Architecture</a><a href="#collection">Data collection</a><a href="#analysis">Analysis</a><a href="#presentation">Presentation</a><a href="#config">Configuration</a><a href="#verify">Self-audit</a><a href="#deploy">Deploy your own</a><a href="#contribute">Contributing</a><a href="#glossary">Glossary</a><a href="#faq">FAQ</a></nav>
 </aside>
 <main>
 <section class="card">
@@ -237,6 +238,7 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
     <tr><td><code>DUNE_API_KEY</code> + <code>DUNE_QUERY_ID</code></td>
       <td>env vars / repo secret + variable</td>
       <td>Enables the optional Dune extractor (daily active addresses tile)</td></tr>
+    <tr><td><code>X_BEARER_TOKEN</code> + <code>X_HANDLES</code></td><td>env vars / repo secret</td><td>Enables the optional X/Twitter extractor — latest posts from key ecosystem accounts (default @solana, @mert), sized to fit X's free API tier</td></tr>
     <tr><td><code>CONFIG</code>, <code>ANOMALY_THRESHOLDS</code>,
       <code>WHALE_WALLETS</code>, <code>PROGRAMS</code></td>
       <td>top of <code>solbeat.py</code></td>
@@ -292,8 +294,30 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
     before submitting — verify must pass 7/7.</li>
   </ul>
 </section>
+<section class="card" id="glossary">
+  <h2>Glossary</h2>
+  <p class="muted small">Plain-language definitions for every metric on the dashboard.</p>
+  <table><tr><th>Term</th><th>Meaning</th></tr><tr><td><b>TPS (vote vs non-vote)</b></td><td>Transactions per second. Solana validators vote on-chain, so headline TPS includes consensus votes; <b>non-vote ("user") TPS</b> counts only real user transactions. Solbeat always shows both.</td></tr><tr><td><b>Slot / slot time</b></td><td>Solana's basic unit of block production (~one block per slot). Historic target 400ms; SIMD-0525 is stepping it down to 200ms — Solbeat measures the live value from performance samples.</td></tr><tr><td><b>Epoch</b></td><td>~432,000 slots (about 1.6-2 days). Stake activations and validator rewards settle per epoch.</td></tr><tr><td><b>REV (Real Economic Value)</b></td><td>Base fees + priority fees + Jito MEV tips — the total users actually pay the network per day. Coined by Blockworks; Solbeat computes it from DeFiLlama fees + the Jito Kobe API.</td></tr><tr><td><b>Priority fee</b></td><td>Optional fee (micro-lamports per compute unit) paid to prioritize a transaction. Median near zero means an uncongested network.</td></tr><tr><td><b>Jito tips / MEV</b></td><td>Payments to validators through Jito's block engine for transaction ordering (Maximal Extractable Value). A large share of validator income.</td></tr><tr><td><b>Nakamoto coefficient</b></td><td>The minimum number of validators that together control &gt;⅓ of stake — enough to halt consensus. Higher is more decentralized.</td></tr><tr><td><b>Delinquent validator</b></td><td>A validator that has stopped voting on recent slots. Solbeat tracks delinquent count and delinquent stake share, with alerts.</td></tr><tr><td><b>Stake / commission</b></td><td>SOL delegated to a validator; commission is the validator's cut of staking rewards.</td></tr><tr><td><b>Alpenglow (SIMD-0236)</b></td><td>Solana's largest consensus upgrade: Votor + Rotor replace TowerBFT/PoH voting, targeting ~150ms finality. Validators must register BLS keys — Solbeat measures registration live.</td></tr><tr><td><b>SIMD-0525</b></td><td>Proposal reducing slot time 400→200ms in four feature-gated steps. Step one (350ms) is active on mainnet — Solbeat's measured slot time is live proof.</td></tr><tr><td><b>BLS keys</b></td><td>New cryptographic keys validators register for Alpenglow's vote aggregation. Registration share = upgrade readiness.</td></tr><tr><td><b>TVL</b></td><td>Total Value Locked — capital deposited in the chain's DeFi protocols.</td></tr><tr><td><b>xStocks</b></td><td>Tokenized equities (real-world stocks) issued on Solana; Solbeat tracks their TVL as the bounty's "tokenized asset volumes" metric.</td></tr></table>
+</section>
 <section class="card" id="faq">
-  <h2>Design FAQ</h2>
+  <h2>FAQ</h2>
+
+  <h3>What does it cost to run?</h3>
+  <p>$0/month. GitHub Actions (free tier) collects and commits; GitHub Pages or
+  Vercel (free tier) serves. There are no servers, databases, or subscriptions,
+  and nothing scheduled for a human to maintain. Enabling the optional Dune and
+  X extractors keeps total cost between $0 and ~$5/month.</p>
+  <h3>How often does the data refresh?</h3>
+  <p>Every 30 minutes end-to-end (configurable via one cron line or
+  <code>SOLBEAT_REFRESH</code>). Between refreshes, the browser itself polls a
+  keyless RPC so the slot counter, TPS and slot time stay live.</p>
+  <h3>Can I run or self-host it?</h3>
+  <p>Yes — <code>git clone</code>, then <code>python3 solbeat.py run</code>.
+  Python 3.9+ is the only requirement. See <a href="#deploy">Deploy your
+  own</a> for the zero-cost hosted setup.</p>
+  <h3>Is Solbeat affiliated with the Solana Foundation?</h3>
+  <p>No — it's an independent, MIT-licensed community project. For the
+  network's official status page see status.solana.com.</p>
   <h3>Why zero API keys?</h3>
   <p>Every unified Solana dashboard so far has died or gone behind API keys —
   keys are the industry's revenue model, and key-dependent projects rot when

@@ -510,6 +510,32 @@ def collect_dune():
     return out
 
 
+def collect_x():
+    """Optional X/Twitter extractor: set X_BEARER_TOKEN (and optionally
+    X_HANDLES, comma-separated) to pull the latest posts from key ecosystem
+    accounts. Off by default; sized to stay within X's free API tier so the
+    running cost is $0 — the dashboard's cost ceiling is deliberate."""
+    token = os.environ.get("X_BEARER_TOKEN")
+    handles = [h.strip().lstrip("@") for h in
+               os.environ.get("X_HANDLES", "solana,mert").split(",") if h.strip()]
+    hdrs = {"Authorization": f"Bearer {token}"}
+    posts = []
+    for h in handles[:3]:
+        u = _http_json(f"https://api.twitter.com/2/users/by/username/{h}",
+                       headers=hdrs, timeout=15)
+        uid = (u.get("data") or {}).get("id")
+        if not uid:
+            continue
+        tw = _http_json(
+            f"https://api.twitter.com/2/users/{uid}/tweets"
+            "?max_results=5&exclude=replies,retweets", headers=hdrs, timeout=15)
+        for t in (tw.get("data") or [])[:3]:
+            posts.append({"handle": h, "text": (t.get("text") or "")[:240],
+                          "url": f"https://x.com/{h}/status/{t.get('id')}"})
+        time.sleep(0.3)
+    return {"enabled": True, "posts": posts}
+
+
 def collect_status_page():
     st = _http_json("https://status.solana.com/api/v2/status.json")
     inc = _http_json("https://status.solana.com/api/v2/incidents/unresolved.json")
@@ -838,6 +864,13 @@ def collect_snapshot():
         snap["dune"] = {"enabled": False,
                         "note": "keyless by design; set DUNE_API_KEY + "
                                 "DUNE_QUERY_ID to enable this extractor"}
+    if os.environ.get("X_BEARER_TOKEN"):
+        snap["x"] = tracker.run("x_twitter", collect_x)
+    else:
+        snap["x"] = {"enabled": False,
+                     "note": "keyless by design; set X_BEARER_TOKEN "
+                             "(+ optional X_HANDLES) to pull key accounts "
+                             "within X's free tier"}
     snap["status_page"] = tracker.run("solana_status_page", collect_status_page)
     snap["whales"] = tracker.run("solana_rpc_whales", collect_whales)
     snap["program_pulse"] = tracker.run("solana_rpc_programs", collect_program_pulse)
