@@ -2,7 +2,9 @@ name: solbeat refresh
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    # Off-peak minutes: GitHub heavily throttles :00/:30 schedules on
+    # low-traffic repos; odd minutes get noticeably better slots.
+    - cron: "13,43 * * * *"
   workflow_dispatch:
   push:
     branches: [main]

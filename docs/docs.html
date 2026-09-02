@@ -308,9 +308,11 @@ python3 solbeat.py serve     # serve docs/ on :8017, auto-refreshing every 30 mi
   and nothing scheduled for a human to maintain. Enabling the optional Dune and
   X extractors keeps total cost between $0 and ~$5/month.</p>
   <h3>How often does the data refresh?</h3>
-  <p>Every 30 minutes end-to-end (configurable via one cron line or
-  <code>SOLBEAT_REFRESH</code>). Between refreshes, the browser itself polls a
-  keyless RPC so the slot counter, TPS and slot time stay live.</p>
+  <p>Every 30 minutes by schedule (configurable via one cron line or
+  <code>SOLBEAT_REFRESH</code>). GitHub occasionally delays scheduled runs on
+  its free tier — the “updated X ago” chip always shows the honest age, and
+  between refreshes the browser itself polls a keyless RPC so the slot
+  counter, TPS and slot time stay live regardless.</p>
   <h3>Can I run or self-host it?</h3>
   <p>Yes — <code>git clone</code>, then <code>python3 solbeat.py run</code>.
   Python 3.9+ is the only requirement. See <a href="#deploy">Deploy your
