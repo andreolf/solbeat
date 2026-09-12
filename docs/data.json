@@ -1,1548 +1,1588 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-09-12T02:38:51Z",
+ "generated_at": "2026-09-12T03:09:19Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.3.0-rc.0",
-  "chain_time": "2026-09-12T02:38:29Z",
+  "chain_time": "2026-09-12T03:08:57Z",
   "chain_clock_drift_s": 24,
   "epoch": 1033,
-  "slot": 446317865,
-  "block_height": 424360697,
-  "epoch_slot_index": 61865,
+  "slot": 446323614,
+  "block_height": 424366446,
+  "epoch_slot_index": 67614,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 14.32,
-  "tx_count_total": 547591971190,
+  "epoch_progress_pct": 15.65,
+  "tx_count_total": 547598809024,
   "perf_series": [
    {
-    "tps": 4604.5,
-    "nonvote_tps": 2431.0,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 4404.1,
-    "nonvote_tps": 2298.6,
+    "tps": 4458.6,
+    "nonvote_tps": 2348.7,
     "slot_ms": 319.1
    },
    {
-    "tps": 4399.9,
-    "nonvote_tps": 2302.6,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4549.7,
-    "nonvote_tps": 2453.9,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4473.4,
-    "nonvote_tps": 2374.6,
+    "tps": 4677.0,
+    "nonvote_tps": 2631.3,
     "slot_ms": 322.6
    },
    {
-    "tps": 4263.1,
-    "nonvote_tps": 2203.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4479.2,
-    "nonvote_tps": 2401.4,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4336.7,
-    "nonvote_tps": 2264.4,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4727.1,
-    "nonvote_tps": 2576.9,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4416.2,
-    "nonvote_tps": 2277.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4487.7,
-    "nonvote_tps": 2411.0,
+    "tps": 4643.3,
+    "nonvote_tps": 2586.9,
     "slot_ms": 324.3
    },
    {
-    "tps": 4705.5,
-    "nonvote_tps": 2564.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4791.7,
-    "nonvote_tps": 2638.6,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4341.5,
-    "nonvote_tps": 2188.6,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4001.6,
-    "nonvote_tps": 1985.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4600.6,
-    "nonvote_tps": 2457.8,
+    "tps": 5250.0,
+    "nonvote_tps": 3132.6,
     "slot_ms": 317.5
    },
    {
-    "tps": 4418.2,
-    "nonvote_tps": 2255.9,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4343.1,
-    "nonvote_tps": 2209.9,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4536.8,
-    "nonvote_tps": 2386.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4361.9,
-    "nonvote_tps": 2238.3,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4209.0,
-    "nonvote_tps": 2070.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4295.9,
-    "nonvote_tps": 2190.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4316.1,
-    "nonvote_tps": 2231.9,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4392.0,
-    "nonvote_tps": 2284.7,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4809.7,
-    "nonvote_tps": 2764.1,
+    "tps": 4975.1,
+    "nonvote_tps": 2878.8,
     "slot_ms": 320.9
    },
    {
-    "tps": 4753.1,
-    "nonvote_tps": 2690.9,
-    "slot_ms": 326.1
+    "tps": 4853.5,
+    "nonvote_tps": 2744.2,
+    "slot_ms": 319.1
    },
    {
-    "tps": 5275.9,
-    "nonvote_tps": 3136.6,
-    "slot_ms": 314.1
+    "tps": 4673.6,
+    "nonvote_tps": 2552.8,
+    "slot_ms": 319.1
    },
    {
-    "tps": 4929.2,
-    "nonvote_tps": 2831.4,
+    "tps": 4941.6,
+    "nonvote_tps": 2797.1,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4722.5,
+    "nonvote_tps": 2635.4,
     "slot_ms": 320.9
    },
    {
-    "tps": 4845.8,
-    "nonvote_tps": 2740.9,
-    "slot_ms": 319.1
+    "tps": 4717.8,
+    "nonvote_tps": 2565.5,
+    "slot_ms": 312.5
    },
    {
-    "tps": 4524.9,
-    "nonvote_tps": 2433.0,
+    "tps": 4679.4,
+    "nonvote_tps": 2527.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4600.1,
+    "nonvote_tps": 2514.7,
     "slot_ms": 320.9
    },
    {
-    "tps": 5000.4,
-    "nonvote_tps": 2835.5,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4656.8,
-    "nonvote_tps": 2558.7,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4835.5,
-    "nonvote_tps": 2687.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4601.9,
-    "nonvote_tps": 2440.8,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4579.4,
-    "nonvote_tps": 2540.2,
-    "slot_ms": 327.9
-   },
-   {
-    "tps": 4530.9,
-    "nonvote_tps": 2430.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4443.5,
-    "nonvote_tps": 2430.6,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4310.3,
-    "nonvote_tps": 2247.8,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4413.7,
-    "nonvote_tps": 2248.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4270.2,
-    "nonvote_tps": 2185.1,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3957.1,
-    "nonvote_tps": 1822.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4371.7,
-    "nonvote_tps": 2270.8,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4239.7,
-    "nonvote_tps": 2088.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4055.8,
-    "nonvote_tps": 1926.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4095.2,
-    "nonvote_tps": 2023.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4507.0,
-    "nonvote_tps": 2344.7,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4349.6,
-    "nonvote_tps": 2202.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4125.0,
-    "nonvote_tps": 2049.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4304.1,
-    "nonvote_tps": 2258.3,
-    "slot_ms": 327.9
-   },
-   {
-    "tps": 4586.1,
-    "nonvote_tps": 2459.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4638.9,
-    "nonvote_tps": 2494.6,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4683.5,
-    "nonvote_tps": 2520.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4593.4,
-    "nonvote_tps": 2493.8,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4485.0,
-    "nonvote_tps": 2387.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4772.8,
-    "nonvote_tps": 2627.0,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4779.5,
-    "nonvote_tps": 2649.6,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4734.6,
-    "nonvote_tps": 2587.0,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4465.3,
-    "nonvote_tps": 2384.8,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4793.8,
-    "nonvote_tps": 2661.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4519.9,
-    "nonvote_tps": 2396.0,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4747.0,
-    "nonvote_tps": 2610.9,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 4733.6,
-    "nonvote_tps": 2604.6,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4591.8,
-    "nonvote_tps": 2451.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4313.1,
-    "nonvote_tps": 2212.6,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4539.2,
-    "nonvote_tps": 2385.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4363.4,
-    "nonvote_tps": 2213.4,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4272.4,
-    "nonvote_tps": 2170.6,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4256.2,
-    "nonvote_tps": 2090.2,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4327.9,
-    "nonvote_tps": 2272.9,
-    "slot_ms": 326.1
-   },
-   {
-    "tps": 4367.6,
-    "nonvote_tps": 2262.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4606.6,
-    "nonvote_tps": 2508.3,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4539.8,
-    "nonvote_tps": 2425.6,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4353.1,
-    "nonvote_tps": 2261.8,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4596.0,
-    "nonvote_tps": 2509.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4365.9,
-    "nonvote_tps": 2247.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4476.7,
-    "nonvote_tps": 2365.2,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4345.7,
-    "nonvote_tps": 2197.8,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4388.0,
-    "nonvote_tps": 2250.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4418.7,
-    "nonvote_tps": 2293.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3997.3,
-    "nonvote_tps": 1887.9,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4087.6,
-    "nonvote_tps": 1971.5,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4136.9,
-    "nonvote_tps": 2030.7,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4282.5,
-    "nonvote_tps": 2171.3,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4167.1,
-    "nonvote_tps": 2057.4,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4510.1,
-    "nonvote_tps": 2413.5,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4342.0,
-    "nonvote_tps": 2233.2,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4443.8,
-    "nonvote_tps": 2315.5,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4305.8,
-    "nonvote_tps": 2183.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4082.4,
-    "nonvote_tps": 1949.7,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4292.3,
-    "nonvote_tps": 2171.2,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4381.9,
-    "nonvote_tps": 2273.6,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4347.1,
-    "nonvote_tps": 2182.6,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4127.3,
-    "nonvote_tps": 1970.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4304.5,
-    "nonvote_tps": 2114.2,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 4068.3,
-    "nonvote_tps": 1991.2,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3890.6,
-    "nonvote_tps": 1904.7,
-    "slot_ms": 327.9
-   },
-   {
-    "tps": 3928.4,
-    "nonvote_tps": 1718.3,
-    "slot_ms": 307.7
-   },
-   {
-    "tps": 3874.0,
-    "nonvote_tps": 1732.8,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4052.9,
-    "nonvote_tps": 1953.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4149.5,
-    "nonvote_tps": 2028.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4115.6,
-    "nonvote_tps": 2054.7,
-    "slot_ms": 326.1
-   },
-   {
-    "tps": 4235.1,
-    "nonvote_tps": 2091.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4856.6,
-    "nonvote_tps": 2730.6,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3983.0,
-    "nonvote_tps": 1886.3,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4311.6,
-    "nonvote_tps": 2159.7,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4357.1,
-    "nonvote_tps": 2188.2,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4199.3,
-    "nonvote_tps": 2077.8,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3884.7,
-    "nonvote_tps": 1754.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3841.3,
-    "nonvote_tps": 1709.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3956.5,
-    "nonvote_tps": 1812.3,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4053.8,
-    "nonvote_tps": 1901.0,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3945.4,
-    "nonvote_tps": 1827.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4065.3,
-    "nonvote_tps": 1932.3,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3718.3,
-    "nonvote_tps": 1674.2,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3839.8,
-    "nonvote_tps": 1775.9,
-    "slot_ms": 326.1
-   },
-   {
-    "tps": 3719.8,
-    "nonvote_tps": 1639.0,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3781.6,
-    "nonvote_tps": 1671.7,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 3933.7,
-    "nonvote_tps": 1774.5,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4033.6,
-    "nonvote_tps": 1881.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4071.8,
-    "nonvote_tps": 1965.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3638.3,
-    "nonvote_tps": 1503.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4137.8,
-    "nonvote_tps": 2017.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3854.3,
-    "nonvote_tps": 1788.5,
-    "slot_ms": 326.1
-   },
-   {
-    "tps": 3851.3,
-    "nonvote_tps": 1743.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3830.8,
-    "nonvote_tps": 1687.3,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3925.1,
-    "nonvote_tps": 1770.3,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3672.3,
-    "nonvote_tps": 1632.7,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4080.2,
-    "nonvote_tps": 1912.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4260.6,
-    "nonvote_tps": 2133.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4105.9,
-    "nonvote_tps": 1998.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4139.6,
-    "nonvote_tps": 2014.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3785.7,
-    "nonvote_tps": 1708.3,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4076.4,
-    "nonvote_tps": 1972.4,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3907.7,
-    "nonvote_tps": 1736.3,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3774.0,
-    "nonvote_tps": 1644.6,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 3685.4,
-    "nonvote_tps": 1598.5,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4100.0,
-    "nonvote_tps": 1966.0,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3898.8,
-    "nonvote_tps": 1755.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3881.9,
-    "nonvote_tps": 1748.5,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3899.8,
-    "nonvote_tps": 1773.8,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4072.1,
-    "nonvote_tps": 1937.0,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4005.0,
-    "nonvote_tps": 1871.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3993.5,
-    "nonvote_tps": 1836.7,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4138.2,
-    "nonvote_tps": 2008.1,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4167.6,
-    "nonvote_tps": 2023.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4300.8,
-    "nonvote_tps": 2133.7,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4088.5,
-    "nonvote_tps": 1985.3,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4471.2,
-    "nonvote_tps": 2437.9,
-    "slot_ms": 329.7
-   },
-   {
-    "tps": 4250.6,
-    "nonvote_tps": 2132.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4290.6,
-    "nonvote_tps": 2194.6,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4447.6,
-    "nonvote_tps": 2438.8,
-    "slot_ms": 329.7
-   },
-   {
-    "tps": 4340.3,
-    "nonvote_tps": 2201.9,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4222.6,
-    "nonvote_tps": 2114.9,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4111.6,
-    "nonvote_tps": 2004.3,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4075.6,
-    "nonvote_tps": 1948.4,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3979.3,
-    "nonvote_tps": 1843.6,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4012.3,
-    "nonvote_tps": 1899.8,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3548.4,
-    "nonvote_tps": 1600.3,
-    "slot_ms": 329.7
-   },
-   {
-    "tps": 3897.6,
-    "nonvote_tps": 1807.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 4085.8,
-    "nonvote_tps": 1961.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3996.2,
-    "nonvote_tps": 1898.1,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3815.8,
-    "nonvote_tps": 1711.1,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3755.6,
-    "nonvote_tps": 1604.7,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3583.2,
-    "nonvote_tps": 1482.3,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3752.8,
-    "nonvote_tps": 1707.6,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4054.8,
-    "nonvote_tps": 1904.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3916.6,
-    "nonvote_tps": 1734.6,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 3709.0,
-    "nonvote_tps": 1631.3,
+    "tps": 4578.2,
+    "nonvote_tps": 2489.5,
     "slot_ms": 324.3
    },
    {
-    "tps": 4015.4,
-    "nonvote_tps": 1878.8,
-    "slot_ms": 307.7
-   },
-   {
-    "tps": 4027.7,
-    "nonvote_tps": 1869.9,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4285.0,
-    "nonvote_tps": 2140.5,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3904.8,
-    "nonvote_tps": 1809.5,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3810.8,
-    "nonvote_tps": 1756.7,
-    "slot_ms": 326.1
-   },
-   {
-    "tps": 3761.8,
-    "nonvote_tps": 1618.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3917.5,
-    "nonvote_tps": 1791.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3938.6,
-    "nonvote_tps": 1810.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3844.8,
-    "nonvote_tps": 1733.0,
+    "tps": 4365.3,
+    "nonvote_tps": 2374.1,
     "slot_ms": 319.1
    },
    {
-    "tps": 3830.1,
-    "nonvote_tps": 1700.0,
+    "tps": 4435.7,
+    "nonvote_tps": 2297.5,
     "slot_ms": 315.8
    },
    {
-    "tps": 3889.5,
-    "nonvote_tps": 1714.5,
+    "tps": 4342.8,
+    "nonvote_tps": 2256.6,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4298.5,
+    "nonvote_tps": 2215.6,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4055.0,
+    "nonvote_tps": 1912.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4185.9,
+    "nonvote_tps": 2061.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4340.2,
+    "nonvote_tps": 2222.2,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4050.4,
+    "nonvote_tps": 1921.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4030.5,
+    "nonvote_tps": 1944.9,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4478.2,
+    "nonvote_tps": 2335.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4502.1,
+    "nonvote_tps": 2331.0,
     "slot_ms": 309.3
-   },
-   {
-    "tps": 3578.4,
-    "nonvote_tps": 1442.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3568.4,
-    "nonvote_tps": 1398.4,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3665.2,
-    "nonvote_tps": 1555.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3858.8,
-    "nonvote_tps": 1760.4,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3652.3,
-    "nonvote_tps": 1539.4,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3642.8,
-    "nonvote_tps": 1622.2,
-    "slot_ms": 333.3
-   },
-   {
-    "tps": 3504.5,
-    "nonvote_tps": 1402.5,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3728.4,
-    "nonvote_tps": 1565.9,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3573.6,
-    "nonvote_tps": 1397.7,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 3568.4,
-    "nonvote_tps": 1434.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3581.9,
-    "nonvote_tps": 1438.9,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3442.8,
-    "nonvote_tps": 1366.0,
-    "slot_ms": 324.3
-   },
-   {
-    "tps": 3615.3,
-    "nonvote_tps": 1530.6,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3638.1,
-    "nonvote_tps": 1531.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3567.9,
-    "nonvote_tps": 1447.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3641.8,
-    "nonvote_tps": 1491.8,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3796.7,
-    "nonvote_tps": 1651.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3696.4,
-    "nonvote_tps": 1589.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3731.0,
-    "nonvote_tps": 1632.8,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3692.6,
-    "nonvote_tps": 1551.7,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3822.5,
-    "nonvote_tps": 1627.2,
-    "slot_ms": 306.1
-   },
-   {
-    "tps": 3736.0,
-    "nonvote_tps": 1573.5,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3655.6,
-    "nonvote_tps": 1560.4,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3625.1,
-    "nonvote_tps": 1540.2,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3610.3,
-    "nonvote_tps": 1491.3,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3588.7,
-    "nonvote_tps": 1462.8,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3465.7,
-    "nonvote_tps": 1383.9,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3872.2,
-    "nonvote_tps": 1728.2,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3746.8,
-    "nonvote_tps": 1615.3,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3847.6,
-    "nonvote_tps": 1747.7,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3670.5,
-    "nonvote_tps": 1584.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3784.6,
-    "nonvote_tps": 1655.1,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3913.4,
-    "nonvote_tps": 1745.9,
-    "slot_ms": 304.6
-   },
-   {
-    "tps": 3773.2,
-    "nonvote_tps": 1643.0,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4044.1,
-    "nonvote_tps": 1971.5,
-    "slot_ms": 324.3
-   },
-   {
-    "tps": 3943.5,
-    "nonvote_tps": 1791.0,
-    "slot_ms": 312.5
    },
    {
     "tps": 3910.4,
-    "nonvote_tps": 1773.4,
-    "slot_ms": 314.1
+    "nonvote_tps": 1886.4,
+    "slot_ms": 320.9
    },
    {
-    "tps": 3886.9,
-    "nonvote_tps": 1788.2,
+    "tps": 4393.6,
+    "nonvote_tps": 2327.1,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 4506.4,
+    "nonvote_tps": 2371.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4704.6,
+    "nonvote_tps": 2549.1,
     "slot_ms": 312.5
    },
    {
-    "tps": 3741.3,
-    "nonvote_tps": 1606.6,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3817.6,
-    "nonvote_tps": 1660.5,
+    "tps": 4555.6,
+    "nonvote_tps": 2395.4,
     "slot_ms": 310.9
    },
    {
-    "tps": 3827.0,
-    "nonvote_tps": 1689.7,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3883.2,
-    "nonvote_tps": 1764.3,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3969.6,
-    "nonvote_tps": 1851.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3884.4,
-    "nonvote_tps": 1750.7,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3768.8,
-    "nonvote_tps": 1663.7,
+    "tps": 4656.1,
+    "nonvote_tps": 2544.3,
     "slot_ms": 319.1
    },
    {
-    "tps": 4069.5,
-    "nonvote_tps": 1924.1,
+    "tps": 4453.3,
+    "nonvote_tps": 2376.4,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4701.2,
+    "nonvote_tps": 2557.3,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4813.2,
+    "nonvote_tps": 2670.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4901.5,
+    "nonvote_tps": 2759.2,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4542.8,
+    "nonvote_tps": 2379.4,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4645.4,
+    "nonvote_tps": 2577.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4587.6,
+    "nonvote_tps": 2478.3,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4719.2,
+    "nonvote_tps": 2563.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4694.3,
+    "nonvote_tps": 2580.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 4604.7,
+    "nonvote_tps": 2469.4,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4307.3,
+    "nonvote_tps": 2194.6,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4542.5,
+    "nonvote_tps": 2403.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4364.6,
+    "nonvote_tps": 2208.7,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4398.9,
+    "nonvote_tps": 2286.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4168.4,
+    "nonvote_tps": 2025.4,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4358.0,
+    "nonvote_tps": 2258.1,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 4363.9,
+    "nonvote_tps": 2291.0,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4617.9,
+    "nonvote_tps": 2489.7,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4411.9,
+    "nonvote_tps": 2328.0,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4456.1,
+    "nonvote_tps": 2379.1,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4537.4,
+    "nonvote_tps": 2432.9,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4548.8,
+    "nonvote_tps": 2407.9,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4297.7,
+    "nonvote_tps": 2224.6,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 4530.4,
+    "nonvote_tps": 2363.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 4104.1,
+    "nonvote_tps": 1983.2,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4602.2,
+    "nonvote_tps": 2467.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4047.9,
+    "nonvote_tps": 1925.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4011.6,
+    "nonvote_tps": 1895.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4230.8,
+    "nonvote_tps": 2093.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4176.4,
+    "nonvote_tps": 2099.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4298.5,
+    "nonvote_tps": 2166.8,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4467.0,
+    "nonvote_tps": 2373.0,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4287.8,
+    "nonvote_tps": 2163.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4570.0,
+    "nonvote_tps": 2463.4,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4106.6,
+    "nonvote_tps": 2006.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4166.9,
+    "nonvote_tps": 2033.8,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4277.1,
+    "nonvote_tps": 2155.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 4409.2,
+    "nonvote_tps": 2254.2,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4291.7,
+    "nonvote_tps": 2185.0,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4230.8,
+    "nonvote_tps": 2069.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 4173.6,
+    "nonvote_tps": 1978.8,
+    "slot_ms": 309.3
+   },
+   {
+    "tps": 4175.8,
+    "nonvote_tps": 2089.3,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4031.9,
+    "nonvote_tps": 1994.8,
+    "slot_ms": 329.7
+   },
+   {
+    "tps": 3908.4,
+    "nonvote_tps": 1765.1,
+    "slot_ms": 309.3
+   },
+   {
+    "tps": 3755.3,
+    "nonvote_tps": 1623.9,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4050.4,
+    "nonvote_tps": 1941.2,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4031.8,
+    "nonvote_tps": 1904.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4265.3,
+    "nonvote_tps": 2191.2,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 4138.7,
+    "nonvote_tps": 2020.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4854.6,
+    "nonvote_tps": 2719.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4008.5,
+    "nonvote_tps": 1891.1,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4267.1,
+    "nonvote_tps": 2119.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4372.3,
+    "nonvote_tps": 2220.1,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4284.3,
+    "nonvote_tps": 2149.9,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3970.3,
+    "nonvote_tps": 1838.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3845.9,
+    "nonvote_tps": 1724.4,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3866.5,
+    "nonvote_tps": 1722.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4043.7,
+    "nonvote_tps": 1877.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4010.1,
+    "nonvote_tps": 1902.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4011.4,
+    "nonvote_tps": 1879.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3761.9,
+    "nonvote_tps": 1714.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3859.4,
+    "nonvote_tps": 1771.5,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3702.4,
+    "nonvote_tps": 1650.7,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 3929.6,
+    "nonvote_tps": 1761.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3780.8,
+    "nonvote_tps": 1674.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3973.3,
+    "nonvote_tps": 1822.0,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4054.2,
+    "nonvote_tps": 1954.1,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3795.3,
+    "nonvote_tps": 1649.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4024.8,
+    "nonvote_tps": 1910.4,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3885.5,
+    "nonvote_tps": 1793.0,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3841.4,
+    "nonvote_tps": 1764.1,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3853.9,
+    "nonvote_tps": 1709.5,
     "slot_ms": 314.1
    },
    {
     "tps": 3897.6,
-    "nonvote_tps": 1729.2,
+    "nonvote_tps": 1757.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3814.4,
+    "nonvote_tps": 1647.9,
     "slot_ms": 310.9
    },
    {
-    "tps": 3759.4,
-    "nonvote_tps": 1597.0,
+    "tps": 3965.3,
+    "nonvote_tps": 1897.3,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4226.4,
+    "nonvote_tps": 2110.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4035.3,
+    "nonvote_tps": 1916.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4200.0,
+    "nonvote_tps": 2079.1,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3866.8,
+    "nonvote_tps": 1778.0,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4037.2,
+    "nonvote_tps": 1952.0,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3849.2,
+    "nonvote_tps": 1680.7,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3844.9,
+    "nonvote_tps": 1724.0,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3622.9,
+    "nonvote_tps": 1502.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4105.9,
+    "nonvote_tps": 1979.7,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3920.1,
+    "nonvote_tps": 1806.1,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3884.7,
+    "nonvote_tps": 1739.0,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3910.1,
+    "nonvote_tps": 1781.5,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4077.9,
+    "nonvote_tps": 1936.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3947.3,
+    "nonvote_tps": 1826.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3967.1,
+    "nonvote_tps": 1811.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4215.6,
+    "nonvote_tps": 2072.8,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4030.0,
+    "nonvote_tps": 1904.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4402.4,
+    "nonvote_tps": 2233.5,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 4098.3,
+    "nonvote_tps": 1963.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4423.3,
+    "nonvote_tps": 2375.2,
+    "slot_ms": 326.1
+   },
+   {
+    "tps": 4293.2,
+    "nonvote_tps": 2176.7,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4045.1,
+    "nonvote_tps": 1987.8,
+    "slot_ms": 326.1
+   },
+   {
+    "tps": 4543.7,
+    "nonvote_tps": 2528.2,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 4402.7,
+    "nonvote_tps": 2246.0,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4263.1,
+    "nonvote_tps": 2152.2,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4099.0,
+    "nonvote_tps": 2003.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3946.4,
+    "nonvote_tps": 1850.7,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4186.0,
+    "nonvote_tps": 2051.6,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3976.2,
+    "nonvote_tps": 1832.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3648.2,
+    "nonvote_tps": 1687.8,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3887.9,
+    "nonvote_tps": 1754.9,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3937.6,
+    "nonvote_tps": 1902.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4155.1,
+    "nonvote_tps": 1999.5,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3770.2,
+    "nonvote_tps": 1691.1,
+    "slot_ms": 326.1
+   },
+   {
+    "tps": 3799.7,
+    "nonvote_tps": 1650.8,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3555.4,
+    "nonvote_tps": 1472.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3706.2,
+    "nonvote_tps": 1615.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4002.3,
+    "nonvote_tps": 1899.7,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3932.4,
+    "nonvote_tps": 1749.5,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3812.9,
+    "nonvote_tps": 1697.9,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3803.5,
+    "nonvote_tps": 1700.1,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4170.8,
+    "nonvote_tps": 2004.8,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4258.4,
+    "nonvote_tps": 2114.5,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3864.7,
+    "nonvote_tps": 1767.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3975.5,
+    "nonvote_tps": 1898.1,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3715.4,
+    "nonvote_tps": 1595.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3858.0,
+    "nonvote_tps": 1715.8,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4013.6,
+    "nonvote_tps": 1892.9,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3795.7,
+    "nonvote_tps": 1689.9,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3837.2,
+    "nonvote_tps": 1698.4,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3876.6,
+    "nonvote_tps": 1736.9,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3700.4,
+    "nonvote_tps": 1500.8,
+    "slot_ms": 306.1
+   },
+   {
+    "tps": 3531.9,
+    "nonvote_tps": 1426.5,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3614.6,
+    "nonvote_tps": 1467.4,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3870.2,
+    "nonvote_tps": 1783.8,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3703.0,
+    "nonvote_tps": 1573.7,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3602.9,
+    "nonvote_tps": 1610.3,
+    "slot_ms": 337.1
+   },
+   {
+    "tps": 3526.2,
+    "nonvote_tps": 1403.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3681.2,
+    "nonvote_tps": 1558.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3624.7,
+    "nonvote_tps": 1435.8,
+    "slot_ms": 307.7
+   },
+   {
+    "tps": 3591.9,
+    "nonvote_tps": 1420.5,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3566.7,
+    "nonvote_tps": 1448.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3420.2,
+    "nonvote_tps": 1332.8,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3527.7,
+    "nonvote_tps": 1453.5,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3746.6,
+    "nonvote_tps": 1605.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3493.2,
+    "nonvote_tps": 1404.8,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3683.9,
+    "nonvote_tps": 1532.5,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3783.6,
+    "nonvote_tps": 1640.3,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3722.4,
+    "nonvote_tps": 1583.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3694.1,
+    "nonvote_tps": 1618.4,
+    "slot_ms": 326.1
+   },
+   {
+    "tps": 3728.1,
+    "nonvote_tps": 1587.0,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3811.7,
+    "nonvote_tps": 1650.8,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3712.6,
+    "nonvote_tps": 1535.6,
+    "slot_ms": 309.3
+   },
+   {
+    "tps": 3604.4,
+    "nonvote_tps": 1497.4,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3660.7,
+    "nonvote_tps": 1594.0,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3622.5,
+    "nonvote_tps": 1498.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3613.1,
+    "nonvote_tps": 1471.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3449.0,
+    "nonvote_tps": 1391.5,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3839.4,
+    "nonvote_tps": 1680.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3741.0,
+    "nonvote_tps": 1618.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3844.2,
+    "nonvote_tps": 1732.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3676.6,
+    "nonvote_tps": 1599.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3808.1,
+    "nonvote_tps": 1653.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3851.4,
+    "nonvote_tps": 1707.3,
+    "slot_ms": 306.1
+   },
+   {
+    "tps": 3872.2,
+    "nonvote_tps": 1734.5,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3863.7,
+    "nonvote_tps": 1799.0,
+    "slot_ms": 326.1
+   },
+   {
+    "tps": 4075.9,
+    "nonvote_tps": 1914.5,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3907.5,
+    "nonvote_tps": 1770.4,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3898.7,
+    "nonvote_tps": 1795.7,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3724.8,
+    "nonvote_tps": 1590.0,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3841.4,
+    "nonvote_tps": 1694.2,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3780.9,
+    "nonvote_tps": 1645.5,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3874.2,
+    "nonvote_tps": 1758.0,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3933.5,
+    "nonvote_tps": 1824.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3957.5,
+    "nonvote_tps": 1808.0,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3764.6,
+    "nonvote_tps": 1641.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4043.7,
+    "nonvote_tps": 1920.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3920.2,
+    "nonvote_tps": 1767.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3738.1,
+    "nonvote_tps": 1571.4,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3632.1,
+    "nonvote_tps": 1536.0,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3578.3,
+    "nonvote_tps": 1444.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3490.6,
+    "nonvote_tps": 1435.7,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 3545.0,
+    "nonvote_tps": 1466.9,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3731.8,
+    "nonvote_tps": 1574.2,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4011.0,
+    "nonvote_tps": 1809.9,
+    "slot_ms": 306.1
+   },
+   {
+    "tps": 3692.5,
+    "nonvote_tps": 1552.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3847.9,
+    "nonvote_tps": 1703.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3829.3,
+    "nonvote_tps": 1698.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3845.4,
+    "nonvote_tps": 1725.0,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3802.6,
+    "nonvote_tps": 1668.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4030.9,
+    "nonvote_tps": 1874.6,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3882.6,
+    "nonvote_tps": 1752.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3968.5,
+    "nonvote_tps": 1826.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3692.3,
+    "nonvote_tps": 1568.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3771.4,
+    "nonvote_tps": 1638.9,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3497.6,
+    "nonvote_tps": 1407.4,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3783.5,
+    "nonvote_tps": 1640.3,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3516.5,
+    "nonvote_tps": 1435.5,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3766.4,
+    "nonvote_tps": 1617.9,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3749.1,
+    "nonvote_tps": 1590.4,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3936.1,
+    "nonvote_tps": 1838.1,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3769.6,
+    "nonvote_tps": 1636.2,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3657.1,
+    "nonvote_tps": 1530.8,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3725.4,
+    "nonvote_tps": 1580.8,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3659.2,
+    "nonvote_tps": 1566.5,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3647.9,
+    "nonvote_tps": 1578.6,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3876.3,
+    "nonvote_tps": 1783.0,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3928.5,
+    "nonvote_tps": 1816.1,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3902.9,
+    "nonvote_tps": 1745.3,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3584.1,
+    "nonvote_tps": 1449.8,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3608.3,
+    "nonvote_tps": 1509.7,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3768.6,
+    "nonvote_tps": 1599.6,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3672.3,
+    "nonvote_tps": 1546.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3620.1,
+    "nonvote_tps": 1476.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3748.6,
+    "nonvote_tps": 1587.1,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3640.5,
+    "nonvote_tps": 1516.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3668.7,
+    "nonvote_tps": 1522.4,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3705.2,
+    "nonvote_tps": 1583.3,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3735.2,
+    "nonvote_tps": 1598.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4011.5,
+    "nonvote_tps": 1911.1,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3985.4,
+    "nonvote_tps": 1893.7,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 4102.0,
+    "nonvote_tps": 2011.1,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3761.9,
+    "nonvote_tps": 1679.7,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3481.3,
+    "nonvote_tps": 1370.8,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3594.1,
+    "nonvote_tps": 1458.1,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3566.4,
+    "nonvote_tps": 1415.1,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3486.8,
+    "nonvote_tps": 1363.9,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3421.3,
+    "nonvote_tps": 1321.0,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3875.9,
+    "nonvote_tps": 1738.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3714.1,
+    "nonvote_tps": 1588.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3574.7,
+    "nonvote_tps": 1431.1,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3735.7,
+    "nonvote_tps": 1578.8,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3579.2,
+    "nonvote_tps": 1464.0,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3711.4,
+    "nonvote_tps": 1554.9,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3649.3,
+    "nonvote_tps": 1490.0,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3634.5,
+    "nonvote_tps": 1515.1,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3591.8,
+    "nonvote_tps": 1452.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3526.1,
+    "nonvote_tps": 1369.7,
     "slot_ms": 312.5
    },
    {
     "tps": 3533.2,
-    "nonvote_tps": 1460.4,
+    "nonvote_tps": 1398.4,
     "slot_ms": 315.8
    },
    {
-    "tps": 3615.4,
-    "nonvote_tps": 1480.1,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3434.0,
-    "nonvote_tps": 1411.0,
-    "slot_ms": 333.3
-   },
-   {
-    "tps": 3576.2,
-    "nonvote_tps": 1476.5,
+    "tps": 3514.9,
+    "nonvote_tps": 1404.8,
     "slot_ms": 319.1
    },
    {
-    "tps": 3802.2,
-    "nonvote_tps": 1611.2,
-    "slot_ms": 307.7
-   },
-   {
-    "tps": 3961.5,
-    "nonvote_tps": 1783.2,
-    "slot_ms": 309.3
-   },
-   {
-    "tps": 3670.1,
-    "nonvote_tps": 1545.0,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3953.3,
-    "nonvote_tps": 1815.8,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3748.4,
-    "nonvote_tps": 1602.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3882.2,
-    "nonvote_tps": 1748.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3788.8,
-    "nonvote_tps": 1672.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3983.8,
-    "nonvote_tps": 1824.9,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3968.2,
-    "nonvote_tps": 1828.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3907.0,
-    "nonvote_tps": 1760.3,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3719.1,
-    "nonvote_tps": 1596.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3727.4,
-    "nonvote_tps": 1580.9,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3478.8,
-    "nonvote_tps": 1406.1,
-    "slot_ms": 324.3
-   },
-   {
-    "tps": 3726.1,
-    "nonvote_tps": 1619.4,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3623.9,
-    "nonvote_tps": 1509.8,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3851.6,
-    "nonvote_tps": 1688.4,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3761.8,
-    "nonvote_tps": 1623.9,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3824.9,
-    "nonvote_tps": 1727.5,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3789.3,
-    "nonvote_tps": 1655.6,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3618.6,
-    "nonvote_tps": 1492.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3754.8,
-    "nonvote_tps": 1586.8,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3591.6,
-    "nonvote_tps": 1554.2,
-    "slot_ms": 331.5
-   },
-   {
-    "tps": 3667.1,
-    "nonvote_tps": 1599.3,
+    "tps": 3507.6,
+    "nonvote_tps": 1416.5,
     "slot_ms": 322.6
    },
    {
-    "tps": 3942.6,
-    "nonvote_tps": 1805.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3925.7,
-    "nonvote_tps": 1812.6,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3847.4,
-    "nonvote_tps": 1685.5,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3611.7,
-    "nonvote_tps": 1475.7,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3704.9,
-    "nonvote_tps": 1602.7,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3706.4,
-    "nonvote_tps": 1531.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3606.7,
-    "nonvote_tps": 1496.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3646.0,
-    "nonvote_tps": 1486.3,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3728.8,
-    "nonvote_tps": 1574.8,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3661.5,
-    "nonvote_tps": 1536.3,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3638.4,
-    "nonvote_tps": 1501.8,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3771.2,
-    "nonvote_tps": 1635.3,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3678.2,
-    "nonvote_tps": 1585.7,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4131.3,
-    "nonvote_tps": 2009.3,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4091.2,
-    "nonvote_tps": 1982.8,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3953.4,
-    "nonvote_tps": 1869.4,
-    "slot_ms": 324.3
-   },
-   {
-    "tps": 3635.8,
-    "nonvote_tps": 1588.6,
+    "tps": 3728.2,
+    "nonvote_tps": 1673.4,
     "slot_ms": 327.9
    },
    {
-    "tps": 3496.3,
-    "nonvote_tps": 1353.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3658.2,
-    "nonvote_tps": 1502.1,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3514.2,
-    "nonvote_tps": 1390.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3447.8,
-    "nonvote_tps": 1314.5,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3574.8,
-    "nonvote_tps": 1460.1,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3826.0,
-    "nonvote_tps": 1718.1,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3631.9,
-    "nonvote_tps": 1504.0,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3661.3,
-    "nonvote_tps": 1504.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3666.1,
-    "nonvote_tps": 1507.7,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3692.4,
-    "nonvote_tps": 1572.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3691.3,
+    "tps": 3637.9,
     "nonvote_tps": 1517.3,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3530.1,
-    "nonvote_tps": 1429.6,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3650.2,
-    "nonvote_tps": 1515.9,
     "slot_ms": 315.8
    },
    {
-    "tps": 3579.7,
-    "nonvote_tps": 1436.2,
+    "tps": 3831.6,
+    "nonvote_tps": 1675.2,
     "slot_ms": 314.1
    },
    {
-    "tps": 3588.0,
-    "nonvote_tps": 1425.5,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3487.2,
-    "nonvote_tps": 1348.2,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3481.8,
-    "nonvote_tps": 1396.3,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3620.3,
-    "nonvote_tps": 1524.3,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3698.6,
-    "nonvote_tps": 1623.3,
-    "slot_ms": 324.3
-   },
-   {
-    "tps": 3673.2,
-    "nonvote_tps": 1549.5,
+    "tps": 3875.4,
+    "nonvote_tps": 1749.8,
     "slot_ms": 317.5
    },
    {
-    "tps": 3892.4,
-    "nonvote_tps": 1748.3,
+    "tps": 3678.4,
+    "nonvote_tps": 1600.1,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3850.5,
+    "nonvote_tps": 1747.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4051.9,
+    "nonvote_tps": 1922.4,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4038.2,
+    "nonvote_tps": 1891.0,
     "slot_ms": 314.1
    },
    {
-    "tps": 3791.1,
-    "nonvote_tps": 1655.1,
-    "slot_ms": 315.8
+    "tps": 4156.7,
+    "nonvote_tps": 2011.1,
+    "slot_ms": 314.1
    },
    {
-    "tps": 3753.6,
-    "nonvote_tps": 1676.7,
+    "tps": 3852.8,
+    "nonvote_tps": 1695.4,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3782.0,
+    "nonvote_tps": 1658.8,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3927.8,
+    "nonvote_tps": 1814.0,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4355.8,
+    "nonvote_tps": 2214.2,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3880.7,
+    "nonvote_tps": 1712.3,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3697.9,
+    "nonvote_tps": 1616.9,
     "slot_ms": 324.3
    },
    {
-    "tps": 3910.4,
-    "nonvote_tps": 1799.9,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3964.9,
-    "nonvote_tps": 1849.8,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4109.6,
-    "nonvote_tps": 1953.5,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4062.0,
-    "nonvote_tps": 1903.4,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3836.6,
-    "nonvote_tps": 1701.9,
+    "tps": 3870.3,
+    "nonvote_tps": 1736.7,
     "slot_ms": 315.8
    },
    {
-    "tps": 3841.9,
-    "nonvote_tps": 1707.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4009.6,
-    "nonvote_tps": 1898.0,
+    "tps": 3785.4,
+    "nonvote_tps": 1669.2,
     "slot_ms": 319.1
    },
    {
-    "tps": 4169.8,
-    "nonvote_tps": 2073.3,
+    "tps": 3599.0,
+    "nonvote_tps": 1587.3,
+    "slot_ms": 333.3
+   },
+   {
+    "tps": 3616.3,
+    "nonvote_tps": 1437.0,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3580.1,
+    "nonvote_tps": 1481.2,
     "slot_ms": 320.9
    },
    {
-    "tps": 3913.9,
-    "nonvote_tps": 1705.6,
-    "slot_ms": 306.1
+    "tps": 3643.7,
+    "nonvote_tps": 1493.3,
+    "slot_ms": 314.1
    },
    {
-    "tps": 3755.2,
-    "nonvote_tps": 1669.4,
+    "tps": 3675.8,
+    "nonvote_tps": 1542.6,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3722.2,
+    "nonvote_tps": 1584.3,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3919.6,
+    "nonvote_tps": 1786.2,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3795.7,
+    "nonvote_tps": 1698.8,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3564.2,
+    "nonvote_tps": 1445.4,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3790.0,
+    "nonvote_tps": 1601.1,
+    "slot_ms": 307.7
+   },
+   {
+    "tps": 3678.4,
+    "nonvote_tps": 1591.8,
     "slot_ms": 322.6
+   },
+   {
+    "tps": 3834.7,
+    "nonvote_tps": 1678.1,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3709.2,
+    "nonvote_tps": 1559.8,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3873.7,
+    "nonvote_tps": 1815.1,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 3614.3,
+    "nonvote_tps": 1495.7,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3635.6,
+    "nonvote_tps": 1463.1,
+    "slot_ms": 310.9
+   },
+   {
+    "tps": 3564.2,
+    "nonvote_tps": 1484.2,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3547.9,
+    "nonvote_tps": 1411.0,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3543.8,
+    "nonvote_tps": 1409.5,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3688.3,
+    "nonvote_tps": 1565.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3829.7,
+    "nonvote_tps": 1741.3,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 3742.2,
+    "nonvote_tps": 1616.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3528.7,
+    "nonvote_tps": 1421.5,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 3651.4,
+    "nonvote_tps": 1489.6,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 3798.3,
+    "nonvote_tps": 1721.2,
+    "slot_ms": 324.3
+   },
+   {
+    "tps": 3957.2,
+    "nonvote_tps": 1831.8,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4026.4,
+    "nonvote_tps": 1934.6,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 3854.2,
+    "nonvote_tps": 1710.5,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 3963.1,
+    "nonvote_tps": 1863.7,
+    "slot_ms": 320.9
    }
   ],
-  "tps": 3957.4,
-  "nonvote_tps": 1826.2,
-  "slot_time_ms": 316.2,
-  "est_daily_txs": 348462113,
-  "est_daily_nonvote_txs": 165317305,
-  "supply_total_sol": 633924507,
-  "supply_circulating_sol": 586633231,
+  "tps": 3803.9,
+  "nonvote_tps": 1689.7,
+  "slot_time_ms": 318.7,
+  "est_daily_txs": 343302895,
+  "est_daily_nonvote_txs": 160128276,
+  "supply_total_sol": 633924489,
+  "supply_circulating_sol": 586633213,
   "inflation_total_pct": 3.65,
   "priority_fee_median": 0.0,
   "priority_fee_p90": 0,
@@ -1632,10 +1672,10 @@
   ]
  },
  "market": {
-  "sol_price_usd": 101.77,
-  "sol_mcap_usd": 59700457048.10422,
-  "sol_vol24h_usd": 4550954177.188352,
-  "sol_change24h_pct": 2.45,
+  "sol_price_usd": 101.87,
+  "sol_mcap_usd": 59760102409.40386,
+  "sol_vol24h_usd": 4589207565.132069,
+  "sol_change24h_pct": 2.91,
   "price_series_30d": [
    77.81,
    77.24,
@@ -1697,11 +1737,11 @@
    101.57,
    98.63,
    102.39,
-   101.77
+   101.76
   ]
  },
  "tvl": {
-  "tvl_usd": 5906330949,
+  "tvl_usd": 5903721918,
   "tvl_series": [
    4896540374,
    4928516930,
@@ -1791,8 +1831,8 @@
    5924345010,
    5954397691,
    5857020904,
-   5902625248,
-   5906330949
+   5797959067,
+   5903721918
   ]
  },
  "dex": {
@@ -4913,11 +4953,11 @@
     "loc": "Rotterdam, Netherlands"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
+    "lat": -23.5,
+    "lon": -46.6,
     "stake": 144074,
     "name": "Superteam Brazil",
-    "loc": "Amsterdam, Netherlands"
+    "loc": "Sao Paulo, Brazil"
    },
    {
     "lat": 52.2,
@@ -10582,7 +10622,7 @@
    63
   ],
   "cg_votes_up_pct": 80.0,
-  "cg_watchlist_users": 1337820,
+  "cg_watchlist_users": 1337828,
   "headlines": [
    {
     "title": "Nike (NKE) Launches $NKE Stock Token On Solana - simplywall.st",
@@ -10659,7 +10699,7 @@
   {
    "label": "Binance (cold)",
    "address": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
-   "balance_sol": 1868654.3
+   "balance_sol": 1881131.6
   },
   {
    "label": "OKX (attributed)",
@@ -10669,52 +10709,52 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 27865.2
+   "balance_sol": 27719.0
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 125.0,
-   "newest_age_s": 12
+   "tx_per_min": 125.1,
+   "newest_age_s": 11
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 125.0,
-   "newest_age_s": 11
+   "tx_per_min": 136.5,
+   "newest_age_s": 10
   },
   {
    "program": "Orca Whirlpool",
-   "tx_per_min": 136.4,
-   "newest_age_s": 11
+   "tx_per_min": 150.2,
+   "newest_age_s": 10
   },
   {
    "program": "Pump.fun",
-   "tx_per_min": 150.0,
-   "newest_age_s": 10
+   "tx_per_min": 166.9,
+   "newest_age_s": 9
   },
   {
    "program": "Tensor",
-   "tx_per_min": 0.3,
-   "newest_age_s": 29
+   "tx_per_min": 0.9,
+   "newest_age_s": 33
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 51.7,
-   "newest_age_s": 10
+   "tx_per_min": 62.5,
+   "newest_age_s": 8
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.2,
-   "newest_age_s": 225
+   "newest_age_s": 119
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 135848,
-  "rev24h_usd": 971589,
-  "rev_per_min_usd": 674.71,
-  "avg_fee_per_tx_usd": 0.005055,
-  "epoch_eta_hours": 32.5,
+  "jito_tips24h_usd": 134915,
+  "rev24h_usd": 970656,
+  "rev_per_min_usd": 674.07,
+  "avg_fee_per_tx_usd": 0.005219,
+  "epoch_eta_hours": 32.3,
   "simd525_step_active": true,
   "pulse": {
    "score": 67,
@@ -10732,107 +10772,90 @@
   "incidents": [],
   "all_clear": true
  },
- "commentary": "Epoch 1033 is 14% complete (~32h remaining), with the cluster processing ~3,957 TPS (1,826 non-vote). Measured slot time is 316ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $971.6K of Real Economic Value over the last 24h ($675/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $101.77 (+2.5% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
+ "commentary": "Epoch 1033 is 16% complete (~32h remaining), with the cluster processing ~3,804 TPS (1,690 non-vote). Measured slot time is 319ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $970.7K of Real Economic Value over the last 24h ($674/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $101.87 (+2.9% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 9455,
-   "fetched_at": "2026-09-12T02:39:01Z"
+   "latency_ms": 10924,
+   "fetched_at": "2026-09-12T03:09:30Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 637,
-   "fetched_at": "2026-09-12T02:39:02Z"
+   "latency_ms": 1077,
+   "fetched_at": "2026-09-12T03:09:31Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1692,
-   "fetched_at": "2026-09-12T02:39:03Z"
+   "latency_ms": 1726,
+   "fetched_at": "2026-09-12T03:09:33Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 51,
-   "fetched_at": "2026-09-12T02:39:03Z"
+   "latency_ms": 100,
+   "fetched_at": "2026-09-12T03:09:33Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 1171,
-   "fetched_at": "2026-09-12T02:39:04Z"
+   "latency_ms": 1119,
+   "fetched_at": "2026-09-12T03:09:34Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 2098,
-   "fetched_at": "2026-09-12T02:39:07Z"
+   "latency_ms": 932,
+   "fetched_at": "2026-09-12T03:09:35Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 100,
-   "fetched_at": "2026-09-12T02:39:07Z"
+   "latency_ms": 115,
+   "fetched_at": "2026-09-12T03:09:35Z"
   },
   "defillama_xstocks": {
    "ok": true,
-   "latency_ms": 21,
-   "fetched_at": "2026-09-12T02:39:07Z"
+   "latency_ms": 26,
+   "fetched_at": "2026-09-12T03:09:35Z"
   },
   "jito_kobe": {
    "ok": true,
    "latency_ms": 202,
-   "fetched_at": "2026-09-12T02:39:07Z"
+   "fetched_at": "2026-09-12T03:09:35Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1484,
-   "fetched_at": "2026-09-12T02:39:08Z"
+   "latency_ms": 1620,
+   "fetched_at": "2026-09-12T03:09:37Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 732,
-   "fetched_at": "2026-09-12T02:39:09Z"
+   "latency_ms": 753,
+   "fetched_at": "2026-09-12T03:09:37Z"
   },
   "solana_com_news": {
    "ok": true,
    "latency_ms": 63,
-   "fetched_at": "2026-09-12T02:39:09Z"
+   "fetched_at": "2026-09-12T03:09:37Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2499,
-   "fetched_at": "2026-09-12T02:39:12Z"
+   "latency_ms": 2310,
+   "fetched_at": "2026-09-12T03:09:40Z"
   },
   "solana_status_page": {
    "ok": true,
    "latency_ms": 356,
-   "fetched_at": "2026-09-12T02:39:12Z"
+   "fetched_at": "2026-09-12T03:09:40Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 1479,
-   "fetched_at": "2026-09-12T02:39:13Z"
+   "latency_ms": 2337,
+   "fetched_at": "2026-09-12T03:09:42Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 2598,
-   "fetched_at": "2026-09-12T02:39:16Z"
+   "latency_ms": 4128,
+   "fetched_at": "2026-09-12T03:09:47Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-08-31T19:54:50Z",
-   "slot": 443235762,
-   "tps": 4255.4,
-   "nonvote_tps": 2114.3,
-   "slot_ms": 314.5,
-   "delinquent_stake_pct": 0.01,
-   "price": 103.7,
-   "tvl": 5800802783,
-   "rev_usd": 858031,
-   "anomaly_level": "warning",
-   "levels": {
-    "price": "warning",
-    "tvl": "warning",
-    "market_move": "warning"
-   }
-  },
   {
    "ts": "2026-08-31T19:55:48Z",
    "slot": 443235948,
@@ -13924,6 +13947,20 @@
    "price": 101.77,
    "tvl": 5906330949,
    "rev_usd": 971589,
+   "anomaly_level": "ok",
+   "levels": {}
+  },
+  {
+   "ts": "2026-09-12T03:09:19Z",
+   "failed_sources": [],
+   "slot": 446323614,
+   "tps": 3803.9,
+   "nonvote_tps": 1689.7,
+   "slot_ms": 318.7,
+   "delinquent_stake_pct": 0.39,
+   "price": 101.87,
+   "tvl": 5903721918,
+   "rev_usd": 970656,
    "anomaly_level": "ok",
    "levels": {}
   }
