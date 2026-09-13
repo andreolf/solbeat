@@ -1,39 +1,39 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-09-13T06:57:58Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-09-13T07:28:22Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1033 is 89% complete (~4h remaining), with the cluster processing ~3,546 TPS (1,416 non-vote). Measured slot time is 316ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $843.7K of Real Economic Value over the last 24h ($586/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $101.15 (-0.5% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
+Epoch 1033 is 90% complete (~4h remaining), with the cluster processing ~3,355 TPS (1,206 non-vote). Measured slot time is 313ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $845.3K of Real Economic Value over the last 24h ($587/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $101.27 (-0.5% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 446,640,021 |
-| Block height | 424,682,718 |
-| Epoch | 1033 (88.89% complete, ~4.2h left) |
-| TPS (10 min avg) | 3,546 |
-| Non-vote TPS | 1,416 |
-| Slot time (measured) | 316.5 ms |
-| Est. daily transactions | 308,946,883 |
+| Slot | 446,645,842 |
+| Block height | 424,688,535 |
+| Epoch | 1033 (90.24% complete, ~3.7h left) |
+| TPS (10 min avg) | 3,355 |
+| Non-vote TPS | 1,206 |
+| Slot time (measured) | 313.2 ms |
+| Est. daily transactions | 307,389,449 |
 | Median priority fee | 0.0 µ-lamports/CU |
-| Avg fee per user tx (24h) | $0.0057 |
+| Avg fee per user tx (24h) | $0.0058 |
 | Node version | 4.3.0-rc.0 |
 
 ## Economic indicators
 
 | Metric | Value |
 |---|---|
-| SOL price | $101.15 (-0.5%/24h) |
+| SOL price | $101.27 (-0.5%/24h) |
 | Market cap | $59.4B |
-| **REV (24h)** | **$843.7K** (fees $708.8K + Jito tips $134.9K) |
+| **REV (24h)** | **$845.3K** (fees $708.8K + Jito tips $136.5K) |
 | Chain TVL | $5.9B |
 | Stablecoin supply | $16.5B |
 | DEX volume (24h) | $2.5B (-22.3%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 586,644,758 SOL |
+| Circulating supply | 586,644,742 SOL |
 | Inflation | 3.65% |
 
 Top DEXs by 24h volume: BisonFi ($471.7M), PumpSwap ($377.2M), Raydium AMM ($316.9M), Tessera V ($202.0M), Meteora DLMM ($161.1M)
@@ -70,39 +70,39 @@ All clear — no anomalies across monitored metrics.
 
 ## Solana Pulse — sentiment (experimental)
 
-**54/100 — Neutral** · composite of keyless signals (not financial advice)
+**55/100 — Neutral** · composite of keyless signals (not financial advice)
 
 | Component | Score |
 |---|---|
-| community | 69.2 |
+| community | 72.2 |
 | fear greed | 61 |
-| momentum | 33.6 |
+| momentum | 33.7 |
 | news | 50 |
 
-Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 69.23% · headline tone (48h): +0
+Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 72.22% · headline tone (48h): +0
 
 ## Ecosystem pulse
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 141 |
-| Raydium AMM v4 | 110 |
-| Orca Whirlpool | 141 |
-| Pump.fun | 129 |
-| Tensor | 0 |
-| Magic Eden v2 | 76 |
+| Jupiter v6 | 130 |
+| Raydium AMM v4 | 111 |
+| Orca Whirlpool | 130 |
+| Pump.fun | 143 |
+| Tensor | 1 |
+| Magic Eden v2 | 30 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
 |---|---|
 | Binance (hot) | 9,188,448 |
-| Binance (cold) | 1,876,647 |
+| Binance (cold) | 1,896,502 |
 | OKX (attributed) | 232,182 |
-| Coinbase (hot) | 22,944 |
+| Coinbase (hot) | 23,419 |
 
 ## Upgrades & news
 
-- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 316ms · proposal merged.
+- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 313ms · proposal merged.
 - **Alpenglow (SIMD-0236)**: consensus overhaul (~150ms finality) targeted for activation via Agave v4.3; BLS-key registration at 99.0% of stake.
 - **Agave**: latest release v4.2.2 · running 4.3.0-rc.0 on the polled node.
 - **Status page**: All Systems Operational (0 unresolved incidents).
@@ -120,21 +120,21 @@ Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 69.23% · headline t
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 8640 ms |
-| solana_rpc_validators | OK | 532 ms |
-| coingecko | OK | 1678 ms |
-| defillama_tvl | OK | 44 ms |
-| defillama_dex | OK | 1148 ms |
-| defillama_fees | OK | 805 ms |
-| defillama_stablecoins | OK | 63 ms |
-| defillama_xstocks | OK | 33 ms |
-| jito_kobe | OK | 259 ms |
-| stakewiz | OK | 1453 ms |
-| github | OK | 772 ms |
-| solana_com_news | OK | 55 ms |
-| sentiment | OK | 2225 ms |
-| solana_status_page | OK | 318 ms |
-| solana_rpc_whales | OK | 1484 ms |
-| solana_rpc_programs | OK | 2605 ms |
+| solana_rpc | OK | 8670 ms |
+| solana_rpc_validators | OK | 533 ms |
+| coingecko | OK | 1717 ms |
+| defillama_tvl | OK | 48 ms |
+| defillama_dex | OK | 1169 ms |
+| defillama_fees | OK | 842 ms |
+| defillama_stablecoins | OK | 54 ms |
+| defillama_xstocks | OK | 820 ms |
+| jito_kobe | OK | 250 ms |
+| stakewiz | OK | 1371 ms |
+| github | OK | 748 ms |
+| solana_com_news | OK | 152 ms |
+| sentiment | OK | 2443 ms |
+| solana_status_page | OK | 328 ms |
+| solana_rpc_whales | OK | 1434 ms |
+| solana_rpc_programs | OK | 2560 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
