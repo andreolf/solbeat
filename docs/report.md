@@ -1,42 +1,42 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-09-13T10:31:32Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-09-13T11:01:58Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1033 is 98% complete (~1h remaining), with the cluster processing ~3,422 TPS (1,296 non-vote). Measured slot time is 317ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $841.6K of Real Economic Value over the last 24h ($584/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $99.79 (-2.2% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
+Epoch 1033 is 100% complete (~0h remaining), with the cluster processing ~3,501 TPS (1,368 non-vote). Measured slot time is 315ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $842.1K of Real Economic Value over the last 24h ($585/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $99.53 (-2.6% / 24h). Decentralization: Nakamoto coefficient 18, 677 active validators, 0.4% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 446,680,669 |
-| Block height | 424,723,336 |
-| Epoch | 1033 (98.3% complete, ~0.6h left) |
-| TPS (10 min avg) | 3,422 |
-| Non-vote TPS | 1,296 |
-| Slot time (measured) | 317.2 ms |
-| Est. daily transactions | 299,318,055 |
+| Slot | 446,686,471 |
+| Block height | 424,729,134 |
+| Epoch | 1033 (99.65% complete, ~0.1h left) |
+| TPS (10 min avg) | 3,501 |
+| Non-vote TPS | 1,368 |
+| Slot time (measured) | 315.2 ms |
+| Est. daily transactions | 297,829,818 |
 | Median priority fee | 0.0 µ-lamports/CU |
-| Avg fee per user tx (24h) | $0.0062 |
+| Avg fee per user tx (24h) | $0.0063 |
 | Node version | 4.3.0-rc.0 |
 
 ## Economic indicators
 
 | Metric | Value |
 |---|---|
-| SOL price | $99.79 (-2.2%/24h) |
-| Market cap | $58.5B |
-| **REV (24h)** | **$841.6K** (fees $708.8K + Jito tips $132.8K) |
+| SOL price | $99.53 (-2.6%/24h) |
+| Market cap | $58.4B |
+| **REV (24h)** | **$842.1K** (fees $708.8K + Jito tips $133.3K) |
 | Chain TVL | $5.8B |
 | Stablecoin supply | $16.5B |
-| DEX volume (24h) | $2.5B (-22.3%/1d) |
+| DEX volume (24h) | $1.7B (-46.9%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 586,644,641 SOL |
+| Circulating supply | 586,644,625 SOL |
 | Inflation | 3.65% |
 
-Top DEXs by 24h volume: BisonFi ($471.7M), PumpSwap ($377.2M), Raydium AMM ($299.0M), Tessera V ($202.0M), Meteora DLMM ($161.1M)
+Top DEXs by 24h volume: PumpSwap ($377.2M), Raydium AMM ($292.7M), BisonFi ($162.7M), Meteora DLMM ($161.1M), Orca DEX ($94.6M)
 
 ## Validators
 
@@ -74,35 +74,35 @@ All clear — no anomalies across monitored metrics.
 
 | Component | Score |
 |---|---|
-| community | 71.9 |
+| community | 70.6 |
 | fear greed | 61 |
-| momentum | 31.4 |
-| news | 34 |
+| momentum | 27.3 |
+| news | 42 |
 
-Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 71.88% · headline tone (48h): -2
+Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 70.59% · headline tone (48h): -1
 
 ## Ecosystem pulse
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 132 |
-| Raydium AMM v4 | 132 |
-| Orca Whirlpool | 145 |
-| Pump.fun | 145 |
-| Tensor | 0 |
-| Magic Eden v2 | 37 |
+| Jupiter v6 | 140 |
+| Raydium AMM v4 | 140 |
+| Orca Whirlpool | 154 |
+| Pump.fun | 154 |
+| Tensor | 2 |
+| Magic Eden v2 | 43 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
 |---|---|
 | Binance (hot) | 9,188,448 |
-| Binance (cold) | 1,866,449 |
+| Binance (cold) | 1,865,747 |
 | OKX (attributed) | 232,182 |
-| Coinbase (hot) | 23,531 |
+| Coinbase (hot) | 23,474 |
 
 ## Upgrades & news
 
-- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 317ms · proposal merged.
+- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 315ms · proposal merged.
 - **Alpenglow (SIMD-0236)**: consensus overhaul (~150ms finality) targeted for activation via Agave v4.3; BLS-key registration at 99.0% of stake.
 - **Agave**: latest release v4.2.2 · running 4.3.0-rc.0 on the polled node.
 - **Status page**: All Systems Operational (0 unresolved incidents).
@@ -120,21 +120,21 @@ Crypto Fear & Greed: 61 (Greed) · CoinGecko votes bullish: 71.88% · headline t
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 8736 ms |
-| solana_rpc_validators | OK | 603 ms |
-| coingecko | OK | 1733 ms |
-| defillama_tvl | OK | 64 ms |
-| defillama_dex | OK | 1200 ms |
-| defillama_fees | OK | 1464 ms |
-| defillama_stablecoins | OK | 58 ms |
-| defillama_xstocks | OK | 800 ms |
-| jito_kobe | OK | 218 ms |
-| stakewiz | OK | 1412 ms |
-| github | OK | 736 ms |
-| solana_com_news | OK | 56 ms |
-| sentiment | OK | 2242 ms |
-| solana_status_page | OK | 347 ms |
-| solana_rpc_whales | OK | 1511 ms |
-| solana_rpc_programs | OK | 2699 ms |
+| solana_rpc | OK | 11021 ms |
+| solana_rpc_validators | OK | 1331 ms |
+| coingecko | OK | 1668 ms |
+| defillama_tvl | OK | 63 ms |
+| defillama_dex | OK | 5503 ms |
+| defillama_fees | OK | 1326 ms |
+| defillama_stablecoins | OK | 56 ms |
+| defillama_xstocks | OK | 22 ms |
+| jito_kobe | OK | 424 ms |
+| stakewiz | OK | 1405 ms |
+| github | OK | 781 ms |
+| solana_com_news | OK | 131 ms |
+| sentiment | OK | 2380 ms |
+| solana_status_page | OK | 335 ms |
+| solana_rpc_whales | OK | 2676 ms |
+| solana_rpc_programs | OK | 4736 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
