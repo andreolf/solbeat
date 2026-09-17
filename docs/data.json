@@ -1,220 +1,20 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-09-17T16:23:37Z",
+ "generated_at": "2026-09-17T16:54:03Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.3.0-rc.0",
-  "chain_time": "2026-09-17T16:23:14Z",
-  "chain_clock_drift_s": 24,
+  "chain_time": "2026-09-17T16:53:41Z",
+  "chain_clock_drift_s": 23,
   "epoch": 1036,
-  "slot": 447839744,
-  "block_height": 425880892,
-  "epoch_slot_index": 287744,
+  "slot": 447845476,
+  "block_height": 425886616,
+  "epoch_slot_index": 293476,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 66.61,
-  "tx_count_total": 549470837225,
+  "epoch_progress_pct": 67.93,
+  "tx_count_total": 549479081224,
   "perf_series": [
-   {
-    "tps": 4280.0,
-    "nonvote_tps": 2113.9,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4060.8,
-    "nonvote_tps": 1951.6,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4300.8,
-    "nonvote_tps": 2137.9,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4075.2,
-    "nonvote_tps": 1949.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4001.2,
-    "nonvote_tps": 1895.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4094.3,
-    "nonvote_tps": 1972.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 4166.1,
-    "nonvote_tps": 2043.3,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3997.7,
-    "nonvote_tps": 1844.5,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 3676.8,
-    "nonvote_tps": 1552.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3721.7,
-    "nonvote_tps": 1610.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3939.6,
-    "nonvote_tps": 1805.0,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3840.8,
-    "nonvote_tps": 1777.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3739.6,
-    "nonvote_tps": 1630.6,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4041.0,
-    "nonvote_tps": 1927.0,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3879.8,
-    "nonvote_tps": 1741.5,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3777.2,
-    "nonvote_tps": 1675.0,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3957.0,
-    "nonvote_tps": 1836.3,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4097.3,
-    "nonvote_tps": 1990.2,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4016.0,
-    "nonvote_tps": 1863.5,
-    "slot_ms": 310.9
-   },
-   {
-    "tps": 4105.5,
-    "nonvote_tps": 1977.7,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3867.3,
-    "nonvote_tps": 1730.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3795.6,
-    "nonvote_tps": 1645.0,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 4060.9,
-    "nonvote_tps": 1931.2,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 3931.4,
-    "nonvote_tps": 1810.4,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3851.5,
-    "nonvote_tps": 1728.1,
-    "slot_ms": 315.8
-   },
-   {
-    "tps": 3947.4,
-    "nonvote_tps": 1807.4,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3754.9,
-    "nonvote_tps": 1605.7,
-    "slot_ms": 312.5
-   },
-   {
-    "tps": 3964.2,
-    "nonvote_tps": 1860.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3976.9,
-    "nonvote_tps": 1831.7,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3851.5,
-    "nonvote_tps": 1743.4,
-    "slot_ms": 317.5
-   },
-   {
-    "tps": 4092.5,
-    "nonvote_tps": 1967.4,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 3707.5,
-    "nonvote_tps": 1628.5,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 4388.6,
-    "nonvote_tps": 2369.2,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 4338.4,
-    "nonvote_tps": 2207.5,
-    "slot_ms": 319.1
-   },
-   {
-    "tps": 4043.7,
-    "nonvote_tps": 1965.9,
-    "slot_ms": 322.6
-   },
-   {
-    "tps": 3998.9,
-    "nonvote_tps": 1905.5,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3930.1,
-    "nonvote_tps": 1791.1,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3844.2,
-    "nonvote_tps": 1711.3,
-    "slot_ms": 314.1
-   },
-   {
-    "tps": 3839.1,
-    "nonvote_tps": 1742.4,
-    "slot_ms": 320.9
-   },
-   {
-    "tps": 3923.8,
-    "nonvote_tps": 1779.0,
-    "slot_ms": 312.5
-   },
    {
     "tps": 3692.8,
     "nonvote_tps": 1579.0,
@@ -1339,15 +1139,165 @@
     "tps": 4201.6,
     "nonvote_tps": 2098.6,
     "slot_ms": 319.1
+   },
+   {
+    "tps": 4205.8,
+    "nonvote_tps": 2064.9,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 3774.9,
+    "nonvote_tps": 1642.8,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4403.9,
+    "nonvote_tps": 2287.7,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4217.2,
+    "nonvote_tps": 2054.8,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4002.8,
+    "nonvote_tps": 1881.5,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 3897.5,
+    "nonvote_tps": 1878.8,
+    "slot_ms": 335.2
+   },
+   {
+    "tps": 4126.4,
+    "nonvote_tps": 2010.4,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4442.1,
+    "nonvote_tps": 2335.4,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4352.1,
+    "nonvote_tps": 2230.9,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4039.4,
+    "nonvote_tps": 1947.3,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 4468.5,
+    "nonvote_tps": 2356.1,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4743.2,
+    "nonvote_tps": 2591.6,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4964.9,
+    "nonvote_tps": 2804.6,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4632.9,
+    "nonvote_tps": 2505.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4890.1,
+    "nonvote_tps": 2754.1,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4512.4,
+    "nonvote_tps": 2405.3,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4689.0,
+    "nonvote_tps": 2584.2,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4668.4,
+    "nonvote_tps": 2563.8,
+    "slot_ms": 320.9
+   },
+   {
+    "tps": 4905.2,
+    "nonvote_tps": 2738.6,
+    "slot_ms": 312.5
+   },
+   {
+    "tps": 4828.1,
+    "nonvote_tps": 2685.7,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4710.5,
+    "nonvote_tps": 2658.1,
+    "slot_ms": 327.9
+   },
+   {
+    "tps": 4752.4,
+    "nonvote_tps": 2635.2,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4484.8,
+    "nonvote_tps": 2401.6,
+    "slot_ms": 322.6
+   },
+   {
+    "tps": 4258.4,
+    "nonvote_tps": 2141.7,
+    "slot_ms": 319.1
+   },
+   {
+    "tps": 4808.9,
+    "nonvote_tps": 2666.7,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4798.8,
+    "nonvote_tps": 2666.1,
+    "slot_ms": 315.8
+   },
+   {
+    "tps": 4432.6,
+    "nonvote_tps": 2370.6,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4808.6,
+    "nonvote_tps": 2667.2,
+    "slot_ms": 317.5
+   },
+   {
+    "tps": 4569.0,
+    "nonvote_tps": 2454.3,
+    "slot_ms": 314.1
+   },
+   {
+    "tps": 4762.9,
+    "nonvote_tps": 2668.3,
+    "slot_ms": 320.9
    }
   ],
-  "tps": 4171.7,
-  "nonvote_tps": 2042.8,
-  "slot_time_ms": 316.8,
-  "est_daily_txs": 384940528,
-  "est_daily_nonvote_txs": 201573091,
-  "supply_total_sol": 634204443,
-  "supply_circulating_sol": 587212017,
+  "tps": 4638.7,
+  "nonvote_tps": 2533.0,
+  "slot_time_ms": 319.0,
+  "est_daily_txs": 391997613,
+  "est_daily_nonvote_txs": 208663657,
+  "supply_total_sol": 634204422,
+  "supply_circulating_sol": 587211995,
   "inflation_total_pct": 3.64,
   "priority_fee_median": 0.0,
   "priority_fee_p90": 0,
@@ -1437,10 +1387,10 @@
   ]
  },
  "market": {
-  "sol_price_usd": 101.08,
-  "sol_mcap_usd": 59366182384.311325,
-  "sol_vol24h_usd": 3863514755.83329,
-  "sol_change24h_pct": 3.88,
+  "sol_price_usd": 100.92,
+  "sol_mcap_usd": 59258707984.82743,
+  "sol_vol24h_usd": 3900207795.5502086,
+  "sol_change24h_pct": 3.83,
   "price_series_30d": [
    76.31,
    77.75,
@@ -1502,11 +1452,11 @@
    102.51,
    96.87,
    98.54,
-   101.08
+   100.89
   ]
  },
  "tvl": {
-  "tvl_usd": 5852505476,
+  "tvl_usd": 5854259654,
   "tvl_series": [
    4786615401,
    4923525700,
@@ -1597,7 +1547,7 @@
    5835724204,
    5918621616,
    5724674380,
-   5852505476
+   5854259654
   ]
  },
  "dex": {
@@ -1623,7 +1573,7 @@
    },
    {
     "name": "Raydium AMM",
-    "vol24h_usd": 239567878
+    "vol24h_usd": 246392081
    }
   ],
   "dex_series": [
@@ -1716,7 +1666,7 @@
    2530223237,
    2703297664,
    2799543795,
-   2824949037
+   2831683071
   ]
  },
  "fees": {
@@ -1925,11 +1875,11 @@
   "bls_stake_pct": 99.4,
   "geo": [
    {
-    "lat": 50.1,
-    "lon": 8.7,
+    "lat": 50.4,
+    "lon": 8.1,
     "stake": 17767427,
     "name": "Figment",
-    "loc": "Frankfurt am Main, Germany"
+    "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 50.1,
@@ -2555,11 +2505,11 @@
     "loc": "Stockholm, Sweden"
    },
    {
-    "lat": 45.5,
-    "lon": -73.6,
+    "lat": 43.7,
+    "lon": -79.4,
     "stake": 1188955,
     "name": "",
-    "loc": "Montreal, Canada"
+    "loc": "Toronto, Canada"
    },
    {
     "lat": 52.4,
@@ -2758,11 +2708,11 @@
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
+    "lat": 51.0,
+    "lon": 2.1,
     "stake": 752451,
     "name": "",
-    "loc": "Frankfurt am Main, Germany"
+    "loc": "Gravelines, France"
    },
    {
     "lat": 40.4,
@@ -3094,11 +3044,11 @@
     "loc": "Newark, United States"
    },
    {
-    "lat": 40.7,
-    "lon": -74.0,
+    "lat": 51.5,
+    "lon": -0.1,
     "stake": 437516,
     "name": "",
-    "loc": "New York City, United States"
+    "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
@@ -3241,11 +3191,11 @@
     "loc": "London, United Kingdom"
    },
    {
-    "lat": 50.4,
-    "lon": 8.1,
+    "lat": 52.4,
+    "lon": 4.9,
     "stake": 345290,
     "name": "",
-    "loc": "Limburg an der Lahn, Germany"
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
@@ -3493,11 +3443,11 @@
     "loc": "Hong Kong, Hong Kong"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
+    "lat": 45.5,
+    "lon": -73.6,
     "stake": 280030,
     "name": "",
-    "loc": "Frankfurt am Main, Germany"
+    "loc": "Montreal, Canada"
    },
    {
     "lat": 52.4,
@@ -4046,11 +3996,11 @@
     "loc": "Dublin, Ireland"
    },
    {
-    "lat": 45.5,
-    "lon": -73.6,
+    "lat": 43.7,
+    "lon": -79.4,
     "stake": 198437,
     "name": "Beachside",
-    "loc": "Montreal, Canada"
+    "loc": "Toronto, Canada"
    },
    {
     "lat": -23.5,
@@ -7350,11 +7300,11 @@
     "loc": "Limburg, Germany"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
+    "lat": 50.4,
+    "lon": 8.1,
     "stake": 2364,
     "name": "",
-    "loc": "Frankfurt am Main, Germany"
+    "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 37.4,
@@ -10251,19 +10201,19 @@
   "countries": [
    {
     "country": "Germany",
-    "stake_pct": 34.9
+    "stake_pct": 34.6
    },
    {
     "country": "Netherlands",
-    "stake_pct": 18.8
+    "stake_pct": 18.9
    },
    {
     "country": "United States",
-    "stake_pct": 15.2
+    "stake_pct": 15.1
    },
    {
     "country": "United Kingdom",
-    "stake_pct": 8.3
+    "stake_pct": 8.4
    },
    {
     "country": "Japan",
@@ -10400,11 +10350,11 @@
    51,
    50
   ],
-  "cg_votes_up_pct": 63.33,
-  "cg_watchlist_users": 1339217,
+  "cg_votes_up_pct": 61.29,
+  "cg_watchlist_users": 1339228,
   "headlines": [
    {
-    "title": "Kamino: Galaxy Curation USDC and USDT vaults go live on Solana - 17 Sep 2026 - tradingview.com",
+    "title": "Kamino: Galaxy Curation USDC and USDT vaults go live on Solana - 17 Sep 2026 - TradingView",
     "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPSF9PT1VSRWl2NS1aMW9Zdm5ERktZODlEaktRQmZ0OUFaNWRxVTNPYV9QRllpdXljcUdkWkFYNkRLeFJDLWtiZUJISzRHTnJIVHlQOXJJeUg0UnlkLTE3Si1UM0o4ZWFyT25BVkJFMmhPYTd0LWczWm1KOTZIN1NONEFfTVo1N2Qyel9QaHJlRkV5eWFQc3pzRWVNLVJMRXhZSjRLRXFHbGluR2ktcjRaYkNtX202WDhtdW50bHdaMnZBNnl0aloxU1Z4aWVjRHZZYnNZ?oc=5",
     "tone": 0
    },
@@ -10439,14 +10389,14 @@
     "tone": 0
    },
    {
-    "title": "Solana Drops 3.5% to $97 After the CLARITY Vote Falls Short. Is $94 the Floor? - Yahoo Finance",
-    "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQeEpxQWxIMTJNemJYWUs2anI3M0hPc1lOb2J6OXkydllMYjJGSTJwRjQxOHROZVJCdnYwSWtQUWt0SG1pQzBOQ3gwS29XdVE2X0hhY2hZX3ZIbmk2RmlDOXI5ekRoRVFjZzc2czM3ZTdyZ1NzZkdwaUpiS1cyWWJkUFlEWGcxUmZKWk9RRg?oc=5",
-    "tone": -1
-   },
-   {
     "title": "Best Crypto Presales on BNB Chain vs Solana Memecoin Launches - Cryptonews.net",
     "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9DemYwSDFlN3N4T0xwbzg0VjFSZERUS1dQZlJKVUF4d0NLbjQ0RzVXOG5xQ092aEJPRkd0Y1p2T21qaHgzU0Y4OXN3SGZMLWZULVhSOUNyUXkydlFp?oc=5",
     "tone": 0
+   },
+   {
+    "title": "Solana Drops 3.5% to $97 After the CLARITY Vote Falls Short. Is $94 the Floor? - Yahoo Finance",
+    "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQeEpxQWxIMTJNemJYWUs2anI3M0hPc1lOb2J6OXkydllMYjJGSTJwRjQxOHROZVJCdnYwSWtQUWt0SG1pQzBOQ3gwS29XdVE2X0hhY2hZX3ZIbmk2RmlDOXI5ekRoRVFjZzc2czM3ZTdyZ1NzZkdwaUpiS1cyWWJkUFlEWGcxUmZKWk9RRg?oc=5",
+    "tone": -1
    },
    {
     "title": "Solana (SOL) Price Prediction 2026, 2027-2030: Technical Outlook and Long-Term Forecast - Coinpedia",
@@ -10478,7 +10428,7 @@
   {
    "label": "Binance (cold)",
    "address": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
-   "balance_sol": 1984625.2
+   "balance_sol": 1964693.4
   },
   {
    "label": "OKX (attributed)",
@@ -10488,60 +10438,60 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 25000.5
+   "balance_sol": 24159.7
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 133.2,
+   "tx_per_min": 134.9,
    "newest_age_s": 11
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 122.4,
+   "tx_per_min": 134.9,
    "newest_age_s": 11
   },
   {
    "program": "Orca Whirlpool",
-   "tx_per_min": 133.2,
+   "tx_per_min": 134.9,
    "newest_age_s": 11
   },
   {
    "program": "Pump.fun",
-   "tx_per_min": 133.2,
-   "newest_age_s": 11
+   "tx_per_min": 148.3,
+   "newest_age_s": 10
   },
   {
    "program": "Tensor",
    "tx_per_min": 0.3,
-   "newest_age_s": 268
+   "newest_age_s": 44
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 40.3,
-   "newest_age_s": 11
+   "tx_per_min": 37.4,
+   "newest_age_s": 14
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.0,
-   "newest_age_s": 2637
+   "newest_age_s": 4457
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 139342,
-  "rev24h_usd": 889950,
-  "rev_per_min_usd": 618.02,
-  "avg_fee_per_tx_usd": 0.003724,
-  "epoch_eta_hours": 12.7,
+  "jito_tips24h_usd": 138162,
+  "rev24h_usd": 888770,
+  "rev_per_min_usd": 617.2,
+  "avg_fee_per_tx_usd": 0.003597,
+  "epoch_eta_hours": 12.3,
   "simd525_step_active": true,
   "pulse": {
    "score": 56,
    "label": "Neutral",
    "components": {
-    "community": 63.3,
+    "community": 61.3,
     "fear_greed": 50,
-    "momentum": 54.2,
+    "momentum": 54.0,
     "news": 58
    }
   }
@@ -10551,104 +10501,90 @@
   "incidents": [],
   "all_clear": true
  },
- "commentary": "Epoch 1036 is 67% complete (~13h remaining), with the cluster processing ~4,172 TPS (2,043 non-vote). Measured slot time is 317ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $890.0K of Real Economic Value over the last 24h ($618/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $101.08 (+3.9% / 24h). Decentralization: Nakamoto coefficient 18, 678 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
+ "commentary": "Epoch 1036 is 68% complete (~12h remaining), with the cluster processing ~4,639 TPS (2,533 non-vote). Measured slot time is 319ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $888.8K of Real Economic Value over the last 24h ($617/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $100.92 (+3.8% / 24h). Decentralization: Nakamoto coefficient 18, 678 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 7163,
-   "fetched_at": "2026-09-17T16:23:44Z"
+   "latency_ms": 7328,
+   "fetched_at": "2026-09-17T16:54:10Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 100,
-   "fetched_at": "2026-09-17T16:23:44Z"
+   "latency_ms": 95,
+   "fetched_at": "2026-09-17T16:54:10Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1714,
-   "fetched_at": "2026-09-17T16:23:46Z"
+   "latency_ms": 1597,
+   "fetched_at": "2026-09-17T16:54:12Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 70,
-   "fetched_at": "2026-09-17T16:23:46Z"
+   "latency_ms": 83,
+   "fetched_at": "2026-09-17T16:54:12Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 1266,
-   "fetched_at": "2026-09-17T16:23:47Z"
+   "latency_ms": 770,
+   "fetched_at": "2026-09-17T16:54:13Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 5070,
-   "fetched_at": "2026-09-17T16:23:52Z"
+   "latency_ms": 698,
+   "fetched_at": "2026-09-17T16:54:14Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 89,
-   "fetched_at": "2026-09-17T16:23:53Z"
+   "latency_ms": 101,
+   "fetched_at": "2026-09-17T16:54:14Z"
   },
   "defillama_xstocks": {
    "ok": true,
-   "latency_ms": 1216,
-   "fetched_at": "2026-09-17T16:23:54Z"
+   "latency_ms": 53,
+   "fetched_at": "2026-09-17T16:54:14Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 291,
-   "fetched_at": "2026-09-17T16:23:54Z"
+   "latency_ms": 357,
+   "fetched_at": "2026-09-17T16:54:14Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 748,
-   "fetched_at": "2026-09-17T16:23:55Z"
+   "latency_ms": 704,
+   "fetched_at": "2026-09-17T16:54:15Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 609,
-   "fetched_at": "2026-09-17T16:23:55Z"
+   "latency_ms": 617,
+   "fetched_at": "2026-09-17T16:54:15Z"
   },
   "solana_com_news": {
    "ok": true,
-   "latency_ms": 75,
-   "fetched_at": "2026-09-17T16:23:55Z"
+   "latency_ms": 83,
+   "fetched_at": "2026-09-17T16:54:15Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2219,
-   "fetched_at": "2026-09-17T16:23:58Z"
+   "latency_ms": 2045,
+   "fetched_at": "2026-09-17T16:54:18Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 340,
-   "fetched_at": "2026-09-17T16:23:58Z"
+   "latency_ms": 303,
+   "fetched_at": "2026-09-17T16:54:18Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 724,
-   "fetched_at": "2026-09-17T16:23:59Z"
+   "latency_ms": 799,
+   "fetched_at": "2026-09-17T16:54:19Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 1761,
-   "fetched_at": "2026-09-17T16:24:01Z"
+   "latency_ms": 1726,
+   "fetched_at": "2026-09-17T16:54:20Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-09-13T16:07:12Z",
-   "failed_sources": [],
-   "slot": 446744454,
-   "tps": 3833.6,
-   "nonvote_tps": 1698.5,
-   "slot_ms": 315.7,
-   "delinquent_stake_pct": 0.41,
-   "price": 100.4,
-   "tvl": 5831480865,
-   "rev_usd": 803386,
-   "anomaly_level": "ok",
-   "levels": {}
-  },
   {
    "ts": "2026-09-13T16:37:39Z",
    "failed_sources": [],
@@ -13486,6 +13422,20 @@
    "price": 101.08,
    "tvl": 5852505476,
    "rev_usd": 889950,
+   "anomaly_level": "ok",
+   "levels": {}
+  },
+  {
+   "ts": "2026-09-17T16:54:03Z",
+   "failed_sources": [],
+   "slot": 447845476,
+   "tps": 4638.7,
+   "nonvote_tps": 2533.0,
+   "slot_ms": 319.0,
+   "delinquent_stake_pct": 0.04,
+   "price": 100.92,
+   "tvl": 5854259654,
+   "rev_usd": 888770,
    "anomaly_level": "ok",
    "levels": {}
   }
