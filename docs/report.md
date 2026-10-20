@@ -1,23 +1,23 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-10-20T05:37:04Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-10-20T06:07:25Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1062 is 77% complete (~6h remaining), with the cluster processing ~4,679 TPS (1,627 non-vote). Measured slot time is 218ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $909.1K of Real Economic Value over the last 24h ($631/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $104.71 (-0.9% / 24h). Decentralization: Nakamoto coefficient 18, 667 active validators, 0.3% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
+Epoch 1062 is 79% complete (~6h remaining), with the cluster processing ~4,715 TPS (1,665 non-vote). Measured slot time is 218ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $908.5K of Real Economic Value over the last 24h ($631/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $104.29 (-1.3% / 24h). Decentralization: Nakamoto coefficient 18, 668 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 99% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 459,116,618 |
-| Block height | 437,151,721 |
-| Epoch | 1062 (76.99% complete, ~6.0h left) |
-| TPS (10 min avg) | 4,679 |
-| Non-vote TPS | 1,627 |
-| Slot time (measured) | 218.0 ms |
-| Est. daily transactions | 409,770,681 |
+| Slot | 459,124,972 |
+| Block height | 437,160,075 |
+| Epoch | 1062 (78.93% complete, ~5.5h left) |
+| TPS (10 min avg) | 4,715 |
+| Non-vote TPS | 1,665 |
+| Slot time (measured) | 218.2 ms |
+| Est. daily transactions | 409,738,518 |
 | Median priority fee | 0.0 µ-lamports/CU |
 | Avg fee per user tx (24h) | $0.0053 |
 | Node version | 4.3.2 |
@@ -26,27 +26,27 @@ Epoch 1062 is 77% complete (~6h remaining), with the cluster processing ~4,679 T
 
 | Metric | Value |
 |---|---|
-| SOL price | $104.71 (-0.9%/24h) |
-| Market cap | $61.7B |
-| **REV (24h)** | **$909.1K** (fees $781.5K + Jito tips $127.6K) |
+| SOL price | $104.29 (-1.3%/24h) |
+| Market cap | $61.5B |
+| **REV (24h)** | **$908.5K** (fees $781.5K + Jito tips $127.0K) |
 | Chain TVL | $5.9B |
 | Stablecoin supply | $15.8B |
 | DEX volume (24h) | $1.6B (-5.1%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 589,493,272 SOL |
+| Circulating supply | 589,493,249 SOL |
 | Inflation | 3.6% |
 
-Top DEXs by 24h volume: Orca DEX ($243.8M), BisonFi ($236.0M), Raydium AMM ($166.8M), PumpSwap ($142.1M), pump.fun ($140.8M)
+Top DEXs by 24h volume: Orca DEX ($243.8M), BisonFi ($236.0M), Raydium AMM ($164.8M), PumpSwap ($142.1M), pump.fun ($140.8M)
 
 ## Validators
 
 | Metric | Value |
 |---|---|
-| Active / delinquent | 667 / 12 |
-| Delinquent stake | 0.31% |
+| Active / delinquent | 668 / 11 |
+| Delinquent stake | 0.0% |
 | Nakamoto coefficient | 18 |
 | Top-10 stake share | 24.3% |
-| Avg / median commission | 13.2% / 5% |
+| Avg / median commission | 13.2% / 5.0% |
 | Alpenglow BLS-key readiness | 709 validators, 99.4% of stake |
 
 ### Top validators by stake
@@ -70,35 +70,35 @@ All clear — no anomalies across monitored metrics.
 
 ## Solana Pulse — sentiment (experimental)
 
-**53/100 — Neutral** · composite of keyless signals (not financial advice)
+**52/100 — Neutral** · composite of keyless signals (not financial advice)
 
 | Component | Score |
 |---|---|
-| community | 60.9 |
+| community | 59.1 |
 | fear greed | 55 |
-| momentum | 43.9 |
+| momentum | 43.5 |
 | news | 50 |
 
-Crypto Fear & Greed: 55 (Greed) · CoinGecko votes bullish: 60.87% · headline tone (48h): +0
+Crypto Fear & Greed: 55 (Greed) · CoinGecko votes bullish: 59.09% · headline tone (48h): +0
 
 ## Ecosystem pulse
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 179 |
-| Raydium AMM v4 | 179 |
-| Orca Whirlpool | 204 |
-| Pump.fun | 204 |
+| Jupiter v6 | 160 |
+| Raydium AMM v4 | 160 |
+| Orca Whirlpool | 160 |
+| Pump.fun | 179 |
 | Tensor | 0 |
-| Magic Eden v2 | 160 |
+| Magic Eden v2 | 59 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
 |---|---|
 | Binance (hot) | 11,175,972 |
-| Binance (cold) | 1,405,851 |
+| Binance (cold) | 1,402,225 |
 | OKX (attributed) | 330,778 |
-| Coinbase (hot) | 16,334 |
+| Coinbase (hot) | 16,316 |
 
 ## Upgrades & news
 
@@ -120,21 +120,21 @@ Crypto Fear & Greed: 55 (Greed) · CoinGecko votes bullish: 60.87% · headline t
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 7849 ms |
-| solana_rpc_validators | OK | 93 ms |
-| coingecko | OK | 1622 ms |
-| defillama_tvl | OK | 267 ms |
-| defillama_dex | OK | 783 ms |
-| defillama_fees | OK | 693 ms |
-| defillama_stablecoins | OK | 107 ms |
-| defillama_xstocks | OK | 35 ms |
-| jito_kobe | OK | 353 ms |
-| stakewiz | OK | 833 ms |
-| github | OK | 655 ms |
-| solana_com_news | OK | 107 ms |
-| sentiment | OK | 2046 ms |
-| solana_status_page | OK | 340 ms |
-| solana_rpc_whales | OK | 928 ms |
-| solana_rpc_programs | OK | 1445 ms |
+| solana_rpc | OK | 8126 ms |
+| solana_rpc_validators | OK | 107 ms |
+| coingecko | OK | 1664 ms |
+| defillama_tvl | OK | 77 ms |
+| defillama_dex | OK | 426 ms |
+| defillama_fees | OK | 691 ms |
+| defillama_stablecoins | OK | 186 ms |
+| defillama_xstocks | OK | 30 ms |
+| jito_kobe | OK | 373 ms |
+| stakewiz | OK | 950 ms |
+| github | OK | 638 ms |
+| solana_com_news | OK | 70 ms |
+| sentiment | OK | 2050 ms |
+| solana_status_page | OK | 197 ms |
+| solana_rpc_whales | OK | 996 ms |
+| solana_rpc_programs | OK | 1579 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
