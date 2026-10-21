@@ -87,12 +87,12 @@ Crypto Fear & Greed: 63 (Greed) · CoinGecko votes bullish: 91.67% · headline t
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 1,500 |
-| Raydium AMM v4 | 951 |
-| Orca Whirlpool | 1,500 |
+| Jupiter v6 | 1,376 |
+| Raydium AMM v4 | 485 |
+| Orca Whirlpool | 1,376 |
 | Pump.fun | 1,500 |
-| Tensor | 1 |
-| Magic Eden v2 | 35 |
+| Tensor | 0 |
+| Magic Eden v2 | 135 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |

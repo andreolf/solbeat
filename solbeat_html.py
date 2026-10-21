@@ -206,6 +206,10 @@ FAVICON = ('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" '
 
 TOWERBFT_FINALITY_SLOTS = 31.5
 TOWERBFT_CONF_SLOTS = 1.5
+# Alpenglow took over block-by-block at this published mainnet slot
+# (Oct 21 2026, epoch 1064) — history entries record slots, so the era
+# split is exact even for snapshots taken before we measured finality.
+ALPENGLOW_SLOT = 459_653_000
 
 
 def finality_chart(history, w=1120, h=230):
@@ -216,14 +220,20 @@ def finality_chart(history, w=1120, h=230):
     pts = []
     for e in history:
         sm = e.get("slot_ms")
+        post = (e.get("slot") or 0) >= ALPENGLOW_SLOT
         if e.get("final_s") is not None:
             pts.append({"ts": e.get("ts", ""), "conf": e.get("conf_s") or 0,
-                        "fin": e["final_s"], "measured": True})
+                        "fin": e["final_s"], "kind": "measured", "post": True})
+        elif sm and post:
+            # Alpenglow era before we measured: ~1 slot to finality.
+            pts.append({"ts": e.get("ts", ""), "conf": round(sm / 1000, 2),
+                        "fin": round(sm / 1000, 2),
+                        "kind": "implied (Alpenglow era)", "post": True})
         elif sm:
             pts.append({"ts": e.get("ts", ""),
                         "conf": round(TOWERBFT_CONF_SLOTS * sm / 1000, 2),
                         "fin": round(TOWERBFT_FINALITY_SLOTS * sm / 1000, 2),
-                        "measured": False})
+                        "kind": "implied (TowerBFT rule)", "post": False})
     if len(pts) < 2:
         return ""
     # Downsample to <=110 bars, averaging within chunks.
@@ -236,7 +246,8 @@ def finality_chart(history, w=1120, h=230):
             "ts": grp[0]["ts"],
             "conf": sum(p["conf"] for p in grp) / len(grp),
             "fin": sum(p["fin"] for p in grp) / len(grp),
-            "measured": any(p["measured"] for p in grp),
+            "post": any(p["post"] for p in grp),
+            "kind": grp[-1]["kind"],
         })
     padl, padr, padt, padb = 46, 10, 14, 26
     plot_w, plot_h = w - padl - padr, h - padt - padb
@@ -258,13 +269,13 @@ def finality_chart(history, w=1120, h=230):
              f'font-size="11" text-anchor="end">0</text>')
     marker_x = None
     for i, b in enumerate(bars):
-        if b["measured"] and marker_x is None:
+        if b["post"] and marker_x is None:
             marker_x = padl + i * bw
         x = padl + i * bw
         fh = plot_h * b["fin"] / ymax
         ch = plot_h * min(b["conf"], b["fin"]) / ymax
         day = b["ts"][:16].replace("T", " ")
-        kind = "measured" if b["measured"] else "implied (TowerBFT rule)"
+        kind = b["kind"]
         tip = esc(f'{day} UTC · confirmation {b["conf"]:.2f}s · '
                   f'finality {b["fin"]:.2f}s · {kind}')
         out += (f'<g class="fbar" data-tip="{tip}" tabindex="0">'
@@ -508,12 +519,14 @@ def render_html(snap):
     {B('solana_rpc', 'RPC · getSlot by commitment')}
     <span class="rangesel">{fin_btns}</span></div>
   {fin_panels}
-  <div class="muted small" style="margin-top:6px">bars before the Alpenglow
-    marker are protocol-implied (TowerBFT rooting depth: ~31.5 slots × that
-    snapshot's measured slot time — the canonical "~12.8s at 400ms slots"
-    figure, scaled); bars after it are measured live from RPC commitment
-    levels. Dashboards using shallower intervals (e.g. confirmed→finalized)
-    show smaller pre-Alpenglow values · click any bar for details</div>
+  <div class="muted small" style="margin-top:6px">Alpenglow marker = published
+    takeover slot 459,653,000 (Oct 21 2026, epoch 1064). Bars before it are
+    protocol-implied (TowerBFT rooting depth: ~31.5 slots × that snapshot's
+    measured slot time — the canonical "~12.8s at 400ms" figure, scaled);
+    after it, measured live from RPC commitment levels (~1 slot implied for
+    the brief gap before measuring began). Dashboards using shallower
+    intervals (e.g. confirmed→finalized) show smaller pre-Alpenglow values ·
+    click any bar for details</div>
 </section>"""
 
     # TPS chart ranges (performance samples are ~1/min).
