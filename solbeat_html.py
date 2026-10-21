@@ -48,6 +48,7 @@ SOURCE_LABELS = {
 }
 
 CHANGELOG = [
+    ("2026-10-22", "v1.6", "Alpenglow is live: measured confirmation & finality times (single-node batched getSlot by commitment), historical finality chart with the Alpenglow cliff (pre-upgrade bars protocol-implied from recorded slot times), dynamic upgrade card"),
     ("2026-08-31", "v1.5", "Solana Pulse sentiment composite (Fear & Greed, community votes, momentum, headline tone), status page + RSS, docs sidebar, anchor-scroll fix, scrollable changelog"),
     ("2026-08-31", "v1.3", "Real live mode: browser polls keyless RPC (slot re-sync, live TPS, ticking tx counter), `verify` self-audit command, SEO + llms.txt for agents"),
     ("2026-08-31", "v1.2", "Sources panel redesign, footer with changelog & resources, hero layout fix"),
@@ -199,6 +200,91 @@ FAVICON = ('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" '
            'fill="%230d0d0d"/><polyline points="4,17 11,17 13,10 17,23 20,7 22,17 28,17" '
            'fill="none" stroke="%233987e5" stroke-width="2.6" '
            'stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+TOWERBFT_FINALITY_SLOTS = 31.5
+TOWERBFT_CONF_SLOTS = 1.5
+
+
+def finality_chart(history, w=1120, h=230):
+    """Confirmation & finality over the full run history. Entries without a
+    measured value (pre-upgrade snapshots) are back-computed from TowerBFT's
+    consensus rules x that snapshot's measured slot time, and labeled implied.
+    A dashed marker sits at the first measured sub-2s finality: Alpenglow."""
+    pts = []
+    for e in history:
+        sm = e.get("slot_ms")
+        if e.get("final_s") is not None:
+            pts.append({"ts": e.get("ts", ""), "conf": e.get("conf_s") or 0,
+                        "fin": e["final_s"], "measured": True})
+        elif sm:
+            pts.append({"ts": e.get("ts", ""),
+                        "conf": round(TOWERBFT_CONF_SLOTS * sm / 1000, 2),
+                        "fin": round(TOWERBFT_FINALITY_SLOTS * sm / 1000, 2),
+                        "measured": False})
+    if len(pts) < 2:
+        return ""
+    # Downsample to <=110 bars, averaging within chunks.
+    target = 110
+    chunk = max(1, -(-len(pts) // target))
+    bars = []
+    for i in range(0, len(pts), chunk):
+        grp = pts[i:i + chunk]
+        bars.append({
+            "ts": grp[0]["ts"],
+            "conf": sum(p["conf"] for p in grp) / len(grp),
+            "fin": sum(p["fin"] for p in grp) / len(grp),
+            "measured": any(p["measured"] for p in grp),
+        })
+    padl, padr, padt, padb = 46, 10, 14, 26
+    plot_w, plot_h = w - padl - padr, h - padt - padb
+    ymax = max(max(b["fin"] for b in bars) * 1.15, 1.0)
+    bw = plot_w / len(bars)
+    gap = min(2, bw * 0.25)
+
+    grid, out = "", ""
+    step = 2 if ymax > 4 else 1
+    y = step
+    while y < ymax:
+        yy = padt + plot_h * (1 - y / ymax)
+        grid += (f'<line class="sv-grid" x1="{padl}" y1="{yy:.0f}" '
+                 f'x2="{w - padr}" y2="{yy:.0f}" stroke-width="1"/>'
+                 f'<text class="sv-muted" x="{padl - 8}" y="{yy + 4:.0f}" '
+                 f'font-size="11" text-anchor="end">{y:g}s</text>')
+        y += step
+    marker_x = None
+    for i, b in enumerate(bars):
+        if b["measured"] and marker_x is None:
+            marker_x = padl + i * bw
+        x = padl + i * bw
+        fh = plot_h * b["fin"] / ymax
+        ch = plot_h * min(b["conf"], b["fin"]) / ymax
+        day = b["ts"][:16].replace("T", " ")
+        kind = "measured" if b["measured"] else "implied (TowerBFT rule)"
+        tip = esc(f'{day} UTC · confirmation {b["conf"]:.2f}s · '
+                  f'finality {b["fin"]:.2f}s · {kind}')
+        out += (f'<g class="fbar" data-tip="{tip}" tabindex="0">'
+                f'<rect class="fc-fin" x="{x + gap/2:.1f}" '
+                f'y="{padt + plot_h - fh:.1f}" width="{max(bw - gap, 1):.1f}" '
+                f'height="{max(fh - ch, 0):.1f}" rx="1.5"/>'
+                f'<rect class="fc-conf" x="{x + gap/2:.1f}" '
+                f'y="{padt + plot_h - ch:.1f}" width="{max(bw - gap, 1):.1f}" '
+                f'height="{max(ch, 1):.1f}" rx="1.5"/></g>')
+    marker = ""
+    if marker_x is not None and marker_x > padl + 4:
+        marker = (f'<line class="ag-marker" x1="{marker_x:.0f}" y1="{padt - 4}" '
+                  f'x2="{marker_x:.0f}" y2="{padt + plot_h}" stroke-width="1.5"/>'
+                  f'<text x="{marker_x - 6:.0f}" y="{padt + 6}" font-size="11.5" '
+                  f'font-weight="650" text-anchor="end" fill="var(--series3)">'
+                  f'Alpenglow</text>')
+    lab_l = esc((bars[0]["ts"][:10]))
+    lab_r = esc((bars[-1]["ts"][:10]))
+    axis = (f'<text class="sv-muted" x="{padl}" y="{h - 6}" font-size="11">{lab_l}</text>'
+            f'<text class="sv-muted" x="{w - padr}" y="{h - 6}" font-size="11" '
+            f'text-anchor="end">{lab_r}</text>')
+    return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" '
+            f'aria-label="Confirmation and finality time history">'
+            f'{grid}{out}{marker}{axis}</svg>')
 
 
 def world_map(geo, w=1120, h=430):
@@ -394,6 +480,25 @@ def render_html(snap):
             when = t.strftime("%H:%M") + " UTC · "
         slot_titles.append(f"{when}{avg:.0f}ms avg slot time")
 
+    # Confirmation & finality chart over the full recorded history.
+    try:
+        full_hist = json.loads(Path("docs/history.json").read_text())
+    except Exception:
+        full_hist = snap.get("history") or []
+    fchart = finality_chart(full_hist)
+    finality_card = "" if not fchart else f"""
+<section class="card chartcard">
+  <div class="section-head"><h2>Confirmation &amp; finality time</h2>
+    <span class="legend"><span><i style="background:var(--accent)"></i>confirmation</span>
+      <span><i style="background:var(--series3)"></i>finality</span></span>
+    {B('solana_rpc', 'RPC · getSlot by commitment')}</div>
+  {fchart}
+  <div class="muted small" style="margin-top:6px">full run history · bars before
+    the Alpenglow marker are protocol-implied (TowerBFT: ~31.5 slots ×  that
+    snapshot's measured slot time); bars after it are measured live · click any
+    bar for details</div>
+</section>"""
+
     hero = f"""
 <section class="card" id="network">
   <div class="hero">
@@ -412,6 +517,8 @@ def render_html(snap):
         <div><span class="hs-label">non-vote TPS</span><span class="hs-value" id="v-nvtps">{fmt_num(net.get('nonvote_tps'))}</span></div>
         <div><span class="hs-label">slot time</span><span class="hs-value" id="v-slotms">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
           <span class="hs-note">{esc(simd_note)}</span></div>
+        <div><span class="hs-label">finality</span><span class="hs-value">{f"{net['finality_s']:.2f}s" if net.get('finality_s') is not None else "n/a"}</span>
+          <span class="hs-note">{"⚡ Alpenglow live — measured" if der.get('alpenglow_active') else ""}</span></div>
         <div><span class="hs-label">est. daily txs</span><span class="hs-value">{fmt_num(net.get('est_daily_txs'))}</span></div>
       </div>
     </div>
@@ -430,7 +537,8 @@ def render_html(snap):
 <section class="card chartcard">
   <div class="section-head"><h2>Transactions per second — last 12h</h2>{B('solana_rpc', 'RPC · getRecentPerformanceSamples')}</div>
   {big_chart(tps_series, label='TPS over the last 12 hours')}
-</section>"""
+</section>
+{finality_card}"""
 
     # ---- economic tiles
     rev_sub = (f'fees {fmt_usd(fee.get("chain_fees24h_usd"))} + Jito tips '
@@ -699,10 +807,9 @@ def render_html(snap):
     </div>
     <div class="upcard">
       <div class="up-name">Alpenglow · SIMD-0236</div>
-      <div class="up-status">{f"{bls_pct}% of stake BLS-ready" if bls_pct is not None else "pending"}</div>
-      <div class="muted small">Consensus overhaul (Votor + Rotor): ~100–150ms finality,
-        replacing TowerBFT. Approved by 98% of stake; activation via Agave v4.3,
-        targeted for this fall. BLS-key registration measured live from Stakewiz.</div>
+      <div class="up-status">{f'<span class="live-dot"></span> ACTIVE — finality {net["finality_s"]:.2f}s measured' if der.get("alpenglow_active") else (f"{bls_pct}% of stake BLS-ready" if bls_pct is not None else "pending")}</div>
+      <div class="muted small">Consensus overhaul (Votor + Rotor) replacing
+        TowerBFT{", live on mainnet since October 2026. Our own RPC measurement of sub-second finality (vs ~10s under TowerBFT) is on-chain proof — see the finality chart above" if der.get("alpenglow_active") else ": ~100–150ms finality. Approved by 98% of stake; activation via Agave v4.3"}.</div>
     </div>
     <div class="upcard">
       <div class="up-name">Agave client</div>
@@ -858,12 +965,14 @@ def render_html(snap):
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781; --grid:#2c2c2a;
   --accent:#3987e5; --land:#242423; --landline:#3a3a37; --pop:#232322;
   --meter-track:rgba(57,135,229,.16); --d-up:#0ca30c; --d-down:#e66767;
+  --series3:#199e70;
 }}
 html[data-theme="light"] {{
   --page:#f9f9f7; --surface:#fcfcfb; --border:rgba(11,11,11,.10);
   --ink:#0b0b0b; --ink2:#52514e; --muted:#898781; --grid:#e1e0d9;
   --accent:#2a78d6; --land:#eceae2; --landline:#d6d4ca; --pop:#ffffff;
   --meter-track:rgba(42,120,214,.16); --d-up:#006300; --d-down:#d03b3b;
+  --series3:#1baf7a;
 }}
 * {{ box-sizing:border-box; margin:0; padding:0; }}
 html {{ scroll-behavior:smooth; }}
@@ -886,6 +995,15 @@ section[id], header[id] {{ scroll-margin-top:118px; }}
 .vdot.big {{ stroke:var(--surface); stroke-width:1.5; }}
 .d-up {{ color:var(--d-up); }}
 .d-down {{ color:var(--d-down); }}
+.fc-conf {{ fill:var(--accent); }}
+.fc-fin {{ fill:var(--series3); }}
+.fbar {{ cursor:pointer; }}
+.fbar:hover rect {{ opacity:.8; }}
+.ag-marker {{ stroke:var(--series3); stroke-dasharray:4 4; }}
+.legend {{ display:inline-flex; gap:14px; align-items:center; font-size:12px;
+  color:var(--ink2); }}
+.legend i {{ width:9px; height:9px; border-radius:50%; display:inline-block;
+  margin-right:5px; }}
 .wrap {{ max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }}
 a {{ color:var(--accent); }}
 .card {{ background:var(--surface); border:1px solid var(--border);
@@ -1266,7 +1384,7 @@ if (orb) {{
   }});
 }}
 
-const TIP_SEL = '.strip i, .vdot';
+const TIP_SEL = '.strip i, .vdot, .fbar';
 document.addEventListener('pointerover', e => {{
   const t = e.target.closest(TIP_SEL);
   if (t) showTip(t); }});

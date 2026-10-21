@@ -111,6 +111,16 @@ def rpc(method, params=None):
     return out["result"]
 
 
+def rpc_batch(calls):
+    """One HTTP request -> one node. Essential when comparing commitment
+    levels: separate requests hit different load-balanced nodes."""
+    body = [{"jsonrpc": "2.0", "id": i, "method": m, "params": p or []}
+            for i, (m, p) in enumerate(calls)]
+    out = _http_json(CONFIG["rpc_url"], payload=body)
+    res = {r["id"]: r.get("result") for r in out}
+    return [res.get(i) for i in range(len(calls))]
+
+
 class SourceTracker:
     """Records per-source outcome, latency and freshness for the provenance panel."""
 
@@ -204,6 +214,31 @@ def collect_rpc_core():
                       if p["nonvote_tps"] is not None) * 60
         if nv_span:
             out["est_daily_nonvote_txs"] = int(nv_span * 86400 / span_s)
+    time.sleep(0.1)
+
+    # Confirmation & finality: processed-vs-confirmed/finalized slot lag,
+    # sampled thrice (median) against single nodes via batched calls.
+    lag_samples = []
+    for _ in range(3):
+        try:
+            p, c, f = rpc_batch([
+                ("getSlot", [{"commitment": "processed"}]),
+                ("getSlot", [{"commitment": "confirmed"}]),
+                ("getSlot", [{"commitment": "finalized"}]),
+            ])
+            if None not in (p, c, f):
+                lag_samples.append((max(p - c, 0), max(p - f, 0)))
+        except Exception:
+            pass
+        time.sleep(0.5)
+    if lag_samples:
+        sm = out.get("slot_time_ms") or 400
+        conf = statistics.median(s[0] for s in lag_samples)
+        fin = statistics.median(s[1] for s in lag_samples)
+        out["conf_lag_slots"] = conf
+        out["final_lag_slots"] = fin
+        out["confirmation_s"] = round(conf * sm / 1000, 2)
+        out["finality_s"] = round(fin * sm / 1000, 2)
     time.sleep(0.1)
 
     sup = rpc("getSupply", [{"excludeNonCirculatingAccountsList": True}])["value"]
@@ -343,6 +378,12 @@ def collect_xstocks():
     cur = (d.get("currentChainTvls") or {}).get("Solana")
     hist = ((d.get("chainTvls") or {}).get("Solana") or {}).get("tvl") or []
     series = [round(p["totalLiquidityUSD"]) for p in hist][-CONFIG["spark_points"]:]
+    if cur is None and not series:
+        # DeFiLlama delisted the xStocks protocol (Oct 2026): an HTTP 200 with
+        # empty data is still an outage — fail honestly so provenance and the
+        # status page show it, instead of a silent n/a. See issue #1 for the
+        # replacement source (Solana Data public feed).
+        raise RuntimeError("xstocks delisted from DeFiLlama — empty TVL payload")
     return {"xstocks_tvl_usd": round(cur) if cur else (series[-1] if series else None),
             "xstocks_series": series}
 
@@ -619,6 +660,10 @@ def derive(snap):
     # Live upgrade evidence: measured slot time vs SIMD-0525's 350ms step.
     if net.get("slot_time_ms"):
         d["simd525_step_active"] = net["slot_time_ms"] < 390
+    # Alpenglow evidence: TowerBFT finality is ~31 slots (~10s); Alpenglow
+    # finalizes in ~1 slot. Sub-2s measured finality = the upgrade is live.
+    if net.get("finality_s") is not None:
+        d["alpenglow_active"] = net["finality_s"] < 2.0
 
     # Solana Pulse: composite sentiment score (0-100) from keyless signals.
     sen = snap.get("sentiment") or {}
@@ -909,6 +954,8 @@ def history_entry(snap):
         "tps": net.get("tps"),
         "nonvote_tps": net.get("nonvote_tps"),
         "slot_ms": net.get("slot_time_ms"),
+        "conf_s": net.get("confirmation_s"),
+        "final_s": net.get("finality_s"),
         "delinquent_stake_pct": val.get("delinquent_stake_pct"),
         "price": mkt.get("sol_price_usd"),
         "tvl": (snap.get("tvl") or {}).get("tvl_usd"),
@@ -969,6 +1016,11 @@ def render_markdown(snap):
     a(f"| TPS (10 min avg) | {net.get('tps', 0):,.0f} |")
     a(f"| Non-vote TPS | {net.get('nonvote_tps') or 0:,.0f} |")
     a(f"| Slot time (measured) | {net.get('slot_time_ms')} ms |")
+    if net.get("finality_s") is not None:
+        a(f"| Confirmation time (measured) | {net.get('confirmation_s')} s |")
+        a(f"| Finality time (measured) | {net.get('finality_s')} s"
+          + (" — **Alpenglow active**" if der.get("alpenglow_active") else "")
+          + " |")
     a(f"| Est. daily transactions | {net.get('est_daily_txs', 0):,} |")
     a(f"| Median priority fee | {net.get('priority_fee_median')} µ-lamports/CU |")
     a(f"| Avg fee per user tx (24h) | ${der.get('avg_fee_per_tx_usd', 0) or 0:.4f} |")

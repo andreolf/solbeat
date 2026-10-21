@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.6 — 2026-10-22
+- **Alpenglow is live — and measured.** New confirmation & finality metrics via
+  single-node batched `getSlot` across commitment levels (separate requests hit
+  different load-balanced nodes; a JSON-RPC batch pins one node). Measured
+  finality ~0.3s vs ~10s under TowerBFT.
+- Historical "Confirmation & finality time" chart over the full run history:
+  pre-upgrade bars are protocol-implied (TowerBFT ~31.5 slots × each snapshot's
+  recorded slot time), post-upgrade bars measured live, with an Alpenglow
+  marker at the transition. Click any bar for details.
+- Finality stat in the hero; Alpenglow upgrade card now shows ACTIVE with the
+  live measurement; new fields in data.json, report.md and history.
+
+
 ## v1.5 — 2026-08-31
 - **Solana Pulse**: experimental sentiment composite (0-100) from keyless
   signals — crypto Fear & Greed index, CoinGecko community votes, price/DEX/TVL
