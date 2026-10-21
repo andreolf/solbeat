@@ -509,9 +509,11 @@ def render_html(snap):
     <span class="rangesel">{fin_btns}</span></div>
   {fin_panels}
   <div class="muted small" style="margin-top:6px">bars before the Alpenglow
-    marker are protocol-implied (TowerBFT: ~31.5 slots × that snapshot's
-    measured slot time); bars after it are measured live · click any bar for
-    details</div>
+    marker are protocol-implied (TowerBFT rooting depth: ~31.5 slots × that
+    snapshot's measured slot time — the canonical "~12.8s at 400ms slots"
+    figure, scaled); bars after it are measured live from RPC commitment
+    levels. Dashboards using shallower intervals (e.g. confirmed→finalized)
+    show smaller pre-Alpenglow values · click any bar for details</div>
 </section>"""
 
     # TPS chart ranges (performance samples are ~1/min).
