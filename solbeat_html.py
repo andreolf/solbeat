@@ -112,17 +112,19 @@ def big_chart(series, w=1120, h=150, color=BLUE, label=""):
         return ""
     lo, hi = min(pts), max(pts)
     span = (hi - lo) or 1
-    padl, padr, padt, padb = 8, 90, 12, 8
+    padl, padr, padt, padb = 52, 90, 12, 8
     step = (w - padl - padr) / (len(pts) - 1)
     coords = [(padl + i * step,
                h - padb - (v - lo) / span * (h - padt - padb))
               for i, v in enumerate(pts)]
     line = " ".join(f"{x:.1f},{y:.1f}" for x, y in coords)
     area = f"{padl},{h - padb} " + line + f" {coords[-1][0]:.1f},{h - padb}"
-    grid = "".join(
-        f'<line class="sv-grid" x1="{padl}" y1="{y}" x2="{w - padr}" y2="{y}" '
-        f'stroke-width="1"/>'
-        for y in (padt, (padt + h - padb) / 2, h - padb))
+    grid = ""
+    for y, v in ((padt, hi), ((padt + h - padb) / 2, (hi + lo) / 2), (h - padb, lo)):
+        grid += (f'<line class="sv-grid" x1="{padl}" y1="{y}" x2="{w - padr}" '
+                 f'y2="{y}" stroke-width="1"/>'
+                 f'<text class="sv-muted" x="{padl - 8}" y="{y + 4:.0f}" '
+                 f'font-size="11" text-anchor="end">{fmt_num(v)}</text>')
     ex, ey = coords[-1]
     ey_label = min(max(ey, padt + 10), h - padb - 2)
     return (
@@ -252,6 +254,8 @@ def finality_chart(history, w=1120, h=230):
                  f'<text class="sv-muted" x="{padl - 8}" y="{yy + 4:.0f}" '
                  f'font-size="11" text-anchor="end">{y:g}s</text>')
         y += step
+    grid += (f'<text class="sv-muted" x="{padl - 8}" y="{padt + plot_h + 4:.0f}" '
+             f'font-size="11" text-anchor="end">0</text>')
     marker_x = None
     for i, b in enumerate(bars):
         if b["measured"] and marker_x is None:
@@ -480,24 +484,48 @@ def render_html(snap):
             when = t.strftime("%H:%M") + " UTC · "
         slot_titles.append(f"{when}{avg:.0f}ms avg slot time")
 
-    # Confirmation & finality chart over the full recorded history.
+    # Confirmation & finality chart over the recorded history, with range
+    # selector (snapshots land ~every 30 min, so counts approximate time).
     try:
         full_hist = json.loads(Path("docs/history.json").read_text())
     except Exception:
         full_hist = snap.get("history") or []
-    fchart = finality_chart(full_hist)
-    finality_card = "" if not fchart else f"""
+    fin_panels, fin_btns = "", ""
+    for lab, n in (("24h", 48), ("7d", 336), ("30d", 1440), ("All", None)):
+        fc = finality_chart(full_hist if n is None else full_hist[-n:])
+        if not fc:
+            continue
+        active = n is None
+        fin_panels += (f'<div class="range-panel" data-range="{lab}"'
+                       f'{"" if active else " hidden"}>{fc}</div>')
+        fin_btns += (f'<button class="rbtn{" active" if active else ""}" '
+                     f'data-range="{lab}">{lab}</button>')
+    finality_card = "" if not fin_panels else f"""
 <section class="card chartcard">
   <div class="section-head"><h2>Confirmation &amp; finality time</h2>
     <span class="legend"><span><i style="background:var(--accent)"></i>confirmation</span>
       <span><i style="background:var(--series3)"></i>finality</span></span>
-    {B('solana_rpc', 'RPC · getSlot by commitment')}</div>
-  {fchart}
-  <div class="muted small" style="margin-top:6px">full run history · bars before
-    the Alpenglow marker are protocol-implied (TowerBFT: ~31.5 slots ×  that
-    snapshot's measured slot time); bars after it are measured live · click any
-    bar for details</div>
+    {B('solana_rpc', 'RPC · getSlot by commitment')}
+    <span class="rangesel">{fin_btns}</span></div>
+  {fin_panels}
+  <div class="muted small" style="margin-top:6px">bars before the Alpenglow
+    marker are protocol-implied (TowerBFT: ~31.5 slots × that snapshot's
+    measured slot time); bars after it are measured live · click any bar for
+    details</div>
 </section>"""
+
+    # TPS chart ranges (performance samples are ~1/min).
+    tps_panels, tps_btns = "", ""
+    for lab, n in (("1h", 60), ("3h", 180), ("6h", 360), ("12h", None)):
+        ser = tps_series if n is None else tps_series[-n:]
+        bc = big_chart(ser, label=f"TPS over the last {lab}")
+        if not bc:
+            continue
+        active = n is None
+        tps_panels += (f'<div class="range-panel" data-range="{lab}"'
+                       f'{"" if active else " hidden"}>{bc}</div>')
+        tps_btns += (f'<button class="rbtn{" active" if active else ""}" '
+                     f'data-range="{lab}">{lab}</button>')
 
     hero = f"""
 <section class="card" id="network">
@@ -535,8 +563,10 @@ def render_html(snap):
   </div>
 </section>
 <section class="card chartcard">
-  <div class="section-head"><h2>Transactions per second — last 12h</h2>{B('solana_rpc', 'RPC · getRecentPerformanceSamples')}</div>
-  {big_chart(tps_series, label='TPS over the last 12 hours')}
+  <div class="section-head"><h2>Transactions per second</h2>
+    {B('solana_rpc', 'RPC · getRecentPerformanceSamples')}
+    <span class="rangesel">{tps_btns}</span></div>
+  {tps_panels}
 </section>
 {finality_card}"""
 
@@ -1004,6 +1034,13 @@ section[id], header[id] {{ scroll-margin-top:118px; }}
   color:var(--ink2); }}
 .legend i {{ width:9px; height:9px; border-radius:50%; display:inline-block;
   margin-right:5px; }}
+.rangesel {{ margin-left:auto; display:inline-flex; gap:4px; }}
+.rbtn {{ background:none; border:1px solid var(--border); color:var(--muted);
+  border-radius:7px; padding:3px 10px; font-size:11.5px; cursor:pointer;
+  font-variant-numeric:tabular-nums; }}
+.rbtn:hover {{ color:var(--ink); }}
+.rbtn.active {{ color:var(--ink); border-color:var(--accent);
+  background:var(--meter-track); }}
 .wrap {{ max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }}
 a {{ color:var(--accent); }}
 .card {{ background:var(--surface); border:1px solid var(--border);
@@ -1383,6 +1420,17 @@ if (orb) {{
     if (moved) e.preventDefault();
   }});
 }}
+
+// Chart range selectors: show the matching pre-rendered panel.
+document.addEventListener('click', e => {{
+  const b = e.target.closest('.rbtn');
+  if (!b) return;
+  const card = b.closest('section');
+  card.querySelectorAll('.rbtn').forEach(x =>
+    x.classList.toggle('active', x === b));
+  card.querySelectorAll('.range-panel').forEach(p =>
+    p.hidden = p.dataset.range !== b.dataset.range);
+}});
 
 const TIP_SEL = '.strip i, .vdot, .fbar';
 document.addEventListener('pointerover', e => {{
