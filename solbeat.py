@@ -1245,7 +1245,14 @@ def cmd_verify():
         check("top-10 stake share arithmetic", abs(s - val["top10_stake_pct"]) < 0.5,
               f"sum of rows {s:.1f}% vs reported {val['top10_stake_pct']}%")
 
-    # 7. Epoch math.
+    # 7. Finality sanity: Alpenglow-era measurements must be ordered and fast.
+    if net.get("finality_s") is not None and (net.get("slot") or 0) >= 459_653_000:
+        fin, conf = net["finality_s"], net.get("confirmation_s") or 0
+        check("finality sanity (Alpenglow era)",
+              conf <= fin + 0.01 and fin < 2.0,
+              f"confirmation {conf}s <= finality {fin}s < 2s")
+
+    # 8. Epoch math.
     if net.get("epoch_slots_total"):
         pct = 100 * net["epoch_slot_index"] / net["epoch_slots_total"]
         check("epoch progress arithmetic", abs(pct - net["epoch_progress_pct"]) < 0.1,

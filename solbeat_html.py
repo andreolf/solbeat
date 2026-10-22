@@ -515,7 +515,7 @@ def render_html(snap):
 <section class="card chartcard">
   <div class="section-head"><h2>Confirmation &amp; finality time</h2>
     <span class="legend"><span><i style="background:var(--accent)"></i>confirmation</span>
-      <span><i style="background:var(--series3)"></i>finality</span></span>
+      <span><i style="background:var(--series3)"></i>finality (rest)</span></span>
     {B('solana_rpc', 'RPC · getSlot by commitment')}
     <span class="rangesel">{fin_btns}</span></div>
   {fin_panels}
@@ -561,7 +561,7 @@ def render_html(snap):
         <div><span class="hs-label">slot time</span><span class="hs-value" id="v-slotms">{f"{slot_ms:.0f}ms" if slot_ms else "n/a"}</span>
           <span class="hs-note">{esc(simd_note)}</span></div>
         <div><span class="hs-label">finality</span><span class="hs-value">{f"{net['finality_s']:.2f}s" if net.get('finality_s') is not None else "n/a"}</span>
-          <span class="hs-note">{"⚡ Alpenglow live — measured" if der.get('alpenglow_active') else ""}</span></div>
+          <span class="hs-note">{f"conf {net['confirmation_s']:.2f}s · ⚡ Alpenglow live" if der.get('alpenglow_active') and net.get('confirmation_s') is not None else ("⚡ Alpenglow live — measured" if der.get('alpenglow_active') else "")}</span></div>
         <div><span class="hs-label">est. daily txs</span><span class="hs-value">{fmt_num(net.get('est_daily_txs'))}</span></div>
       </div>
     </div>
