@@ -87,8 +87,8 @@ Crypto Fear & Greed: 68 (Greed) · CoinGecko votes bullish: 90.0% · headline to
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 778 |
-| Raydium AMM v4 | 382 |
+| Jupiter v6 | 1,379 |
+| Raydium AMM v4 | 948 |
 | Orca Whirlpool | 1,500 |
 | Pump.fun | 1,500 |
 | Tensor | 0 |

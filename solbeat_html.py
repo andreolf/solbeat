@@ -105,7 +105,8 @@ def sparkline(series, w=150, h=40, color=BLUE):
     )
 
 
-def big_chart(series, w=1120, h=150, color=BLUE, label=""):
+def big_chart(series, w=1120, h=150, color=BLUE, label="",
+              marker_idx=None, marker_label=""):
     """Main line chart (TPS over ~12h) with hairline grid + endpoint label."""
     pts = [v for v in series if v is not None]
     if len(pts) < 2:
@@ -125,12 +126,20 @@ def big_chart(series, w=1120, h=150, color=BLUE, label=""):
                  f'y2="{y}" stroke-width="1"/>'
                  f'<text class="sv-muted" x="{padl - 8}" y="{y + 4:.0f}" '
                  f'font-size="11" text-anchor="end">{fmt_num(v)}</text>')
+    marker = ""
+    if marker_idx is not None and 0 < marker_idx < len(pts):
+        mx = padl + marker_idx * step
+        marker = (f'<line class="ag-marker" x1="{mx:.0f}" y1="{padt - 2}" '
+                  f'x2="{mx:.0f}" y2="{h - padb}" stroke-width="1.5"/>'
+                  f'<text x="{mx - 6:.0f}" y="{padt + 9}" font-size="11.5" '
+                  f'font-weight="650" text-anchor="end" '
+                  f'fill="var(--series3)">{esc(marker_label)}</text>')
     ex, ey = coords[-1]
     ey_label = min(max(ey, padt + 10), h - padb - 2)
     return (
         f'<svg id="tpschart" width="100%" viewBox="0 0 {w} {h}" '
         f'preserveAspectRatio="none" role="img" aria-label="{esc(label)}">'
-        f'{grid}'
+        f'{grid}{marker}'
         f'<polygon class="sv-fill2" points="{area}"/>'
         f'<polyline class="sv-line" points="{line}" fill="none" '
         f'stroke-width="2" stroke-linejoin="round"/>'
@@ -529,14 +538,30 @@ def render_html(snap):
     click any bar for details</div>
 </section>"""
 
-    # TPS chart ranges (performance samples are ~1/min).
+    # TPS chart ranges: short windows from 1-min performance samples; longer
+    # windows from the 30-min snapshot history (with the Alpenglow marker,
+    # placed by the published takeover slot — total TPS halved there because
+    # consensus votes left blockspace).
     tps_panels, tps_btns = "", ""
-    for lab, n in (("1h", 60), ("3h", 180), ("6h", 360), ("12h", None)):
-        ser = tps_series if n is None else tps_series[-n:]
-        bc = big_chart(ser, label=f"TPS over the last {lab}")
+    tps_ranges = (("1h", "perf", 60), ("6h", "perf", 360), ("12h", "perf", None),
+                  ("24h", "hist", 48), ("30d", "hist", 1440))
+    for lab, src, n in tps_ranges:
+        marker_idx = None
+        if src == "perf":
+            ser = tps_series if n is None else tps_series[-n:]
+        else:
+            ents = [e for e in (full_hist[-n:] if n else full_hist)
+                    if e.get("tps") is not None]
+            ser = [e["tps"] for e in ents]
+            marker_idx = next((i for i, e in enumerate(ents)
+                               if (e.get("slot") or 0) >= ALPENGLOW_SLOT), None)
+            if marker_idx == 0:
+                marker_idx = None  # whole window is post-activation
+        bc = big_chart(ser, label=f"TPS over the last {lab}",
+                       marker_idx=marker_idx, marker_label="Alpenglow")
         if not bc:
             continue
-        active = n is None
+        active = (lab == "12h")
         tps_panels += (f'<div class="range-panel" data-range="{lab}"'
                        f'{"" if active else " hidden"}>{bc}</div>')
         tps_btns += (f'<button class="rbtn{" active" if active else ""}" '
