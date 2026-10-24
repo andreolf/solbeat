@@ -1,40 +1,19 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-10-24T17:58:15Z",
+ "generated_at": "2026-10-24T18:01:50Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.3.2",
-  "chain_time": "2026-10-24T17:58:07Z",
-  "chain_clock_drift_s": 9,
-  "epoch": 1066,
-  "slot": 460943570,
-  "block_height": 438973920,
-  "epoch_slot_index": 431570,
+  "chain_time": null,
+  "epoch": 1067,
+  "slot": 460944591,
+  "block_height": 438974870,
+  "epoch_slot_index": 591,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 99.9,
-  "tx_count_total": 563575736145,
+  "epoch_progress_pct": 0.14,
+  "tx_count_total": 563576044203,
   "perf_series": [
-   {
-    "tps": 1196.8,
-    "nonvote_tps": 1196.8,
-    "slot_ms": 209.1
-   },
-   {
-    "tps": 1197.6,
-    "nonvote_tps": 1197.6,
-    "slot_ms": 210.5
-   },
-   {
-    "tps": 1136.3,
-    "nonvote_tps": 1136.3,
-    "slot_ms": 208.3
-   },
-   {
-    "tps": 1425.7,
-    "nonvote_tps": 1425.7,
-    "slot_ms": 208.3
-   },
    {
     "tps": 1560.2,
     "nonvote_tps": 1560.2,
@@ -1719,101 +1698,116 @@
     "tps": 1400.3,
     "nonvote_tps": 1400.3,
     "slot_ms": 213.5
+   },
+   {
+    "tps": 1364.8,
+    "nonvote_tps": 1364.8,
+    "slot_ms": 212.0
+   },
+   {
+    "tps": 1408.8,
+    "nonvote_tps": 1408.8,
+    "slot_ms": 211.3
+   },
+   {
+    "tps": 1508.2,
+    "nonvote_tps": 1508.1,
+    "slot_ms": 211.3
    }
   ],
-  "tps": 1632.1,
-  "nonvote_tps": 1632.1,
-  "slot_time_ms": 211.7,
-  "est_daily_txs": 165886910,
-  "est_daily_nonvote_txs": 165886885,
+  "tps": 1522.7,
+  "nonvote_tps": 1522.7,
+  "slot_time_ms": 211.1,
+  "est_daily_txs": 166203385,
+  "est_daily_nonvote_txs": 166203334,
   "conf_lag_slots": 1,
   "final_lag_slots": 1,
   "confirmation_s": 0.21,
   "finality_s": 0.21,
-  "supply_total_sol": 636334744,
-  "supply_circulating_sol": 589708642,
+  "supply_total_sol": 636393913,
+  "supply_circulating_sol": 589762680,
   "inflation_total_pct": 3.59,
   "priority_fee_median": 0.0,
   "priority_fee_p90": 0,
-  "priority_fee_nonzero_share_pct": 0.0
+  "priority_fee_nonzero_share_pct": 0.7
  },
  "validators": {
-  "active_count": 664,
-  "delinquent_count": 14,
-  "delinquent_stake_pct": 0.07,
-  "total_stake_sol": 437116782,
+  "active_count": 665,
+  "delinquent_count": 25,
+  "delinquent_stake_pct": 0.05,
+  "total_stake_sol": 437190445,
   "nakamoto_coefficient": 18,
-  "top10_stake_pct": 24.4,
-  "top20_stake_pct": 35.6,
-  "avg_commission_pct": 13.2,
-  "median_commission_pct": 5.0,
+  "top10_stake_pct": 24.6,
+  "top20_stake_pct": 35.8,
+  "avg_commission_pct": 12.9,
+  "median_commission_pct": 5,
   "top_validators": [
    {
     "vote_pubkey": "CcaHc2L43ZWjwCHART3oZoJvHLAe9hzT2DJNUpBzoTN1",
-    "stake_sol": 17096230,
+    "stake_sol": 17099097,
     "stake_pct": 3.91,
     "commission_pct": 7,
     "delinquent": false
    },
    {
     "vote_pubkey": "he1iusunGwqrNtafDtLdhsUQDFvo13z9sUa36PauBtk",
-    "stake_sol": 16022778,
-    "stake_pct": 3.67,
+    "stake_sol": 16646106,
+    "stake_pct": 3.81,
     "commission_pct": 0,
     "delinquent": false
    },
    {
     "vote_pubkey": "3N7s9zXMZ4QqvHQR15t5GNHyqc89KduzMP7423eWiD5g",
-    "stake_sol": 12572396,
+    "stake_sol": 12588034,
     "stake_pct": 2.88,
     "commission_pct": 0,
     "delinquent": false
    },
    {
     "vote_pubkey": "8GbwASqdpw4dVcwbWUxbHXMrjyQx2aKkoBR5H1GJF8iD",
-    "stake_sol": 10882511,
+    "stake_sol": 10881415,
     "stake_pct": 2.49,
     "commission_pct": 0,
     "delinquent": false
    },
    {
     "vote_pubkey": "CatzoSMUkTRidT5DwBxAC2pEtnwMBTpkCepHkFgZDiqb",
-    "stake_sol": 9724046,
+    "stake_sol": 9721914,
     "stake_pct": 2.22,
     "commission_pct": 5,
     "delinquent": false
    },
    {
     "vote_pubkey": "51JBzSTU5rAM8gLAVQKgp4WoZerQcSqWC7BitBzgUNAm",
-    "stake_sol": 9478407,
+    "stake_sol": 9483244,
     "stake_pct": 2.17,
     "commission_pct": 10,
     "delinquent": false
    },
    {
     "vote_pubkey": "26pV97Ce83ZQ6Kz9XT4td8tdoUFPTng8Fb8gPyc53dJx",
-    "stake_sol": 9213418,
+    "stake_sol": 9216819,
     "stake_pct": 2.11,
     "commission_pct": 7,
     "delinquent": false
    },
    {
     "vote_pubkey": "9QU2QSxhb24FUX3Tu2FpczXjpK3VYrvRudywSZaM29mF",
-    "stake_sol": 7782539,
+    "stake_sol": 7785025,
     "stake_pct": 1.78,
     "commission_pct": 7,
     "delinquent": false
    },
    {
     "vote_pubkey": "CvSb7wdQAFpHuSpTYTJnX5SYH4hCfQ9VuGnqrKaKwycB",
-    "stake_sol": 7037301,
+    "stake_sol": 7038228,
     "stake_pct": 1.61,
     "commission_pct": 5,
     "delinquent": false
    },
    {
     "vote_pubkey": "DumiCKHVqoCQKD8roLApzR5Fit8qGV5fVQsJV9sTZk4a",
-    "stake_sol": 7003145,
+    "stake_sol": 7006652,
     "stake_pct": 1.6,
     "commission_pct": 0,
     "delinquent": false
@@ -1821,10 +1815,10 @@
   ]
  },
  "market": {
-  "sol_price_usd": 100.43,
-  "sol_mcap_usd": 59215252331.032486,
-  "sol_vol24h_usd": 2582601512.6627564,
-  "sol_change24h_pct": -3.77,
+  "sol_price_usd": 100.42,
+  "sol_mcap_usd": 59203763409.72641,
+  "sol_vol24h_usd": 2577098550.814088,
+  "sol_change24h_pct": -3.76,
   "price_series_30d": [
    96.58,
    102.05,
@@ -1886,11 +1880,11 @@
    106.94,
    103.54,
    102.74,
-   100.43
+   100.41
   ]
  },
  "tvl": {
-  "tvl_usd": 5682912991,
+  "tvl_usd": 5680546249,
   "tvl_series": [
    4903996652,
    4800328557,
@@ -1981,7 +1975,7 @@
    5965594197,
    5978249699,
    5861433343,
-   5682912991
+   5680546249
   ]
  },
  "dex": {
@@ -2300,204 +2294,204 @@
   "jito_epoch_tips_sol": 1405.0
  },
  "stakewiz": {
-  "stakewiz_validator_count": 687,
-  "bls_registered_count": 687,
+  "stakewiz_validator_count": 684,
+  "bls_registered_count": 684,
   "bls_registered_pct": 100.0,
   "bls_stake_pct": 100.0,
   "geo": [
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 17096229,
+    "stake": 17097117,
     "name": "Figment",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 16022777,
+    "stake": 16644111,
     "name": "Helius",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 38.9,
     "lon": -77.0,
-    "stake": 12572396,
+    "stake": 12586285,
     "name": "binance staking",
     "loc": "Washington, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 10882510,
+    "stake": 10880069,
     "name": "Bitwise Onchain Solutions",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 9724045,
+    "stake": 9720675,
     "name": "Jupiter",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 9478407,
+    "stake": 9482465,
     "name": "Kraken 2",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 9213418,
+    "stake": 9215764,
     "name": "Ledger by Figment",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 7782538,
+    "stake": 7784138,
     "name": "Everstake",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 7037301,
+    "stake": 7037399,
     "name": "Galaxy",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 7003144,
+    "stake": 7005695,
     "name": "Staking Facilities | MEV \ud83d\udd25",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 6607875,
+    "stake": 6608328,
     "name": "Forward Industries",
     "loc": "New York City, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 5967787,
+    "stake": 5972732,
     "name": "Kiln1",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 45.8,
     "lon": -119.7,
-    "stake": 5688479,
+    "stake": 5695980,
     "name": "Upbit Staking",
     "loc": "Boardman, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 4860226,
+    "stake": 4860092,
     "name": "P2P.org",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 4723673,
+    "stake": 4723670,
     "name": "",
     "loc": "New York City, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 4477328,
+    "stake": 4477329,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 4279522,
+    "stake": 4318473,
     "name": "OKX Earn",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 4120076,
+    "stake": 4111388,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 4069699,
+    "stake": 4064606,
     "name": "",
     "loc": "Dublin, Ireland"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 4069463,
+    "stake": 4063118,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 4042325,
+    "stake": 4043045,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 3951573,
+    "stake": 3952258,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 3948471,
+    "stake": 3949030,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 3832139,
+    "stake": 3830141,
     "name": "",
     "loc": "Newark, United States"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 3700813,
+    "stake": 3700847,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 3651308,
+    "stake": 3649596,
     "name": "Coinbase 04",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.0,
     "lon": 8.4,
-    "stake": 3634025,
+    "stake": 3604552,
     "name": "blueshift",
     "loc": "Russelsheim, Germany"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 3598006,
+    "stake": 3598007,
     "name": "",
     "loc": "Tokyo, Japan"
    },
@@ -2509,30 +2503,30 @@
     "loc": "Dublin, Ireland"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 3008745,
-    "name": "Bitwise Onchain Solutions | Jito BAM",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 2916667,
+    "stake": 2916668,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2817721,
+    "stake": 2817713,
     "name": "Drift",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2635374,
+    "stake": 2703804,
+    "name": "Bitwise Onchain Solutions | Jito BAM",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 2635393,
     "name": "Twinstake",
     "loc": "Amsterdam, Netherlands"
    },
@@ -2546,133 +2540,133 @@
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 2502415,
+    "stake": 2502416,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2502415,
+    "stake": 2502416,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 2502395,
+    "stake": 2502396,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 2502391,
+    "stake": 2502392,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2502383,
+    "stake": 2502384,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 2500000,
+    "stake": 2500001,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 2500000,
+    "stake": 2500001,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 2499999,
+    "stake": 2500000,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2499999,
+    "stake": 2500000,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 2499999,
+    "stake": 2500000,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 2409417,
+    "stake": 2409418,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2322629,
+    "stake": 2322630,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 48.9,
     "lon": 2.3,
-    "stake": 2264600,
+    "stake": 2264651,
     "name": "Anagram Staking",
     "loc": "Paris, France"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2216420,
+    "stake": 2216492,
     "name": "Luganodes",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 2182665,
+    "stake": 2182666,
     "name": "",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 2132216,
+    "stake": 2132254,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2083334,
+    "stake": 2083335,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2013800,
+    "stake": 2013801,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 2005488,
+    "stake": 2005489,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
@@ -2707,210 +2701,203 @@
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1875000,
+    "stake": 1875001,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 1842532,
+    "stake": 1842612,
     "name": "Alchemy",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1837000,
+    "stake": 1837001,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1835664,
+    "stake": 1835665,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1827559,
+    "stake": 1827872,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1810360,
+    "stake": 1810378,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1694051,
+    "stake": 1690932,
     "name": "Solflare",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1608462,
+    "stake": 1609860,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 1589100,
+    "stake": 1589179,
     "name": "Coinbase 02",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1573425,
+    "stake": 1573297,
     "name": "Bitwise Onchain Solutions 02",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1564978,
+    "stake": 1565630,
     "name": "Bybit Staking",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 51.9,
     "lon": 4.5,
-    "stake": 1560339,
+    "stake": 1560368,
     "name": "Nansen | Stake to Stack Points",
     "loc": "Rotterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1540008,
+    "stake": 1540009,
     "name": "StakeBowl",
     "loc": "Frankfurt am Main, Germany"
    },
    {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 1530373,
+    "name": "SOL Prime",
+    "loc": "Tokyo, Japan"
+   },
+   {
     "lat": 40.8,
     "lon": -74.1,
-    "stake": 1525170,
+    "stake": 1524430,
     "name": "JitoSOL Prime",
     "loc": "Secaucus, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1477479,
+    "stake": 1477517,
     "name": "Coinbase 03",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 1464459,
-    "name": "Coinbase 05",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 1443865,
+    "stake": 1443866,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1428153,
+    "stake": 1428189,
     "name": "",
     "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 1425691,
-    "name": "SOL Prime",
-    "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1418541,
+    "stake": 1418627,
     "name": "Solana Compass \ud83e\udded Solana For The People",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1395452,
+    "stake": 1395463,
     "name": "Blockman",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.4,
     "lon": 8.1,
-    "stake": 1380783,
+    "stake": 1380815,
     "name": "",
     "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1376736,
+    "stake": 1376766,
     "name": "Shinobi Systems \ud83d\ude80 stakeview.app",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 37.6,
     "lon": 127.0,
-    "stake": 1352006,
+    "stake": 1349007,
     "name": "",
     "loc": "Seoul, South Korea"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1340371,
+    "stake": 1340311,
     "name": "Haus \u2013 Best APY & No Fees",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1330086,
+    "stake": 1329737,
     "name": "melea \ud83d\ude80 SOL \ud83e\udd112K",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1324631,
+    "stake": 1324632,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1324631,
+    "stake": 1324632,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 1265524,
+    "stake": 1265525,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1251434,
+    "stake": 1251435,
     "name": "",
     "loc": "Siauliai, Lithuania"
    },
@@ -2924,91 +2911,91 @@
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 1235557,
+    "stake": 1235622,
     "name": "PoH PoS",
     "loc": "Chicago, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1231746,
+    "stake": 1231749,
     "name": "Temporal Emerald",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 1207979,
+    "stake": 1207980,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 1195013,
-    "name": "Solana Validator",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 1192708,
+    "stake": 1192629,
     "name": "Watchtower",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1187036,
+    "stake": 1186920,
     "name": "Blockdaemon \ud83e\uddf1\ud83d\udc7f Validator",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 1183027,
+    "name": "Solana Validator",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1147491,
+    "stake": 1147519,
     "name": "Quatro",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 1143919,
+    "stake": 1143940,
     "name": "",
     "loc": "Los Angeles, United States"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1136805,
+    "stake": 1136806,
     "name": "Bella2.0",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1102450,
+    "stake": 1102453,
     "name": "Flash",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1065055,
+    "stake": 1065316,
     "name": "Kiln2",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 1061259,
+    "stake": 1061263,
     "name": "Hamsa",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 40.4,
     "lon": -80.0,
-    "stake": 1039473,
+    "stake": 1039474,
     "name": "",
     "loc": "Pittsburgh, United States"
    },
@@ -3017,6 +3004,13 @@
     "lon": 4.9,
     "stake": 1038915,
     "name": "Certora Validator",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 1016984,
+    "name": "Coinbase 05",
     "loc": "Amsterdam, Netherlands"
    },
    {
@@ -3029,23 +3023,30 @@
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 1007863,
+    "stake": 1007867,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 1006663,
+    "stake": 1006680,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 1004420,
+    "stake": 1004555,
     "name": "Overclock",
     "loc": "New York City, United States"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 1002190,
+    "name": "Pumpkin's Pool \u2764\ufe0f",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 55.9,
@@ -3057,77 +3058,70 @@
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 1001801,
-    "name": "Pumpkin's Pool \u2764\ufe0f",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 922095,
+    "stake": 922102,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 906786,
+    "stake": 906904,
     "name": "AG 0% fee + ALL MEV profit share",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 906741,
+    "stake": 906847,
     "name": "Ha1iad3",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 897493,
+    "stake": 897502,
     "name": "AiDoL",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 887298,
+    "stake": 887300,
     "name": "MAVAN",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 844754,
+    "stake": 844230,
     "name": "Trust Nodes",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 831650,
+    "stake": 831672,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 51.0,
     "lon": 2.1,
-    "stake": 821408,
+    "stake": 821422,
     "name": "",
     "loc": "Gravelines, France"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 819162,
+    "stake": 819269,
     "name": "Cavey Cool",
     "loc": "Newark, United States"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 815604,
+    "stake": 815718,
     "name": "",
     "loc": "Newark, United States"
    },
@@ -3141,21 +3135,21 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 800876,
+    "stake": 800937,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 797849,
+    "stake": 798498,
     "name": "Gemini",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 793913,
+    "stake": 793930,
     "name": "",
     "loc": "Dublin, Ireland"
    },
@@ -3169,156 +3163,170 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 769998,
+    "stake": 770008,
     "name": "Alpha Pro | High APY\ud83d\ude80 100% Reliable \u2b50 VI",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 767998,
+    "stake": 757974,
     "name": "Allnodes\u00a0\u26a1\ufe0f 0% fee",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 751481,
+    "stake": 751590,
     "name": "Sygnum Validators",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 32.8,
     "lon": -96.8,
-    "stake": 743095,
+    "stake": 743900,
     "name": "Solana Mobile Validator",
     "loc": "Dallas, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 739786,
+    "stake": 739894,
     "name": "Anchorage Digital",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 731615,
-    "name": "Hello Moon",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 695694,
+    "stake": 695697,
     "name": "Gate Earn",
     "loc": "Chicago, United States"
    },
    {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 663989,
+    "stake": 663587,
     "name": "Ghost",
     "loc": "Ogden, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 661009,
+    "stake": 661011,
     "name": "Coinbase",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 649246,
+    "stake": 649585,
     "name": "Quicknode",
     "loc": "New York City, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 633154,
-    "name": "Solana Beach Validator",
+    "stake": 647529,
+    "name": "Hello Moon",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 630715,
-    "name": "validator.com",
+    "stake": 632944,
+    "name": "Solana Beach Validator",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 615211,
+    "stake": 630255,
     "name": "Leapfrog Systems \ud83d\udc8e No Fees",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 613956,
+    "stake": 622428,
+    "name": "validator.com",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 606040,
+    "name": "Orangefin by SOL Strategies",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 603306,
     "name": "Blueprint",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 606156,
-    "name": "Orangefin by SOL Strategies",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 597228,
+    "stake": 597864,
     "name": "Ledger by Bitwise",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 590028,
+    "stake": 589845,
     "name": "Backpack",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 587933,
+    "stake": 587934,
     "name": "Bitcoin Suisse",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 581382,
+    "stake": 581525,
     "name": "Exo Tech",
     "loc": "Chicago, United States"
    },
    {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 557163,
-    "name": "Bitget Wallet",
-    "loc": "Tokyo, Japan"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 558619,
+    "name": "Dawn Labs",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 551315,
+    "stake": 551422,
     "name": "GREED Academy - funding education",
     "loc": "Singapore, Singapore"
    },
    {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 549665,
+    "name": "Bitget Wallet",
+    "loc": "Tokyo, Japan"
+   },
+   {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 548951,
+    "stake": 549095,
     "name": "Chainflow",
     "loc": "Stockholm, Sweden"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 543385,
+    "name": "\ud83c\udf38 SOLGirl MEV \u26a1\ufe0f\ud83d\udc69\u200d\ud83d\udcbb",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
@@ -3330,14 +3338,7 @@
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 537610,
-    "name": "\ud83c\udf38 SOLGirl MEV \u26a1\ufe0f\ud83d\udc69\u200d\ud83d\udcbb",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 533547,
+    "stake": 533440,
     "name": "Velox Validator",
     "loc": "Amsterdam, Netherlands"
    },
@@ -3358,98 +3359,91 @@
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 519751,
+    "stake": 519753,
     "name": "",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 516586,
+    "stake": 516589,
     "name": "RockawayX Firedancer",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 510344,
+    "stake": 510346,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 25.8,
     "lon": -80.2,
-    "stake": 507287,
+    "stake": 507809,
     "name": "stakefish \ud83d\udc1f",
     "loc": "Miami, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 503300,
+    "stake": 503326,
     "name": "Cogent \u2699\ufe0f  by SOL Strategies",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 499787,
+    "stake": 499793,
     "name": "",
     "loc": "New York City, United States"
    },
    {
     "lat": 50.4,
     "lon": 8.1,
-    "stake": 496118,
+    "stake": 496233,
     "name": "Calypso",
     "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 488299,
+    "stake": 488300,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 48.1,
     "lon": 17.1,
-    "stake": 486295,
+    "stake": 486314,
     "name": "Stardust Staking - 0% fee forever + MEV ",
     "loc": "Bratislava, Slovakia"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 475558,
-    "name": "Dawn Labs",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 474456,
+    "stake": 474557,
     "name": "Moise",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 471424,
+    "stake": 472408,
     "name": "Hylo",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 467893,
+    "stake": 468173,
     "name": "Sol Val - 0% Fee/MEV | 50% Block Rewards",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 450000,
+    "stake": 450001,
     "name": "",
     "loc": "Newark, United States"
    },
@@ -3463,7 +3457,7 @@
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 417970,
+    "stake": 417974,
     "name": "Laine \u2764\ufe0f  by SOL Strategies",
     "loc": "Amsterdam, Netherlands"
    },
@@ -3477,28 +3471,21 @@
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 411091,
+    "stake": 411099,
     "name": "",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 402356,
+    "stake": 402816,
     "name": "Validator 1",
     "loc": "Singapore, Singapore"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 399259,
-    "name": "",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 398661,
+    "stake": 398752,
     "name": "Chainode Tech & MEV(0% Fee)",
     "loc": "Siauliai, Lithuania"
    },
@@ -3512,7 +3499,7 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 390467,
+    "stake": 390673,
     "name": "Lion3d | 0% Forever + Block Rewards Shar",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -3526,105 +3513,112 @@
    {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 386095,
+    "stake": 386571,
     "name": "StakeCraft",
     "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 380939,
+    "stake": 381221,
     "name": "Stakin by The Tie",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 376629,
+    "stake": 376647,
     "name": "Asymmetric Research",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.4,
     "lon": 8.1,
-    "stake": 376531,
+    "stake": 376533,
     "name": "",
     "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 373290,
+    "stake": 373439,
     "name": "Aursen",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 363517,
+    "stake": 364252,
     "name": "Phantom Validator",
     "loc": "Newark, United States"
    },
    {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 364081,
+    "name": "",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 361490,
+    "stake": 361491,
     "name": "Maera",
     "loc": "Tokyo, Japan"
    },
    {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 354385,
+    "name": "Jito2 (Experimental)",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
     "lat": 30.4,
     "lon": -91.2,
-    "stake": 359149,
+    "stake": 353864,
     "name": "ProStaking",
     "loc": "Baton Rouge, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 354370,
-    "name": "Jito2 (Experimental)",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 352767,
+    "stake": 352779,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 352202,
+    "stake": 351994,
     "name": "Uphold",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 351476,
+    "stake": 351450,
     "name": "Raiku",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 350609,
+    "stake": 350651,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.5,
     "lon": -74.4,
-    "stake": 345790,
+    "stake": 342599,
     "name": "diman",
     "loc": "Piscataway, United States"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 342111,
+    "stake": 342155,
     "name": "",
     "loc": "Tokyo, Japan"
    },
@@ -3638,56 +3632,56 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 334886,
+    "stake": 335842,
     "name": "Hanabi Staking \ud83c\udf86 | Staking Champions | D",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 331336,
+    "stake": 331494,
     "name": "1dad | Solfege",
     "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 330439,
+    "stake": 330525,
     "name": "SolGuardian",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 327588,
+    "stake": 327593,
     "name": "Next Finance Tech",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 320686,
+    "stake": 320793,
     "name": "Appleyello",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 312784,
+    "stake": 312889,
     "name": "Validatore",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 310401,
+    "stake": 310416,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 43.7,
     "lon": -79.4,
-    "stake": 308898,
+    "stake": 309009,
     "name": "",
     "loc": "Toronto, Canada"
    },
@@ -3701,49 +3695,42 @@
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 308440,
+    "stake": 308483,
     "name": "",
     "loc": "New York City, United States"
    },
    {
     "lat": 48.6,
     "lon": 7.7,
-    "stake": 308358,
+    "stake": 308466,
     "name": "Ubik Capital - 0% Fee, MEV",
     "loc": "Strasbourg, France"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 303669,
+    "stake": 303784,
     "name": "SOL Strategies",
     "loc": "New York City, United States"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 303660,
-    "name": "Paragon",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 302065,
+    "stake": 302183,
     "name": "Tinydancer",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 302019,
+    "stake": 302023,
     "name": "",
     "loc": "Dublin, Ireland"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 301389,
+    "stake": 301428,
     "name": "Neumann",
     "loc": "Tokyo, Japan"
    },
@@ -3764,16 +3751,30 @@
    {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 300000,
+    "stake": 300001,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 40.7,
     "lon": -74.2,
-    "stake": 299997,
+    "stake": 299998,
     "name": "",
     "loc": "Newark, United States"
+   },
+   {
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 296463,
+    "name": "Adrastea Validator",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 296433,
+    "name": "Lantern",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 40.7,
@@ -3783,114 +3784,107 @@
     "loc": "New York City, United States"
    },
    {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 295106,
+    "name": "Digital Energy",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 295535,
+    "stake": 294251,
     "name": "LUX8 Validator",
     "loc": "Warsaw, Poland"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 294729,
-    "name": "Adrastea Validator",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 292848,
+    "stake": 292855,
     "name": "Astraeus",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 292583,
-    "name": "Digital Energy",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 290176,
+    "stake": 291930,
     "name": "Radiants",
     "loc": "Singapore, Singapore"
    },
    {
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 291362,
+    "name": "Paragon",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 285745,
+    "stake": 285746,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 284182,
-    "name": "Lantern",
-    "loc": "Singapore, Singapore"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 282574,
+    "stake": 282578,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 279238,
+    "stake": 279246,
     "name": "JM",
     "loc": "Warsaw, Poland"
    },
    {
-    "lat": 41.2,
-    "lon": -112.0,
-    "stake": 277888,
-    "name": "Solend",
-    "loc": "Ogden, United States"
-   },
-   {
-    "lat": 48.1,
-    "lon": 17.1,
-    "stake": 277481,
-    "name": "Spectrum Staking | 0% fees",
-    "loc": "Bratislava, Slovakia"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 276192,
+    "stake": 278050,
     "name": "gripto",
     "loc": "Frankfurt am Main, Germany"
    },
    {
+    "lat": 48.1,
+    "lon": 17.1,
+    "stake": 277946,
+    "name": "Spectrum Staking | 0% fees",
+    "loc": "Bratislava, Slovakia"
+   },
+   {
+    "lat": 41.2,
+    "lon": -112.0,
+    "stake": 277455,
+    "name": "Solend",
+    "loc": "Ogden, United States"
+   },
+   {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 275744,
+    "stake": 275758,
     "name": "Nodz",
     "loc": "Chicago, United States"
    },
    {
     "lat": 50.4,
     "lon": 8.1,
-    "stake": 275115,
+    "stake": 275222,
     "name": "S4Mar",
     "loc": "Limburg an der Lahn, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 274761,
+    "stake": 274868,
     "name": "Trillium",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 272026,
+    "stake": 271715,
     "name": "BULK",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -3909,67 +3903,67 @@
     "loc": "Limburg an der Lahn, Germany"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 266141,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 45.5,
     "lon": -73.6,
-    "stake": 265463,
+    "stake": 265474,
     "name": "",
     "loc": "Montreal, Canada"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 265297,
+    "stake": 265410,
     "name": "Lifetime 0% fee + full MEV payout | Alph",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 262993,
+    "stake": 264777,
     "name": "Grid Systems",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 262733,
-    "name": "Absolute Guard",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 262658,
+    "stake": 264445,
     "name": "Titan Analytics",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 261141,
-    "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 260258,
+    "stake": 260400,
     "name": "BONK",
     "loc": "New York City, United States"
    },
    {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 259950,
-    "name": "Block Parliament \ud83e\udd89",
-    "loc": "Los Angeles, United States"
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 259152,
+    "name": "SolStack by Corvus Labs",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 259148,
-    "name": "SolStack by Corvus Labs",
+    "stake": 259117,
+    "name": "Albert is Great",
     "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 257824,
+    "name": "4BLOCK 0% Fee + Jito All MEV",
+    "loc": "Los Angeles, United States"
    },
    {
     "lat": 52.4,
@@ -3981,42 +3975,63 @@
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 256898,
+    "stake": 256997,
     "name": "algo|stake",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 252544,
+    "stake": 254299,
     "name": "BrewlabsHQ",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 252236,
+    "name": "Absolute Guard",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 250514,
+    "name": "SolBlaze",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 250297,
+    "stake": 250328,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 249993,
+    "stake": 250099,
     "name": "stakeware.xyz | ferric",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 248315,
+    "name": "Block Parliament \ud83e\udd89",
+    "loc": "Los Angeles, United States"
+   },
+   {
     "lat": 50.0,
     "lon": 8.4,
-    "stake": 244807,
+    "stake": 245067,
     "name": "BLOCKSIZE",
     "loc": "Russelsheim, Germany"
    },
    {
     "lat": 48.1,
     "lon": 17.1,
-    "stake": 243665,
+    "stake": 243777,
     "name": "NuFi",
     "loc": "Bratislava, Slovakia"
    },
@@ -4030,329 +4045,336 @@
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 238941,
-    "name": "",
-    "loc": "London, United Kingdom"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 236328,
-    "name": "SolBlaze",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 235259,
-    "name": "huglester",
-    "loc": "Los Angeles, United States"
-   },
-   {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 234475,
-    "name": "4BLOCK 0% Fee + Jito All MEV",
-    "loc": "Los Angeles, United States"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 234442,
-    "name": "",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 234277,
-    "name": "Meria",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 233409,
-    "name": "Valigator Open",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 232467,
+    "stake": 243273,
     "name": "Anza",
     "loc": "London, United Kingdom"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 232061,
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 238949,
     "name": "",
-    "loc": "Amsterdam, Netherlands"
+    "loc": "London, United Kingdom"
+   },
+   {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 234917,
+    "name": "huglester",
+    "loc": "Los Angeles, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 228557,
-    "name": "Simpdigit",
+    "stake": 234815,
+    "name": "Meria",
     "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 234445,
+    "name": "",
+    "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 233517,
+    "name": "Valigator Open",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 232065,
+    "name": "",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 227431,
+    "stake": 229185,
     "name": "Unruggable",
     "loc": "Singapore, Singapore"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 228670,
+    "name": "Simpdigit",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 225636,
+    "stake": 227487,
     "name": "Pine Stake",
     "loc": "Sao Paulo, Brazil"
    },
    {
     "lat": 48.2,
     "lon": 16.4,
-    "stake": 225219,
+    "stake": 225319,
     "name": "Code-Breader",
     "loc": "Vienna, Austria"
    },
    {
     "lat": 51.8,
     "lon": 5.9,
-    "stake": 225197,
+    "stake": 225300,
     "name": "Staker Space",
     "loc": "Nijmegen, Netherlands"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 222056,
+    "stake": 224920,
     "name": "Pigs in Blankets",
     "loc": "London, United Kingdom"
    },
    {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 221904,
-    "name": "Y8 Crypto",
-    "loc": "London, United Kingdom"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 224898,
+    "name": "MonkeDAO",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 221736,
+    "stake": 223494,
     "name": "Tree Validator",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 40.7,
-    "lon": -74.0,
-    "stake": 221656,
-    "name": "0base.vc \ud83c\uddf0\ud83c\uddf7 | MEV \ud83d\udd25",
-    "loc": "New York City, United States"
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 222017,
+    "name": "Y8 Crypto",
+    "loc": "London, United Kingdom"
    },
    {
     "lat": 48.1,
     "lon": 11.6,
-    "stake": 221641,
+    "stake": 221747,
     "name": "SuperteamDE x Staking Facilities | Publi",
     "loc": "Munich, Germany"
    },
    {
+    "lat": 40.7,
+    "lon": -74.0,
+    "stake": 221734,
+    "name": "0base.vc \ud83c\uddf0\ud83c\uddf7 | MEV \ud83d\udd25",
+    "loc": "New York City, United States"
+   },
+   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 221546,
+    "stake": 221637,
     "name": "Tane",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 59.9,
     "lon": 10.7,
-    "stake": 220392,
+    "stake": 220543,
     "name": "nordstar \u2b50 reliable staking +MEV",
     "loc": "Oslo, Norway"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 219770,
+    "stake": 219876,
     "name": "",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 219376,
+    "stake": 219494,
     "name": "Michigan Blockchain",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 56.0,
     "lon": -3.2,
-    "stake": 218777,
+    "stake": 218639,
     "name": "Rustiq Technology",
     "loc": "Edinburgh, United Kingdom"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 217923,
+    "stake": 218073,
     "name": "Prompt Logic",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 61.2,
     "lon": -149.9,
-    "stake": 217465,
+    "stake": 217498,
     "name": "Yonta Labs - LST 0%Fee MEV -",
     "loc": "Anchorage, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 216308,
-    "name": "MonkeDAO",
+    "stake": 215218,
+    "name": "SolBrothers",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 214720,
+    "stake": 214819,
     "name": "MX Validator",
     "loc": "New York City, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 213259,
-    "name": "Puffin",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 51.9,
+    "lon": 4.5,
+    "stake": 212700,
+    "name": "Nordic Staking 0% fee top APY 3+ years",
+    "loc": "Rotterdam, Netherlands"
+   },
+   {
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 210905,
+    "name": "Project Super",
+    "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 51.9,
     "lon": 4.5,
-    "stake": 210740,
-    "name": "Nordic Staking 0% fee top APY 3+ years",
+    "stake": 210491,
+    "name": "Paws\ud83d\udc3e 0% Fee/MEV",
     "loc": "Rotterdam, Netherlands"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 210118,
+    "stake": 210223,
     "name": "\ud83d\udd25\ud83d\udc83\ud83c\uddf8\ud83c\uddec CeriumXYZ",
     "loc": "New York City, United States"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 209351,
-    "name": "Albert is Great",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 208834,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 208554,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 51.9,
-    "lon": 4.5,
-    "stake": 208515,
-    "name": "Paws\ud83d\udc3e 0% Fee/MEV",
-    "loc": "Rotterdam, Netherlands"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 208444,
-    "name": "STEAK.NET \ud83e\udd69",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 208143,
+    "stake": 209902,
     "name": "Rakurai | High TPS | High rewards",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 42.0,
     "lon": -88.0,
-    "stake": 207296,
+    "stake": 209053,
     "name": "Starke Finance",
     "loc": "Elk Grove, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 206741,
+    "stake": 208839,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 207973,
+    "name": "Sign Labs \ud83e\udd1f",
+    "loc": "Los Angeles, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 206849,
     "name": "11ama Validator",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 206094,
+    "stake": 206210,
     "name": "Solstice",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 203793,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 203750,
+    "stake": 205486,
     "name": "Axis",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 201804,
+    "stake": 205189,
+    "name": "Puffin",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 40.8,
+    "lon": -74.2,
+    "stake": 204953,
+    "name": "Orca",
+    "loc": "Nutley, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 203816,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 203550,
     "name": "anarcheuz",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 201764,
+    "stake": 203518,
     "name": "Bubbles",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 201700,
+    "stake": 201782,
     "name": "MARVEL+MEV!",
     "loc": "Frankfurt am Main, Germany"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 201492,
+    "name": "STEAK.NET \ud83e\udd69",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 51.9,
+    "lon": 4.5,
+    "stake": 200551,
+    "name": "Stronghold",
+    "loc": "Rotterdam, Netherlands"
+   },
+   {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 199797,
+    "stake": 199910,
     "name": "",
     "loc": "Ogden, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 198997,
+    "stake": 199102,
     "name": "Stake.org",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -4364,214 +4386,221 @@
     "loc": "Toronto, Canada"
    },
    {
-    "lat": 51.9,
-    "lon": 4.5,
-    "stake": 198004,
-    "name": "Stronghold",
-    "loc": "Rotterdam, Netherlands"
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 198557,
+    "name": "Decentra",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 198409,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.0,
     "lon": 2.1,
-    "stake": 197637,
+    "stake": 197752,
     "name": "",
     "loc": "Gravelines, France"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 196793,
-    "name": "A Unicorn Julia",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 196609,
-    "name": "Decentra",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 196241,
-    "name": "Windfall",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 52.2,
-    "lon": 21.0,
-    "stake": 196204,
-    "name": "\ud83e\uddd1\u200d\ud83c\udf73 Customized Rewards (5.38% APY)",
-    "loc": "Warsaw, Poland"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 194013,
-    "name": "Valid Blocks",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 193748,
-    "name": "myhauz",
-    "loc": "Los Angeles, United States"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 193531,
+    "stake": 197284,
     "name": "H2O Nodes\ud83d\udca7",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 193440,
-    "name": "fd1.zip \ud83d\udce6",
+    "stake": 196898,
+    "name": "A Unicorn Julia",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 193123,
+    "stake": 196342,
+    "name": "Windfall",
+    "loc": "Singapore, Singapore"
+   },
+   {
+    "lat": 52.2,
+    "lon": 21.0,
+    "stake": 196050,
+    "name": "\ud83e\uddd1\u200d\ud83c\udf73 Customized Rewards (5.38% APY)",
+    "loc": "Warsaw, Poland"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 195196,
+    "name": "fd1.zip \ud83d\udce6",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 193855,
+    "name": "myhauz",
+    "loc": "Los Angeles, United States"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 193234,
     "name": "Step Finance",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 192998,
+    "stake": 193001,
     "name": "7Zm1pE4FubFYZDyAQ5Labh3A4cxDcvve1s3WCRgE",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": -34.6,
-    "lon": -58.4,
-    "stake": 191912,
-    "name": "ReFi Hub",
-    "loc": "Buenos Aires, Argentina"
+    "lat": 43.7,
+    "lon": -79.4,
+    "stake": 192621,
+    "name": "Iggyz",
+    "loc": "Toronto, Canada"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 192073,
+    "name": "Daiko",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 191611,
+    "stake": 191727,
     "name": "Fidelity Center for Applied Technology (",
     "loc": "New York City, United States"
    },
    {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 191262,
+    "stake": 191353,
     "name": "Grassets Tech | Jito-BAM | IBRL",
     "loc": "Dublin, Ireland"
    },
    {
     "lat": 37.5,
     "lon": -6.0,
-    "stake": 190895,
+    "stake": 190880,
     "name": "Low Fee Validation TOP API \ud83d\udd25",
     "loc": "La Rinconada, Spain"
    },
    {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 190784,
+    "name": "THW Validator",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 190453,
+    "stake": 190574,
     "name": "MCF",
     "loc": "Tokyo, Japan"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 190350,
-    "name": "Daiko",
-    "loc": "Singapore, Singapore"
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 189099,
+    "name": "TruFin by Twinstake",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 189001,
+    "stake": 189063,
     "name": "P-OPS Team",
     "loc": "Chicago, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 188991,
-    "name": "TruFin by Twinstake",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 188790,
-    "name": "THW Validator",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 188514,
+    "stake": 188602,
     "name": "Vault",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 188381,
+    "stake": 188533,
     "name": "HAKUHODO KEY3",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 188351,
+    "stake": 188454,
     "name": "Allied Validator",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 48.6,
     "lon": 7.7,
-    "stake": 188101,
+    "stake": 188207,
     "name": "johndoe",
     "loc": "Strasbourg, France"
    },
    {
     "lat": 48.6,
     "lon": 7.7,
-    "stake": 187617,
+    "stake": 187722,
     "name": "maxfillipov",
     "loc": "Strasbourg, France"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 187647,
+    "name": "Valid Blocks",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 186881,
+    "name": "Phase Stake",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 186576,
+    "stake": 186616,
     "name": "ILY\u2661 Validator \u2795 Firedancer\ud83d\udd25 ||neochibi ",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 186231,
+    "stake": 186338,
     "name": "1000X.sh",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 186192,
-    "name": "SolBrothers",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 36.2,
     "lon": -115.1,
-    "stake": 185637,
+    "stake": 186284,
     "name": "Xandeum Labs low fee + MEV = \ud83d\udd25APY %",
     "loc": "Las Vegas, United States"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 186115,
+    "name": "LootGo",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 52.4,
@@ -4583,205 +4612,156 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 185036,
+    "stake": 185119,
     "name": "NTT DOCOMO GLOBAL",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 184760,
+    "stake": 184565,
+    "name": "Syncnode | 0% Fees  | Genesis Validator",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 51.9,
+    "lon": 4.5,
+    "stake": 184387,
+    "name": "CatalystX - Innovation OnChain",
+    "loc": "Rotterdam, Netherlands"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 183671,
     "name": "Block Logic +MEV +Triton",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 184460,
-    "name": "Syncnode | 0% Fees  | Genesis Validator",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 184388,
-    "name": "LootGo",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 51.9,
-    "lon": 4.5,
-    "stake": 184243,
-    "name": "CatalystX - Innovation OnChain",
-    "loc": "Rotterdam, Netherlands"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 184160,
-    "name": "Moonlet",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 40.8,
-    "lon": -74.2,
-    "stake": 183668,
-    "name": "Orca",
-    "loc": "Nutley, United States"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 182738,
+    "stake": 182849,
     "name": "WIZE Validator",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 182587,
-    "name": "Sign Labs \ud83e\udd1f",
-    "loc": "Los Angeles, United States"
-   },
-   {
-    "lat": 43.7,
-    "lon": -79.4,
-    "stake": 182100,
-    "name": "Iggyz",
-    "loc": "Toronto, Canada"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 181696,
-    "name": "Staking Fund",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 181289,
+    "stake": 182087,
     "name": "Vault X | 0% fee +MEV",
     "loc": "Dublin, Ireland"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 180784,
-    "name": "Solana Japan Validator\ud83c\uddef\ud83c\uddf5",
-    "loc": "Singapore, Singapore"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 181782,
+    "name": "Staking Fund",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 45.5,
     "lon": -73.6,
-    "stake": 180594,
+    "stake": 180705,
     "name": "some name",
     "loc": "Montreal, Canada"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 180482,
-    "name": "Phase Stake",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 179954,
+    "stake": 180310,
     "name": "ART3MIS.CLOUD \u2618\ufe0f",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 179241,
+    "name": "Solana Japan Validator\ud83c\uddef\ud83c\uddf5",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 176464,
+    "stake": 178857,
+    "name": "Moonlet",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 176588,
     "name": "StudentSOL",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 175567,
+    "stake": 175684,
     "name": "Hive Validator",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 175300,
-    "name": "GateOmega | SolCircl.app",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 175134,
-    "name": "Veyrstone",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 174293,
+    "stake": 175240,
     "name": "",
     "loc": "Ogden, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 173883,
-    "name": "Hypo Nyms",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 173658,
+    "stake": 174085,
     "name": "Theta",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 172704,
-    "name": "Pacific Meta",
+    "stake": 173992,
+    "name": "Hypo Nyms",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 44.4,
     "lon": 26.1,
-    "stake": 171767,
+    "stake": 173281,
     "name": "Coverlet+MEV | 0% ALL FEES \u2705",
     "loc": "Bucharest, Romania"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 172811,
+    "name": "Pacific Meta",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 171776,
+    "name": "GateOmega | SolCircl.app",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 52.5,
     "lon": 13.4,
-    "stake": 170739,
+    "stake": 170843,
     "name": "Neodyme",
     "loc": "Berlin, Germany"
    },
    {
     "lat": 49.6,
     "lon": 6.1,
-    "stake": 170013,
+    "stake": 170114,
     "name": "Stakeconomy \ud83d\ude80 Jito MEV + Triton.One",
     "loc": "Luxembourg, Luxembourg"
    },
    {
-    "lat": 59.3,
-    "lon": 18.1,
-    "stake": 169272,
-    "name": "",
-    "loc": "Stockholm, Sweden"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 168919,
-    "name": "JStaking: 0% fee \u00b7 top returns",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 41.9,
+    "lon": -87.7,
+    "stake": 169206,
+    "name": "LakeStake",
+    "loc": "Chicago, United States"
    },
    {
     "lat": 40.7,
@@ -4789,6 +4769,20 @@
     "stake": 168670,
     "name": "",
     "loc": "Newark, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 168306,
+    "name": "Veyrstone",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 59.3,
+    "lon": 18.1,
+    "stake": 168163,
+    "name": "",
+    "loc": "Stockholm, Sweden"
    },
    {
     "lat": 55.9,
@@ -4807,170 +4801,184 @@
    {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 167191,
+    "stake": 167137,
     "name": "Aurora Validator",
     "loc": "Warsaw, Poland"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 166524,
+    "stake": 166631,
     "name": "South",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 165980,
+    "stake": 166088,
     "name": "capy",
     "loc": "Sao Paulo, Brazil"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 165957,
-    "name": "Sol Hack3rs",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 41.9,
-    "lon": -87.7,
-    "stake": 165195,
-    "name": "LakeStake",
-    "loc": "Chicago, United States"
-   },
-   {
     "lat": 42.7,
     "lon": 23.3,
-    "stake": 164418,
+    "stake": 164866,
     "name": "LimeChain",
     "loc": "Sofia, Bulgaria"
    },
    {
     "lat": 40.8,
     "lon": -111.9,
-    "stake": 164360,
+    "stake": 164363,
     "name": "ParaFi Technologies",
     "loc": "Salt Lake City, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 163672,
+    "stake": 163776,
     "name": "GooseFX - 0% Fees",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 163547,
-    "name": "Project Super",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 162213,
+    "stake": 162216,
     "name": "Temporal Topaz",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 161947,
+    "stake": 161948,
     "name": "Dosirak \ud83c\uddf0\ud83c\uddf7",
     "loc": "London, United Kingdom"
    },
    {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 161387,
+    "stake": 161501,
     "name": "WEB34EVER \u221e POSTHUMAN",
     "loc": "Ogden, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 161235,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 161283,
+    "name": "Sol Hack3rs",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 51.5,
     "lon": -0.1,
-    "stake": 160849,
+    "stake": 160956,
     "name": "LunaNova",
     "loc": "London, United Kingdom"
    },
    {
-    "lat": 59.3,
-    "lon": 18.1,
-    "stake": 159744,
-    "name": "\u2b50StepByStep\u2b50 Jito BAM",
-    "loc": "Stockholm, Sweden"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 158095,
-    "name": "Stellium",
+    "stake": 160893,
+    "name": "JStaking: 0% fee \u00b7 top returns",
     "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": -34.6,
+    "lon": -58.4,
+    "stake": 159398,
+    "name": "ReFi Hub",
+    "loc": "Buenos Aires, Argentina"
    },
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 156909,
+    "stake": 159077,
     "name": "Jaguar",
     "loc": "Sao Paulo, Brazil"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 156630,
-    "name": "Lumos Maxima",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 156384,
-    "name": "Syndica",
-    "loc": "London, United Kingdom"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 156369,
+    "stake": 157057,
     "name": "Stakely | 0% fee",
     "loc": "Tokyo, Japan"
    },
    {
+    "lat": 48.6,
+    "lon": 7.7,
+    "stake": 156549,
+    "name": "polkachu.com",
+    "loc": "Strasbourg, France"
+   },
+   {
     "lat": 56.9,
     "lon": 24.1,
-    "stake": 155983,
+    "stake": 156432,
     "name": "nodtech",
     "loc": "Riga, Latvia"
    },
    {
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 156385,
+    "name": "Syndica",
+    "loc": "London, United Kingdom"
+   },
+   {
+    "lat": 59.9,
+    "lon": 30.3,
+    "stake": 155952,
+    "name": "Easytoken.me",
+    "loc": "Saint Petersburg, Russian Federation"
+   },
+   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 154593,
+    "stake": 155282,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 154714,
     "name": "BlueLotus \ud83d\udc69\u200d\ud83d\udcbb",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 50.7,
-    "lon": 3.2,
-    "stake": 152885,
-    "name": "HashKey Cloud",
-    "loc": "Wattrelos, France"
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 154154,
+    "name": "Nova Consortium",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 153836,
+    "name": "Magic Eden Validator",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 152709,
+    "stake": 153219,
     "name": "Solya",
     "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 50.7,
+    "lon": 3.2,
+    "stake": 152884,
+    "name": "HashKey Cloud",
+    "loc": "Wattrelos, France"
+   },
+   {
+    "lat": 37.3,
+    "lon": -121.9,
+    "stake": 152791,
+    "name": "Solid State Nodes",
+    "loc": "San Jose, United States"
    },
    {
     "lat": 59.3,
@@ -4980,242 +4988,207 @@
     "loc": "Stockholm, Sweden"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 152390,
-    "name": "Nova Consortium",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 152081,
-    "name": "Magic Eden Validator",
-    "loc": "Singapore, Singapore"
-   },
-   {
     "lat": 34.7,
     "lon": 135.5,
-    "stake": 151492,
+    "stake": 151604,
     "name": "vladika",
     "loc": "Osaka, Japan"
    },
    {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 151485,
-    "name": "Superteam Brazil",
-    "loc": "Sao Paulo, Brazil"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 150233,
+    "stake": 150685,
     "name": "CryptoVik",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 149011,
-    "name": "Pebble",
+    "stake": 150461,
+    "name": "Stellium",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 148825,
+    "stake": 148932,
     "name": "Solar | Empowering Youth | 0% Fee + MEV ",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 146818,
-    "name": "",
-    "loc": "Amsterdam, Netherlands"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 148462,
+    "name": "Lumos Maxima",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 146714,
+    "stake": 146850,
     "name": "stake.systems",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 146301,
-    "name": "SoLove",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 146827,
+    "name": "",
+    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 145819,
+    "stake": 146551,
     "name": "Marco Polo 0% Fee +MEV",
     "loc": "Warsaw, Poland"
    },
    {
-    "lat": 41.9,
-    "lon": -87.7,
-    "stake": 145337,
-    "name": "Black Sea Gold",
-    "loc": "Chicago, United States"
-   },
-   {
-    "lat": 40.8,
-    "lon": -111.9,
-    "stake": 144097,
-    "name": "Pesky Penguins \ud83d\udd25\ud83d\udc83 NOOT NOOT",
-    "loc": "Salt Lake City, United States"
-   },
-   {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 144054,
+    "stake": 146325,
     "name": "EvasMainnet",
     "loc": "Los Angeles, United States"
    },
    {
     "lat": 48.6,
     "lon": 7.7,
-    "stake": 143235,
-    "name": "polkachu.com",
+    "stake": 145771,
+    "name": "PK",
     "loc": "Strasbourg, France"
+   },
+   {
+    "lat": 41.9,
+    "lon": -87.7,
+    "stake": 145347,
+    "name": "Black Sea Gold",
+    "loc": "Chicago, United States"
    },
    {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 142703,
+    "stake": 144476,
     "name": "Cirro",
     "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 56.0,
     "lon": 37.8,
-    "stake": 142272,
+    "stake": 142252,
     "name": "\ud83e\uddec HelixNode 0% fee \ud83e\uddec",
     "loc": "Pushkino, Russian Federation"
    },
    {
-    "lat": 50.0,
-    "lon": 8.7,
-    "stake": 141322,
-    "name": "Capital Alliance \ud83d\udd25",
-    "loc": "Dreieich, Germany"
-   },
-   {
     "lat": 33.7,
     "lon": -84.4,
-    "stake": 141150,
+    "stake": 141603,
     "name": "StakeNode777",
     "loc": "Atlanta, United States"
    },
    {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 140578,
-    "name": "Sunshine",
-    "loc": "Los Angeles, United States"
-   },
-   {
-    "lat": 41.9,
-    "lon": -87.7,
-    "stake": 139836,
-    "name": "Validation Cloud",
-    "loc": "Chicago, United States"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 139350,
+    "stake": 141100,
     "name": "The Library",
     "loc": "Singapore, Singapore"
    },
    {
+    "lat": 50.0,
+    "lon": 8.7,
+    "stake": 140710,
+    "name": "Capital Alliance \ud83d\udd25",
+    "loc": "Dreieich, Germany"
+   },
+   {
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 140710,
+    "name": "Superteam Brazil",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
+    "lat": 41.9,
+    "lon": -87.7,
+    "stake": 139945,
+    "name": "Validation Cloud",
+    "loc": "Chicago, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 139891,
+    "name": "Pebble",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 51.9,
     "lon": 4.5,
-    "stake": 139256,
+    "stake": 139264,
     "name": "Stake.Cake",
     "loc": "Rotterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 138965,
-    "name": "Kevred",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 138430,
+    "stake": 138536,
     "name": "Fountainhead \ud83c\udf31 Funding Dev WITH max APY",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 137997,
-    "name": "KAST",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 136963,
+    "stake": 137066,
     "name": "StakeThat +MEV",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 136517,
-    "name": "AVNU",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 136215,
-    "name": "Blossom",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 136405,
+    "name": "Sunshine",
+    "loc": "Los Angeles, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 135809,
+    "stake": 136219,
     "name": "Lifinity Protocol",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 136180,
+    "name": "KAST",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 37.8,
     "lon": -122.4,
-    "stake": 135547,
+    "stake": 135541,
     "name": "Solayer Validator [5% Commission + 100% ",
     "loc": "San Francisco, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 134068,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 135336,
+    "name": "Gotas",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
+    "lat": 59.3,
+    "lon": 18.1,
+    "stake": 134765,
+    "name": "\u2b50StepByStep\u2b50 Jito BAM",
+    "loc": "Stockholm, Sweden"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 133968,
-    "name": "[NODERS]",
+    "stake": 133537,
+    "name": "Kevred",
     "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 133433,
-    "name": "Vybe Validator",
-    "loc": "Singapore, Singapore"
    },
    {
     "lat": 50.1,
@@ -5225,32 +5198,39 @@
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 59.9,
-    "lon": 30.3,
-    "stake": 132500,
-    "name": "Easytoken.me",
-    "loc": "Saint Petersburg, Russian Federation"
+    "lat": 37.3,
+    "lon": -121.9,
+    "stake": 131534,
+    "name": "LEVMA - 0% fee",
+    "loc": "San Jose, United States"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 131445,
+    "stake": 131446,
     "name": "[Public Good] Chive \ud83c\udf31 - 0% Fee + MEV + B",
     "loc": "Chicago, United States"
    },
    {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 130499,
-    "name": "Gotas",
-    "loc": "Sao Paulo, Brazil"
-   },
-   {
     "lat": 52.5,
     "lon": 13.4,
-    "stake": 130415,
+    "stake": 131410,
     "name": "Yurbason",
     "loc": "Berlin, Germany"
+   },
+   {
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 131208,
+    "name": "AVNU",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 130706,
+    "name": "Blossom",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
@@ -5260,16 +5240,9 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 37.3,
-    "lon": -121.9,
-    "stake": 129747,
-    "name": "LEVMA - 0% fee",
-    "loc": "San Jose, United States"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 129169,
+    "stake": 129290,
     "name": "MAVAN Infrastructure",
     "loc": "Singapore, Singapore"
    },
@@ -5281,23 +5254,23 @@
     "loc": "New York City, United States"
    },
    {
-    "lat": 34.1,
-    "lon": -118.2,
-    "stake": 128107,
-    "name": "Squads",
-    "loc": "Los Angeles, United States"
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 128250,
+    "name": "Vybe Validator",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 127389,
+    "stake": 127363,
     "name": "Coinbase 06",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 126450,
+    "stake": 126664,
     "name": "cp0x_by_STAKRspace",
     "loc": "Tokyo, Japan"
    },
@@ -5309,263 +5282,319 @@
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 38.9,
-    "lon": -77.0,
-    "stake": 126237,
-    "name": "SoLyrae",
-    "loc": "Washington, United States"
-   },
-   {
-    "lat": 41.2,
-    "lon": -112.0,
-    "stake": 125930,
-    "name": "DICS - Degen Infrastructure Core Service",
-    "loc": "Ogden, United States"
-   },
-   {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 125690,
-    "name": "LuSOL +MEV",
-    "loc": "London, United Kingdom"
-   },
-   {
-    "lat": 51.5,
-    "lon": -0.6,
-    "stake": 125653,
-    "name": "fat tails lab",
-    "loc": "Farnham Royal, United Kingdom"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 125434,
+    "stake": 125539,
     "name": "0node.io",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 45.5,
     "lon": -73.6,
-    "stake": 125388,
+    "stake": 125491,
     "name": "Golden Tower Staking",
     "loc": "Montreal, Canada"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 124240,
-    "name": "Solarius\u2600\ufe0f",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 51.5,
+    "lon": -0.6,
+    "stake": 125482,
+    "name": "fat tails lab",
+    "loc": "Farnham Royal, United Kingdom"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 123984,
+    "stake": 125241,
+    "name": "T-STAKE Systems",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 34.1,
+    "lon": -118.2,
+    "stake": 124912,
+    "name": "Squads",
+    "loc": "Los Angeles, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 124305,
     "name": "AndrewInUA",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 123781,
+    "stake": 124222,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 123889,
     "name": "JDO Mainnet Validator",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 20.8,
     "lon": -100.1,
-    "stake": 123669,
+    "stake": 123699,
     "name": "Bernardo Beacon",
     "loc": "Colon, Mexico"
    },
    {
-    "lat": 37.3,
-    "lon": -121.9,
-    "stake": 123316,
-    "name": "Solid State Nodes",
-    "loc": "San Jose, United States"
-   },
-   {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 123283,
+    "stake": 123387,
     "name": "OranG3cluB",
     "loc": "Los Angeles, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 123233,
-    "name": "T-STAKE Systems",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 123117,
-    "name": "Latitude.sh",
-    "loc": "Sao Paulo, Brazil"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.6,
-    "stake": 121328,
-    "name": "CyberAlex \ud83d\udc51 MEV",
-    "loc": "Haarlem, Netherlands"
+    "lat": 59.9,
+    "lon": 10.7,
+    "stake": 123373,
+    "name": "Soldea Kitchen",
+    "loc": "Oslo, Norway"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 120973,
+    "stake": 122697,
     "name": "YIELD",
     "loc": "Tokyo, Japan"
    },
    {
-    "lat": 40.7,
-    "lon": -74.0,
-    "stake": 120378,
-    "name": "\ud83e\udd16 RoboRun.xyz",
-    "loc": "New York City, United States"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 122633,
+    "name": "[NODERS]",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 52.4,
+    "lon": 4.6,
+    "stake": 121431,
+    "name": "CyberAlex \ud83d\udc51 MEV",
+    "loc": "Haarlem, Netherlands"
+   },
+   {
+    "lat": 41.2,
+    "lon": -112.0,
+    "stake": 121085,
+    "name": "DICS - Degen Infrastructure Core Service",
+    "loc": "Ogden, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 120339,
+    "name": "SoLove",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 34.7,
     "lon": 135.5,
-    "stake": 120009,
+    "stake": 120010,
     "name": "Limitless Systems",
     "loc": "Osaka, Japan"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 119776,
+    "stake": 119771,
     "name": "Stake Shark",
     "loc": "Chicago, United States"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 118855,
-    "name": "AiSol",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 118209,
-    "name": "Nam-dok-mai \ud83e\udd11 stake-earn-repeat",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 118072,
+    "stake": 119246,
     "name": "Hubra",
     "loc": "Singapore, Singapore"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 117965,
-    "name": "SunshineVR",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 119062,
+    "name": "AiSol",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 118680,
+    "name": "Charity Soul",
+    "loc": "Hong Kong, Hong Kong"
+   },
+   {
+    "lat": 44.4,
+    "lon": 26.1,
+    "stake": 118205,
+    "name": "01node",
+    "loc": "Bucharest, Romania"
+   },
+   {
+    "lat": 40.8,
+    "lon": -111.9,
+    "stake": 118193,
+    "name": "Pesky Penguins \ud83d\udd25\ud83d\udc83 NOOT NOOT",
+    "loc": "Salt Lake City, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 117812,
+    "stake": 118129,
+    "name": "SunshineVR",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 118022,
+    "name": "LuSOL +MEV",
+    "loc": "London, United Kingdom"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 117916,
     "name": "STEALTH",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 117662,
+    "stake": 117796,
     "name": "Solana Qubits",
     "loc": "Los Angeles, United States"
    },
    {
-    "lat": 59.9,
-    "lon": 10.7,
-    "stake": 117378,
-    "name": "Soldea Kitchen",
-    "loc": "Oslo, Norway"
-   },
-   {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 116924,
-    "name": "Charity Soul",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
-    "lat": 51.9,
-    "lon": 4.5,
-    "stake": 116650,
-    "name": "SolanaBull \ud83d\ude80",
-    "loc": "Rotterdam, Netherlands"
-   },
-   {
-    "lat": 41.9,
-    "lon": -87.7,
-    "stake": 116205,
-    "name": "PENGU Validator",
-    "loc": "Chicago, United States"
-   },
-   {
-    "lat": 40.7,
-    "lon": -74.2,
-    "stake": 115197,
-    "name": "Moutai Validator \ud83d\ude80 Performant, Secure an",
-    "loc": "Newark, United States"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 115110,
+    "stake": 116862,
     "name": "Ded Monkes",
     "loc": "Tokyo, Japan"
    },
    {
+    "lat": 51.9,
+    "lon": 4.5,
+    "stake": 116759,
+    "name": "SolanaBull \ud83d\ude80",
+    "loc": "Rotterdam, Netherlands"
+   },
+   {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 114807,
+    "stake": 116460,
     "name": "The Chimpions",
     "loc": "Hong Kong, Hong Kong"
    },
    {
+    "lat": 41.9,
+    "lon": -87.7,
+    "stake": 116303,
+    "name": "PENGU Validator",
+    "loc": "Chicago, United States"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 113957,
+    "stake": 116296,
     "name": "Tapedrive",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 40.7,
+    "lon": -74.2,
+    "stake": 115578,
+    "name": "Moutai Validator \ud83d\ude80 Performant, Secure an",
+    "loc": "Newark, United States"
+   },
+   {
+    "lat": 40.7,
+    "lon": -74.0,
+    "stake": 114610,
+    "name": "\ud83e\udd16 RoboRun.xyz",
+    "loc": "New York City, United States"
+   },
+   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 112638,
+    "stake": 114397,
     "name": "Kyzzen",
     "loc": "Tokyo, Japan"
    },
    {
-    "lat": 43.7,
-    "lon": -79.4,
-    "stake": 112507,
-    "name": "zim.one | 0\ufe0f\u20e30\ufe0f\u20e3",
-    "loc": "Toronto, Canada"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 112507,
+    "stake": 114259,
     "name": "Bay3",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 48.6,
-    "lon": 7.7,
-    "stake": 112375,
-    "name": "PK",
-    "loc": "Strasbourg, France"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 114051,
+    "name": "Solarius\u2600\ufe0f",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 114009,
+    "name": "OmegaNode Validator",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 113974,
+    "name": "Latitude.sh",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 113568,
+    "name": "Tokamai",
+    "loc": "London, United Kingdom"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 112842,
+    "name": "Nebula Node",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 20.6,
+    "lon": -100.4,
+    "stake": 112683,
+    "name": "MAS DeFi",
+    "loc": "Santiago de Queretaro, Mexico"
+   },
+   {
+    "lat": 43.7,
+    "lon": -79.4,
+    "stake": 112615,
+    "name": "zim.one | 0\ufe0f\u20e30\ufe0f\u20e3",
+    "loc": "Toronto, Canada"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 112604,
+    "name": "Eyenotion",
+    "loc": "Singapore, Singapore"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 112381,
+    "name": "Luna Labs",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
@@ -5575,221 +5604,193 @@
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 20.6,
-    "lon": -100.4,
-    "stake": 112089,
-    "name": "MAS DeFi",
-    "loc": "Santiago de Queretaro, Mexico"
-   },
-   {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 111815,
-    "name": "Tokamai",
-    "loc": "London, United Kingdom"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 111090,
-    "name": "Nebula Node",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 110846,
-    "name": "Eyenotion",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 110627,
-    "name": "Luna Labs",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 110185,
-    "name": "bloXroute EU",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 109928,
-    "name": "OmegaNode Validator",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 40.6,
-    "lon": -3.6,
-    "stake": 109340,
-    "name": "4CRYPTO",
-    "loc": "San Sebastian de los Reyes, Spain"
-   },
-   {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 109310,
+    "stake": 111072,
     "name": "Choplet Studios",
     "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 109166,
+    "stake": 110275,
+    "name": "bloXroute EU",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 109970,
+    "name": "Nam-dok-mai \ud83e\udd11 stake-earn-repeat",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 40.6,
+    "lon": -3.6,
+    "stake": 109496,
+    "name": "4CRYPTO",
+    "loc": "San Sebastian de los Reyes, Spain"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 109050,
     "name": "Project 0 Horizon",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 108985,
+    "stake": 108704,
     "name": "Huisky Staking",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 108196,
+    "stake": 108292,
     "name": "Sec3",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 22.3,
     "lon": 114.2,
-    "stake": 108005,
-    "name": "Odyssey",
-    "loc": "Hong Kong, Hong Kong"
-   },
-   {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 105503,
+    "stake": 107167,
     "name": "LI.FI",
     "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 105405,
+    "stake": 106409,
     "name": "MICOBO",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 103931,
+    "stake": 104037,
     "name": "The Lode (Sentries)",
     "loc": "New York City, United States"
    },
    {
-    "lat": 52.4,
-    "lon": 4.6,
-    "stake": 103852,
-    "name": "StakeITeasy\ud83d\ude80High APY + 0% fee\u2705 + MEV\ud83d\udd25",
-    "loc": "Haarlem, Netherlands"
-   },
-   {
-    "lat": 50.4,
-    "lon": 8.1,
-    "stake": 102923,
-    "name": "0% Fees | Easy 2 Stake | Jito MEV",
-    "loc": "Limburg an der Lahn, Germany"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 102042,
+    "stake": 103794,
     "name": "Raposa Coffee",
     "loc": "Singapore, Singapore"
    },
    {
+    "lat": 52.4,
+    "lon": 4.6,
+    "stake": 103711,
+    "name": "StakeITeasy\ud83d\ude80High APY + 0% fee\u2705 + MEV\ud83d\udd25",
+    "loc": "Haarlem, Netherlands"
+   },
+   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 101868,
+    "stake": 103592,
     "name": "DSM-01",
     "loc": "Singapore, Singapore"
    },
    {
-    "lat": 22.3,
-    "lon": 114.2,
-    "stake": 101649,
-    "name": "Range",
-    "loc": "Hong Kong, Hong Kong"
+    "lat": 50.4,
+    "lon": 8.1,
+    "stake": 103004,
+    "name": "0% Fees | Easy 2 Stake | Jito MEV",
+    "loc": "Limburg an der Lahn, Germany"
    },
    {
-    "lat": 20.8,
-    "lon": -100.1,
-    "stake": 101245,
-    "name": "Fast Runner",
-    "loc": "Colon, Mexico"
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 102764,
+    "name": "Odyssey",
+    "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 52.4,
     "lon": 4.6,
-    "stake": 101203,
+    "stake": 101506,
     "name": "Solana Vibe Station",
     "loc": "Haarlem, Netherlands"
    },
    {
+    "lat": 20.8,
+    "lon": -100.1,
+    "stake": 101395,
+    "name": "Fast Runner",
+    "loc": "Colon, Mexico"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 100688,
+    "name": "BOOP Wizard",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 100584,
+    "stake": 100687,
     "name": "\u4f5b\u91d1\u75af Solana Chinese Community",
     "loc": "Los Angeles, United States"
    },
    {
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 100564,
+    "name": "mallow",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
     "lat": 42.0,
     "lon": -88.0,
-    "stake": 100349,
+    "stake": 100451,
     "name": "FREEZZ",
     "loc": "Elk Grove, United States"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 100137,
+    "stake": 100122,
     "name": "Go by Jupiter",
     "loc": "Chicago, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 99000,
+    "stake": 99097,
     "name": "MeshMap",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 98928,
-    "name": "BOOP Wizard",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 98813,
-    "name": "mallow",
-    "loc": "Sao Paulo, Brazil"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 98344,
+    "stake": 98455,
     "name": "rossi-mainnet",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 98132,
+    "stake": 98134,
     "name": "xSTAKE | 0% fee",
     "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 51.5,
+    "lon": -0.1,
+    "stake": 98133,
+    "name": "DePitch Academy",
+    "loc": "London, United Kingdom"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 97948,
+    "name": "Hodl & Hodl LLLP",
+    "loc": "Tokyo, Japan"
    },
    {
     "lat": 53.5,
@@ -5799,11 +5800,32 @@
     "loc": "Manchester, United Kingdom"
    },
    {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 97748,
+    "name": "Dicky",
+    "loc": "Tokyo, Japan"
+   },
+   {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 97295,
+    "stake": 97403,
     "name": "Mira Validator",
     "loc": "Warsaw, Poland"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 97317,
+    "name": "Mice Stakin'",
+    "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 96839,
+    "name": "Dust Eleven",
+    "loc": "Tokyo, Japan"
    },
    {
     "lat": 40.5,
@@ -5813,214 +5835,179 @@
     "loc": "Piscataway, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 96774,
-    "name": "CyberVillage",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 22.3,
+    "lon": 114.2,
+    "stake": 96796,
+    "name": "Range",
+    "loc": "Hong Kong, Hong Kong"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 96494,
+    "stake": 96790,
     "name": "InfiniteSOL",
     "loc": "Chicago, United States"
    },
    {
-    "lat": 51.5,
-    "lon": -0.1,
-    "stake": 96382,
-    "name": "DePitch Academy",
-    "loc": "London, United Kingdom"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 96292,
-    "name": "Dragon Trust Stake",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 96290,
+    "stake": 96384,
     "name": "TomYum",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 96191,
-    "name": "Hodl & Hodl LLLP",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 95996,
-    "name": "Dicky",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 95564,
-    "name": "Mice Stakin'",
-    "loc": "Tokyo, Japan"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 95418,
-    "name": "DataHive AI | Missions",
+    "stake": 95976,
+    "name": "CyberVillage",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 44.4,
-    "lon": 26.1,
-    "stake": 95173,
-    "name": "01node",
-    "loc": "Bucharest, Romania"
+    "lat": 38.9,
+    "lon": -77.0,
+    "stake": 95689,
+    "name": "Saga DAO",
+    "loc": "Washington, United States"
    },
    {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 95087,
-    "name": "Dust Eleven",
-    "loc": "Tokyo, Japan"
+    "lat": 38.9,
+    "lon": -77.0,
+    "stake": 95393,
+    "name": "SoLyrae",
+    "loc": "Washington, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 94753,
+    "stake": 94853,
     "name": "Quantix",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 53.3,
     "lon": -6.2,
-    "stake": 93505,
+    "stake": 93607,
     "name": "\ud83c\udf40PADDY - \ud83d\udcb0JITO-BAM",
     "loc": "Dublin, Ireland"
    },
    {
-    "lat": 38.9,
-    "lon": -77.0,
-    "stake": 93309,
-    "name": "Saga DAO",
-    "loc": "Washington, United States"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 93210,
+    "stake": 93309,
     "name": "Wave",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 93151,
+    "stake": 93253,
     "name": "Firstset",
     "loc": "Frankfurt am Main, Germany"
    },
    {
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 92902,
+    "name": "Yield Lab",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 92457,
+    "stake": 92543,
     "name": "WestSide \ud83d\udd96",
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 40.8,
-    "lon": -111.9,
-    "stake": 92187,
-    "name": "Lua Sol Foundation",
-    "loc": "Salt Lake City, United States"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 92170,
+    "stake": 92264,
     "name": "\ud83e\ude90 To The Stars \ud83e\ude90",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 40.5,
     "lon": -74.4,
-    "stake": 91912,
+    "stake": 92013,
     "name": "Gaxx Validator",
     "loc": "Piscataway, United States"
    },
    {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 91928,
+    "name": "Somos Validator",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 91609,
+    "stake": 91716,
     "name": "Forbole",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 33.7,
     "lon": -84.4,
-    "stake": 91491,
+    "stake": 91593,
     "name": "Anode \u26a1\ufe0f Beta",
     "loc": "Atlanta, United States"
    },
    {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 91091,
-    "name": "Yield Lab",
-    "loc": "Sao Paulo, Brazil"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 90898,
-    "name": "Staking Kiwi",
+    "stake": 90753,
+    "name": "DataHive AI | Missions",
     "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 90179,
-    "name": "Somos Validator",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 89154,
-    "name": "",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 88717,
-    "name": "",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": -23.5,
-    "lon": -46.6,
-    "stake": 88482,
-    "name": "Cloak",
-    "loc": "Sao Paulo, Brazil"
    },
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 88106,
+    "stake": 90529,
     "name": "EAT TRIBE",
     "loc": "Chicago, United States"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 87622,
+    "stake": 89327,
     "name": "Suzuko Stake",
     "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 89155,
+    "name": "",
+    "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 88718,
+    "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": -23.5,
+    "lon": -46.6,
+    "stake": 88583,
+    "name": "Cloak",
+    "loc": "Sao Paulo, Brazil"
+   },
+   {
+    "lat": 40.8,
+    "lon": -111.9,
+    "stake": 87460,
+    "name": "Lua Sol Foundation",
+    "loc": "Salt Lake City, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 87217,
+    "name": "Dragon Trust Stake",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 35.7,
@@ -6030,16 +6017,23 @@
     "loc": "Tokyo, Japan"
    },
    {
-    "lat": 38.9,
-    "lon": -77.0,
-    "stake": 85270,
-    "name": "Stand With Ukraine | 0% Commission + MEV",
-    "loc": "Washington, United States"
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 85732,
+    "name": "Banana Business (BB)",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 84904,
+    "name": "Gojira",
+    "loc": "Singapore, Singapore"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 84536,
+    "stake": 84636,
     "name": "TdrSys",
     "loc": "Tokyo, Japan"
    },
@@ -6053,56 +6047,49 @@
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 84253,
+    "stake": 84354,
     "name": "Famous Foxes",
     "loc": "Sao Paulo, Brazil"
    },
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 83947,
+    "stake": 84329,
     "name": "The Mindfolk",
     "loc": "Sao Paulo, Brazil"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 84025,
+    "name": "Staking Kiwi",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 83900,
+    "stake": 84002,
     "name": "Abacus",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 34.7,
     "lon": 135.5,
-    "stake": 83287,
+    "stake": 83388,
     "name": "Sextant",
     "loc": "Osaka, Japan"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 83155,
-    "name": "Gojira",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 83076,
-    "name": "Rain Works\ud83d\udca7MEV\ud83d\udca70% fees",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 47.0,
     "lon": 32.0,
-    "stake": 82884,
+    "stake": 82984,
     "name": "ex1arey",
     "loc": "Mykolaiv, Ukraine"
    },
    {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 82851,
+    "stake": 82955,
     "name": "Node Integration",
     "loc": "Warsaw, Poland"
    },
@@ -6116,105 +6103,105 @@
    {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 82552,
+    "stake": 82653,
     "name": "Nodance \ud83d\udc83 00",
     "loc": "Los Angeles, United States"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 81446,
-    "name": "TopReward - 0% fee and mev, top APY!",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 81420,
+    "stake": 81521,
     "name": "Aepalizage",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 81054,
+    "stake": 80965,
     "name": "soltop.sh",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 80671,
+    "stake": 80771,
     "name": "3SDK",
     "loc": "Los Angeles, United States"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 80453,
+    "stake": 80561,
     "name": "OneLink Solutions",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 52.5,
-    "lon": 13.4,
-    "stake": 80285,
-    "name": "ERPC",
-    "loc": "Berlin, Germany"
-   },
-   {
     "lat": 40.5,
     "lon": -74.4,
-    "stake": 80281,
+    "stake": 80381,
     "name": "GERSIA",
     "loc": "Piscataway, United States"
    },
    {
+    "lat": 52.5,
+    "lon": 13.4,
+    "stake": 80289,
+    "name": "ERPC",
+    "loc": "Berlin, Germany"
+   },
+   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 80180,
+    "stake": 80279,
     "name": "Buffalo Steve",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 80008,
+    "stake": 80108,
     "name": "ABREU Foundation",
     "loc": "Sao Paulo, Brazil"
    },
    {
+    "lat": 38.9,
+    "lon": -77.0,
+    "stake": 79859,
+    "name": "Stand With Ukraine | 0% Commission + MEV",
+    "loc": "Washington, United States"
+   },
+   {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 79627,
+    "stake": 79729,
     "name": "Omakase",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 79526,
+    "stake": 79586,
     "name": "pico\ud83d\ude44.sol",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 59.9,
     "lon": 10.7,
-    "stake": 79407,
+    "stake": 79516,
     "name": "Luke",
     "loc": "Oslo, Norway"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 75000,
+    "stake": 75001,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 51.9,
     "lon": 4.5,
-    "stake": 74771,
+    "stake": 74879,
     "name": "Solplanet Validator",
     "loc": "Rotterdam, Netherlands"
    },
@@ -6226,51 +6213,65 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 74100,
+    "name": "Mythx",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 51.9,
     "lon": 4.5,
-    "stake": 73910,
+    "stake": 73911,
     "name": "Litx - 0% Commission",
     "loc": "Rotterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 73062,
+    "stake": 73075,
     "name": "AutoStake \u26a1\ufe0f 0% fee",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": -23.5,
     "lon": -46.6,
-    "stake": 72740,
+    "stake": 72694,
     "name": "Salmon Wallet",
     "loc": "Sao Paulo, Brazil"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 72353,
-    "name": "Mythx",
-    "loc": "Singapore, Singapore"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 71154,
+    "stake": 71155,
     "name": "",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 71020,
+    "stake": 71118,
     "name": "Kawil",
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 71040,
+    "name": "TopReward - 0% fee and mev, top APY!",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 70930,
+    "name": "Citizen Node",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 50.7,
     "lon": 3.2,
-    "stake": 70229,
+    "stake": 70230,
     "name": "",
     "loc": "Wattrelos, France"
    },
@@ -6282,51 +6283,44 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 69200,
-    "name": "Citizen Node",
-    "loc": "Singapore, Singapore"
-   },
-   {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 67158,
+    "stake": 68905,
     "name": "Pine Analytics",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 66919,
-    "name": "Kisetsu Stake",
+    "stake": 68804,
+    "name": "Mellow Yellow",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 66475,
-    "name": "Mellow Yellow",
+    "stake": 68666,
+    "name": "Kisetsu Stake",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 52.2,
     "lon": 21.0,
-    "stake": 65029,
+    "stake": 67008,
     "name": "Solana Ukraine \ud83c\uddfa\ud83c\udde6",
     "loc": "Warsaw, Poland"
    },
    {
     "lat": 55.9,
     "lon": 23.3,
-    "stake": 64970,
+    "stake": 66710,
     "name": "Mesh Validator",
     "loc": "Siauliai, Lithuania"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 64697,
+    "stake": 64706,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -6340,16 +6334,23 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 62505,
+    "stake": 62506,
     "name": "MARGUS.ONE \ud83d\udc8e 0% fee +MEV!",
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 61670,
-    "name": "Banana Business (BB)",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 61564,
+    "name": "Gleam",
+    "loc": "Singapore, Singapore"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 61214,
+    "name": "Epoch.Day",
+    "loc": "Tokyo, Japan"
    },
    {
     "lat": 52.4,
@@ -6359,6 +6360,13 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 1.3,
+    "lon": 103.9,
+    "stake": 60858,
+    "name": "Systems",
+    "loc": "Singapore, Singapore"
+   },
+   {
     "lat": 50.5,
     "lon": 12.4,
     "stake": 60715,
@@ -6366,32 +6374,11 @@
     "loc": "Falkenstein/Vogtl., Germany"
    },
    {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 59867,
-    "name": "Gleam",
-    "loc": "Singapore, Singapore"
-   },
-   {
     "lat": 40.7,
     "lon": -74.0,
     "stake": 59540,
     "name": "Legends",
     "loc": "New York City, United States"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 59521,
-    "name": "Epoch.Day",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 1.3,
-    "lon": 103.9,
-    "stake": 59112,
-    "name": "Systems",
-    "loc": "Singapore, Singapore"
    },
    {
     "lat": 32.8,
@@ -6443,9 +6430,16 @@
     "loc": "Chicago, United States"
    },
    {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 58595,
+    "name": "Vandal",
+    "loc": "Tokyo, Japan"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 58343,
+    "stake": 58351,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
@@ -6459,14 +6453,14 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 57906,
+    "stake": 58056,
     "name": "DeepStake",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 40.5,
     "lon": -112.1,
-    "stake": 57895,
+    "stake": 57904,
     "name": "",
     "loc": "Bingham, United States"
    },
@@ -6480,16 +6474,9 @@
    {
     "lat": 38.9,
     "lon": -77.0,
-    "stake": 57544,
+    "stake": 57548,
     "name": "GlobalStake [Bare Metal]",
     "loc": "Washington, United States"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 56868,
-    "name": "Vandal",
-    "loc": "Tokyo, Japan"
    },
    {
     "lat": 35.7,
@@ -6506,59 +6493,73 @@
     "loc": "Tokyo, Japan"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 56332,
+    "name": "Rain Works\ud83d\udca7MEV\ud83d\udca70% fees",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 59.9,
     "lon": 10.7,
-    "stake": 55650,
+    "stake": 55747,
     "name": "L0vd 0% fee +MEV",
     "loc": "Oslo, Norway"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 55629,
-    "name": "Alpha Waves",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 54813,
-    "name": "WinStake Labs",
-    "loc": "Tokyo, Japan"
-   },
-   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 53592,
+    "stake": 55327,
     "name": "Blue Sky",
     "loc": "Singapore, Singapore"
    },
    {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 53166,
+    "stake": 54915,
     "name": "SteakStache",
     "loc": "Ogden, United States"
    },
    {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 54827,
+    "name": "WinStake Labs",
+    "loc": "Tokyo, Japan"
+   },
+   {
     "lat": 1.3,
     "lon": 103.9,
-    "stake": 52785,
+    "stake": 54532,
     "name": "Telemetry",
     "loc": "Singapore, Singapore"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 52450,
-    "name": "DarkTower",
-    "loc": "Frankfurt am Main, Germany"
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 53865,
+    "name": "Lilith",
+    "loc": "Tokyo, Japan"
    },
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 52118,
-    "name": "Lilith",
+    "stake": 52940,
+    "name": "Royal",
+    "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 52242,
+    "name": "Janitor",
+    "loc": "Tokyo, Japan"
+   },
+   {
+    "lat": 35.7,
+    "lon": 139.7,
+    "stake": 52144,
+    "name": "CH Dev",
     "loc": "Tokyo, Japan"
    },
    {
@@ -6571,64 +6572,43 @@
    {
     "lat": 35.7,
     "lon": 139.7,
-    "stake": 51193,
-    "name": "Royal",
+    "stake": 51334,
+    "name": "STEVE",
     "loc": "Tokyo, Japan"
    },
    {
     "lat": 33.7,
     "lon": -84.4,
-    "stake": 50994,
+    "stake": 50999,
     "name": "SUNREN",
     "loc": "Atlanta, United States"
    },
    {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 50495,
-    "name": "Janitor",
-    "loc": "Tokyo, Japan"
-   },
-   {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 50425,
-    "name": "Cointelegraph Decentralization Guardians",
+    "stake": 49567,
+    "name": "Vortex",
     "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 50396,
-    "name": "CH Dev",
-    "loc": "Tokyo, Japan"
-   },
-   {
-    "lat": 35.7,
-    "lon": 139.7,
-    "stake": 49587,
-    "name": "STEVE",
-    "loc": "Tokyo, Japan"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 49468,
+    "stake": 49469,
     "name": "Solopia",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 49468,
-    "name": "Vortex",
+    "stake": 47773,
+    "name": "",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 47772,
-    "name": "",
+    "stake": 47616,
+    "name": "Alpha Waves",
     "loc": "Frankfurt am Main, Germany"
    },
    {
@@ -6639,9 +6619,16 @@
     "loc": "Dallas, United States"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 45463,
+    "name": "DarkTower",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 43151,
+    "stake": 43127,
     "name": "",
     "loc": "Amsterdam, Netherlands"
    },
@@ -6662,35 +6649,42 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 42390,
+    "stake": 42403,
     "name": "",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 41480,
+    "name": "Cointelegraph Decentralization Guardians",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 41.2,
     "lon": -112.0,
-    "stake": 37044,
+    "stake": 37045,
     "name": "",
     "loc": "Ogden, United States"
    },
    {
     "lat": 40.5,
     "lon": -74.4,
-    "stake": 36618,
+    "stake": 36717,
     "name": "crypto-jack-sparrow",
     "loc": "Piscataway, United States"
    },
    {
     "lat": 34.1,
     "lon": -118.2,
-    "stake": 35555,
+    "stake": 35543,
     "name": "Suoha",
     "loc": "Los Angeles, United States"
    },
    {
     "lat": 38.9,
     "lon": -77.0,
-    "stake": 35417,
+    "stake": 35418,
     "name": "Validatize Validator",
     "loc": "Washington, United States"
    },
@@ -6725,7 +6719,7 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 28216,
+    "stake": 28146,
     "name": "VaultImgPoc",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -6739,7 +6733,7 @@
    {
     "lat": 60.2,
     "lon": 24.9,
-    "stake": 24002,
+    "stake": 24003,
     "name": "",
     "loc": "Helsinki, Finland"
    },
@@ -6760,7 +6754,7 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 20434,
+    "stake": 20435,
     "name": "U1S1 Validator \ud83d\ude80 Performant, Secure and ",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -6774,28 +6768,28 @@
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 18447,
+    "stake": 20095,
     "name": "LumLabs",
     "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 48.9,
     "lon": 2.4,
-    "stake": 17928,
+    "stake": 17927,
     "name": "Private",
     "loc": "Aubervilliers, France"
    },
    {
     "lat": 59.3,
     "lon": 18.1,
-    "stake": 16600,
+    "stake": 16073,
     "name": "",
     "loc": "Stockholm, Sweden"
    },
    {
     "lat": 55.0,
     "lon": 82.9,
-    "stake": 15854,
+    "stake": 15855,
     "name": "Serhio911",
     "loc": "Novosibirsk, Russian Federation"
    },
@@ -6816,16 +6810,9 @@
    {
     "lat": 41.9,
     "lon": -87.7,
-    "stake": 14326,
+    "stake": 14327,
     "name": "Dan's Validator",
     "loc": "Chicago, United States"
-   },
-   {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 12553,
-    "name": "SelfLiquidity",
-    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 47.4,
@@ -6835,24 +6822,17 @@
     "loc": "Zurich, Switzerland"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 11734,
-    "name": "Cryptology",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 25.8,
     "lon": -80.2,
-    "stake": 11700,
+    "stake": 11701,
     "name": "Bitprim SOL Validator",
     "loc": "Miami, United States"
    },
    {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 10689,
-    "name": "Fthr Validator",
+    "stake": 11634,
+    "name": "Cryptology",
     "loc": "Amsterdam, Netherlands"
    },
    {
@@ -6884,23 +6864,16 @@
     "loc": "Riga, Latvia"
    },
    {
-    "lat": 50.1,
-    "lon": 8.7,
-    "stake": 8025,
-    "name": "Glory to Ukraine",
-    "loc": "Frankfurt am Main, Germany"
-   },
-   {
     "lat": 52.4,
     "lon": 4.9,
-    "stake": 7658,
+    "stake": 7659,
     "name": "Tramplin",
     "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 50.1,
     "lon": 8.7,
-    "stake": 6151,
+    "stake": 6231,
     "name": "livechanger",
     "loc": "Frankfurt am Main, Germany"
    },
@@ -6919,6 +6892,13 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 2763,
+    "name": "SelfLiquidity",
+    "loc": "Frankfurt am Main, Germany"
+   },
+   {
     "lat": 52.4,
     "lon": 4.9,
     "stake": 2619,
@@ -6935,7 +6915,7 @@
    {
     "lat": 40.7,
     "lon": -74.0,
-    "stake": 1510,
+    "stake": 1511,
     "name": "",
     "loc": "New York City, United States"
    },
@@ -6945,6 +6925,13 @@
     "stake": 1416,
     "name": "RSSA validator",
     "loc": "Los Angeles, United States"
+   },
+   {
+    "lat": 50.1,
+    "lon": 8.7,
+    "stake": 1274,
+    "name": "Glory to Ukraine",
+    "loc": "Frankfurt am Main, Germany"
    },
    {
     "lat": 1.3,
@@ -6982,13 +6969,6 @@
     "loc": "Frankfurt am Main, Germany"
    },
    {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 283,
-    "name": "LightNode",
-    "loc": "Amsterdam, Netherlands"
-   },
-   {
     "lat": 43.7,
     "lon": -79.4,
     "stake": 212,
@@ -7008,13 +6988,6 @@
     "stake": 160,
     "name": "Toshi CSS",
     "loc": "Columbus, United States"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 63,
-    "name": "Retired",
-    "loc": "Amsterdam, Netherlands"
    },
    {
     "lat": 45.5,
@@ -7080,28 +7053,28 @@
     "loc": "Amsterdam, Netherlands"
    },
    {
+    "lat": 52.4,
+    "lon": 4.9,
+    "stake": 1,
+    "name": "",
+    "loc": "Amsterdam, Netherlands"
+   },
+   {
     "lat": 50.1,
     "lon": 8.7,
     "stake": 1,
     "name": "",
     "loc": "Frankfurt am Main, Germany"
-   },
-   {
-    "lat": 52.4,
-    "lon": 4.9,
-    "stake": 0,
-    "name": "",
-    "loc": "Amsterdam, Netherlands"
    }
   ],
   "countries": [
    {
     "country": "Germany",
-    "stake_pct": 34.7
+    "stake_pct": 34.8
    },
    {
     "country": "Netherlands",
-    "stake_pct": 20.8
+    "stake_pct": 20.6
    },
    {
     "country": "United States",
@@ -7147,8 +7120,8 @@
    "AaVsZUEnrHUZoXC2oVgTY3GF5GGhzCTBGrjpBtuUWy1H": "Coinbase 04",
    "shft7Fry1js37Hm9wq4dfwcZSp2DyKszeWMvEpjYCQ1": "blueshift",
    "KRAKEnMdmT4EfM8ykTFH6yLoCd5vNLcQvJwF66Y2dag": "Kraken",
-   "AuGwcQWqWuNbnrkgERSp8VN6kZeJiM4AZuLMrwbkzg9m": "Bitwise Onchain Solutions | Jito BAM",
    "DriFTm3wM9ugxhCA1K3wVQMSdC4Dv4LNmyZMmZiuHRpp": "Drift",
+   "AuGwcQWqWuNbnrkgERSp8VN6kZeJiM4AZuLMrwbkzg9m": "Bitwise Onchain Solutions | Jito BAM",
    "Ak5BJzQe2R8qFuyYmaAFPjXuD7XPux3ZNTv52D7rfiqR": "Twinstake",
    "23XqhxnRHt5gQWHowvyRHDX4Ky6BZyFdYxjTzxx2QEFr": "OtterSec",
    "4AUED4uj6nSTuANzaAUnGBPJQRmhpDYDwoWJNkoUUBBW": "Anagram Staking",
@@ -7161,14 +7134,14 @@
    "8hPk5CbKDoM7dN9LssTdVkFhDykeq7A8CZurA5AQSFJH": "Bybit Staking",
    "2NxEEbhqqj1Qptq5LXLbDTP5tLa9f7PqkU8zNgxbGU9P": "Nansen | Stake to Stack Points",
    "Bwkz1ddKoGE8hgiSV6HZLXi9RBLqfBi3HZb2QujzVGgz": "StakeBowl",
+   "hsdtGUwm6TeePfXWgHqLpiLEijvnz177fxHf61BfsLT": "SOL Prime",
    "J1to5o1Q7W7Y2Q7zpETTezv3DyzPMHKDg66X2nZPMr4X": "JitoSOL Prime",
    "GqcuMuWq4gKeCuCrD8iAjXTozCET2EP6qJXmZDFsSTWK": "Coinbase 03",
-   "ERut3CwqVeoa616QBaoHc5jL52RpkXjZZZ7MeaMaCtLi": "Coinbase 05",
-   "hsdtGUwm6TeePfXWgHqLpiLEijvnz177fxHf61BfsLT": "SOL Prime",
    "EARNynHRWg6GfyJCmrrizcZxARB3HVzcaasvNa8kBS72": "Solana Compass \ud83e\udded Solana For The People",
    "g5kwi5sFXQTx26jwetYK97ytvx1WpA1RWuQ82Afdzyn": "Blockman",
    "BLADE1qNA1uNjRgER6DtUFf7FU3c1TWLLdpPeEcKatZ2": "Shinobi Systems \ud83d\ude80 stakeview.app",
-   "HxRrsnbc6K8CdEo3LCTrSUkFaDDxv9BdJsTDzBKnUVWH": "Haus \u2013 Best APY & No Fees"
+   "HxRrsnbc6K8CdEo3LCTrSUkFaDDxv9BdJsTDzBKnUVWH": "Haus \u2013 Best APY & No Fees",
+   "GvZEwtCHZ7YtCkQCaLRVEXsyVvQkRDhJhQgB6akPme1e": "melea \ud83d\ude80 SOL \ud83e\udd112K"
   }
  },
  "github": {
@@ -7247,7 +7220,7 @@
    51
   ],
   "cg_votes_up_pct": 65.0,
-  "cg_watchlist_users": 1349831,
+  "cg_watchlist_users": 1349832,
   "headlines": [
    {
     "title": "Solana (SOLUSD) Price Forecast & Predictions for 2026, 2027, 2028\u20132030, 2040 and Beyond - LiteFinance",
@@ -7324,7 +7297,7 @@
   {
    "label": "Binance (cold)",
    "address": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
-   "balance_sol": 1559365.2
+   "balance_sol": 1559029.8
   },
   {
    "label": "OKX (attributed)",
@@ -7334,23 +7307,23 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 9850.8
+   "balance_sol": 10057.0
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 950.6,
+   "tx_per_min": 1500.0,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 581.9,
+   "tx_per_min": 1500.0,
    "newest_age_s": 1
   },
   {
    "program": "Orca Whirlpool",
-   "tx_per_min": 581.9,
+   "tx_per_min": 855.7,
    "newest_age_s": 1
   },
   {
@@ -7361,25 +7334,25 @@
   {
    "program": "Tensor",
    "tx_per_min": 0.2,
-   "newest_age_s": 590
+   "newest_age_s": 808
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 43.4,
-   "newest_age_s": 1
+   "tx_per_min": 48.8,
+   "newest_age_s": 0
   },
   {
    "program": "Marinade",
-   "tx_per_min": 0.2,
-   "newest_age_s": 117
+   "tx_per_min": 0.3,
+   "newest_age_s": 62
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 133306,
-  "rev24h_usd": 693698,
-  "rev_per_min_usd": 481.73,
-  "avg_fee_per_tx_usd": 0.003378,
-  "epoch_eta_hours": 0.0,
+  "jito_tips24h_usd": 133671,
+  "rev24h_usd": 694063,
+  "rev_per_min_usd": 481.99,
+  "avg_fee_per_tx_usd": 0.003372,
+  "epoch_eta_hours": 25.3,
   "simd525_step_active": true,
   "alpenglow_active": true,
   "pulse": {
@@ -7398,105 +7371,91 @@
   "incidents": [],
   "all_clear": true
  },
- "commentary": "Epoch 1066 is 100% complete, with the cluster processing ~1,632 TPS (1,632 non-vote). Measured slot time is 212ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $693.7K of Real Economic Value over the last 24h ($482/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $100.43 (-3.8% / 24h). Decentralization: Nakamoto coefficient 18, 664 active validators, 0.1% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
+ "commentary": "Epoch 1067 is 0% complete (~25h remaining), with the cluster processing ~1,523 TPS (1,523 non-vote). Measured slot time is 211ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $694.1K of Real Economic Value over the last 24h ($482/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $100.42 (-3.8% / 24h). Decentralization: Nakamoto coefficient 18, 665 active validators, 0.1% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: all clear across every monitored metric.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 10015,
-   "fetched_at": "2026-10-24T17:58:25Z"
+   "latency_ms": 10798,
+   "fetched_at": "2026-10-24T18:02:00Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 252,
-   "fetched_at": "2026-10-24T17:58:26Z"
+   "latency_ms": 225,
+   "fetched_at": "2026-10-24T18:02:01Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1592,
-   "fetched_at": "2026-10-24T17:58:27Z"
+   "latency_ms": 1710,
+   "fetched_at": "2026-10-24T18:02:02Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 47,
-   "fetched_at": "2026-10-24T17:58:27Z"
+   "latency_ms": 840,
+   "fetched_at": "2026-10-24T18:02:03Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 789,
-   "fetched_at": "2026-10-24T17:58:28Z"
+   "latency_ms": 940,
+   "fetched_at": "2026-10-24T18:02:04Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1457,
-   "fetched_at": "2026-10-24T17:58:29Z"
+   "latency_ms": 1621,
+   "fetched_at": "2026-10-24T18:02:06Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 81,
-   "fetched_at": "2026-10-24T17:58:29Z"
+   "latency_ms": 144,
+   "fetched_at": "2026-10-24T18:02:06Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 27,
+   "latency_ms": 957,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-10-24T17:58:30Z"
+   "fetched_at": "2026-10-24T18:02:07Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 496,
-   "fetched_at": "2026-10-24T17:58:30Z"
+   "latency_ms": 342,
+   "fetched_at": "2026-10-24T18:02:07Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 973,
-   "fetched_at": "2026-10-24T17:58:31Z"
+   "latency_ms": 1208,
+   "fetched_at": "2026-10-24T18:02:08Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 715,
-   "fetched_at": "2026-10-24T17:58:32Z"
+   "latency_ms": 813,
+   "fetched_at": "2026-10-24T18:02:09Z"
   },
   "solana_com_news": {
    "ok": true,
-   "latency_ms": 131,
-   "fetched_at": "2026-10-24T17:58:32Z"
+   "latency_ms": 123,
+   "fetched_at": "2026-10-24T18:02:09Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2137,
-   "fetched_at": "2026-10-24T17:58:34Z"
+   "latency_ms": 2300,
+   "fetched_at": "2026-10-24T18:02:12Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 281,
-   "fetched_at": "2026-10-24T17:58:34Z"
+   "latency_ms": 310,
+   "fetched_at": "2026-10-24T18:02:12Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 822,
-   "fetched_at": "2026-10-24T17:58:35Z"
+   "latency_ms": 1231,
+   "fetched_at": "2026-10-24T18:02:13Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 1487,
-   "fetched_at": "2026-10-24T17:58:37Z"
+   "latency_ms": 2038,
+   "fetched_at": "2026-10-24T18:02:15Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-10-20T08:08:49Z",
-   "failed_sources": [],
-   "slot": 459158462,
-   "tps": 4799.2,
-   "nonvote_tps": 1728.1,
-   "slot_ms": 217.0,
-   "delinquent_stake_pct": 0.0,
-   "price": 103.9,
-   "tvl": 5875806547,
-   "rev_usd": 908747,
-   "anomaly_level": "ok",
-   "levels": {}
-  },
   {
    "ts": "2026-10-20T08:39:10Z",
    "failed_sources": [],
@@ -10847,6 +10806,24 @@
    "price": 100.43,
    "tvl": 5682912991,
    "rev_usd": 693698,
+   "anomaly_level": "ok",
+   "levels": {}
+  },
+  {
+   "ts": "2026-10-24T18:01:50Z",
+   "failed_sources": [
+    "defillama_xstocks"
+   ],
+   "slot": 460944591,
+   "tps": 1522.7,
+   "nonvote_tps": 1522.7,
+   "slot_ms": 211.1,
+   "conf_s": 0.21,
+   "final_s": 0.21,
+   "delinquent_stake_pct": 0.05,
+   "price": 100.42,
+   "tvl": 5680546249,
+   "rev_usd": 694063,
    "anomaly_level": "ok",
    "levels": {}
   }
