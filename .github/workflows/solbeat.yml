@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  actions: write  # lets the loop dispatch its own successor
 
 concurrency:
   group: solbeat-refresh
@@ -66,3 +67,13 @@ jobs:
             sleep 1800
           done
           true
+
+      - name: Hand off the baton
+        # workflow_dispatch is the documented exception to the GITHUB_TOKEN
+        # recursion guard, so the loop can spawn its successor directly —
+        # the cron (which GitHub throttles to every few hours on quiet
+        # repos) becomes a mere fallback for a broken chain.
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run solbeat.yml --ref main || true
