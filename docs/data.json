@@ -1,19 +1,19 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-05T07:47:59Z",
+ "generated_at": "2026-11-05T07:48:27Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-05T07:47:51Z",
-  "chain_clock_drift_s": 9,
+  "chain_time": "2026-11-05T07:48:18Z",
+  "chain_clock_drift_s": 10,
   "epoch": 1077,
-  "slot": 465626489,
-  "block_height": 443646690,
-  "epoch_slot_index": 362489,
+  "slot": 465626616,
+  "block_height": 443646817,
+  "epoch_slot_index": 362616,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 83.91,
-  "tx_count_total": 565310716017,
+  "epoch_progress_pct": 83.94,
+  "tx_count_total": 565310753691,
   "perf_series": [
    {
     "tps": 1863.1,
@@ -2251,10 +2251,10 @@
   ]
  },
  "market": {
-  "sol_price_usd": 95.87,
-  "sol_mcap_usd": 56601708947.71982,
-  "sol_vol24h_usd": 3803748395.187289,
-  "sol_change24h_pct": 3.02,
+  "sol_price_usd": 95.85,
+  "sol_mcap_usd": 56577621291.41264,
+  "sol_vol24h_usd": 3816187975.2634935,
+  "sol_change24h_pct": 2.97,
   "price_series_30d": [
    106.49,
    103.77,
@@ -7609,7 +7609,7 @@
    50
   ],
   "cg_votes_up_pct": 80.56,
-  "cg_watchlist_users": 1352799,
+  "cg_watchlist_users": 1352800,
   "headlines": [
    {
     "title": "$250 Each in Bitcoin, Ethereum, XRP and Solana at the Start of October: What Is the $1,000 Worth Now? - Yahoo Finance",
@@ -7652,8 +7652,8 @@
     "tone": 0
    },
    {
-    "title": "Solana SOL (SOL-USD) Live Price, News, Chart & Price History - Yahoo! Finance Canada",
-    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBqdlRhY2U1ZllSYWs2cmU5OGFHaV9DZTUtbG51NUdsVTRtaVI1T3BrUXp2M2Uxc29tcklHbC1iXzRTUWI3YTdXcXpnSWRUdUpnR1JqMFpR?oc=5",
+    "title": "Solana breaks $140 as Western Union's stablecoin bet keeps paying off - Startup Fortune",
+    "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNdEVJNXZvNV9vcklDakltNDlmc1V4MlpFZDZtSGNkSDhCYU9OVHJ1Q2Z1WVpib1FlTmNjZ3A1eklMNndYclNPb1BDU0ZIcDBEWnAxbHBzZVFVZHJ6U1VwMmstdVhGUmF0ZDJXYTdxcHpCZGQtbEpBMVF5RGVhWFRRbkM1bDJ1UU83T3lEenNVbkR4eGpLRUR0cVF4aw?oc=5",
     "tone": 0
    },
    {
@@ -7696,19 +7696,19 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 26581.8
+   "balance_sol": 26580.3
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 1394.6,
+   "tx_per_min": 777.7,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 1394.6,
-   "newest_age_s": 0
+   "tx_per_min": 1500.0,
+   "newest_age_s": 1
   },
   {
    "program": "Orca Whirlpool",
@@ -7723,23 +7723,23 @@
   {
    "program": "Tensor",
    "tx_per_min": 0.2,
-   "newest_age_s": 53
+   "newest_age_s": 84
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 49.9,
-   "newest_age_s": 4
+   "tx_per_min": 31.3,
+   "newest_age_s": 3
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.1,
-   "newest_age_s": 1514
+   "newest_age_s": 1545
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 138917,
-  "rev24h_usd": 718668,
-  "rev_per_min_usd": 499.07,
+  "jito_tips24h_usd": 138888,
+  "rev24h_usd": 718639,
+  "rev_per_min_usd": 499.05,
   "avg_fee_per_tx_usd": 0.004684,
   "epoch_eta_hours": 4.1,
   "simd525_step_active": true,
@@ -7767,113 +7767,92 @@
   "incidents": [],
   "all_clear": false
  },
- "commentary": "Epoch 1077 is 84% complete (~4h remaining), with the cluster processing ~1,248 TPS (1,248 non-vote). Measured slot time is 214ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $718.7K of Real Economic Value over the last 24h ($499/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $95.87 (+3.0% / 24h). Decentralization: Nakamoto coefficient 17, 662 active validators, 0.5% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
+ "commentary": "Epoch 1077 is 84% complete (~4h remaining), with the cluster processing ~1,248 TPS (1,248 non-vote). Measured slot time is 214ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $718.6K of Real Economic Value over the last 24h ($499/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $95.85 (+3.0% / 24h). Decentralization: Nakamoto coefficient 17, 662 active validators, 0.5% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 8483,
-   "fetched_at": "2026-11-05T07:48:07Z"
+   "latency_ms": 9337,
+   "fetched_at": "2026-11-05T07:48:36Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 208,
-   "fetched_at": "2026-11-05T07:48:08Z"
+   "latency_ms": 165,
+   "fetched_at": "2026-11-05T07:48:36Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1625,
-   "fetched_at": "2026-11-05T07:48:09Z"
+   "latency_ms": 1635,
+   "fetched_at": "2026-11-05T07:48:38Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 130,
-   "fetched_at": "2026-11-05T07:48:09Z"
+   "latency_ms": 72,
+   "fetched_at": "2026-11-05T07:48:38Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 402,
-   "fetched_at": "2026-11-05T07:48:10Z"
+   "latency_ms": 850,
+   "fetched_at": "2026-11-05T07:48:39Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 306,
-   "fetched_at": "2026-11-05T07:48:10Z"
+   "latency_ms": 814,
+   "fetched_at": "2026-11-05T07:48:40Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 149,
-   "fetched_at": "2026-11-05T07:48:10Z"
+   "latency_ms": 64,
+   "fetched_at": "2026-11-05T07:48:40Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 23,
+   "latency_ms": 592,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-05T07:48:10Z"
+   "fetched_at": "2026-11-05T07:48:40Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 77,
-   "fetched_at": "2026-11-05T07:48:10Z"
+   "latency_ms": 98,
+   "fetched_at": "2026-11-05T07:48:40Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 675,
-   "fetched_at": "2026-11-05T07:48:11Z"
+   "latency_ms": 986,
+   "fetched_at": "2026-11-05T07:48:41Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 610,
-   "fetched_at": "2026-11-05T07:48:12Z"
+   "latency_ms": 715,
+   "fetched_at": "2026-11-05T07:48:42Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 48,
+   "latency_ms": 117,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-05T07:48:12Z"
+   "fetched_at": "2026-11-05T07:48:42Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2073,
-   "fetched_at": "2026-11-05T07:48:14Z"
+   "latency_ms": 2058,
+   "fetched_at": "2026-11-05T07:48:44Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 209,
-   "fetched_at": "2026-11-05T07:48:14Z"
+   "latency_ms": 325,
+   "fetched_at": "2026-11-05T07:48:44Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 745,
-   "fetched_at": "2026-11-05T07:48:15Z"
+   "latency_ms": 930,
+   "fetched_at": "2026-11-05T07:48:45Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 1349,
-   "fetched_at": "2026-11-05T07:48:16Z"
+   "latency_ms": 1734,
+   "fetched_at": "2026-11-05T07:48:47Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-01T02:04:32Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 463917229,
-   "tps": 1383.1,
-   "nonvote_tps": 1383.1,
-   "slot_ms": 213.3,
-   "conf_s": 0.21,
-   "final_s": 0.21,
-   "delinquent_stake_pct": 0.85,
-   "price": 95.79,
-   "tvl": 5407548600,
-   "rev_usd": 461570,
-   "anomaly_level": "warning",
-   "levels": {
-    "rev": "warning"
-   }
-  },
   {
    "ts": "2026-11-01T02:34:59Z",
    "failed_sources": [
@@ -12040,6 +12019,27 @@
    "price": 95.87,
    "tvl": 5535956241,
    "rev_usd": 718668,
+   "anomaly_level": "warning",
+   "levels": {
+    "stablecoins": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-05T07:48:27Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 465626616,
+   "tps": 1247.8,
+   "nonvote_tps": 1247.8,
+   "slot_ms": 213.8,
+   "conf_s": 0.21,
+   "final_s": 0.21,
+   "delinquent_stake_pct": 0.46,
+   "price": 95.85,
+   "tvl": 5535956241,
+   "rev_usd": 718639,
    "anomaly_level": "warning",
    "levels": {
     "stablecoins": "warning"
