@@ -1,30 +1,20 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-06T20:32:31Z",
+ "generated_at": "2026-11-06T20:33:10Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-06T20:32:22Z",
+  "chain_time": "2026-11-06T20:33:02Z",
   "chain_clock_drift_s": 10,
   "epoch": 1079,
-  "slot": 466244822,
-  "block_height": 444263795,
-  "epoch_slot_index": 116822,
+  "slot": 466245005,
+  "block_height": 444263978,
+  "epoch_slot_index": 117005,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 27.04,
-  "tx_count_total": 565563472866,
+  "epoch_progress_pct": 27.08,
+  "tx_count_total": 565563537825,
   "perf_series": [
-   {
-    "tps": 1979.2,
-    "nonvote_tps": 1979.2,
-    "slot_ms": 217.4
-   },
-   {
-    "tps": 2078.9,
-    "nonvote_tps": 2078.9,
-    "slot_ms": 215.1
-   },
    {
     "tps": 2091.6,
     "nonvote_tps": 2091.6,
@@ -1454,12 +1444,12 @@
   "tps": 1895.6,
   "nonvote_tps": 1895.6,
   "slot_time_ms": 214.7,
-  "est_daily_txs": 189741324,
-  "est_daily_nonvote_txs": 189741293,
-  "conf_lag_slots": 0,
-  "final_lag_slots": 0,
-  "confirmation_s": 0.0,
-  "finality_s": 0.0,
+  "est_daily_txs": 189842597,
+  "est_daily_nonvote_txs": 189842566,
+  "conf_lag_slots": 1,
+  "final_lag_slots": 1,
+  "confirmation_s": 0.21,
+  "finality_s": 0.21,
   "supply_total_sol": 637127828,
   "supply_circulating_sol": 590342591,
   "inflation_total_pct": 3.57,
@@ -1616,7 +1606,7 @@
    92.78,
    95.51,
    89.23,
-   89.77
+   89.79
   ]
  },
  "tvl": {
@@ -1736,8 +1726,8 @@
     "vol24h_usd": 188575354
    },
    {
-    "name": "Raydium AMM",
-    "vol24h_usd": 174936509
+    "name": "Meteora DLMM",
+    "vol24h_usd": 172582153
    }
   ],
   "dex_series": [
@@ -1830,7 +1820,7 @@
    1881110225,
    2385538830,
    2198364299,
-   2055372919
+   2052528310
   ]
  },
  "fees": {
@@ -7010,51 +7000,51 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 25953.8
+   "balance_sol": 25953.6
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 838.3,
-   "newest_age_s": 1
+   "tx_per_min": 1054.7,
+   "newest_age_s": 0
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 537.8,
-   "newest_age_s": 1
+   "tx_per_min": 1054.7,
+   "newest_age_s": 0
   },
   {
    "program": "Orca Whirlpool",
-   "tx_per_min": 1500.0,
-   "newest_age_s": 1
+   "tx_per_min": 1054.7,
+   "newest_age_s": 0
   },
   {
    "program": "Pump.fun",
    "tx_per_min": 1500.0,
-   "newest_age_s": 0
+   "newest_age_s": -1
   },
   {
    "program": "Tensor",
    "tx_per_min": 1.0,
-   "newest_age_s": 980
+   "newest_age_s": 1016
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 50.4,
-   "newest_age_s": 3
+   "tx_per_min": 38.0,
+   "newest_age_s": 2
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.2,
-   "newest_age_s": 243
+   "newest_age_s": 279
   }
  ],
  "derived": {
   "jito_tips24h_usd": 122405,
   "rev24h_usd": 621843,
   "rev_per_min_usd": 431.84,
-  "avg_fee_per_tx_usd": 0.002632,
+  "avg_fee_per_tx_usd": 0.002631,
   "epoch_eta_hours": 18.8,
   "simd525_step_active": true,
   "alpenglow_active": true,
@@ -7085,109 +7075,88 @@
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 10260,
-   "fetched_at": "2026-11-06T20:32:41Z"
+   "latency_ms": 9771,
+   "fetched_at": "2026-11-06T20:33:20Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 332,
-   "fetched_at": "2026-11-06T20:32:41Z"
+   "latency_ms": 386,
+   "fetched_at": "2026-11-06T20:33:20Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1729,
-   "fetched_at": "2026-11-06T20:32:43Z"
+   "latency_ms": 1840,
+   "fetched_at": "2026-11-06T20:33:22Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 89,
-   "fetched_at": "2026-11-06T20:32:43Z"
+   "latency_ms": 142,
+   "fetched_at": "2026-11-06T20:33:22Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 2628,
-   "fetched_at": "2026-11-06T20:32:46Z"
+   "latency_ms": 157,
+   "fetched_at": "2026-11-06T20:33:23Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1079,
-   "fetched_at": "2026-11-06T20:32:47Z"
+   "latency_ms": 1745,
+   "fetched_at": "2026-11-06T20:33:24Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 1177,
-   "fetched_at": "2026-11-06T20:32:48Z"
+   "latency_ms": 225,
+   "fetched_at": "2026-11-06T20:33:25Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 760,
+   "latency_ms": 679,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-06T20:32:49Z"
+   "fetched_at": "2026-11-06T20:33:25Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 263,
-   "fetched_at": "2026-11-06T20:32:49Z"
+   "latency_ms": 277,
+   "fetched_at": "2026-11-06T20:33:25Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1549,
-   "fetched_at": "2026-11-06T20:32:51Z"
+   "latency_ms": 1240,
+   "fetched_at": "2026-11-06T20:33:27Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 813,
-   "fetched_at": "2026-11-06T20:32:51Z"
+   "latency_ms": 966,
+   "fetched_at": "2026-11-06T20:33:28Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 65,
+   "latency_ms": 143,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-06T20:32:52Z"
+   "fetched_at": "2026-11-06T20:33:28Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2405,
-   "fetched_at": "2026-11-06T20:32:54Z"
+   "latency_ms": 2252,
+   "fetched_at": "2026-11-06T20:33:30Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 227,
-   "fetched_at": "2026-11-06T20:32:54Z"
+   "latency_ms": 375,
+   "fetched_at": "2026-11-06T20:33:30Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 1127,
-   "fetched_at": "2026-11-06T20:32:55Z"
+   "latency_ms": 1475,
+   "fetched_at": "2026-11-06T20:33:32Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 2150,
-   "fetched_at": "2026-11-06T20:32:57Z"
+   "latency_ms": 2411,
+   "fetched_at": "2026-11-06T20:33:34Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-02T22:45:59Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 464668110,
-   "tps": 1633.3,
-   "nonvote_tps": 1633.3,
-   "slot_ms": 213.8,
-   "conf_s": 0.21,
-   "final_s": 0.21,
-   "delinquent_stake_pct": 1.51,
-   "price": 91.82,
-   "tvl": 5326843386,
-   "rev_usd": 453294,
-   "anomaly_level": "warning",
-   "levels": {
-    "dex": "warning"
-   }
-  },
   {
    "ts": "2026-11-02T23:16:27Z",
    "failed_sources": [
@@ -11295,6 +11264,27 @@
    "slot_ms": 214.7,
    "conf_s": 0.0,
    "final_s": 0.0,
+   "delinquent_stake_pct": 0.3,
+   "price": 89.78,
+   "tvl": 5216811384,
+   "rev_usd": 621843,
+   "anomaly_level": "warning",
+   "levels": {
+    "stablecoins": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-06T20:33:10Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 466245005,
+   "tps": 1895.6,
+   "nonvote_tps": 1895.6,
+   "slot_ms": 214.7,
+   "conf_s": 0.21,
+   "final_s": 0.21,
    "delinquent_stake_pct": 0.3,
    "price": 89.78,
    "tvl": 5216811384,
