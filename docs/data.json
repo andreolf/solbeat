@@ -1,19 +1,19 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-10T15:12:16Z",
+ "generated_at": "2026-11-10T15:12:59Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-10T15:12:08Z",
+  "chain_time": "2026-11-10T15:12:51Z",
   "chain_clock_drift_s": 10,
   "epoch": 1082,
-  "slot": 467766509,
-  "block_height": 445783907,
-  "epoch_slot_index": 342509,
+  "slot": 467766707,
+  "block_height": 445784105,
+  "epoch_slot_index": 342707,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 79.28,
-  "tx_count_total": 566046135683,
+  "epoch_progress_pct": 79.33,
+  "tx_count_total": 566046223980,
   "perf_series": [
    {
     "tps": 1117.3,
@@ -2144,19 +2144,24 @@
     "tps": 2447.0,
     "nonvote_tps": 2447.0,
     "slot_ms": 209.1
+   },
+   {
+    "tps": 2142.7,
+    "nonvote_tps": 2142.7,
+    "slot_ms": 219.0
    }
   ],
-  "tps": 2573.9,
-  "nonvote_tps": 2573.9,
-  "slot_time_ms": 213.6,
-  "est_daily_txs": 131061721,
-  "est_daily_nonvote_txs": 131061660,
+  "tps": 2436.7,
+  "nonvote_tps": 2436.7,
+  "slot_time_ms": 214.2,
+  "est_daily_txs": 131188343,
+  "est_daily_nonvote_txs": 131188282,
   "conf_lag_slots": 1,
   "final_lag_slots": 1,
   "confirmation_s": 0.21,
   "finality_s": 0.21,
-  "supply_total_sol": 637310895,
-  "supply_circulating_sol": 591149025,
+  "supply_total_sol": 637310894,
+  "supply_circulating_sol": 591149024,
   "inflation_total_pct": 3.56,
   "priority_fee_median": 0.0,
   "priority_fee_p90": 0,
@@ -2311,7 +2316,7 @@
    89.7,
    86.41,
    86.6,
-   84.67
+   84.6
   ]
  },
  "tvl": {
@@ -7589,7 +7594,12 @@
    "7KVnUL45FH4N8Z7x1dnvJ7GzMx12cs81mS26mHzNjQPN": "PoH PoS"
   }
  },
- "github": null,
+ "github": {
+  "agave_latest_tag": "v4.4.1",
+  "agave_published_at": "2026-11-05T18:33:50Z",
+  "agave_url": "https://github.com/anza-xyz/agave/releases/tag/v4.4.1",
+  "simd525_state": "merged"
+ },
  "news": null,
  "sentiment": {
   "fng_value": 32,
@@ -7670,17 +7680,17 @@
     "tone": 0
    },
    {
-    "title": "Solana Price Below $84.44 Signals Bearish Setup - The Cryptonomist",
-    "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNcC1Cd1QtMzkwNFBHek9ZaVRWMzZiV2RIcl9WZ1M1UUJLaW43dUZqWmdROXN1el9yZF9KMU13Y1lKMHJRNEtYV1U3QkdNaF8ybkRWTGNHY0h5RmpYNUR2alR4U2I1TkdiSzc3RDJJVGVaazZCWHRpdnZ0Tl9nQlY4V1ZVeUNVWGRDSG4ydEVQd0R0eG1VTkVvc2s3d0VuWVpYOHc?oc=5",
-    "tone": -1
-   },
-   {
     "title": "Fomo Adds Solana Token Trading Route to X Cashtags - The Defiant",
     "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQamZVaFBqMEJzTkF3VEJCTWRwdGd3YU5CS1J1WlBTeUVINU1LS3NIVldoRUJab2NuVDlCb3RCdVE0WU5PZEk2bXA3Z0pqUVFtdEl3M3lYcmVIOWpGTzRZUEdQMzFNTDRoNXQwRDY3SUNaWXA1dHdINDd1eVFpcFNVZGhNT05pVi1Ra09LNVBOc0FTT05YOE5aOWxiQ2Q?oc=5",
     "tone": 0
+   },
+   {
+    "title": "Solana's Jupiter Expands Beyond Trading With Token Baskets, Yield Vaults and New Portfolio - Decrypt",
+    "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNQ0pkNnM3N0ktVkYyUFJpV2pCZ1BIbTNCZE1PTWJzRHJkUW8yeXBmV1ZpbFdnR2NRbWhnU0JISTgzaWxDb2dNS0ZiZnpvdHE1d3lyODN3dUdpNW1rTTkzS0NvWDhPVVJTdUsweGZ6a01PYzJLV0lfaWFzaHVXYTJ3bUNYNmZKNUg3bzZ1dS1TRklfSkdLeHNndTdNMVQwMGtHNTYwcHRSUlFhaFFuQ0pOcDVpazE?oc=5",
+    "tone": 0
    }
   ],
-  "headlines_net_tone": -2
+  "headlines_net_tone": -1
  },
  "dune": {
   "enabled": false,
@@ -7720,12 +7730,12 @@
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 1242.4,
+   "tx_per_min": 1256.8,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 467.7,
+   "tx_per_min": 683.8,
    "newest_age_s": 1
   },
   {
@@ -7741,35 +7751,35 @@
   {
    "program": "Tensor",
    "tx_per_min": 0.4,
-   "newest_age_s": 143
+   "newest_age_s": 177
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 36.4,
-   "newest_age_s": 0
+   "tx_per_min": 38.3,
+   "newest_age_s": 4
   },
   {
    "program": "Marinade",
    "tx_per_min": 1.2,
-   "newest_age_s": 72
+   "newest_age_s": 11
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 108311,
-  "rev24h_usd": 516280,
-  "rev_per_min_usd": 358.53,
-  "avg_fee_per_tx_usd": 0.003113,
+  "jito_tips24h_usd": 108008,
+  "rev24h_usd": 515977,
+  "rev_per_min_usd": 358.32,
+  "avg_fee_per_tx_usd": 0.00311,
   "epoch_eta_hours": 5.3,
   "simd525_step_active": true,
   "alpenglow_active": true,
   "pulse": {
-   "score": 46,
+   "score": 48,
    "label": "Neutral",
    "components": {
     "community": 62.5,
     "fear_greed": 32,
-    "momentum": 48.5,
-    "news": 34
+    "momentum": 48.4,
+    "news": 42
    }
   }
  },
@@ -7791,114 +7801,92 @@
   "incidents": [],
   "all_clear": false
  },
- "commentary": "Epoch 1082 is 79% complete (~5h remaining), with the cluster processing ~2,574 TPS (2,574 non-vote). Measured slot time is 214ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $516.3K of Real Economic Value over the last 24h ($359/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $84.67 (-3.0% / 24h). Decentralization: Nakamoto coefficient 18, 657 active validators, 0.2% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 2 signal(s) flagged \u2014 see Signals below.",
+ "commentary": "Epoch 1082 is 79% complete (~5h remaining), with the cluster processing ~2,437 TPS (2,437 non-vote). Measured slot time is 214ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $516.0K of Real Economic Value over the last 24h ($358/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $84.67 (-3.0% / 24h). Decentralization: Nakamoto coefficient 18, 657 active validators, 0.2% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 2 signal(s) flagged \u2014 see Signals below.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 9053,
-   "fetched_at": "2026-11-10T15:12:26Z"
+   "latency_ms": 9221,
+   "fetched_at": "2026-11-10T15:13:09Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 308,
-   "fetched_at": "2026-11-10T15:12:26Z"
+   "latency_ms": 136,
+   "fetched_at": "2026-11-10T15:13:09Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1791,
-   "fetched_at": "2026-11-10T15:12:28Z"
+   "latency_ms": 1627,
+   "fetched_at": "2026-11-10T15:13:10Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 817,
-   "fetched_at": "2026-11-10T15:12:28Z"
+   "latency_ms": 132,
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 1149,
-   "fetched_at": "2026-11-10T15:12:30Z"
+   "latency_ms": 73,
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1384,
-   "fetched_at": "2026-11-10T15:12:31Z"
+   "latency_ms": 156,
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 827,
-   "fetched_at": "2026-11-10T15:12:32Z"
+   "latency_ms": 165,
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 74,
+   "latency_ms": 65,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-10T15:12:32Z"
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 268,
-   "fetched_at": "2026-11-10T15:12:32Z"
+   "latency_ms": 308,
+   "fetched_at": "2026-11-10T15:13:11Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1391,
-   "fetched_at": "2026-11-10T15:12:34Z"
+   "latency_ms": 1377,
+   "fetched_at": "2026-11-10T15:13:13Z"
   },
   "github": {
-   "ok": false,
-   "latency_ms": 6479,
-   "error": "https://api.github.com/repos/anza-xyz/agave/releases/latest: HTTP Error 403: rate limit exceeded",
-   "fetched_at": "2026-11-10T15:12:40Z"
+   "ok": true,
+   "latency_ms": 1153,
+   "fetched_at": "2026-11-10T15:13:14Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 139,
+   "latency_ms": 94,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-10T15:12:40Z"
+   "fetched_at": "2026-11-10T15:13:14Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2320,
-   "fetched_at": "2026-11-10T15:12:42Z"
+   "latency_ms": 2308,
+   "fetched_at": "2026-11-10T15:13:16Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 233,
-   "fetched_at": "2026-11-10T15:12:43Z"
+   "latency_ms": 297,
+   "fetched_at": "2026-11-10T15:13:17Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 977,
-   "fetched_at": "2026-11-10T15:12:44Z"
+   "latency_ms": 1096,
+   "fetched_at": "2026-11-10T15:13:18Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 1748,
-   "fetched_at": "2026-11-10T15:12:45Z"
+   "latency_ms": 1738,
+   "fetched_at": "2026-11-10T15:13:19Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-06T19:01:08Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 466219336,
-   "tps": 1804.5,
-   "nonvote_tps": 1804.5,
-   "slot_ms": 215.3,
-   "conf_s": 0.22,
-   "final_s": 0.22,
-   "delinquent_stake_pct": 0.35,
-   "price": 90.18,
-   "tvl": 5278762697,
-   "rev_usd": 622046,
-   "anomaly_level": "warning",
-   "levels": {
-    "stablecoins": "warning"
-   }
-  },
   {
    "ts": "2026-11-06T19:31:35Z",
    "failed_sources": [
@@ -12187,6 +12175,28 @@
    "price": 84.67,
    "tvl": 4985667466,
    "rev_usd": 516280,
+   "anomaly_level": "warning",
+   "levels": {
+    "price": "warning",
+    "stablecoins": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-10T15:12:59Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 467766707,
+   "tps": 2436.7,
+   "nonvote_tps": 2436.7,
+   "slot_ms": 214.2,
+   "conf_s": 0.21,
+   "final_s": 0.21,
+   "delinquent_stake_pct": 0.22,
+   "price": 84.67,
+   "tvl": 4985667466,
+   "rev_usd": 515977,
    "anomaly_level": "warning",
    "levels": {
     "price": "warning",
