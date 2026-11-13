@@ -1,19 +1,19 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-13T12:04:17Z",
+ "generated_at": "2026-11-13T12:04:57Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-13T12:04:09Z",
-  "chain_clock_drift_s": 9,
+  "chain_time": "2026-11-13T12:04:49Z",
+  "chain_clock_drift_s": 10,
   "epoch": 1085,
-  "slot": 468919797,
-  "block_height": 446935003,
-  "epoch_slot_index": 199797,
+  "slot": 468919984,
+  "block_height": 446935190,
+  "epoch_slot_index": 199984,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 46.25,
-  "tx_count_total": 566498872958,
+  "epoch_progress_pct": 46.29,
+  "tx_count_total": 566498935556,
   "perf_series": [
    {
     "tps": 1889.6,
@@ -2234,13 +2234,18 @@
     "tps": 1115.2,
     "nonvote_tps": 1115.2,
     "slot_ms": 214.3
+   },
+   {
+    "tps": 1285.9,
+    "nonvote_tps": 1285.9,
+    "slot_ms": 214.3
    }
   ],
-  "tps": 1165.5,
-  "nonvote_tps": 1165.5,
-  "slot_time_ms": 216.2,
-  "est_daily_txs": 126590555,
-  "est_daily_nonvote_txs": 126590458,
+  "tps": 1162.5,
+  "nonvote_tps": 1162.5,
+  "slot_time_ms": 215.9,
+  "est_daily_txs": 126555749,
+  "est_daily_nonvote_txs": 126555652,
   "conf_lag_slots": 1,
   "final_lag_slots": 1,
   "confirmation_s": 0.22,
@@ -2336,10 +2341,10 @@
   ]
  },
  "market": {
-  "sol_price_usd": 80.64,
-  "sol_mcap_usd": 47699206197.23057,
-  "sol_vol24h_usd": 3460061535.4835467,
-  "sol_change24h_pct": -2.14,
+  "sol_price_usd": 80.7,
+  "sol_mcap_usd": 47736407927.40203,
+  "sol_vol24h_usd": 3465563759.6693325,
+  "sol_change24h_pct": -1.91,
   "price_series_30d": [
    102.51,
    96.87,
@@ -2401,7 +2406,7 @@
    83.27,
    83.24,
    81.64,
-   80.69
+   80.7
   ]
  },
  "tvl": {
@@ -7764,13 +7769,13 @@
     "tone": -1
    },
    {
-    "title": "DTCC Aims to Offer Securities Tokenization on Solana in Second Half of 2027 - bloomingbit",
-    "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1LSEJsNnQ1TFdkdEpmUU0teTdGNjJXYlpiTUFLZ1ByRTFNTlBqYXZYS1VNQnhKdVc0cXI2UDJnY3FWbTZKb2l3RzdQZG02RExOSUtGMQ?oc=5",
+    "title": "Solana price at a three-month low: will the $75 level hold? - CryptoTicker.io",
+    "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB2M0hUS2dJN0F1U1RlS1ZraHotcW5SSWRfNTBMVGxJZUJ5dEh3NTlSaXhJaHlOVmNaVVNaOUpQZnAwSF9fRTNncDJfQ2NhWHRKZWUwS1F4M2E1VnJiM3ZlQnRjM3dzNHJTM2tpRnYzRHNKaTdGc3BWcnVYNlFPRms?oc=5",
     "tone": 0
    },
    {
-    "title": "Solana price at a three-month low: will the $75 level hold? - CryptoTicker.io",
-    "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB2M0hUS2dJN0F1U1RlS1ZraHotcW5SSWRfNTBMVGxJZUJ5dEh3NTlSaXhJaHlOVmNaVVNaOUpQZnAwSF9fRTNncDJfQ2NhWHRKZWUwS1F4M2E1VnJiM3ZlQnRjM3dzNHJTM2tpRnYzRHNKaTdGc3BWcnVYNlFPRms?oc=5",
+    "title": "DTCC Aims to Offer Securities Tokenization on Solana in Second Half of 2027 - bloomingbit",
+    "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1LSEJsNnQ1TFdkdEpmUU0teTdGNjJXYlpiTUFLZ1ByRTFNTlBqYXZYS1VNQnhKdVc0cXI2UDJnY3FWbTZKb2l3RzdQZG02RExOSUtGMQ?oc=5",
     "tone": 0
    },
    {
@@ -7829,12 +7834,12 @@
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 1097.8,
+   "tx_per_min": 1042.3,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 445.6,
+   "tx_per_min": 436.1,
    "newest_age_s": 0
   },
   {
@@ -7845,29 +7850,29 @@
   {
    "program": "Pump.fun",
    "tx_per_min": 1500.0,
-   "newest_age_s": -1
+   "newest_age_s": 0
   },
   {
    "program": "Tensor",
    "tx_per_min": 0.2,
-   "newest_age_s": 605
+   "newest_age_s": 647
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 28.6,
-   "newest_age_s": 26
+   "tx_per_min": 19.6,
+   "newest_age_s": 2
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.2,
-   "newest_age_s": 428
+   "newest_age_s": 470
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 115082,
-  "rev24h_usd": 562515,
-  "rev_per_min_usd": 390.64,
-  "avg_fee_per_tx_usd": 0.003534,
+  "jito_tips24h_usd": 115327,
+  "rev24h_usd": 562760,
+  "rev_per_min_usd": 390.81,
+  "avg_fee_per_tx_usd": 0.003535,
   "epoch_eta_hours": 13.9,
   "simd525_step_active": true,
   "alpenglow_active": true,
@@ -7894,114 +7899,92 @@
   "incidents": [],
   "all_clear": false
  },
- "commentary": "Epoch 1085 is 46% complete (~14h remaining), with the cluster processing ~1,166 TPS (1,166 non-vote). Measured slot time is 216ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $562.5K of Real Economic Value over the last 24h ($391/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $80.64 (-2.1% / 24h). Decentralization: Nakamoto coefficient 18, 660 active validators, 0.2% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
+ "commentary": "Epoch 1085 is 46% complete (~14h remaining), with the cluster processing ~1,162 TPS (1,162 non-vote). Measured slot time is 216ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $562.8K of Real Economic Value over the last 24h ($391/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $80.70 (-1.9% / 24h). Decentralization: Nakamoto coefficient 18, 660 active validators, 0.2% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 9967,
-   "fetched_at": "2026-11-13T12:04:27Z"
+   "latency_ms": 9831,
+   "fetched_at": "2026-11-13T12:05:07Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 419,
-   "fetched_at": "2026-11-13T12:04:27Z"
+   "latency_ms": 136,
+   "fetched_at": "2026-11-13T12:05:07Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1739,
-   "fetched_at": "2026-11-13T12:04:29Z"
+   "latency_ms": 1784,
+   "fetched_at": "2026-11-13T12:05:09Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 91,
-   "fetched_at": "2026-11-13T12:04:29Z"
+   "latency_ms": 976,
+   "fetched_at": "2026-11-13T12:05:10Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 60,
-   "fetched_at": "2026-11-13T12:04:29Z"
+   "latency_ms": 1119,
+   "fetched_at": "2026-11-13T12:05:11Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1111,
-   "fetched_at": "2026-11-13T12:04:30Z"
+   "latency_ms": 109,
+   "fetched_at": "2026-11-13T12:05:11Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 1333,
-   "fetched_at": "2026-11-13T12:04:31Z"
+   "latency_ms": 1322,
+   "fetched_at": "2026-11-13T12:05:13Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 49,
+   "latency_ms": 754,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-13T12:04:31Z"
+   "fetched_at": "2026-11-13T12:05:14Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 352,
-   "fetched_at": "2026-11-13T12:04:32Z"
+   "latency_ms": 227,
+   "fetched_at": "2026-11-13T12:05:14Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1384,
-   "fetched_at": "2026-11-13T12:04:33Z"
+   "latency_ms": 1365,
+   "fetched_at": "2026-11-13T12:05:15Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 705,
-   "fetched_at": "2026-11-13T12:04:34Z"
+   "latency_ms": 1158,
+   "fetched_at": "2026-11-13T12:05:16Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 113,
+   "latency_ms": 88,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-13T12:04:34Z"
+   "fetched_at": "2026-11-13T12:05:16Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2351,
-   "fetched_at": "2026-11-13T12:04:36Z"
+   "latency_ms": 2242,
+   "fetched_at": "2026-11-13T12:05:19Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 270,
-   "fetched_at": "2026-11-13T12:04:37Z"
+   "latency_ms": 257,
+   "fetched_at": "2026-11-13T12:05:19Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 1226,
-   "fetched_at": "2026-11-13T12:04:38Z"
+   "latency_ms": 1083,
+   "fetched_at": "2026-11-13T12:05:20Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 2192,
-   "fetched_at": "2026-11-13T12:04:40Z"
+   "latency_ms": 1864,
+   "fetched_at": "2026-11-13T12:05:22Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-09T14:27:08Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 467350798,
-   "tps": 1665.7,
-   "nonvote_tps": 1665.7,
-   "slot_ms": 214.6,
-   "conf_s": 0.21,
-   "final_s": 0.21,
-   "delinquent_stake_pct": 0.13,
-   "price": 86.91,
-   "tvl": 5054738729,
-   "rev_usd": 510138,
-   "anomaly_level": "warning",
-   "levels": {
-    "price": "warning",
-    "stablecoins": "warning"
-   }
-  },
   {
    "ts": "2026-11-09T14:57:31Z",
    "failed_sources": [
@@ -12361,6 +12344,27 @@
    "price": 80.64,
    "tvl": 4951813650,
    "rev_usd": 562515,
+   "anomaly_level": "warning",
+   "levels": {
+    "price": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-13T12:04:57Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 468919984,
+   "tps": 1162.5,
+   "nonvote_tps": 1162.5,
+   "slot_ms": 215.9,
+   "conf_s": 0.22,
+   "final_s": 0.22,
+   "delinquent_stake_pct": 0.16,
+   "price": 80.7,
+   "tvl": 4951813650,
+   "rev_usd": 562760,
    "anomaly_level": "warning",
    "levels": {
     "price": "warning"
