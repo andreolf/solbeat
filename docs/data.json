@@ -1,25 +1,20 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-13T05:42:14Z",
+ "generated_at": "2026-11-13T05:42:49Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-13T05:42:06Z",
+  "chain_time": "2026-11-13T05:42:41Z",
   "chain_clock_drift_s": 10,
   "epoch": 1085,
-  "slot": 468813251,
-  "block_height": 446828701,
-  "epoch_slot_index": 93251,
+  "slot": 468813411,
+  "block_height": 446828861,
+  "epoch_slot_index": 93411,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 21.59,
-  "tx_count_total": 566466628142,
+  "epoch_progress_pct": 21.62,
+  "tx_count_total": 566466699292,
   "perf_series": [
-   {
-    "tps": 2561.6,
-    "nonvote_tps": 2561.5,
-    "slot_ms": 221.4
-   },
    {
     "tps": 2418.0,
     "nonvote_tps": 2418.0,
@@ -1624,12 +1619,12 @@
   "tps": 1771.9,
   "nonvote_tps": 1771.9,
   "slot_time_ms": 213.1,
-  "est_daily_txs": 178555854,
-  "est_daily_nonvote_txs": 178555747,
-  "conf_lag_slots": 1,
-  "final_lag_slots": 1,
-  "confirmation_s": 0.21,
-  "finality_s": 0.21,
+  "est_daily_txs": 178422210,
+  "est_daily_nonvote_txs": 178422129,
+  "conf_lag_slots": 2,
+  "final_lag_slots": 2,
+  "confirmation_s": 0.43,
+  "finality_s": 0.43,
   "supply_total_sol": 637493844,
   "supply_circulating_sol": 591511122,
   "inflation_total_pct": 3.56,
@@ -1786,7 +1781,7 @@
    83.27,
    83.24,
    81.64,
-   78.73
+   78.76
   ]
  },
  "tvl": {
@@ -7121,7 +7116,7 @@
    20
   ],
   "cg_votes_up_pct": 68.57,
-  "cg_watchlist_users": 1354942,
+  "cg_watchlist_users": 1354943,
   "headlines": [
    {
     "title": "Forward Industries to Take Up to $30M Stake in GromaCoin Ahead of Solana Launch - Yahoo Finance",
@@ -7208,24 +7203,24 @@
   {
    "label": "Coinbase (hot)",
    "address": "H8sMJSCQxfKiFTCfDR3DUMLPwcRbM61LGFJ8N4dK3WjS",
-   "balance_sol": 26927.2
+   "balance_sol": 26925.9
   }
  ],
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 948.4,
+   "tx_per_min": 733.1,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 581.0,
+   "tx_per_min": 492.4,
    "newest_age_s": 1
   },
   {
    "program": "Orca Whirlpool",
-   "tx_per_min": 948.4,
-   "newest_age_s": 1
+   "tx_per_min": 733.1,
+   "newest_age_s": 0
   },
   {
    "program": "Pump.fun",
@@ -7235,25 +7230,25 @@
   {
    "program": "Tensor",
    "tx_per_min": 0.4,
-   "newest_age_s": 495
+   "newest_age_s": 526
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 119.2,
+   "tx_per_min": 115.0,
    "newest_age_s": 0
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.1,
-   "newest_age_s": 1438
+   "newest_age_s": 1469
   }
  ],
  "derived": {
   "jito_tips24h_usd": 113990,
   "rev24h_usd": 561423,
   "rev_per_min_usd": 389.88,
-  "avg_fee_per_tx_usd": 0.002506,
-  "epoch_eta_hours": 20.1,
+  "avg_fee_per_tx_usd": 0.002508,
+  "epoch_eta_hours": 20.0,
   "simd525_step_active": true,
   "alpenglow_active": true,
   "pulse": {
@@ -7295,110 +7290,88 @@
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 11014,
-   "fetched_at": "2026-11-13T05:42:25Z"
+   "latency_ms": 10856,
+   "fetched_at": "2026-11-13T05:43:00Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 304,
-   "fetched_at": "2026-11-13T05:42:25Z"
+   "latency_ms": 83,
+   "fetched_at": "2026-11-13T05:43:00Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1642,
-   "fetched_at": "2026-11-13T05:42:27Z"
+   "latency_ms": 1641,
+   "fetched_at": "2026-11-13T05:43:02Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 664,
-   "fetched_at": "2026-11-13T05:42:28Z"
+   "latency_ms": 42,
+   "fetched_at": "2026-11-13T05:43:02Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 487,
-   "fetched_at": "2026-11-13T05:42:28Z"
+   "latency_ms": 400,
+   "fetched_at": "2026-11-13T05:43:02Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1563,
-   "fetched_at": "2026-11-13T05:42:30Z"
+   "latency_ms": 713,
+   "fetched_at": "2026-11-13T05:43:03Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 745,
-   "fetched_at": "2026-11-13T05:42:30Z"
+   "latency_ms": 68,
+   "fetched_at": "2026-11-13T05:43:03Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 637,
+   "latency_ms": 511,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-13T05:42:31Z"
+   "fetched_at": "2026-11-13T05:43:04Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 225,
-   "fetched_at": "2026-11-13T05:42:31Z"
+   "latency_ms": 79,
+   "fetched_at": "2026-11-13T05:43:04Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1090,
-   "fetched_at": "2026-11-13T05:42:32Z"
+   "latency_ms": 912,
+   "fetched_at": "2026-11-13T05:43:05Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 767,
-   "fetched_at": "2026-11-13T05:42:33Z"
+   "latency_ms": 704,
+   "fetched_at": "2026-11-13T05:43:05Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 101,
+   "latency_ms": 25,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-13T05:42:33Z"
+   "fetched_at": "2026-11-13T05:43:05Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2396,
-   "fetched_at": "2026-11-13T05:42:36Z"
+   "latency_ms": 1993,
+   "fetched_at": "2026-11-13T05:43:07Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 228,
-   "fetched_at": "2026-11-13T05:42:36Z"
+   "latency_ms": 356,
+   "fetched_at": "2026-11-13T05:43:08Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 1154,
-   "fetched_at": "2026-11-13T05:42:37Z"
+   "latency_ms": 796,
+   "fetched_at": "2026-11-13T05:43:09Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 2045,
-   "fetched_at": "2026-11-13T05:42:39Z"
+   "latency_ms": 1440,
+   "fetched_at": "2026-11-13T05:43:10Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-09T07:51:06Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 467240013,
-   "tps": 1414.9,
-   "nonvote_tps": 1414.9,
-   "slot_ms": 214.6,
-   "conf_s": 0.21,
-   "final_s": 0.21,
-   "delinquent_stake_pct": 0.13,
-   "price": 85.44,
-   "tvl": 5084333645,
-   "rev_usd": 508411,
-   "anomaly_level": "warning",
-   "levels": {
-    "price": "warning",
-    "stablecoins": "warning"
-   }
-  },
   {
    "ts": "2026-11-09T08:21:37Z",
    "failed_sources": [
@@ -11759,6 +11732,29 @@
    "slot_ms": 213.1,
    "conf_s": 0.21,
    "final_s": 0.21,
+   "delinquent_stake_pct": 0.13,
+   "price": 78.73,
+   "tvl": 4910726380,
+   "rev_usd": 561423,
+   "anomaly_level": "warning",
+   "levels": {
+    "price": "warning",
+    "tvl": "warning",
+    "market_move": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-13T05:42:49Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 468813411,
+   "tps": 1771.9,
+   "nonvote_tps": 1771.9,
+   "slot_ms": 213.1,
+   "conf_s": 0.43,
+   "final_s": 0.43,
    "delinquent_stake_pct": 0.13,
    "price": 78.73,
    "tvl": 4910726380,
