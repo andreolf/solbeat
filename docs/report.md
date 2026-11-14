@@ -1,44 +1,44 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-11-14T08:52:48Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-11-14T09:23:08Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1086 is 27% complete (~19h remaining), with the cluster processing ~1,054 TPS (1,054 non-vote). Measured slot time is 214ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $554.6K of Real Economic Value over the last 24h ($385/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $75.21 (-6.0% / 24h). Decentralization: Nakamoto coefficient 18, 662 active validators, 0.1% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 5 signal(s) flagged — see Signals below.
+Epoch 1086 is 29% complete (~18h remaining), with the cluster processing ~1,073 TPS (1,073 non-vote). Measured slot time is 215ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $554.2K of Real Economic Value over the last 24h ($385/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $75.48 (-5.3% / 24h). Decentralization: Nakamoto coefficient 18, 662 active validators, 0.1% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 5 signal(s) flagged — see Signals below.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 469,267,679 |
-| Block height | 447,282,778 |
-| Epoch | 1086 (26.78% complete, ~18.8h left) |
-| TPS (10 min avg) | 1,054 |
-| Non-vote TPS | 1,054 |
-| Slot time (measured) | 213.8 ms |
-| Confirmation time (measured) | 0.21 s |
-| Finality time (measured) | 0.21 s — **Alpenglow active** |
-| Est. daily transactions | 130,618,326 |
+| Slot | 469,276,157 |
+| Block height | 447,291,256 |
+| Epoch | 1086 (28.74% complete, ~18.4h left) |
+| TPS (10 min avg) | 1,073 |
+| Non-vote TPS | 1,073 |
+| Slot time (measured) | 215.2 ms |
+| Confirmation time (measured) | 0.22 s |
+| Finality time (measured) | 0.22 s — **Alpenglow active** |
+| Est. daily transactions | 127,026,177 |
 | Median priority fee | 0.0 µ-lamports/CU |
-| Avg fee per user tx (24h) | $0.0034 |
+| Avg fee per user tx (24h) | $0.0035 |
 | Node version | 4.4.0 |
 
 ## Economic indicators
 
 | Metric | Value |
 |---|---|
-| SOL price | $75.21 (-6.0%/24h) |
-| Market cap | $44.5B |
-| **REV (24h)** | **$554.6K** (fees $448.8K + Jito tips $105.8K) |
+| SOL price | $75.48 (-5.3%/24h) |
+| Market cap | $44.6B |
+| **REV (24h)** | **$554.2K** (fees $448.8K + Jito tips $105.5K) |
 | Chain TVL | $4.8B |
 | Stablecoin supply | $14.1B |
 | DEX volume (24h) | $1.5B (-3.3%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 591,573,882 SOL |
+| Circulating supply | 591,573,877 SOL |
 | Inflation | 3.56% |
 
-Top DEXs by 24h volume: Orca DEX ($230.4M), PumpSwap ($177.3M), BisonFi ($147.3M), Meteora DLMM ($144.7M), Raydium AMM ($125.6M)
+Top DEXs by 24h volume: Orca DEX ($228.3M), PumpSwap ($177.3M), BisonFi ($147.3M), Meteora DLMM ($144.7M), Raydium AMM ($122.2M)
 
 ## Validators
 
@@ -82,7 +82,7 @@ Top DEXs by 24h volume: Orca DEX ($230.4M), PumpSwap ($177.3M), BisonFi ($147.3M
 |---|---|
 | community | 76.7 |
 | fear greed | 13 |
-| momentum | 25.6 |
+| momentum | 25.5 |
 | news | 58 |
 
 Crypto Fear & Greed: 13 (Extreme Fear) · CoinGecko votes bullish: 76.74% · headline tone (48h): +1
@@ -91,12 +91,12 @@ Crypto Fear & Greed: 13 (Extreme Fear) · CoinGecko votes bullish: 76.74% · hea
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 1,500 |
-| Raydium AMM v4 | 931 |
-| Orca Whirlpool | 1,500 |
+| Jupiter v6 | 934 |
+| Raydium AMM v4 | 576 |
+| Orca Whirlpool | 934 |
 | Pump.fun | 1,500 |
-| Tensor | 8 |
-| Magic Eden v2 | 17 |
+| Tensor | 5 |
+| Magic Eden v2 | 38 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
@@ -104,34 +104,34 @@ Crypto Fear & Greed: 13 (Extreme Fear) · CoinGecko votes bullish: 76.74% · hea
 | Binance (hot) | 9,300,003 |
 | Binance (cold) | 66 |
 | OKX (attributed) | 47,546 |
-| Coinbase (hot) | 104,377 |
+| Coinbase (hot) | 102,657 |
 
 ## Upgrades & news
 
-- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 214ms · proposal merged.
+- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 215ms.
 - **Alpenglow (SIMD-0236)**: consensus overhaul (~150ms finality) targeted for activation via Agave v4.3; BLS-key registration at 100.0% of stake.
-- **Agave**: latest release v4.4.1 · running 4.4.0 on the polled node.
+- **Agave**: latest release None · running 4.4.0 on the polled node.
 - **Status page**: All Systems Operational (0 unresolved incidents).
 
 ## Data sources & provenance
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 9259 ms |
-| solana_rpc_validators | OK | 142 ms |
-| coingecko | OK | 1662 ms |
-| defillama_tvl | OK | 518 ms |
-| defillama_dex | OK | 760 ms |
-| defillama_fees | OK | 691 ms |
+| solana_rpc | OK | 8774 ms |
+| solana_rpc_validators | OK | 99 ms |
+| coingecko | OK | 1631 ms |
+| defillama_tvl | OK | 26 ms |
+| defillama_dex | OK | 805 ms |
+| defillama_fees | OK | 3163 ms |
 | defillama_stablecoins | OK | 52 ms |
-| defillama_xstocks | FAILED | 21 ms |
-| jito_kobe | OK | 112 ms |
-| stakewiz | OK | 641 ms |
-| github | OK | 568 ms |
-| solana_com_news | FAILED | 31 ms |
-| sentiment | OK | 2042 ms |
-| solana_status_page | OK | 111 ms |
-| solana_rpc_whales | OK | 783 ms |
-| solana_rpc_programs | OK | 1391 ms |
+| defillama_xstocks | FAILED | 500 ms |
+| jito_kobe | OK | 111 ms |
+| stakewiz | OK | 629 ms |
+| github | FAILED | 6031 ms |
+| solana_com_news | FAILED | 22 ms |
+| sentiment | OK | 1980 ms |
+| solana_status_page | OK | 125 ms |
+| solana_rpc_whales | OK | 729 ms |
+| solana_rpc_programs | OK | 1541 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
