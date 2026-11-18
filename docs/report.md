@@ -1,25 +1,25 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-11-18T20:34:28Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-11-18T21:04:55Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1090 is 44% complete (~14h remaining), with the cluster processing ~2,263 TPS (2,263 non-vote). Measured slot time is 215ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $555.8K of Real Economic Value over the last 24h ($386/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $72.84 (-0.4% / 24h). Decentralization: Nakamoto coefficient 17, 660 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 5 signal(s) flagged — see Signals below.
+Epoch 1090 is 46% complete (~14h remaining), with the cluster processing ~2,568 TPS (2,568 non-vote). Measured slot time is 215ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $556.0K of Real Economic Value over the last 24h ($386/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $73.06 (-0.1% / 24h). Decentralization: Nakamoto coefficient 17, 660 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 5 signal(s) flagged — see Signals below.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 471,069,853 |
-| Block height | 449,084,224 |
-| Epoch | 1090 (43.95% complete, ~14.5h left) |
-| TPS (10 min avg) | 2,263 |
-| Non-vote TPS | 2,263 |
-| Slot time (measured) | 214.9 ms |
-| Confirmation time (measured) | 0.21 s |
-| Finality time (measured) | 0.21 s — **Alpenglow active** |
-| Est. daily transactions | 211,398,707 |
+| Slot | 471,078,349 |
+| Block height | 449,092,712 |
+| Epoch | 1090 (45.91% complete, ~14.0h left) |
+| TPS (10 min avg) | 2,568 |
+| Non-vote TPS | 2,568 |
+| Slot time (measured) | 215.2 ms |
+| Confirmation time (measured) | 0.22 s |
+| Finality time (measured) | 0.22 s — **Alpenglow active** |
+| Est. daily transactions | 209,314,230 |
 | Median priority fee | 0.0 µ-lamports/CU |
 | Avg fee per user tx (24h) | $0.0021 |
 | Node version | 4.4.0 |
@@ -28,14 +28,14 @@ Epoch 1090 is 44% complete (~14h remaining), with the cluster processing ~2,263 
 
 | Metric | Value |
 |---|---|
-| SOL price | $72.84 (-0.4%/24h) |
-| Market cap | $43.1B |
-| **REV (24h)** | **$555.8K** (fees $445.2K + Jito tips $110.6K) |
+| SOL price | $73.06 (-0.1%/24h) |
+| Market cap | $43.2B |
+| **REV (24h)** | **$556.0K** (fees $445.2K + Jito tips $110.8K) |
 | Chain TVL | $4.7B |
 | Stablecoin supply | $13.9B |
 | DEX volume (24h) | $1.5B (2.0%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 591,794,722 SOL |
+| Circulating supply | 591,794,710 SOL |
 | Inflation | 3.55% |
 
 Top DEXs by 24h volume: Orca DEX ($229.5M), Meteora DLMM ($172.7M), Raydium AMM ($163.3M), PumpSwap ($155.3M), BisonFi ($149.6M)
@@ -80,58 +80,58 @@ Top DEXs by 24h volume: Orca DEX ($229.5M), Meteora DLMM ($172.7M), Raydium AMM 
 
 | Component | Score |
 |---|---|
-| community | 68.5 |
+| community | 67.3 |
 | fear greed | 11 |
-| momentum | 32.2 |
+| momentum | 32.4 |
 | news | 42 |
 
-Crypto Fear & Greed: 11 (Extreme Fear) · CoinGecko votes bullish: 68.52% · headline tone (48h): -1
+Crypto Fear & Greed: 11 (Extreme Fear) · CoinGecko votes bullish: 67.31% · headline tone (48h): -1
 
 ## Ecosystem pulse
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 1,500 |
-| Raydium AMM v4 | 1,500 |
+| Jupiter v6 | 1,032 |
+| Raydium AMM v4 | 1,032 |
 | Orca Whirlpool | 1,500 |
 | Pump.fun | 1,500 |
 | Tensor | 0 |
-| Magic Eden v2 | 24 |
+| Magic Eden v2 | 34 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
 |---|---|
 | Binance (hot) | 9,300,003 |
 | Binance (cold) | 66 |
-| OKX (attributed) | 133,803 |
-| Coinbase (hot) | 150,372 |
+| OKX (attributed) | 133,486 |
+| Coinbase (hot) | 150,256 |
 
 ## Upgrades & news
 
-- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 215ms.
+- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 215ms · proposal merged.
 - **Alpenglow (SIMD-0236)**: consensus overhaul (~150ms finality) targeted for activation via Agave v4.3; BLS-key registration at 100.0% of stake.
-- **Agave**: latest release None · running 4.4.0 on the polled node.
+- **Agave**: latest release v4.4.1 · running 4.4.0 on the polled node.
 - **Status page**: All Systems Operational (0 unresolved incidents).
 
 ## Data sources & provenance
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 9682 ms |
-| solana_rpc_validators | OK | 156 ms |
-| coingecko | OK | 1664 ms |
-| defillama_tvl | OK | 546 ms |
-| defillama_dex | OK | 31 ms |
-| defillama_fees | OK | 60 ms |
-| defillama_stablecoins | OK | 97 ms |
-| defillama_xstocks | FAILED | 25 ms |
-| jito_kobe | OK | 190 ms |
-| stakewiz | OK | 659 ms |
-| github | FAILED | 6044 ms |
-| solana_com_news | FAILED | 64 ms |
-| sentiment | OK | 2004 ms |
-| solana_status_page | OK | 188 ms |
-| solana_rpc_whales | OK | 1216 ms |
-| solana_rpc_programs | OK | 2312 ms |
+| solana_rpc | OK | 10065 ms |
+| solana_rpc_validators | OK | 89 ms |
+| coingecko | OK | 1750 ms |
+| defillama_tvl | OK | 199 ms |
+| defillama_dex | OK | 400 ms |
+| defillama_fees | OK | 208 ms |
+| defillama_stablecoins | OK | 292 ms |
+| defillama_xstocks | FAILED | 27 ms |
+| jito_kobe | OK | 285 ms |
+| stakewiz | OK | 943 ms |
+| github | OK | 589 ms |
+| solana_com_news | FAILED | 39 ms |
+| sentiment | OK | 2148 ms |
+| solana_status_page | OK | 73 ms |
+| solana_rpc_whales | OK | 962 ms |
+| solana_rpc_programs | OK | 1790 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
