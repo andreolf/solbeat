@@ -1,41 +1,41 @@
 # Solbeat — State of the Solana Network
 
-> Generated 2026-11-19T06:42:15Z · zero API keys · Python stdlib + public endpoints
+> Generated 2026-11-19T07:12:36Z · zero API keys · Python stdlib + public endpoints
 
 ## Analyst commentary
 
-Epoch 1090 is 83% complete (~4h remaining), with the cluster processing ~1,503 TPS (1,503 non-vote). Measured slot time is 216ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $673.6K of Real Economic Value over the last 24h ($468/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $74.87 (+0.1% / 24h). Decentralization: Nakamoto coefficient 17, 660 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 3 signal(s) flagged — see Signals below.
+Epoch 1090 is 85% complete (~4h remaining), with the cluster processing ~1,272 TPS (1,272 non-vote). Measured slot time is 214ms — live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $674.7K of Real Economic Value over the last 24h ($469/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $75.04 (+0.0% / 24h). Decentralization: Nakamoto coefficient 17, 660 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 3 signal(s) flagged — see Signals below.
 
 ## Network performance
 
 | Metric | Value |
 |---|---|
 | Health | ok |
-| Slot | 471,239,308 |
-| Block height | 449,253,615 |
-| Epoch | 1090 (83.17% complete, ~4.4h left) |
-| TPS (10 min avg) | 1,503 |
-| Non-vote TPS | 1,503 |
-| Slot time (measured) | 216.0 ms |
-| Confirmation time (measured) | 0.22 s |
-| Finality time (measured) | 0.22 s — **Alpenglow active** |
-| Est. daily transactions | 142,033,081 |
+| Slot | 471,247,788 |
+| Block height | 449,262,095 |
+| Epoch | 1090 (85.14% complete, ~3.8h left) |
+| TPS (10 min avg) | 1,272 |
+| Non-vote TPS | 1,272 |
+| Slot time (measured) | 214.3 ms |
+| Confirmation time (measured) | 0.21 s |
+| Finality time (measured) | 0.21 s — **Alpenglow active** |
+| Est. daily transactions | 138,664,386 |
 | Median priority fee | 0.0 µ-lamports/CU |
-| Avg fee per user tx (24h) | $0.0039 |
+| Avg fee per user tx (24h) | $0.0040 |
 | Node version | 4.4.0 |
 
 ## Economic indicators
 
 | Metric | Value |
 |---|---|
-| SOL price | $74.87 (+0.1%/24h) |
-| Market cap | $44.3B |
-| **REV (24h)** | **$673.6K** (fees $560.5K + Jito tips $113.1K) |
-| Chain TVL | $4.7B |
+| SOL price | $75.04 (+0.0%/24h) |
+| Market cap | $44.4B |
+| **REV (24h)** | **$674.7K** (fees $560.5K + Jito tips $114.2K) |
+| Chain TVL | $4.8B |
 | Stablecoin supply | $13.0B |
 | DEX volume (24h) | $1.7B (12.7%/1d) |
 | Tokenized equities (xStocks TVL) | n/a |
-| Circulating supply | 591,796,263 SOL |
+| Circulating supply | 591,796,257 SOL |
 | Inflation | 3.55% |
 
 Top DEXs by 24h volume: PumpSwap ($330.7M), Orca DEX ($259.8M), Meteora DLMM ($172.7M), BisonFi ($149.6M), Raydium AMM ($140.4M)
@@ -78,23 +78,23 @@ Top DEXs by 24h volume: PumpSwap ($330.7M), Orca DEX ($259.8M), Meteora DLMM ($1
 
 | Component | Score |
 |---|---|
-| community | 69.8 |
+| community | 69.0 |
 | fear greed | 10 |
-| momentum | 42.1 |
+| momentum | 42.8 |
 | news | 42 |
 
-Crypto Fear & Greed: 10 (Extreme Fear) · CoinGecko votes bullish: 69.77% · headline tone (48h): -1
+Crypto Fear & Greed: 10 (Extreme Fear) · CoinGecko votes bullish: 69.05% · headline tone (48h): -1
 
 ## Ecosystem pulse
 
 | Program | Activity (tx/min, sampled) |
 |---|---|
-| Jupiter v6 | 906 |
-| Raydium AMM v4 | 906 |
-| Orca Whirlpool | 906 |
+| Jupiter v6 | 907 |
+| Raydium AMM v4 | 265 |
+| Orca Whirlpool | 907 |
 | Pump.fun | 1,500 |
 | Tensor | 0 |
-| Magic Eden v2 | 28 |
+| Magic Eden v2 | 24 |
 | Marinade | 0 |
 
 | Exchange wallet | Balance (SOL) |
@@ -102,11 +102,11 @@ Crypto Fear & Greed: 10 (Extreme Fear) · CoinGecko votes bullish: 69.77% · hea
 | Binance (hot) | 9,300,003 |
 | Binance (cold) | 66 |
 | OKX (attributed) | 133,487 |
-| Coinbase (hot) | 94,152 |
+| Coinbase (hot) | 94,015 |
 
 ## Upgrades & news
 
-- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 216ms · proposal merged.
+- **SIMD-0525 (slot-time reduction)**: first step (350ms) confirmed ACTIVE — measured slot time 214ms · proposal merged.
 - **Alpenglow (SIMD-0236)**: consensus overhaul (~150ms finality) targeted for activation via Agave v4.3; BLS-key registration at 100.0% of stake.
 - **Agave**: latest release v4.4.1 · running 4.4.0 on the polled node.
 - **Status page**: All Systems Operational (0 unresolved incidents).
@@ -115,21 +115,21 @@ Crypto Fear & Greed: 10 (Extreme Fear) · CoinGecko votes bullish: 69.77% · hea
 
 | Source | Status | Latency |
 |---|---|---|
-| solana_rpc | OK | 9950 ms |
-| solana_rpc_validators | OK | 114 ms |
-| coingecko | OK | 1684 ms |
-| defillama_tvl | OK | 130 ms |
-| defillama_dex | OK | 28 ms |
-| defillama_fees | OK | 327 ms |
-| defillama_stablecoins | OK | 72 ms |
-| defillama_xstocks | FAILED | 23 ms |
-| jito_kobe | OK | 177 ms |
-| stakewiz | OK | 679 ms |
-| github | OK | 572 ms |
+| solana_rpc | OK | 8871 ms |
+| solana_rpc_validators | OK | 101 ms |
+| coingecko | OK | 1674 ms |
+| defillama_tvl | OK | 68 ms |
+| defillama_dex | OK | 35 ms |
+| defillama_fees | OK | 308 ms |
+| defillama_stablecoins | OK | 555 ms |
+| defillama_xstocks | FAILED | 20 ms |
+| jito_kobe | OK | 199 ms |
+| stakewiz | OK | 666 ms |
+| github | OK | 659 ms |
 | solana_com_news | FAILED | 28 ms |
-| sentiment | OK | 1977 ms |
+| sentiment | OK | 2005 ms |
 | solana_status_page | OK | 120 ms |
-| solana_rpc_whales | OK | 1016 ms |
-| solana_rpc_programs | OK | 1615 ms |
+| solana_rpc_whales | OK | 768 ms |
+| solana_rpc_programs | OK | 1391 ms |
 
 *REV methodology: chain base+priority fees (DeFiLlama) + Jito MEV tips (Kobe API), following the Blockworks definition. All endpoints keyless.*
