@@ -1,19 +1,19 @@
 {
  "schema_version": "1.0",
- "generated_at": "2026-11-24T17:04:50Z",
+ "generated_at": "2026-11-24T17:05:26Z",
  "generator": "solbeat",
  "network": {
   "health": "ok",
   "node_version": "4.4.0",
-  "chain_time": "2026-11-24T17:04:41Z",
+  "chain_time": "2026-11-24T17:05:18Z",
   "chain_clock_drift_s": 10,
   "epoch": 1095,
-  "slot": 473421543,
-  "block_height": 451434669,
-  "epoch_slot_index": 381543,
+  "slot": 473421710,
+  "block_height": 451434836,
+  "epoch_slot_index": 381710,
   "epoch_slots_total": 432000,
-  "epoch_progress_pct": 88.32,
-  "tx_count_total": 568193574259,
+  "epoch_progress_pct": 88.36,
+  "tx_count_total": 568193679253,
   "perf_series": [
    {
     "tps": 1410.0,
@@ -1409,17 +1409,22 @@
     "tps": 2886.4,
     "nonvote_tps": 2886.4,
     "slot_ms": 215.1
+   },
+   {
+    "tps": 3149.2,
+    "nonvote_tps": 3149.2,
+    "slot_ms": 223.9
    }
   ],
-  "tps": 2169.8,
-  "nonvote_tps": 2169.8,
-  "slot_time_ms": 214.8,
-  "est_daily_txs": 198422926,
-  "est_daily_nonvote_txs": 198422895,
+  "tps": 2270.1,
+  "nonvote_tps": 2270.1,
+  "slot_time_ms": 215.6,
+  "est_daily_txs": 198686026,
+  "est_daily_nonvote_txs": 198685995,
   "conf_lag_slots": 1,
   "final_lag_slots": 1,
-  "confirmation_s": 0.21,
-  "finality_s": 0.21,
+  "confirmation_s": 0.22,
+  "finality_s": 0.22,
   "supply_total_sol": 638102959,
   "supply_circulating_sol": 592071577,
   "inflation_total_pct": 3.54,
@@ -1576,7 +1581,7 @@
    70.2,
    70.61,
    71.99,
-   68.91
+   68.93
   ]
  },
  "tvl": {
@@ -1890,7 +1895,7 @@
   ]
  },
  "stablecoins": {
-  "stablecoin_supply_usd": 13806176489,
+  "stablecoin_supply_usd": 13806199313,
   "stablecoin_series": [
    15019317755,
    15114065945,
@@ -1981,7 +1986,7 @@
    13176286462,
    13282311838,
    13325309503,
-   13806176489
+   13806199313
   ]
  },
  "xstocks": null,
@@ -6814,14 +6819,14 @@
     "tone": 0
    },
    {
-    "title": "Large cryptocurrencies drop on Sui, Solana declines - MarketWatch",
-    "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMWlWejRmWFRfOEctblVydFJYUGpHeGU1bXJhclllNDVEU191TW55UDMxSUx0M185WFdSLXdKTzhmYTNkZlp2RjBuaGpPSmUwdWVSTXIwblp1RGFOUElaWDEyYXl5VDJWbWEwRl9jRU5DRVZZdDNzUkZlQnh3QmF0VWthdHhLSmNZaEJRN2dXRVp2MTNQaUJXSU1XUHlwM21zMFlpVjl1OWUyc3pteVRj?oc=5",
-    "tone": -1
-   },
-   {
     "title": "Advanced AI-Powered Crypto Investment Research Platform - SoSoValue",
     "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE43ZzNVbXRoTXcyZUlTbEEwTnVIa00ydzhnbWRkdV9TSUFEdlhZTkxPdGM1Uzg3UWVpZHpET0F5WGxkWm9GLWF5bmI2TDc2VVRZWmxqYXE5dGs1QQ?oc=5",
     "tone": 0
+   },
+   {
+    "title": "Large cryptocurrencies drop on Sui, Solana declines - MarketWatch",
+    "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMWlWejRmWFRfOEctblVydFJYUGpHeGU1bXJhclllNDVEU191TW55UDMxSUx0M185WFdSLXdKTzhmYTNkZlp2RjBuaGpPSmUwdWVSTXIwblp1RGFOUElaWDEyYXl5VDJWbWEwRl9jRU5DRVZZdDNzUkZlQnh3QmF0VWthdHhLSmNZaEJRN2dXRVp2MTNQaUJXSU1XUHlwM21zMFlpVjl1OWUyc3pteVRj?oc=5",
+    "tone": -1
    },
    {
     "title": "Hylo Launches xONYC, the First Leveraged Yield Product Amid Solana DeFi TVL Decline - KuCoin",
@@ -6899,18 +6904,18 @@
  "program_pulse": [
   {
    "program": "Jupiter v6",
-   "tx_per_min": 1206.4,
+   "tx_per_min": 1500.0,
    "newest_age_s": 1
   },
   {
    "program": "Raydium AMM v4",
-   "tx_per_min": 1206.4,
+   "tx_per_min": 874.9,
    "newest_age_s": 1
   },
   {
    "program": "Orca Whirlpool",
    "tx_per_min": 1500.0,
-   "newest_age_s": 0
+   "newest_age_s": 1
   },
   {
    "program": "Pump.fun",
@@ -6920,24 +6925,24 @@
   {
    "program": "Tensor",
    "tx_per_min": 0.2,
-   "newest_age_s": 559
+   "newest_age_s": 595
   },
   {
    "program": "Magic Eden v2",
-   "tx_per_min": 98.4,
-   "newest_age_s": 0
+   "tx_per_min": 31.4,
+   "newest_age_s": 3
   },
   {
    "program": "Marinade",
    "tx_per_min": 0.2,
-   "newest_age_s": 340
+   "newest_age_s": 376
   }
  ],
  "derived": {
-  "jito_tips24h_usd": 103307,
-  "rev24h_usd": 527399,
-  "rev_per_min_usd": 366.25,
-  "avg_fee_per_tx_usd": 0.002137,
+  "jito_tips24h_usd": 102924,
+  "rev24h_usd": 527016,
+  "rev_per_min_usd": 365.98,
+  "avg_fee_per_tx_usd": 0.002134,
   "epoch_eta_hours": 3.0,
   "simd525_step_active": true,
   "alpenglow_active": true,
@@ -6964,117 +6969,92 @@
   "incidents": [],
   "all_clear": false
  },
- "commentary": "Epoch 1095 is 88% complete (~3h remaining), with the cluster processing ~2,170 TPS (2,170 non-vote). Measured slot time is 215ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $527.4K of Real Economic Value over the last 24h ($366/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $68.91 (-7.3% / 24h). Decentralization: Nakamoto coefficient 18, 661 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
+ "commentary": "Epoch 1095 is 88% complete (~3h remaining), with the cluster processing ~2,270 TPS (2,270 non-vote). Measured slot time is 216ms \u2014 live on-chain evidence that SIMD-0525's first slot-time reduction step (350ms target) is active on mainnet. The network earned $527.0K of Real Economic Value over the last 24h ($366/minute), computed as base + priority fees plus Jito MEV tips. SOL trades at $68.91 (-7.3% / 24h). Decentralization: Nakamoto coefficient 18, 661 active validators, 0.0% of stake delinquent. Alpenglow readiness: validators holding 100% of stake have registered BLS keys ahead of the consensus upgrade. Anomaly scan: 1 signal(s) flagged \u2014 see Signals below.",
  "sources": {
   "solana_rpc": {
    "ok": true,
-   "latency_ms": 9213,
-   "fetched_at": "2026-11-24T17:04:59Z"
+   "latency_ms": 9832,
+   "fetched_at": "2026-11-24T17:05:36Z"
   },
   "solana_rpc_validators": {
    "ok": true,
-   "latency_ms": 134,
-   "fetched_at": "2026-11-24T17:04:59Z"
+   "latency_ms": 357,
+   "fetched_at": "2026-11-24T17:05:37Z"
   },
   "coingecko": {
    "ok": true,
-   "latency_ms": 1968,
-   "fetched_at": "2026-11-24T17:05:01Z"
+   "latency_ms": 1808,
+   "fetched_at": "2026-11-24T17:05:38Z"
   },
   "defillama_tvl": {
    "ok": true,
-   "latency_ms": 149,
-   "fetched_at": "2026-11-24T17:05:02Z"
+   "latency_ms": 148,
+   "fetched_at": "2026-11-24T17:05:39Z"
   },
   "defillama_dex": {
    "ok": true,
-   "latency_ms": 1144,
-   "fetched_at": "2026-11-24T17:05:03Z"
+   "latency_ms": 1037,
+   "fetched_at": "2026-11-24T17:05:40Z"
   },
   "defillama_fees": {
    "ok": true,
-   "latency_ms": 1073,
-   "fetched_at": "2026-11-24T17:05:04Z"
+   "latency_ms": 217,
+   "fetched_at": "2026-11-24T17:05:40Z"
   },
   "defillama_stablecoins": {
    "ok": true,
-   "latency_ms": 1456,
-   "fetched_at": "2026-11-24T17:05:05Z"
+   "latency_ms": 513,
+   "fetched_at": "2026-11-24T17:05:40Z"
   },
   "defillama_xstocks": {
    "ok": false,
-   "latency_ms": 55,
+   "latency_ms": 719,
    "error": "xstocks delisted from DeFiLlama \u2014 empty TVL payload",
-   "fetched_at": "2026-11-24T17:05:05Z"
+   "fetched_at": "2026-11-24T17:05:41Z"
   },
   "jito_kobe": {
    "ok": true,
-   "latency_ms": 196,
-   "fetched_at": "2026-11-24T17:05:06Z"
+   "latency_ms": 178,
+   "fetched_at": "2026-11-24T17:05:41Z"
   },
   "stakewiz": {
    "ok": true,
-   "latency_ms": 1408,
-   "fetched_at": "2026-11-24T17:05:07Z"
+   "latency_ms": 1246,
+   "fetched_at": "2026-11-24T17:05:43Z"
   },
   "github": {
    "ok": true,
-   "latency_ms": 1005,
-   "fetched_at": "2026-11-24T17:05:08Z"
+   "latency_ms": 707,
+   "fetched_at": "2026-11-24T17:05:43Z"
   },
   "solana_com_news": {
    "ok": false,
-   "latency_ms": 116,
+   "latency_ms": 132,
    "error": "HTTP Error 429: Too Many Requests",
-   "fetched_at": "2026-11-24T17:05:08Z"
+   "fetched_at": "2026-11-24T17:05:43Z"
   },
   "sentiment": {
    "ok": true,
-   "latency_ms": 2363,
-   "fetched_at": "2026-11-24T17:05:10Z"
+   "latency_ms": 2348,
+   "fetched_at": "2026-11-24T17:05:46Z"
   },
   "solana_status_page": {
    "ok": true,
-   "latency_ms": 251,
-   "fetched_at": "2026-11-24T17:05:11Z"
+   "latency_ms": 334,
+   "fetched_at": "2026-11-24T17:05:46Z"
   },
   "solana_rpc_whales": {
    "ok": true,
-   "latency_ms": 1066,
-   "fetched_at": "2026-11-24T17:05:12Z"
+   "latency_ms": 1189,
+   "fetched_at": "2026-11-24T17:05:47Z"
   },
   "solana_rpc_programs": {
    "ok": true,
-   "latency_ms": 1658,
-   "fetched_at": "2026-11-24T17:05:13Z"
+   "latency_ms": 2253,
+   "fetched_at": "2026-11-24T17:05:49Z"
   }
  },
  "history": [
-  {
-   "ts": "2026-11-20T20:58:35Z",
-   "failed_sources": [
-    "defillama_xstocks",
-    "solana_com_news"
-   ],
-   "slot": 471879691,
-   "tps": 2477.4,
-   "nonvote_tps": 2477.4,
-   "slot_ms": 215.7,
-   "conf_s": 0.22,
-   "final_s": 0.22,
-   "delinquent_stake_pct": 0.02,
-   "price": 67.27,
-   "tvl": 4540659904,
-   "rev_usd": 574648,
-   "anomaly_level": "serious",
-   "levels": {
-    "price": "warning",
-    "tvl": "warning",
-    "stablecoins": "serious",
-    "market_move": "warning",
-    "liquidity_rotation": "warning"
-   }
-  },
   {
    "ts": "2026-11-20T21:29:02Z",
    "failed_sources": [
@@ -11642,6 +11622,27 @@
    "price": 68.91,
    "tvl": 4522613836,
    "rev_usd": 527399,
+   "anomaly_level": "warning",
+   "levels": {
+    "tvl": "warning"
+   }
+  },
+  {
+   "ts": "2026-11-24T17:05:26Z",
+   "failed_sources": [
+    "defillama_xstocks",
+    "solana_com_news"
+   ],
+   "slot": 473421710,
+   "tps": 2270.1,
+   "nonvote_tps": 2270.1,
+   "slot_ms": 215.6,
+   "conf_s": 0.22,
+   "final_s": 0.22,
+   "delinquent_stake_pct": 0.01,
+   "price": 68.91,
+   "tvl": 4522613836,
+   "rev_usd": 527016,
    "anomaly_level": "warning",
    "levels": {
     "tvl": "warning"
